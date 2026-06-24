@@ -56,6 +56,7 @@ const NAV_COLS = [
     title: 'Platform',
     links: [
       { label: 'Dashboard', href: 'https://app.speekr.ai/auth/sign-in/?returnTo=%2Fdashboard%2F' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Pricing', href: '#pricing' },
       { label: 'Case Studies', href: '#case-studies' },
       { label: 'FAQ', href: '#faq' },

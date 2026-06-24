@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 
 const NAV_ITEMS = [
-  { label: 'Blog', href: 'https://speekr.ai/blog', external: true },
+  { label: 'Blog', href: '/blog' },
   { label: 'Product', href: '#product', sectionId: 'product' },
   { label: 'Pricing', href: '#pricing', sectionId: 'pricing' },
   { label: 'Contact', isContact: true },
