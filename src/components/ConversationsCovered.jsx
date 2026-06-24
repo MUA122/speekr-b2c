@@ -8,16 +8,16 @@ const SCENARIOS = [
   {
     cat: 'Sales',
     Icon: TrendingUp,
-    accent: '#ff6b2f',
-    rgb: '255,107,47',
+    accent: '#FF7600',
+    rgb: '255,118,0',
     title: 'Turn Cold Calls Into Closed Deals',
     sub: 'Handle objections, close with confidence, and navigate pricing conversations without hesitation. Practice the call before you are on the call.',
   },
   {
     cat: 'Career Development',
     Icon: Briefcase,
-    accent: '#c9f568',
-    rgb: '201,245,104',
+    accent: '#FF7600',
+    rgb: '255,118,0',
     title: 'Ace The Interview. Land The Job.',
     sub: 'Walk into every interview already knowing how to handle the hard questions. Own the negotiation before it begins.',
   },
@@ -40,8 +40,8 @@ const SCENARIOS = [
 ]
 
 const STATS = [
-  { value: '96%',   label: 'User Satisfaction',  accent: '#c9f568', rgb: '201,245,104' },
-  { value: '10+',   label: 'Arabic Dialects',     accent: '#ff6b2f', rgb: '255,107,47'  },
+  { value: '96%',   label: 'User Satisfaction',  accent: '#FF7600', rgb: '255,118,0' },
+  { value: '10+',   label: 'Arabic Dialects',     accent: '#FF7600', rgb: '255,118,0'  },
   { value: '100K+', label: 'Possible Scenarios',  accent: '#7eb8f7', rgb: '126,184,247' },
 ]
 
@@ -52,9 +52,8 @@ function ScenarioCard({ cat, Icon, accent, rgb, title, sub }) {
         position: 'relative',
         p: { xs: '28px', sm: '32px', md: '38px' },
         borderRadius: { xs: '18px', md: '22px' },
-        border: '1px solid rgba(255,255,255,0.06)',
-        bgcolor: 'rgba(255,255,255,0.028)',
-        backdropFilter: 'blur(40px)',
+        border: '1px solid rgba(0,66,37,0.12)',
+        bgcolor: '#F7F9E8',
         overflow: 'hidden',
         height: '100%',
         transition:
@@ -152,7 +151,7 @@ function ScenarioCard({ cat, Icon, accent, rgb, title, sub }) {
           fontWeight: 900,
           letterSpacing: { xs: -0.6, md: -1 },
           lineHeight: 1.17,
-          color: 'rgba(247,255,232,0.94)',
+          color: '#004225',
           mb: { xs: 1.8, md: 2.2 },
         }}
       >
@@ -163,7 +162,7 @@ function ScenarioCard({ cat, Icon, accent, rgb, title, sub }) {
         sx={{
           fontSize: { xs: 13.5, md: 14.5 },
           lineHeight: 1.72,
-          color: 'rgba(247,255,232,0.36)',
+          color: 'rgba(0,66,37,0.5)',
         }}
       >
         {sub}
@@ -176,7 +175,7 @@ export default function ConversationsCovered() {
   return (
     <Box
       sx={{
-        bgcolor: '#060f0a',
+        bgcolor: '#F7F9E8',
         px: { xs: '12px', sm: '18px', md: '24px' },
         py: { xs: 3, md: 4 },
       }}
@@ -186,7 +185,7 @@ export default function ConversationsCovered() {
         aria-labelledby="conv-title"
         sx={{
           position: 'relative',
-          bgcolor: '#0b1e12',
+          bgcolor: '#F7F9E8',
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -200,11 +199,25 @@ export default function ConversationsCovered() {
             right: '10%',
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(201,245,104,0.25) 50%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(255,118,0,0.25) 50%, transparent)',
           },
         }}
       >
         {/* Ambient orb — lime top left */}
+        <Box
+          component="img"
+          src="/images/brand-patterns/line-pattern.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: { xs: 20, md: 36 },
+            right: { xs: '-35%', md: '-6%' },
+            width: { xs: 480, md: 640 },
+            opacity: 0.08,
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           aria-hidden
           sx={{
@@ -217,7 +230,7 @@ export default function ConversationsCovered() {
             maxHeight: 800,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,245,104,0.06) 0%, transparent 60%)',
+              'radial-gradient(circle, rgba(255,118,0,0.06) 0%, transparent 60%)',
             filter: 'blur(80px)',
             pointerEvents: 'none',
           }}
@@ -235,7 +248,7 @@ export default function ConversationsCovered() {
             maxHeight: 600,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(255,107,47,0.07) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -286,19 +299,19 @@ export default function ConversationsCovered() {
                 px: 2,
                 py: 0.75,
                 borderRadius: '100px',
-                border: '1px solid rgba(255,107,47,0.22)',
-                bgcolor: 'rgba(255,107,47,0.07)',
+                border: '1px solid rgba(255,118,0,0.22)',
+                bgcolor: 'rgba(255,118,0,0.07)',
                 mb: 3,
               }}
             >
-              <MessageSquare size={12} color="#ff6b2f" aria-hidden />
+              <MessageSquare size={12} color="#FF7600" aria-hidden />
               <Typography
                 sx={{
                   fontSize: 11,
                   fontWeight: 800,
                   letterSpacing: 1.8,
                   textTransform: 'uppercase',
-                  color: '#ff6b2f',
+                  color: '#FF7600',
                 }}
               >
                 50+ Real-World Scenarios
@@ -314,11 +327,11 @@ export default function ConversationsCovered() {
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1.04,
-                color: 'rgba(247,255,232,0.96)',
+                color: '#004225',
               }}
             >
               Every Important Conversation{' '}
-              <Box component="span" sx={{ color: '#ff6b2f' }}>
+              <Box component="span" sx={{ color: '#FF7600' }}>
                 Covered
               </Box>
             </Typography>
@@ -400,7 +413,7 @@ export default function ConversationsCovered() {
                   fontWeight: 900,
                   letterSpacing: { xs: -1.5, md: -2.5 },
                   lineHeight: 1.04,
-                  color: 'rgba(247,255,232,0.96)',
+                  color: '#004225',
                 }}
               >
                 A Training Platform
@@ -413,7 +426,7 @@ export default function ConversationsCovered() {
                   fontWeight: 900,
                   letterSpacing: { xs: -1.5, md: -2.5 },
                   lineHeight: 1.04,
-                  color: '#ff6b2f',
+                  color: '#FF7600',
                 }}
               >
                 Optimized For Arabic
@@ -428,7 +441,7 @@ export default function ConversationsCovered() {
                 display: 'grid',
                 gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' },
                 borderRadius: { xs: '20px', md: '24px' },
-                border: '1px solid rgba(255,255,255,0.06)',
+                border: '1px solid rgba(0,66,37,0.12)',
                 overflow: 'hidden',
                 bgcolor: 'rgba(255,255,255,0.015)',
               }}
@@ -484,7 +497,7 @@ export default function ConversationsCovered() {
                       position: 'relative',
                       fontSize: { xs: 13, md: 14.5 },
                       fontWeight: 600,
-                      color: 'rgba(247,255,232,0.36)',
+                      color: 'rgba(0,66,37,0.5)',
                       letterSpacing: 0.3,
                     }}
                   >

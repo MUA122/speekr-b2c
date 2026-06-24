@@ -23,7 +23,7 @@ function MetricRing({ value, label, color }) {
           height: 54,
           borderRadius: '50%',
           border: `2.5px solid ${color}`,
-          bgcolor: `${color}18`,
+          bgcolor: `${color}14`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -41,7 +41,7 @@ function MetricRing({ value, label, color }) {
           fontWeight: 700,
           letterSpacing: 0.8,
           textTransform: 'uppercase',
-          color: 'rgba(247, 255, 232, 0.4)',
+          color: 'rgba(0, 66, 37, 0.52)',
         }}
       >
         {label}
@@ -55,7 +55,7 @@ function ProductPreview() {
     <Box
       sx={{
         position: 'relative',
-        width: { md: 420, lg: 460, xl: 500 },
+        width: { md: 420, lg: 470, xl: 520 },
         flexShrink: 0,
       }}
     >
@@ -71,8 +71,8 @@ function ProductPreview() {
           height: '110%',
           borderRadius: '50%',
           background:
-            'radial-gradient(circle, rgba(201, 245, 104, 0.18) 0%, transparent 65%)',
-          filter: 'blur(48px)',
+            'radial-gradient(circle, rgba(255, 118, 0, 0.32) 0%, rgba(247,249,232,0.08) 38%, transparent 68%)',
+          filter: 'blur(56px)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -83,13 +83,14 @@ function ProductPreview() {
         sx={{
           position: 'relative',
           zIndex: 1,
-          background: 'rgba(255, 255, 255, 0.04)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          borderRadius: '24px',
-          backdropFilter: 'blur(24px)',
-          p: 3,
+          background:
+            'linear-gradient(145deg, rgba(0,66,37,0.96) 0%, rgba(0,52,30,0.98) 52%, rgba(7,27,17,1) 100%)',
+          border: '1px solid rgba(255, 118, 0, 0.18)',
+          borderRadius: '28px',
+          p: { lg: 3.5, xl: 4 },
           boxShadow:
-            '0 40px 100px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.07)',
+            '0 44px 120px rgba(0, 66, 37, 0.28), 0 0 0 1px rgba(255,118,0,0.12)',
+          transform: 'rotate(-1deg)',
         }}
       >
         {/* Card header */}
@@ -99,20 +100,20 @@ function ProductPreview() {
               width: 40,
               height: 40,
               borderRadius: '50%',
-              bgcolor: 'rgba(201, 245, 104, 0.12)',
-              border: '1px solid rgba(201, 245, 104, 0.25)',
+              bgcolor: 'rgba(255, 118, 0, 0.10)',
+              border: '1px solid rgba(255, 118, 0, 0.24)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
             }}
           >
-            <Mic size={18} color="#c9f568" aria-hidden />
+            <Mic size={18} color="#FF7600" aria-hidden />
           </Box>
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography
               sx={{
-                color: 'rgba(247, 255, 232, 0.95)',
+                color: '#F7F9E8',
                 fontWeight: 700,
                 fontSize: 14,
                 lineHeight: 1.3,
@@ -121,7 +122,7 @@ function ProductPreview() {
               AI Coach Session
             </Typography>
             <Typography
-              sx={{ color: 'rgba(247, 255, 232, 0.4)', fontSize: 12, mt: 0.2 }}
+              sx={{ color: 'rgba(247, 249, 232, 0.5)', fontSize: 12, mt: 0.2 }}
             >
               Sales pitch — 4:23 min
             </Typography>
@@ -131,8 +132,8 @@ function ProductPreview() {
               px: 1.3,
               py: 0.45,
               borderRadius: '100px',
-              bgcolor: 'rgba(201, 245, 104, 0.12)',
-              border: '1px solid rgba(201, 245, 104, 0.28)',
+              bgcolor: 'rgba(255, 118, 0, 0.10)',
+              border: '1px solid rgba(255, 118, 0, 0.28)',
             }}
           >
             <Typography
@@ -140,7 +141,7 @@ function ProductPreview() {
                 fontSize: 10.5,
                 fontWeight: 800,
                 letterSpacing: 0.8,
-                color: '#c9f568',
+                color: '#FF7600',
               }}
             >
               LIVE
@@ -164,8 +165,8 @@ function ProductPreview() {
                 height: `${h}px`,
                 bgcolor:
                   i < 13
-                    ? 'rgba(201, 245, 104, 0.85)'
-                    : 'rgba(201, 245, 104, 0.22)',
+                    ? 'rgba(255, 118, 0, 0.88)'
+                    : 'rgba(255, 118, 0, 0.22)',
                 animationDelay: `${i * 0.075}s`,
               }}
             />
@@ -174,8 +175,8 @@ function ProductPreview() {
 
         {/* Metric rings */}
         <Stack direction="row" spacing={2.5} sx={{ justifyContent: 'center', mb: 3 }}>
-          <MetricRing value={92} label="Clarity" color="#c9f568" />
-          <MetricRing value={88} label="Pace" color="#ff6b2f" />
+          <MetricRing value={92} label="Clarity" color="#FF7600" />
+          <MetricRing value={88} label="Pace" color="#FF7600" />
           <MetricRing value={95} label="Confidence" color="#5ba3d9" />
         </Stack>
 
@@ -184,8 +185,8 @@ function ProductPreview() {
           sx={{
             p: 2,
             borderRadius: '14px',
-            bgcolor: 'rgba(255, 255, 255, 0.035)',
-            border: '1px solid rgba(255, 255, 255, 0.07)',
+            bgcolor: 'rgba(247, 249, 232, 0.07)',
+            border: '1px solid rgba(247, 249, 232, 0.12)',
           }}
         >
           <Stack direction="row" spacing={1.2} sx={{ alignItems: 'flex-start' }}>
@@ -194,7 +195,7 @@ function ProductPreview() {
                 width: 24,
                 height: 24,
                 borderRadius: '50%',
-                bgcolor: 'rgba(201, 245, 104, 0.15)',
+                bgcolor: 'rgba(255, 118, 0, 0.14)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -202,12 +203,12 @@ function ProductPreview() {
                 mt: 0.15,
               }}
             >
-              <Zap size={13} color="#c9f568" aria-hidden />
+              <Zap size={13} color="#FF7600" aria-hidden />
             </Box>
             <Typography
               sx={{
                 fontSize: 13,
-                color: 'rgba(247, 255, 232, 0.7)',
+                color: 'rgba(247, 249, 232, 0.72)',
                 lineHeight: 1.65,
               }}
             >
@@ -224,8 +225,8 @@ function ProductPreview() {
           bottom: -18,
           right: -18,
           zIndex: 2,
-          background: 'rgba(4, 14, 9, 0.88)',
-          border: '1px solid rgba(255, 107, 47, 0.3)',
+          background: '#071B11',
+          border: '1px solid rgba(255, 118, 0, 0.3)',
           borderRadius: '14px',
           backdropFilter: 'blur(20px)',
           px: 2,
@@ -234,7 +235,7 @@ function ProductPreview() {
         }}
       >
         <Stack direction="row" spacing={0.9} sx={{ alignItems: 'center' }}>
-          <TrendingUp size={16} color="#ff6b2f" aria-hidden />
+          <TrendingUp size={16} color="#FF7600" aria-hidden />
           <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#ff8f5f' }}>
             +34% in 2 weeks
           </Typography>
@@ -248,8 +249,8 @@ function ProductPreview() {
           top: -14,
           left: -14,
           zIndex: 2,
-          background: 'rgba(4, 14, 9, 0.88)',
-          border: '1px solid rgba(201, 245, 104, 0.18)',
+          background: '#071B11',
+          border: '1px solid rgba(255, 118, 0, 0.12)',
           borderRadius: '12px',
           backdropFilter: 'blur(20px)',
           px: 1.8,
@@ -258,8 +259,8 @@ function ProductPreview() {
         }}
       >
         <Stack direction="row" spacing={0.8} sx={{ alignItems: 'center' }}>
-          <Users size={14} color="#c9f568" aria-hidden />
-          <Typography sx={{ fontSize: 12, fontWeight: 700, color: 'rgba(247, 255, 232, 0.9)' }}>
+          <Users size={14} color="#FF7600" aria-hidden />
+          <Typography sx={{ fontSize: 12, fontWeight: 700, color: 'rgba(247, 249, 232, 0.9)' }}>
             12,000+ users
           </Typography>
         </Stack>
@@ -277,7 +278,9 @@ function Hero({ onBookDemoClick }) {
         position: 'relative',
         minHeight: '100svh',
         overflow: 'hidden',
-        bgcolor: '#060f0a',
+        bgcolor: '#F7F9E8',
+        background:
+          'radial-gradient(circle at 82% 18%, rgba(255,118,0,0.14) 0%, transparent 28%), radial-gradient(circle at 12% 82%, rgba(0,66,37,0.12) 0%, transparent 34%), linear-gradient(135deg, #F7F9E8 0%, #F7F9E8 56%, rgba(0,66,37,0.08) 100%)',
       }}
     >
       {/* Ambient orb — lime, top-left */}
@@ -285,18 +288,19 @@ function Hero({ onBookDemoClick }) {
         aria-hidden
         sx={{
           position: 'absolute',
-          top: '-18%',
-          left: '-12%',
+          top: '-24%',
+          left: '-14%',
           width: '70vw',
           height: '70vw',
           maxWidth: 900,
           maxHeight: 900,
           borderRadius: '50%',
           background:
-            'radial-gradient(circle, rgba(201, 245, 104, 0.2) 0%, rgba(0, 69, 47, 0.14) 42%, transparent 70%)',
+            'radial-gradient(circle, rgba(255, 118, 0, 0.14) 0%, rgba(0, 66, 37, 0.08) 44%, transparent 70%)',
           filter: 'blur(90px)',
           pointerEvents: 'none',
           zIndex: 0,
+          animation: 'premiumFloat 12s ease-in-out infinite',
         }}
       />
 
@@ -313,10 +317,11 @@ function Hero({ onBookDemoClick }) {
           maxHeight: 760,
           borderRadius: '50%',
           background:
-            'radial-gradient(circle, rgba(255, 107, 47, 0.16) 0%, rgba(255, 107, 47, 0.05) 42%, transparent 70%)',
+            'radial-gradient(circle, rgba(255, 118, 0, 0.16) 0%, rgba(255, 118, 0, 0.05) 42%, transparent 70%)',
           filter: 'blur(80px)',
           pointerEvents: 'none',
           zIndex: 0,
+          animation: 'premiumFloat 14s ease-in-out infinite reverse',
         }}
       />
 
@@ -333,10 +338,11 @@ function Hero({ onBookDemoClick }) {
           maxHeight: 440,
           borderRadius: '50%',
           background:
-            'radial-gradient(circle, rgba(0, 69, 47, 0.45) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(0, 66, 37, 0.18) 0%, transparent 70%)',
           filter: 'blur(64px)',
           pointerEvents: 'none',
           zIndex: 0,
+          animation: 'premiumGlow 9s ease-in-out infinite',
         }}
       />
 
@@ -349,7 +355,7 @@ function Hero({ onBookDemoClick }) {
           zIndex: 0,
           pointerEvents: 'none',
           backgroundImage:
-            'linear-gradient(rgba(201, 245, 104, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 245, 104, 0.09) 1px, transparent 1px)',
+            'linear-gradient(rgba(0, 66, 37, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 66, 37, 0.055) 1px, transparent 1px)',
           backgroundSize: '80px 80px',
           maskImage:
             'radial-gradient(ellipse 75% 75% at 18% 28%, rgba(0,0,0,0.7) 0%, transparent 100%)',
@@ -374,6 +380,25 @@ function Hero({ onBookDemoClick }) {
         }}
       />
 
+      <Box
+        component="img"
+        src="/images/brand-patterns/hero-bg.png"
+        alt=""
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          right: { xs: '-42%', md: '-12%', xl: '-4%' },
+          top: { xs: '20%', md: '8%' },
+          width: { xs: 760, md: 980, xl: 1120 },
+          maxWidth: 'none',
+          opacity: { xs: 0.16, md: 0.26 },
+          mixBlendMode: 'multiply',
+          pointerEvents: 'none',
+          zIndex: 0,
+          animation: 'premiumGlow 10s ease-in-out infinite',
+        }}
+      />
+
       <Container
         maxWidth="xl"
         sx={{
@@ -383,8 +408,8 @@ function Hero({ onBookDemoClick }) {
           display: 'flex',
           alignItems: 'center',
           px: { xs: 2.5, sm: 4, lg: 5 },
-          pt: { xs: 14, md: 12 },
-          pb: { xs: 8, md: 10 },
+          pt: { xs: 13, md: 12 },
+          pb: { xs: 7, md: 9 },
         }}
       >
         <Stack
@@ -393,11 +418,11 @@ function Hero({ onBookDemoClick }) {
             width: '100%',
             alignItems: { xs: 'flex-start', lg: 'center' },
             justifyContent: { lg: 'space-between' },
-            gap: { xs: 8, lg: 6, xl: 8 },
+            gap: { xs: 7, lg: 7, xl: 9 },
           }}
         >
           {/* Left: text */}
-          <Box sx={{ maxWidth: { xs: '100%', lg: 640, xl: 680 } }}>
+          <Box sx={{ maxWidth: { xs: '100%', lg: 640, xl: 700 } }}>
 
             {/* Announcement badge */}
             <Box
@@ -409,8 +434,8 @@ function Hero({ onBookDemoClick }) {
                 py: 0.8,
                 mb: 3.5,
                 borderRadius: '100px',
-                border: '1px solid rgba(201, 245, 104, 0.22)',
-                bgcolor: 'rgba(201, 245, 104, 0.06)',
+                border: '1px solid rgba(255, 118, 0, 0.35)',
+                bgcolor: 'rgba(255, 118, 0, 0.12)',
                 backdropFilter: 'blur(12px)',
               }}
             >
@@ -419,9 +444,9 @@ function Hero({ onBookDemoClick }) {
                   width: 7,
                   height: 7,
                   borderRadius: '50%',
-                  bgcolor: '#c9f568',
+                  bgcolor: '#FF7600',
                   flexShrink: 0,
-                  boxShadow: '0 0 8px rgba(201, 245, 104, 0.9)',
+                  boxShadow: '0 0 8px rgba(255, 118, 0, 0.45)',
                   '@keyframes heroPulseDot': {
                     '0%, 100%': { opacity: 1, transform: 'scale(1)' },
                     '50%': { opacity: 0.5, transform: 'scale(0.75)' },
@@ -434,7 +459,7 @@ function Hero({ onBookDemoClick }) {
                   fontSize: 12.5,
                   fontWeight: 700,
                   letterSpacing: 0.4,
-                  color: 'rgba(201, 245, 104, 0.88)',
+                  color: '#004225',
                 }}
               >
                 AI-Powered Speech Coaching — 2026
@@ -447,31 +472,25 @@ function Hero({ onBookDemoClick }) {
               component="h1"
               sx={{
                 m: 0,
-                fontSize: { xs: 50, sm: 70, md: 86, lg: 94, xl: 104 },
-                lineHeight: { xs: 1.06, md: 1.02 },
+                fontSize: { xs: 48, sm: 64, md: 76, lg: 82, xl: 90 },
+                lineHeight: { xs: 1.04, md: 0.98 },
                 fontWeight: 900,
-                letterSpacing: { xs: -1.5, md: -2.5 },
-                color: 'rgba(247, 255, 232, 0.96)',
+                letterSpacing: { xs: -1.4, md: -2.8 },
+                color: '#004225',
+                maxWidth: 760,
               }}
             >
               <Box component="span" sx={{ display: 'block' }}>
-                Train With AI.
+                Practice hard conversations.
               </Box>
               <Box
                 component="span"
                 sx={{
                   display: 'block',
-                  background:
-                    'linear-gradient(130deg, #c9f568 0%, #8de030 42%, #ff6b2f 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  color: '#FF7600',
                 }}
               >
-                Speak With
-              </Box>
-              <Box component="span" sx={{ display: 'block' }}>
-                Confidence.
+                Speak with authority.
               </Box>
             </Typography>
 
@@ -479,11 +498,11 @@ function Hero({ onBookDemoClick }) {
             <Typography
               sx={{
                 mt: { xs: 3, md: 3.8 },
-                maxWidth: 500,
-                color: 'rgba(247, 255, 232, 0.5)',
-                fontSize: { xs: 16.5, md: 18.5 },
-                lineHeight: 1.78,
-                fontWeight: 400,
+                maxWidth: 560,
+                color: 'rgba(0, 66, 37, 0.64)',
+                fontSize: { xs: 16, md: 18 },
+                lineHeight: 1.72,
+                fontWeight: 500,
               }}
             >
               Practice real business scenarios with AI roleplay, get instant feedback, and
@@ -509,15 +528,15 @@ function Hero({ onBookDemoClick }) {
                   borderRadius: '14px',
                   fontSize: 15,
                   fontWeight: 700,
-                  background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
-                  color: '#063323',
+                  background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+                  color: '#00331d',
                   border: 'none',
                   boxShadow:
-                    '0 0 0 1px rgba(201, 245, 104, 0.28), 0 20px 55px rgba(201, 245, 104, 0.22)',
+                    '0 0 0 1px rgba(255, 118, 0, 0.28), 0 20px 55px rgba(255, 118, 0, 0.24)',
                   '&:hover': {
-                    background: 'linear-gradient(135deg, #d9ff7a 0%, #bdf040 100%)',
+                    background: 'linear-gradient(135deg, #FF8A1F 0%, #FF7600 100%)',
                     boxShadow:
-                      '0 0 0 1px rgba(201, 245, 104, 0.48), 0 24px 64px rgba(201, 245, 104, 0.34)',
+                      '0 0 0 1px rgba(255, 118, 0, 0.42), 0 24px 64px rgba(255, 118, 0, 0.32)',
                     transform: 'translateY(-2px)',
                   },
                   transition: 'all 220ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -536,14 +555,14 @@ function Hero({ onBookDemoClick }) {
                   borderRadius: '14px',
                   fontSize: 15,
                   fontWeight: 700,
-                  color: 'rgba(247, 255, 232, 0.82)',
-                  border: '1px solid rgba(255, 255, 255, 0.13)',
-                  bgcolor: 'rgba(255, 255, 255, 0.045)',
+                  color: '#004225',
+                  border: '1px solid rgba(0, 66, 37, 0.18)',
+                  bgcolor: 'rgba(0, 66, 37, 0.04)',
                   backdropFilter: 'blur(14px)',
                   '&:hover': {
-                    bgcolor: 'rgba(255, 255, 255, 0.08)',
-                    borderColor: 'rgba(255, 255, 255, 0.22)',
-                    color: 'rgba(247, 255, 232, 0.96)',
+                    bgcolor: 'rgba(0, 66, 37, 0.08)',
+                    borderColor: 'rgba(0, 66, 37, 0.32)',
+                    color: '#004225',
                     transform: 'translateY(-2px)',
                   },
                   transition: 'all 220ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -566,7 +585,7 @@ function Hero({ onBookDemoClick }) {
                       height: 34,
                       borderRadius: '50%',
                       bgcolor: a.bg,
-                      border: '2px solid #060f0a',
+                      border: '2px solid #F7F9E8',
                       ml: i > 0 ? -1.3 : 0,
                       display: 'flex',
                       alignItems: 'center',
@@ -585,14 +604,14 @@ function Hero({ onBookDemoClick }) {
               <Box>
                 <Stack direction="row" spacing={0.3} sx={{ mb: 0.4 }}>
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={12} fill="#ff6b2f" color="#ff6b2f" aria-hidden />
+                    <Star key={i} size={12} fill="#FF7600" color="#FF7600" aria-hidden />
                   ))}
                 </Stack>
-                <Typography sx={{ fontSize: 12.5, color: 'rgba(247, 255, 232, 0.45)' }}>
+                <Typography sx={{ fontSize: 12.5, color: 'rgba(0, 66, 37, 0.55)' }}>
                   Trusted by{' '}
                   <Box
                     component="span"
-                    sx={{ color: 'rgba(247, 255, 232, 0.82)', fontWeight: 700 }}
+                    sx={{ color: '#004225', fontWeight: 700 }}
                   >
                     12,000+ professionals
                   </Box>
@@ -617,7 +636,7 @@ function Hero({ onBookDemoClick }) {
           left: 0,
           right: 0,
           height: 140,
-          background: 'linear-gradient(to top, rgba(6, 15, 10, 0.9), transparent)',
+          background: 'linear-gradient(to top, #F7F9E8, transparent)',
           pointerEvents: 'none',
           zIndex: 2,
         }}

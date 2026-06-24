@@ -1,17 +1,17 @@
 import { createTheme } from '@mui/material/styles'
 
 const brand = {
-  green: '#00452f',
-  greenDeep: '#063323',
-  greenSoft: '#e9f7d4',
-  lime: '#f7ffe8',
-  limeStrong: '#c9f568',
-  orange: '#ff6b2f',
-  orangeDeep: '#d94f1f',
+  green: '#004225',
+  greenDeep: '#00331d',
+  greenSoft: '#E3ECD6',
+  lime: '#F7F9E8',
+  limeStrong: '#FF7600',
+  orange: '#FF7600',
+  orangeDeep: '#CC5E00',
   ink: '#102019',
   muted: '#5a6a60',
-  border: 'rgba(0, 69, 47, 0.14)',
-  paper: '#fffef8',
+  border: 'rgba(0, 66, 37, 0.14)',
+  paper: '#F7F9E8',
 }
 
 const theme = createTheme({

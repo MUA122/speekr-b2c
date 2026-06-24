@@ -4,8 +4,8 @@ import { Check, ArrowRight, Sparkles } from 'lucide-react'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
-const lime = (a) => `rgba(201,245,104,${a})`
-const orange = (a) => `rgba(255,107,47,${a})`
+const lime = (a) => `rgba(255,118,0,${a})`
+const orange = (a) => `rgba(255,118,0,${a})`
 
 const INDIVIDUAL_FEATURES = [
   'AI roleplay across 100+ real-world scenarios',
@@ -33,23 +33,25 @@ function CtaCard({
   secondaryLabel,
   onSecondaryClick,
 }) {
-  const color = isLime ? '#c9f568' : '#ff6b2f'
+  const color = isLime ? '#FF7600' : '#FF7600'
   const ca = isLime ? lime : orange
 
   return (
     <Box
+      className="premium-card premium-sheen"
       sx={{
         position: 'relative',
         flex: '1 1 0',
         minWidth: 0,
         borderRadius: { xs: '20px', md: '24px' },
-        border: `1px solid ${ca(0.18)}`,
-        background: `linear-gradient(145deg, ${ca(0.04)} 0%, rgba(11,30,18,0.85) 60%, rgba(6,15,10,0.9) 100%)`,
-        backdropFilter: 'blur(40px)',
+        border: '1px solid rgba(247,249,232,0.16)',
+        background:
+          'linear-gradient(145deg, rgba(0,66,37,0.96) 0%, rgba(0,52,30,0.98) 48%, rgba(2,21,13,1) 100%)',
         overflow: 'hidden',
         p: { xs: '36px 28px', sm: '44px 38px', md: '52px 46px' },
         display: 'flex',
         flexDirection: 'column',
+        boxShadow: '0 30px 90px rgba(0,66,37,0.22), 0 0 0 1px rgba(255,118,0,0.06)',
       }}
     >
       {/* Ambient corner glow — top right */}
@@ -108,8 +110,8 @@ function CtaCard({
             py: 0.6,
             mb: 3,
             borderRadius: '100px',
-            border: `1px solid ${ca(0.22)}`,
-            bgcolor: ca(0.07),
+            border: `1px solid ${ca(0.34)}`,
+            bgcolor: 'rgba(255,118,0,0.1)',
             alignSelf: 'flex-start',
           }}
         >
@@ -136,7 +138,7 @@ function CtaCard({
             fontWeight: 900,
             letterSpacing: { xs: -0.8, md: -1.4 },
             lineHeight: 1.0,
-            color: 'rgba(247,255,232,0.96)',
+            color: '#F7F9E8',
           }}
         >
           {title}
@@ -150,7 +152,7 @@ function CtaCard({
             fontSize: { xs: 14.5, md: 16 },
             fontWeight: 500,
             lineHeight: 1.65,
-            color: 'rgba(247,255,232,0.4)',
+            color: 'rgba(247,249,232,0.72)',
           }}
         >
           {tagline}
@@ -161,7 +163,7 @@ function CtaCard({
           sx={{
             height: '1px',
             mb: { xs: 3, md: 3.5 },
-            background: `linear-gradient(90deg, ${ca(0.18)} 0%, transparent 70%)`,
+            background: `linear-gradient(90deg, ${ca(0.38)} 0%, rgba(247,249,232,0.12) 45%, transparent 100%)`,
           }}
         />
 
@@ -174,7 +176,7 @@ function CtaCard({
             fontWeight: 800,
             letterSpacing: -0.4,
             lineHeight: 1.2,
-            color: 'rgba(247,255,232,0.88)',
+            color: '#F7F9E8',
           }}
         >
           {quote}
@@ -198,8 +200,8 @@ function CtaCard({
                   width: 18,
                   height: 18,
                   borderRadius: '50%',
-                  bgcolor: ca(0.1),
-                  border: `1px solid ${ca(0.24)}`,
+                  bgcolor: ca(0.16),
+                  border: `1px solid ${ca(0.34)}`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -213,7 +215,7 @@ function CtaCard({
                   fontSize: { xs: 13, md: 14 },
                   fontWeight: 500,
                   lineHeight: 1.55,
-                  color: 'rgba(247,255,232,0.52)',
+                  color: 'rgba(247,249,232,0.74)',
                 }}
               >
                 {f}
@@ -237,7 +239,7 @@ function CtaCard({
               py: 1.5,
               borderRadius: '100px',
               bgcolor: color,
-              color: '#0b1e12',
+              color: '#062D1B',
               fontSize: { xs: 13.5, md: 14 },
               fontWeight: 800,
               letterSpacing: -0.2,
@@ -268,9 +270,9 @@ function CtaCard({
                 px: { xs: 2.5, md: 3 },
                 py: 1.5,
                 borderRadius: '100px',
-                border: `1.5px solid ${ca(0.22)}`,
-                bgcolor: 'transparent',
-                color: 'rgba(247,255,232,0.62)',
+                border: '1.5px solid rgba(247,249,232,0.18)',
+                bgcolor: 'rgba(247,249,232,0.04)',
+                color: 'rgba(247,249,232,0.78)',
                 fontSize: { xs: 13.5, md: 14 },
                 fontWeight: 700,
                 letterSpacing: -0.2,
@@ -278,7 +280,7 @@ function CtaCard({
                 fontFamily: 'inherit',
                 transition: 'background 0.22s ease, border-color 0.22s ease, color 0.22s ease',
                 '&:hover': {
-                  bgcolor: ca(0.07),
+                  bgcolor: 'rgba(255,118,0,0.1)',
                   borderColor: ca(0.42),
                   color,
                 },
@@ -297,7 +299,7 @@ export default function SplitCtaSection({ onDemoClick }) {
   return (
     <Box
       sx={{
-        bgcolor: '#060f0a',
+        bgcolor: '#F7F9E8',
         px: { xs: '12px', sm: '18px', md: '24px' },
         py: { xs: 3, md: 4 },
       }}
@@ -308,7 +310,7 @@ export default function SplitCtaSection({ onDemoClick }) {
         aria-labelledby="solutions-title"
         sx={{
           position: 'relative',
-          bgcolor: '#0b1e12',
+          bgcolor: '#F7F9E8',
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -322,11 +324,26 @@ export default function SplitCtaSection({ onDemoClick }) {
             right: '10%',
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(201,245,104,0.3) 50%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(255,118,0,0.3) 50%, transparent)',
           },
         }}
       >
         {/* Ambient orb — lime, center */}
+        <Box
+          component="img"
+          src="/images/brand-patterns/frame.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: { xs: -90, md: -130 },
+            right: { xs: -120, md: -80 },
+            width: { xs: 280, md: 380 },
+            opacity: 0.12,
+            transform: 'rotate(10deg)',
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           aria-hidden
           sx={{
@@ -340,7 +357,7 @@ export default function SplitCtaSection({ onDemoClick }) {
             maxHeight: 700,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,245,104,0.045) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.045) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -358,7 +375,7 @@ export default function SplitCtaSection({ onDemoClick }) {
             maxHeight: 500,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(255,107,47,0.055) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.055) 0%, transparent 65%)',
             filter: 'blur(60px)',
             pointerEvents: 'none',
           }}
@@ -376,7 +393,7 @@ export default function SplitCtaSection({ onDemoClick }) {
             maxHeight: 440,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,245,104,0.03) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.03) 0%, transparent 65%)',
             filter: 'blur(60px)',
             pointerEvents: 'none',
           }}
@@ -408,18 +425,18 @@ export default function SplitCtaSection({ onDemoClick }) {
                 py: 0.75,
                 mb: 3,
                 borderRadius: '100px',
-                border: '1px solid rgba(201,245,104,0.2)',
-                bgcolor: 'rgba(201,245,104,0.06)',
+                border: '1px solid rgba(255,118,0,0.2)',
+                bgcolor: 'rgba(255,118,0,0.06)',
               }}
             >
-              <Sparkles size={12} color="#c9f568" aria-hidden />
+              <Sparkles size={12} color="#FF7600" aria-hidden />
               <Typography
                 sx={{
                   fontSize: 11,
                   fontWeight: 800,
                   letterSpacing: 1.8,
                   textTransform: 'uppercase',
-                  color: '#c9f568',
+                  color: '#FF7600',
                 }}
               >
                 Powered by AI
@@ -435,10 +452,10 @@ export default function SplitCtaSection({ onDemoClick }) {
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1.0,
-                color: 'rgba(247,255,232,0.96)',
+                color: '#004225',
               }}
             >
-              <Box component="span" sx={{ color: '#c9f568' }}>
+              <Box component="span" sx={{ color: '#FF7600' }}>
                 Communication Skills
               </Box>
               <br />
@@ -451,7 +468,7 @@ export default function SplitCtaSection({ onDemoClick }) {
                 fontSize: { xs: 14.5, md: 16 },
                 fontWeight: 500,
                 lineHeight: 1.65,
-                color: 'rgba(247,255,232,0.38)',
+                color: 'rgba(0,66,37,0.5)',
                 maxWidth: 520,
                 mx: 'auto',
               }}

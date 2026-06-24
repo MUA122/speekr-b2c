@@ -13,17 +13,17 @@ const fieldInputSx = {
   border: '1px solid rgba(255,255,255,0.09)',
   borderRadius: '12px',
   padding: '13px 16px',
-  color: 'rgba(247,255,232,0.9)',
+  color: 'rgba(247,249,232,0.9)',
   fontSize: '14.5px',
   fontFamily: 'inherit',
   outline: 'none',
   boxSizing: 'border-box',
   transition: 'border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease',
-  '&::placeholder': { color: 'rgba(247,255,232,0.22)' },
+  '&::placeholder': { color: 'rgba(247,249,232,0.22)' },
   '&:focus': {
-    background: 'rgba(201,245,104,0.04)',
-    borderColor: 'rgba(201,245,104,0.38)',
-    boxShadow: '0 0 0 3px rgba(201,245,104,0.07)',
+    background: 'rgba(255,118,0,0.04)',
+    borderColor: 'rgba(255,118,0,0.38)',
+    boxShadow: '0 0 0 3px rgba(255,118,0,0.07)',
   },
 }
 
@@ -38,13 +38,13 @@ function Field({ label, required, multiline, rows = 4, id, ...rest }) {
           fontWeight: 700,
           letterSpacing: 0.9,
           textTransform: 'uppercase',
-          color: 'rgba(247,255,232,0.35)',
+          color: 'rgba(247,249,232,0.35)',
           userSelect: 'none',
         }}
       >
         {label}
         {required && (
-          <Box component="span" sx={{ color: '#c9f568', ml: 0.4 }}>*</Box>
+          <Box component="span" sx={{ color: '#FF7600', ml: 0.4 }}>*</Box>
         )}
       </Box>
       <Box
@@ -70,17 +70,17 @@ function SuccessState({ onClose }) {
           width: 72,
           height: 72,
           borderRadius: '50%',
-          background: 'rgba(201,245,104,0.1)',
-          border: '1px solid rgba(201,245,104,0.25)',
+          background: 'rgba(255,118,0,0.1)',
+          border: '1px solid rgba(255,118,0,0.25)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           mx: 'auto',
           mb: 3,
-          boxShadow: '0 0 40px rgba(201,245,104,0.14)',
+          boxShadow: '0 0 40px rgba(255,118,0,0.14)',
         }}
       >
-        <Check size={32} color="#c9f568" strokeWidth={2.5} aria-hidden />
+        <Check size={32} color="#FF7600" strokeWidth={2.5} aria-hidden />
       </Box>
       <Typography
         component="h3"
@@ -89,7 +89,7 @@ function SuccessState({ onClose }) {
           fontSize: { xs: 26, sm: 30 },
           fontWeight: 900,
           letterSpacing: -1,
-          color: 'rgba(247,255,232,0.96)',
+          color: 'rgba(247,249,232,0.96)',
           mb: 1.2,
         }}
       >
@@ -99,7 +99,7 @@ function SuccessState({ onClose }) {
         sx={{
           fontSize: 15,
           lineHeight: 1.72,
-          color: 'rgba(247,255,232,0.38)',
+          color: 'rgba(247,249,232,0.38)',
           maxWidth: 340,
           mx: 'auto',
           mb: 4.5,
@@ -118,18 +118,18 @@ function SuccessState({ onClose }) {
           px: 4.5,
           py: '13px',
           borderRadius: '100px',
-          background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
+          background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
           border: 'none',
-          color: '#063323',
+          color: '#00331d',
           fontSize: 15,
           fontWeight: 800,
           cursor: 'pointer',
           fontFamily: 'inherit',
-          boxShadow: '0 0 0 1px rgba(201,245,104,0.3), 0 12px 36px rgba(201,245,104,0.2)',
+          boxShadow: '0 0 0 1px rgba(255,118,0,0.3), 0 12px 36px rgba(255,118,0,0.2)',
           transition: 'transform 0.22s ease, box-shadow 0.22s ease',
           '&:hover': {
             transform: 'translateY(-2px)',
-            boxShadow: '0 0 0 1px rgba(201,245,104,0.5), 0 16px 48px rgba(201,245,104,0.3)',
+            boxShadow: '0 0 0 1px rgba(255,118,0,0.5), 0 16px 48px rgba(255,118,0,0.3)',
           },
         }}
       >
@@ -213,7 +213,7 @@ function ContactModal({ open, onClose, onSubmit }) {
         sx={{
           position: 'absolute',
           inset: 0,
-          background: 'rgba(4,10,6,0.88)',
+          background: 'rgba(2,21,13,0.88)',
           backdropFilter: 'blur(18px)',
           WebkitBackdropFilter: 'blur(18px)',
           animation: 'backdropIn 0.2s ease',
@@ -230,8 +230,8 @@ function ContactModal({ open, onClose, onSubmit }) {
           overflowY: 'auto',
           borderRadius: { xs: '20px', sm: '24px' },
           border: '1px solid rgba(255,255,255,0.08)',
-          background: '#0b1e12',
-          boxShadow: '0 0 0 1px rgba(201,245,104,0.06), 0 60px 140px rgba(0,0,0,0.75)',
+          background: '#062D1B',
+          boxShadow: '0 0 0 1px rgba(255,118,0,0.06), 0 60px 140px rgba(0,0,0,0.75)',
           animation: 'panelIn 0.26s cubic-bezier(0.34,1.4,0.64,1)',
         }}
       >
@@ -260,7 +260,7 @@ function ContactModal({ open, onClose, onSubmit }) {
             width: '130%',
             height: '100%',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(201,245,104,0.07) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 70%)',
             filter: 'blur(50px)',
             pointerEvents: 'none',
           }}
@@ -274,7 +274,7 @@ function ContactModal({ open, onClose, onSubmit }) {
             left: '10%',
             right: '10%',
             height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(201,245,104,0.32) 50%, transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(255,118,0,0.32) 50%, transparent)',
           }}
         />
 
@@ -312,11 +312,11 @@ function ContactModal({ open, onClose, onSubmit }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: '50%',
-                  background: 'rgba(201,245,104,0.1)',
-                  border: '1px solid rgba(201,245,104,0.2)',
+                  background: 'rgba(255,118,0,0.1)',
+                  border: '1px solid rgba(255,118,0,0.2)',
                 }}
               >
-                <Sparkles size={14} color="#c9f568" aria-hidden />
+                <Sparkles size={14} color="#FF7600" aria-hidden />
               </Box>
             </Box>
 
@@ -344,7 +344,7 @@ function ContactModal({ open, onClose, onSubmit }) {
                 },
               }}
             >
-              <X size={16} color="rgba(247,255,232,0.55)" aria-hidden />
+              <X size={16} color="rgba(247,249,232,0.55)" aria-hidden />
             </Box>
           </Box>
 
@@ -362,18 +362,18 @@ function ContactModal({ open, onClose, onSubmit }) {
                   fontWeight: 900,
                   letterSpacing: { xs: -0.8, sm: -1.2 },
                   lineHeight: 1.1,
-                  color: 'rgba(247,255,232,0.96)',
+                  color: 'rgba(247,249,232,0.96)',
                   mb: 0.9,
                 }}
               >
                 Book a Speekr{' '}
-                <Box component="span" sx={{ color: '#ff6b2f' }}>Demo</Box>
+                <Box component="span" sx={{ color: '#FF7600' }}>Demo</Box>
               </Typography>
               <Typography
                 sx={{
                   fontSize: 14,
                   lineHeight: 1.65,
-                  color: 'rgba(247,255,232,0.35)',
+                  color: 'rgba(247,249,232,0.35)',
                   mb: { xs: 3, sm: 3.5 },
                 }}
               >
@@ -460,18 +460,18 @@ function ContactModal({ open, onClose, onSubmit }) {
                     px: 3,
                     py: '14px',
                     borderRadius: '100px',
-                    background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
+                    background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
                     border: 'none',
-                    color: '#063323',
+                    color: '#00331d',
                     fontSize: 15,
                     fontWeight: 800,
                     cursor: 'pointer',
                     fontFamily: 'inherit',
-                    boxShadow: '0 0 0 1px rgba(201,245,104,0.3), 0 12px 36px rgba(201,245,104,0.2)',
+                    boxShadow: '0 0 0 1px rgba(255,118,0,0.3), 0 12px 36px rgba(255,118,0,0.2)',
                     transition: 'transform 0.22s ease, box-shadow 0.22s ease',
                     '&:hover': {
                       transform: 'translateY(-2px)',
-                      boxShadow: '0 0 0 1px rgba(201,245,104,0.5), 0 16px 48px rgba(201,245,104,0.3)',
+                      boxShadow: '0 0 0 1px rgba(255,118,0,0.5), 0 16px 48px rgba(255,118,0,0.3)',
                     },
                   }}
                 >
@@ -491,7 +491,7 @@ function ContactModal({ open, onClose, onSubmit }) {
                     borderRadius: '100px',
                     border: '1px solid rgba(255,255,255,0.1)',
                     background: 'transparent',
-                    color: 'rgba(247,255,232,0.45)',
+                    color: 'rgba(247,249,232,0.45)',
                     fontSize: 15,
                     fontWeight: 600,
                     cursor: 'pointer',
@@ -499,7 +499,7 @@ function ContactModal({ open, onClose, onSubmit }) {
                     transition: 'border-color 0.2s ease, color 0.2s ease, background 0.2s ease',
                     '&:hover': {
                       borderColor: 'rgba(255,255,255,0.18)',
-                      color: 'rgba(247,255,232,0.75)',
+                      color: 'rgba(247,249,232,0.75)',
                       background: 'rgba(255,255,255,0.04)',
                     },
                   }}

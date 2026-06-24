@@ -84,7 +84,7 @@ function ProgressRing({ pct, size = 52 }) {
           cy={size / 2}
           r={r}
           fill="none"
-          stroke="#c9f568"
+          stroke="#FF7600"
           strokeWidth={sw}
           strokeLinecap="round"
           strokeDasharray={`${fill} ${circ}`}
@@ -100,7 +100,7 @@ function ProgressRing({ pct, size = 52 }) {
           justifyContent: 'center',
           fontSize: 11,
           fontWeight: 800,
-          color: '#c9f568',
+          color: '#FF7600',
           lineHeight: 1,
         }}
       >
@@ -120,11 +120,11 @@ function CoachTag({ children }) {
         px: 1.4,
         height: 22,
         borderRadius: '100px',
-        border: '1px solid rgba(247,255,232,0.15)',
+        border: '1px solid rgba(247,249,232,0.15)',
         bgcolor: 'rgba(255,255,255,0.04)',
       }}
     >
-      <Typography sx={{ fontSize: 11, color: 'rgba(247,255,232,0.45)', lineHeight: 1 }}>
+      <Typography sx={{ fontSize: 11, color: 'rgba(247,249,232,0.45)', lineHeight: 1 }}>
         {children}
       </Typography>
     </Box>
@@ -181,13 +181,13 @@ function ExpandedContent({ scenario }) {
             px: 1.4,
             py: 0.45,
             borderRadius: '100px',
-            bgcolor: 'rgba(4,14,9,0.88)',
-            border: '1px solid rgba(201,245,104,0.25)',
+            bgcolor: 'rgba(0,34,19,0.88)',
+            border: '1px solid rgba(255,118,0,0.25)',
             backdropFilter: 'blur(8px)',
           }}
         >
           <Typography
-            sx={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.6, color: '#c9f568' }}
+            sx={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.6, color: '#FF7600' }}
           >
             {scenario.category}
           </Typography>
@@ -214,7 +214,7 @@ function ExpandedContent({ scenario }) {
 
       {/* Coach */}
       <Stack spacing={1}>
-        <Typography sx={{ fontSize: 11.5, color: 'rgba(247,255,232,0.35)', fontWeight: 500 }}>
+        <Typography sx={{ fontSize: 11.5, color: 'rgba(247,249,232,0.35)', fontWeight: 500 }}>
           Practice with
         </Typography>
         <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
@@ -225,7 +225,7 @@ function ExpandedContent({ scenario }) {
               borderRadius: '50%',
               overflow: 'hidden',
               flexShrink: 0,
-              border: '2px solid rgba(201,245,104,0.22)',
+              border: '2px solid rgba(255,118,0,0.22)',
             }}
           >
             <Box
@@ -240,7 +240,7 @@ function ExpandedContent({ scenario }) {
               sx={{
                 fontSize: 15,
                 fontWeight: 700,
-                color: 'rgba(247,255,232,0.9)',
+                color: 'rgba(247,249,232,0.9)',
                 mb: 0.7,
                 lineHeight: 1,
               }}
@@ -262,7 +262,7 @@ function ExpandedContent({ scenario }) {
       >
         <Stack direction="row" spacing={1.2} sx={{ alignItems: 'center' }}>
           <ProgressRing pct={scenario.goalPct} />
-          <Typography sx={{ fontSize: 11, color: 'rgba(247,255,232,0.38)', lineHeight: 1.3 }}>
+          <Typography sx={{ fontSize: 11, color: 'rgba(247,249,232,0.38)', lineHeight: 1.3 }}>
             Goal
             <br />
             Achieved
@@ -280,15 +280,15 @@ function ExpandedContent({ scenario }) {
             px: 2,
             py: 0.9,
             borderRadius: '100px',
-            background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
-            color: '#063323',
+            background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+            color: '#00331d',
             fontSize: 12.5,
             fontWeight: 800,
             textDecoration: 'none',
             transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             '&:hover': {
               transform: 'translateY(-2px)',
-              boxShadow: '0 8px 24px rgba(201,245,104,0.32)',
+              boxShadow: '0 8px 24px rgba(255,118,0,0.32)',
             },
           }}
         >
@@ -314,16 +314,16 @@ function TabCard({ scenario, isActive, onClick }) {
         borderRadius: '18px',
         border: '1px solid',
         borderColor: isActive
-          ? 'rgba(201,245,104,0.22)'
+          ? 'rgba(255,118,0,0.22)'
           : 'rgba(255,255,255,0.07)',
-        bgcolor: isActive ? 'rgba(201,245,104,0.04)' : 'rgba(255,255,255,0.025)',
+        bgcolor: isActive ? 'rgba(255,118,0,0.04)' : 'rgba(255,255,255,0.025)',
         backdropFilter: 'blur(24px)',
         cursor: 'pointer',
         outline: 'none',
         transition:
           'border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease',
         boxShadow: isActive
-          ? '0 0 36px rgba(201,245,104,0.07), inset 0 1px 0 rgba(255,255,255,0.06)'
+          ? '0 0 36px rgba(255,118,0,0.07), inset 0 1px 0 rgba(255,255,255,0.06)'
           : 'inset 0 1px 0 rgba(255,255,255,0.04)',
         '&:hover': !isActive
           ? {
@@ -332,7 +332,7 @@ function TabCard({ scenario, isActive, onClick }) {
             }
           : {},
         '&:focus-visible': {
-          outline: '2px solid rgba(201,245,104,0.5)',
+          outline: '2px solid rgba(255,118,0,0.5)',
           outlineOffset: 2,
         },
         /* lime left accent bar */
@@ -345,7 +345,7 @@ function TabCard({ scenario, isActive, onClick }) {
           width: 3,
           height: isActive ? '55%' : '0%',
           borderRadius: '0 3px 3px 0',
-          bgcolor: '#c9f568',
+          bgcolor: '#FF7600',
           transition: 'height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
         },
       }}
@@ -375,14 +375,14 @@ function TabCard({ scenario, isActive, onClick }) {
             sx={{
               fontSize: 13.5,
               fontWeight: 600,
-              color: 'rgba(247,255,232,0.6)',
+              color: 'rgba(247,249,232,0.6)',
               flex: 1,
               lineHeight: 1.35,
             }}
           >
             {scenario.label}
           </Typography>
-          <ChevronRight size={15} color="rgba(247,255,232,0.25)" aria-hidden />
+          <ChevronRight size={15} color="rgba(247,249,232,0.25)" aria-hidden />
         </Stack>
       )}
     </Box>
@@ -405,9 +405,24 @@ function ScenariosShowcase() {
       component="section"
       id="product"
       aria-labelledby="scenarios-title"
-      sx={{ position: 'relative', bgcolor: '#060f0a', py: { xs: 10, md: 14 }, overflow: 'hidden' }}
+      sx={{ position: 'relative', bgcolor: '#004225', py: { xs: 10, md: 14 }, overflow: 'hidden' }}
     >
       {/* Ambient orb — lime top-right */}
+      <Box
+        component="img"
+        src="/images/brand-patterns/line-pattern-wide.png"
+        alt=""
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          top: { xs: 22, md: 40 },
+          left: { xs: '-42%', md: '-10%' },
+          width: { xs: 620, md: 900 },
+          maxWidth: 'none',
+          opacity: 0.1,
+          pointerEvents: 'none',
+        }}
+      />
       <Box
         aria-hidden
         sx={{
@@ -420,7 +435,7 @@ function ScenariosShowcase() {
           maxHeight: 750,
           borderRadius: '50%',
           background:
-            'radial-gradient(circle, rgba(201,245,104,0.13) 0%, transparent 65%)',
+            'radial-gradient(circle, rgba(255,118,0,0.13) 0%, transparent 65%)',
           filter: 'blur(90px)',
           pointerEvents: 'none',
         }}
@@ -438,7 +453,7 @@ function ScenariosShowcase() {
           maxHeight: 640,
           borderRadius: '50%',
           background:
-            'radial-gradient(circle, rgba(255,107,47,0.1) 0%, transparent 65%)',
+            'radial-gradient(circle, rgba(255,118,0,0.1) 0%, transparent 65%)',
           filter: 'blur(80px)',
           pointerEvents: 'none',
         }}
@@ -472,18 +487,18 @@ function ScenariosShowcase() {
               py: 0.8,
               mb: 3,
               borderRadius: '100px',
-              border: '1px solid rgba(201,245,104,0.22)',
-              bgcolor: 'rgba(201,245,104,0.06)',
+              border: '1px solid rgba(255,118,0,0.22)',
+              bgcolor: 'rgba(255,118,0,0.06)',
               backdropFilter: 'blur(12px)',
             }}
           >
-            <Sparkles size={12} color="#c9f568" aria-hidden />
+            <Sparkles size={12} color="#FF7600" aria-hidden />
             <Typography
               sx={{
                 fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: 0.6,
-                color: 'rgba(201,245,104,0.88)',
+                color: 'rgba(255,118,0,0.88)',
               }}
             >
               AI Roleplay · 3 Scenarios
@@ -499,7 +514,7 @@ function ScenariosShowcase() {
               fontWeight: 900,
               lineHeight: 1.06,
               letterSpacing: { xs: -1, md: -2 },
-              color: 'rgba(247,255,232,0.96)',
+              color: '#F7F9E8',
               mb: 2.5,
             }}
           >
@@ -507,7 +522,7 @@ function ScenariosShowcase() {
             <Box
               component="span"
               sx={{
-                background: 'linear-gradient(130deg, #c9f568 0%, #8de030 42%, #ff6b2f 100%)',
+                background: 'linear-gradient(130deg, #FF7600 0%, #004225 48%, #FF7600 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -520,7 +535,7 @@ function ScenariosShowcase() {
           <Typography
             sx={{
               fontSize: { xs: 16, md: 17.5 },
-              color: 'rgba(247,255,232,0.42)',
+              color: 'rgba(247,249,232,0.68)',
               lineHeight: 1.78,
               fontWeight: 400,
             }}
@@ -545,9 +560,9 @@ function ScenariosShowcase() {
               position: 'relative',
               borderRadius: '24px',
               overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.09)',
+              border: '1px solid rgba(247,249,232,0.14)',
               boxShadow:
-                '0 40px 100px rgba(0,0,0,0.65), 0 0 0 1px rgba(201,245,104,0.05)',
+                '0 40px 100px rgba(0,0,0,0.48), 0 0 0 1px rgba(255,118,0,0.08)',
             }}
           >
             {/* "PLAYING" badge */}
@@ -563,8 +578,8 @@ function ScenariosShowcase() {
                 px: 1.4,
                 py: 0.6,
                 borderRadius: '100px',
-                bgcolor: 'rgba(4,14,9,0.88)',
-                border: '1px solid rgba(201,245,104,0.22)',
+                bgcolor: 'rgba(0,34,19,0.88)',
+                border: '1px solid rgba(255,118,0,0.22)',
                 backdropFilter: 'blur(12px)',
               }}
             >
@@ -573,9 +588,9 @@ function ScenariosShowcase() {
                   width: 7,
                   height: 7,
                   borderRadius: '50%',
-                  bgcolor: '#c9f568',
+                  bgcolor: '#FF7600',
                   flexShrink: 0,
-                  boxShadow: '0 0 8px rgba(201,245,104,0.9)',
+                  boxShadow: '0 0 8px rgba(255,118,0,0.9)',
                   '@keyframes scenarioPulse': {
                     '0%, 100%': { opacity: 1, transform: 'scale(1)' },
                     '50%': { opacity: 0.5, transform: 'scale(0.75)' },
@@ -588,7 +603,7 @@ function ScenariosShowcase() {
                   fontSize: 10.5,
                   fontWeight: 800,
                   letterSpacing: 0.8,
-                  color: '#c9f568',
+                  color: '#FF7600',
                 }}
               >
                 PLAYING
@@ -597,10 +612,10 @@ function ScenariosShowcase() {
 
             {/* Corner accents */}
             {[
-              { top: 0, left: 0, borderTop: '2px solid rgba(201,245,104,0.35)', borderLeft: '2px solid rgba(201,245,104,0.35)', borderRadius: '24px 0 0 0' },
-              { top: 0, right: 0, borderTop: '2px solid rgba(201,245,104,0.35)', borderRight: '2px solid rgba(201,245,104,0.35)', borderRadius: '0 24px 0 0' },
-              { bottom: 0, left: 0, borderBottom: '2px solid rgba(201,245,104,0.35)', borderLeft: '2px solid rgba(201,245,104,0.35)', borderRadius: '0 0 0 24px' },
-              { bottom: 0, right: 0, borderBottom: '2px solid rgba(201,245,104,0.35)', borderRight: '2px solid rgba(201,245,104,0.35)', borderRadius: '0 0 24px 0' },
+              { top: 0, left: 0, borderTop: '2px solid rgba(255,118,0,0.35)', borderLeft: '2px solid rgba(255,118,0,0.35)', borderRadius: '24px 0 0 0' },
+              { top: 0, right: 0, borderTop: '2px solid rgba(255,118,0,0.35)', borderRight: '2px solid rgba(255,118,0,0.35)', borderRadius: '0 24px 0 0' },
+              { bottom: 0, left: 0, borderBottom: '2px solid rgba(255,118,0,0.35)', borderLeft: '2px solid rgba(255,118,0,0.35)', borderRadius: '0 0 0 24px' },
+              { bottom: 0, right: 0, borderBottom: '2px solid rgba(255,118,0,0.35)', borderRight: '2px solid rgba(255,118,0,0.35)', borderRadius: '0 0 24px 0' },
             ].map((pos, i) => (
               <Box
                 key={i}

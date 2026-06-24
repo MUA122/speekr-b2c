@@ -49,7 +49,7 @@ export default function CaseStudiesCarousel() {
   return (
     <Box
       sx={{
-        bgcolor: '#060f0a',
+        bgcolor: '#F7F9E8',
         px: { xs: '12px', sm: '18px', md: '24px' },
         py: { xs: 3, md: 4 },
       }}
@@ -62,7 +62,7 @@ export default function CaseStudiesCarousel() {
         onMouseLeave={() => setPaused(false)}
         sx={{
           position: 'relative',
-          bgcolor: '#0b1e12',
+          bgcolor: '#004225',
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -76,11 +76,26 @@ export default function CaseStudiesCarousel() {
             right: '10%',
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(255,107,47,0.28) 50%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(255,118,0,0.28) 50%, transparent)',
           },
         }}
       >
         {/* Ambient orb — orange top center */}
+        <Box
+          component="img"
+          src="/images/brand-patterns/block.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: { xs: -120, md: -170 },
+            left: { xs: -300, md: -260 },
+            width: { xs: 760, md: 980 },
+            maxWidth: 'none',
+            opacity: 0.1,
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           aria-hidden
           sx={{
@@ -94,7 +109,7 @@ export default function CaseStudiesCarousel() {
             maxHeight: 900,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(255,107,47,0.07) 0%, transparent 60%)',
+              'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 60%)',
             filter: 'blur(80px)',
             pointerEvents: 'none',
           }}
@@ -112,7 +127,7 @@ export default function CaseStudiesCarousel() {
             maxHeight: 580,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,245,104,0.055) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.055) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -143,19 +158,19 @@ export default function CaseStudiesCarousel() {
                 px: 2,
                 py: 0.75,
                 borderRadius: '100px',
-                border: '1px solid rgba(255,107,47,0.2)',
-                bgcolor: 'rgba(255,107,47,0.07)',
+                border: '1px solid rgba(255,118,0,0.2)',
+                bgcolor: 'rgba(255,118,0,0.07)',
                 mb: 3,
               }}
             >
-              <BarChart3 size={12} color="#ff6b2f" aria-hidden />
+              <BarChart3 size={12} color="#FF7600" aria-hidden />
               <Typography
                 sx={{
                   fontSize: 11,
                   fontWeight: 800,
                   letterSpacing: 1.8,
                   textTransform: 'uppercase',
-                  color: '#ff6b2f',
+                  color: '#FF7600',
                 }}
               >
                 Real Results
@@ -171,10 +186,10 @@ export default function CaseStudiesCarousel() {
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1,
-                color: 'rgba(247,255,232,0.96)',
+                color: '#F7F9E8',
               }}
             >
-              <Box component="span" sx={{ color: '#ff6b2f' }}>Case</Box>{' '}Studies
+              <Box component="span" sx={{ color: '#FF7600' }}>Case</Box>{' '}Studies
             </Typography>
             <Typography
               sx={{
@@ -182,7 +197,7 @@ export default function CaseStudiesCarousel() {
                 fontSize: { xs: 14.5, md: 16 },
                 fontWeight: 500,
                 lineHeight: 1.65,
-                color: 'rgba(247,255,232,0.38)',
+                color: 'rgba(247,249,232,0.68)',
                 maxWidth: 480,
                 mx: 'auto',
               }}
@@ -259,7 +274,7 @@ export default function CaseStudiesCarousel() {
                         right: 0,
                         height: '1px',
                         background:
-                          'linear-gradient(90deg, transparent, rgba(201,245,104,0.22) 50%, transparent)',
+                          'linear-gradient(90deg, transparent, rgba(255,118,0,0.22) 50%, transparent)',
                       }}
                     />
 
@@ -313,9 +328,8 @@ export default function CaseStudiesCarousel() {
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
-                      border: '1px solid rgba(255,107,47,0.14)',
-                      bgcolor: 'rgba(255,107,47,0.022)',
-                      backdropFilter: 'blur(40px)',
+                      border: '1px solid rgba(255,118,0,0.14)',
+                      bgcolor: '#F7F9E8',
                       overflow: 'hidden',
                     }}
                   >
@@ -330,7 +344,7 @@ export default function CaseStudiesCarousel() {
                         height: '80%',
                         borderRadius: '50%',
                         background:
-                          'radial-gradient(circle, rgba(255,107,47,0.1) 0%, transparent 70%)',
+                          'radial-gradient(circle, rgba(255,118,0,0.1) 0%, transparent 70%)',
                         filter: 'blur(40px)',
                         pointerEvents: 'none',
                       }}
@@ -346,7 +360,7 @@ export default function CaseStudiesCarousel() {
                         fontWeight: 900,
                         letterSpacing: { xs: -0.5, md: -0.9 },
                         lineHeight: 1.1,
-                        color: 'rgba(247,255,232,0.96)',
+                        color: '#004225',
                         position: 'relative',
                         zIndex: 1,
                       }}
@@ -380,8 +394,8 @@ export default function CaseStudiesCarousel() {
                               fontWeight: 900,
                               letterSpacing: -2,
                               lineHeight: 0.9,
-                              color: '#ff6b2f',
-                              textShadow: '0 0 32px rgba(255,107,47,0.4)',
+                              color: '#FF7600',
+                              textShadow: '0 0 32px rgba(255,118,0,0.4)',
                               whiteSpace: 'nowrap',
                             }}
                           >
@@ -392,7 +406,7 @@ export default function CaseStudiesCarousel() {
                               fontSize: { xs: 13, md: 14.5 },
                               fontWeight: 600,
                               lineHeight: 1.5,
-                              color: 'rgba(247,255,232,0.5)',
+                              color: 'rgba(0,66,37,0.56)',
                             }}
                           >
                             {label}
@@ -430,8 +444,8 @@ export default function CaseStudiesCarousel() {
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    border: '1.5px solid rgba(255,107,47,0.25)',
-                    bgcolor: 'rgba(255,107,47,0.07)',
+                    border: '1.5px solid rgba(255,118,0,0.25)',
+                    bgcolor: 'rgba(255,118,0,0.07)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -439,13 +453,13 @@ export default function CaseStudiesCarousel() {
                     fontFamily: 'inherit',
                     transition: 'background 0.2s ease, border-color 0.2s ease, transform 0.2s ease',
                     '&:hover': {
-                      bgcolor: 'rgba(255,107,47,0.18)',
-                      borderColor: 'rgba(255,107,47,0.5)',
+                      bgcolor: 'rgba(255,118,0,0.18)',
+                      borderColor: 'rgba(255,118,0,0.5)',
                       transform: 'scale(1.08)',
                     },
                   }}
                 >
-                  <Icon size={17} color="#ff6b2f" aria-hidden />
+                  <Icon size={17} color="#FF7600" aria-hidden />
                 </Box>
               ))}
             </Box>
@@ -463,12 +477,12 @@ export default function CaseStudiesCarousel() {
                     width: i === active ? 28 : 8,
                     height: 8,
                     borderRadius: '100px',
-                    bgcolor: i === active ? '#ff6b2f' : 'rgba(247,255,232,0.18)',
+                    bgcolor: i === active ? '#FF7600' : 'rgba(0,66,37,0.16)',
                     border: 'none',
                     cursor: 'pointer',
                     p: 0,
                     transition: 'width 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.3s ease',
-                    boxShadow: i === active ? '0 0 8px rgba(255,107,47,0.5)' : 'none',
+                    boxShadow: i === active ? '0 0 8px rgba(255,118,0,0.5)' : 'none',
                   }}
                 />
               ))}

@@ -25,12 +25,13 @@ const ENTERPRISE_FEATURES = [
 function LimeCheck() {
   return (
     <Box
+      className="premium-card"
       sx={{
         width: 22,
         height: 22,
         borderRadius: '50%',
-        bgcolor: 'rgba(201,245,104,0.1)',
-        border: '1px solid rgba(201,245,104,0.22)',
+        bgcolor: 'rgba(255,118,0,0.1)',
+        border: '1px solid rgba(255,118,0,0.22)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -38,7 +39,7 @@ function LimeCheck() {
         mt: '1px',
       }}
     >
-      <Check size={13} color="#c9f568" strokeWidth={2.5} aria-hidden />
+      <Check size={13} color="#FF7600" strokeWidth={2.5} aria-hidden />
     </Box>
   )
 }
@@ -46,12 +47,13 @@ function LimeCheck() {
 function OrangeCheck() {
   return (
     <Box
+      className="premium-card"
       sx={{
         width: 22,
         height: 22,
         borderRadius: '50%',
-        bgcolor: 'rgba(255,107,47,0.1)',
-        border: '1px solid rgba(255,107,47,0.22)',
+        bgcolor: 'rgba(255,118,0,0.1)',
+        border: '1px solid rgba(255,118,0,0.22)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -59,7 +61,7 @@ function OrangeCheck() {
         mt: '1px',
       }}
     >
-      <Check size={13} color="#ff6b2f" strokeWidth={2.5} aria-hidden />
+      <Check size={13} color="#FF7600" strokeWidth={2.5} aria-hidden />
     </Box>
   )
 }
@@ -69,13 +71,13 @@ function FeatureRow({ text, note, CheckIcon }) {
     <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
       <CheckIcon />
       <Typography
-        sx={{ fontSize: { xs: 13.5, md: 14 }, fontWeight: 600, color: 'rgba(247,255,232,0.8)', lineHeight: 1.45 }}
+        sx={{ fontSize: { xs: 13.5, md: 14 }, fontWeight: 600, color: 'rgba(0,66,37,0.78)', lineHeight: 1.45 }}
       >
         {text}
         {note && (
           <Box
             component="span"
-            sx={{ fontStyle: 'italic', fontWeight: 400, color: 'rgba(247,255,232,0.38)' }}
+            sx={{ fontStyle: 'italic', fontWeight: 400, color: 'rgba(0,66,37,0.5)' }}
           >
             {' '}({note})
           </Box>
@@ -95,17 +97,14 @@ function TeamsCard({ billing }) {
         flexDirection: 'column',
         p: { xs: '28px 24px 24px', md: '38px 36px 32px' },
         borderRadius: { xs: '20px', md: '24px' },
-        border: '1px solid rgba(201,245,104,0.18)',
-        bgcolor: 'rgba(201,245,104,0.032)',
-        backdropFilter: 'blur(40px)',
+        border: '1px solid rgba(255,118,0,0.18)',
+        bgcolor: '#F7F9E8',
         overflow: 'hidden',
-        boxShadow:
-          '0 0 0 1px rgba(201,245,104,0.06), 0 40px 100px rgba(0,0,0,0.45), 0 0 80px rgba(201,245,104,0.05)',
+        boxShadow: '0 24px 70px rgba(255,118,0,0.16), 0 0 0 1px rgba(255,118,0,0.12)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         '&:hover': {
           transform: 'translateY(-3px)',
-          boxShadow:
-            '0 0 0 1px rgba(201,245,104,0.15), 0 48px 120px rgba(0,0,0,0.5), 0 0 100px rgba(201,245,104,0.08)',
+          boxShadow: '0 30px 82px rgba(255,118,0,0.2), 0 0 0 1px rgba(255,118,0,0.18)',
         },
       }}
     >
@@ -120,7 +119,7 @@ function TeamsCard({ billing }) {
           width: '140%',
           height: '70%',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(201,245,104,0.1) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255,118,0,0.1) 0%, transparent 70%)',
           filter: 'blur(50px)',
           pointerEvents: 'none',
         }}
@@ -135,14 +134,14 @@ function TeamsCard({ billing }) {
           px: 1.5,
           py: 0.55,
           borderRadius: '100px',
-          bgcolor: '#c9f568',
+          bgcolor: '#FF7600',
           display: 'inline-flex',
           alignItems: 'center',
           gap: 0.6,
         }}
       >
-        <Users size={10} color="#063323" aria-hidden />
-        <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#063323', letterSpacing: 0.4, lineHeight: 1 }}>
+        <Users size={10} color="#00331d" aria-hidden />
+        <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#00331d', letterSpacing: 0.4, lineHeight: 1 }}>
           Teams
         </Typography>
       </Box>
@@ -154,14 +153,14 @@ function TeamsCard({ billing }) {
             fontSize: { xs: 17, md: 19 },
             fontWeight: 800,
             letterSpacing: -0.3,
-            color: '#c9f568',
+            color: '#FF7600',
             mb: 0.6,
             lineHeight: 1.2,
           }}
         >
           Speekr Teams
         </Typography>
-        <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(247,255,232,0.3)' }}>
+        <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(0,66,37,0.46)' }}>
           Teams of 3–15 users
         </Typography>
       </Box>
@@ -169,7 +168,7 @@ function TeamsCard({ billing }) {
       {/* Price */}
       <Box sx={{ mb: { xs: 3, md: 3.5 } }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.4, lineHeight: 1 }}>
-          <Typography sx={{ fontSize: 22, fontWeight: 800, color: 'rgba(247,255,232,0.45)', lineHeight: 1, mt: '10px' }}>
+          <Typography sx={{ fontSize: 22, fontWeight: 800, color: 'rgba(0,66,37,0.56)', lineHeight: 1, mt: '10px' }}>
             $
           </Typography>
           <Typography
@@ -178,13 +177,13 @@ function TeamsCard({ billing }) {
               fontWeight: 900,
               letterSpacing: { xs: -3, md: -4 },
               lineHeight: 0.9,
-              color: 'rgba(247,255,232,0.96)',
+              color: '#004225',
             }}
           >
             {billing === 'monthly' ? '48' : '480'}
           </Typography>
         </Box>
-        <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(247,255,232,0.28)', mt: 1 }}>
+        <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(0,66,37,0.42)', mt: 1 }}>
           per user / {billing === 'monthly' ? 'month' : 'year'}
           {billing === 'annual' && (
             <Box
@@ -194,11 +193,11 @@ function TeamsCard({ billing }) {
                 px: 1,
                 py: '3px',
                 borderRadius: '100px',
-                bgcolor: 'rgba(201,245,104,0.1)',
-                border: '1px solid rgba(201,245,104,0.18)',
+                bgcolor: 'rgba(255,118,0,0.1)',
+                border: '1px solid rgba(255,118,0,0.18)',
                 fontSize: 10,
                 fontWeight: 700,
-                color: '#c9f568',
+                color: '#FF7600',
                 letterSpacing: 0.3,
               }}
             >
@@ -212,7 +211,7 @@ function TeamsCard({ billing }) {
       <Box
         sx={{
           height: '1px',
-          background: 'linear-gradient(90deg, rgba(201,245,104,0.12), rgba(201,245,104,0.04))',
+          background: 'linear-gradient(90deg, rgba(255,118,0,0.12), rgba(255,118,0,0.04))',
           mb: { xs: 3, md: 3.5 },
         }}
       />
@@ -238,16 +237,16 @@ function TeamsCard({ billing }) {
           px: 3,
           py: '14px',
           borderRadius: '100px',
-          background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
-          color: '#063323',
+          background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+          color: '#00331d',
           fontSize: { xs: 14.5, md: 15 },
           fontWeight: 800,
           textDecoration: 'none',
-          boxShadow: '0 0 0 1px rgba(201,245,104,0.3), 0 14px 44px rgba(201,245,104,0.2)',
+          boxShadow: '0 0 0 1px rgba(255,118,0,0.3), 0 14px 44px rgba(255,118,0,0.2)',
           transition: 'transform 0.22s ease, box-shadow 0.22s ease',
           '&:hover': {
             transform: 'translateY(-2px)',
-            boxShadow: '0 0 0 1px rgba(201,245,104,0.5), 0 20px 60px rgba(201,245,104,0.3)',
+            boxShadow: '0 0 0 1px rgba(255,118,0,0.5), 0 20px 60px rgba(255,118,0,0.3)',
           },
         }}
       >
@@ -268,15 +267,14 @@ function EnterpriseCard({ onDemoClick }) {
         flexDirection: 'column',
         p: { xs: '28px 24px 24px', md: '38px 36px 32px' },
         borderRadius: { xs: '20px', md: '24px' },
-        border: '1px solid rgba(255,107,47,0.14)',
-        bgcolor: 'rgba(255,107,47,0.022)',
-        backdropFilter: 'blur(40px)',
+        border: '1px solid rgba(255,118,0,0.14)',
+        bgcolor: '#F7F9E8',
         overflow: 'hidden',
-        boxShadow: '0 0 0 1px rgba(255,107,47,0.04), 0 20px 60px rgba(0,0,0,0.32)',
+        boxShadow: '0 18px 50px rgba(0,66,37,0.08)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         '&:hover': {
           transform: 'translateY(-3px)',
-          boxShadow: '0 0 0 1px rgba(255,107,47,0.12), 0 28px 80px rgba(0,0,0,0.42)',
+          boxShadow: '0 26px 70px rgba(0,66,37,0.12), 0 0 0 1px rgba(255,118,0,0.12)',
         },
       }}
     >
@@ -291,7 +289,7 @@ function EnterpriseCard({ onDemoClick }) {
           width: '140%',
           height: '60%',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255,107,47,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255,118,0,0.08) 0%, transparent 70%)',
           filter: 'blur(50px)',
           pointerEvents: 'none',
         }}
@@ -306,15 +304,15 @@ function EnterpriseCard({ onDemoClick }) {
           px: 1.5,
           py: 0.55,
           borderRadius: '100px',
-          bgcolor: 'rgba(255,107,47,0.12)',
-          border: '1px solid rgba(255,107,47,0.24)',
+          bgcolor: 'rgba(255,118,0,0.12)',
+          border: '1px solid rgba(255,118,0,0.24)',
           display: 'inline-flex',
           alignItems: 'center',
           gap: 0.6,
         }}
       >
-        <Building2 size={10} color="#ff6b2f" aria-hidden />
-        <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#ff6b2f', letterSpacing: 0.4, lineHeight: 1 }}>
+        <Building2 size={10} color="#FF7600" aria-hidden />
+        <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#FF7600', letterSpacing: 0.4, lineHeight: 1 }}>
           Enterprise
         </Typography>
       </Box>
@@ -326,14 +324,14 @@ function EnterpriseCard({ onDemoClick }) {
             fontSize: { xs: 17, md: 19 },
             fontWeight: 800,
             letterSpacing: -0.3,
-            color: '#ff6b2f',
+            color: '#FF7600',
             mb: 0.6,
             lineHeight: 1.2,
           }}
         >
           Speekr Enterprise
         </Typography>
-        <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(247,255,232,0.3)' }}>
+        <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(0,66,37,0.46)' }}>
           Large-scale, corporate deployment
         </Typography>
       </Box>
@@ -346,12 +344,12 @@ function EnterpriseCard({ onDemoClick }) {
             fontWeight: 900,
             letterSpacing: { xs: -3, md: -4 },
             lineHeight: 0.9,
-            color: 'rgba(247,255,232,0.96)',
+            color: '#004225',
           }}
         >
           Custom
         </Typography>
-        <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(247,255,232,0.28)', mt: 1 }}>
+        <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(0,66,37,0.42)', mt: 1 }}>
           Tailored to your organization
         </Typography>
       </Box>
@@ -360,7 +358,7 @@ function EnterpriseCard({ onDemoClick }) {
       <Box
         sx={{
           height: '1px',
-          background: 'linear-gradient(90deg, rgba(255,107,47,0.1), rgba(255,107,47,0.03))',
+          background: 'linear-gradient(90deg, rgba(255,118,0,0.1), rgba(255,118,0,0.03))',
           mb: { xs: 3, md: 3.5 },
         }}
       />
@@ -384,17 +382,17 @@ function EnterpriseCard({ onDemoClick }) {
           px: 3,
           py: '14px',
           borderRadius: '100px',
-          background: 'rgba(255,107,47,0.1)',
-          border: '1px solid rgba(255,107,47,0.24)',
-          color: '#ff6b2f',
+          background: 'rgba(255,118,0,0.1)',
+          border: '1px solid rgba(255,118,0,0.24)',
+          color: '#FF7600',
           fontSize: { xs: 14.5, md: 15 },
           fontWeight: 800,
           cursor: 'pointer',
           transition: 'transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease',
           '&:hover': {
             transform: 'translateY(-2px)',
-            background: 'rgba(255,107,47,0.16)',
-            boxShadow: '0 8px 30px rgba(255,107,47,0.15)',
+            background: 'rgba(255,118,0,0.16)',
+            boxShadow: '0 8px 30px rgba(255,118,0,0.15)',
           },
         }}
       >
@@ -411,7 +409,7 @@ export default function TeamsPricingSection({ onDemoClick }) {
   return (
     <Box
       sx={{
-        bgcolor: '#060f0a',
+        bgcolor: '#F7F9E8',
         px: { xs: '12px', sm: '18px', md: '24px' },
         py: { xs: 3, md: 4 },
       }}
@@ -421,7 +419,7 @@ export default function TeamsPricingSection({ onDemoClick }) {
         aria-labelledby="teams-title"
         sx={{
           position: 'relative',
-          bgcolor: '#0b1e12',
+          bgcolor: '#004225',
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -435,11 +433,26 @@ export default function TeamsPricingSection({ onDemoClick }) {
             right: '10%',
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(255,107,47,0.25) 50%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(255,118,0,0.25) 50%, transparent)',
           },
         }}
       >
         {/* Ambient orb — orange top center */}
+        <Box
+          component="img"
+          src="/images/brand-patterns/block.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            bottom: { xs: -130, md: -190 },
+            right: { xs: -260, md: -220 },
+            width: { xs: 760, md: 980 },
+            maxWidth: 'none',
+            opacity: 0.11,
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           aria-hidden
           sx={{
@@ -452,7 +465,7 @@ export default function TeamsPricingSection({ onDemoClick }) {
             maxWidth: 900,
             maxHeight: 900,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,107,47,0.07) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 60%)',
             filter: 'blur(80px)',
             pointerEvents: 'none',
           }}
@@ -469,7 +482,7 @@ export default function TeamsPricingSection({ onDemoClick }) {
             maxWidth: 580,
             maxHeight: 580,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(201,245,104,0.06) 0%, transparent 65%)',
+            background: 'radial-gradient(circle, rgba(255,118,0,0.06) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -501,14 +514,14 @@ export default function TeamsPricingSection({ onDemoClick }) {
                 px: 2,
                 py: 0.75,
                 borderRadius: '100px',
-                border: '1px solid rgba(255,107,47,0.2)',
-                bgcolor: 'rgba(255,107,47,0.07)',
+                border: '1px solid rgba(255,118,0,0.2)',
+                bgcolor: 'rgba(255,118,0,0.07)',
                 mb: 3,
               }}
             >
-              <Users size={12} color="#ff6b2f" aria-hidden />
+              <Users size={12} color="#FF7600" aria-hidden />
               <Typography
-                sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#ff6b2f' }}
+                sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#FF7600' }}
               >
                 Team Plans
               </Typography>
@@ -523,11 +536,11 @@ export default function TeamsPricingSection({ onDemoClick }) {
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1.04,
-                color: 'rgba(247,255,232,0.96)',
+                color: '#F7F9E8',
               }}
             >
               The{' '}
-              <Box component="span" sx={{ color: '#ff6b2f' }}>
+              <Box component="span" sx={{ color: '#FF7600' }}>
                 Whole Team
               </Box>
             </Typography>
@@ -537,7 +550,7 @@ export default function TeamsPricingSection({ onDemoClick }) {
                 mt: { xs: 2.5, md: 3 },
                 fontSize: { xs: 15, md: 16.5 },
                 lineHeight: 1.72,
-                color: 'rgba(247,255,232,0.36)',
+                color: 'rgba(247,249,232,0.68)',
                 maxWidth: 500,
                 mx: 'auto',
               }}
@@ -552,8 +565,8 @@ export default function TeamsPricingSection({ onDemoClick }) {
               sx={{
                 display: 'inline-flex',
                 borderRadius: '100px',
-                border: '1px solid rgba(255,255,255,0.08)',
-                bgcolor: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(247,249,232,0.14)',
+                bgcolor: 'rgba(247,249,232,0.08)',
                 p: '4px',
                 gap: '4px',
               }}
@@ -572,9 +585,9 @@ export default function TeamsPricingSection({ onDemoClick }) {
                     fontSize: { xs: 13.5, md: 14 },
                     fontWeight: 700,
                     transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease',
-                    bgcolor: billing === b ? '#c9f568' : 'transparent',
-                    color: billing === b ? '#063323' : 'rgba(247,255,232,0.45)',
-                    boxShadow: billing === b ? '0 2px 14px rgba(201,245,104,0.28)' : 'none',
+                    bgcolor: billing === b ? '#FF7600' : 'transparent',
+                    color: billing === b ? '#00331d' : 'rgba(247,249,232,0.72)',
+                    boxShadow: billing === b ? '0 2px 14px rgba(255,118,0,0.28)' : 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: 1,
@@ -587,8 +600,8 @@ export default function TeamsPricingSection({ onDemoClick }) {
                         px: 1,
                         py: '3px',
                         borderRadius: '100px',
-                        bgcolor: billing === 'annual' ? 'rgba(6,51,35,0.28)' : 'rgba(201,245,104,0.12)',
-                        border: billing === 'annual' ? 'none' : '1px solid rgba(201,245,104,0.2)',
+                        bgcolor: billing === 'annual' ? 'rgba(0,66,37,0.28)' : 'rgba(255,118,0,0.12)',
+                        border: billing === 'annual' ? 'none' : '1px solid rgba(255,118,0,0.2)',
                       }}
                     >
                       <Typography
@@ -596,7 +609,7 @@ export default function TeamsPricingSection({ onDemoClick }) {
                           fontSize: 10,
                           fontWeight: 800,
                           letterSpacing: 0.3,
-                          color: billing === 'annual' ? 'rgba(6,51,35,0.8)' : '#c9f568',
+                          color: billing === 'annual' ? 'rgba(0,66,37,0.8)' : '#FF7600',
                           lineHeight: 1,
                         }}
                       >

@@ -24,9 +24,9 @@ export default function VideoShowcase() {
   return (
     <Box
       sx={{
-        bgcolor: '#060f0a',
-        px: { xs: '12px', sm: '18px', md: '24px' },
-        py: { xs: 3, md: 4 },
+        bgcolor: '#004225',
+        px: 0,
+        py: 0,
       }}
     >
       <Box
@@ -34,8 +34,8 @@ export default function VideoShowcase() {
         aria-labelledby="video-title"
         sx={{
           position: 'relative',
-          bgcolor: '#0b1e12',
-          borderRadius: { xs: '24px', md: '32px' },
+          bgcolor: '#004225',
+          borderRadius: 0,
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 8, lg: 10 },
           py: { xs: 8, md: 12 },
@@ -47,11 +47,26 @@ export default function VideoShowcase() {
             right: '10%',
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(201,245,104,0.25) 50%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(255,118,0,0.25) 50%, transparent)',
           },
         }}
       >
         {/* Ambient orb — lime top center */}
+        <Box
+          component="img"
+          src="/images/brand-patterns/line-pattern-wide.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: { xs: 20, md: 34 },
+            right: { xs: '-46%', md: '-12%' },
+            width: { xs: 620, md: 900 },
+            maxWidth: 'none',
+            opacity: 0.1,
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           aria-hidden
           sx={{
@@ -65,7 +80,7 @@ export default function VideoShowcase() {
             maxHeight: 1000,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,245,104,0.07) 0%, transparent 60%)',
+              'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 60%)',
             filter: 'blur(90px)',
             pointerEvents: 'none',
           }}
@@ -83,7 +98,7 @@ export default function VideoShowcase() {
             maxHeight: 640,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(255,107,47,0.07) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -110,6 +125,45 @@ export default function VideoShowcase() {
             mx: 'auto',
           }}
         >
+          <Box
+            aria-hidden
+            sx={{
+              mb: { xs: 5, md: 6.5 },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: { xs: 2, md: 3 },
+            }}
+          >
+            <Box sx={{ flex: 1, height: '1px', bgcolor: 'rgba(247,249,232,0.32)' }} />
+            <Box
+              sx={{
+                width: { xs: 52, md: 64 },
+                height: { xs: 52, md: 64 },
+                borderRadius: '50%',
+                border: '1px solid rgba(247,249,232,0.2)',
+                bgcolor: 'rgba(247,249,232,0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow:
+                  '0 18px 55px rgba(0,0,0,0.22), inset 0 0 28px rgba(247,249,232,0.07)',
+              }}
+            >
+              <Box
+                sx={{
+                  width: { xs: 15, md: 18 },
+                  height: { xs: 15, md: 18 },
+                  borderRadius: '5px',
+                  bgcolor: '#F7F9E8',
+                  transform: 'rotate(45deg)',
+                  boxShadow: '0 0 0 10px rgba(247,249,232,0.08)',
+                }}
+              />
+            </Box>
+            <Box sx={{ flex: 1, height: '1px', bgcolor: 'rgba(247,249,232,0.32)' }} />
+          </Box>
+
           {/* Badge */}
           <Stack direction="row" sx={{ justifyContent: 'center', mb: { xs: 3.5, md: 4.5 } }}>
             <Stack
@@ -120,18 +174,18 @@ export default function VideoShowcase() {
                 px: 2,
                 py: 0.75,
                 borderRadius: '100px',
-                border: '1px solid rgba(201,245,104,0.18)',
-                bgcolor: 'rgba(201,245,104,0.06)',
+                border: '1px solid rgba(255,118,0,0.18)',
+                bgcolor: 'rgba(255,118,0,0.06)',
               }}
             >
-              <Play size={12} color="#c9f568" fill="#c9f568" aria-hidden />
+              <Play size={12} color="#FF7600" fill="#FF7600" aria-hidden />
               <Typography
                 sx={{
                   fontSize: 11,
                   fontWeight: 800,
                   letterSpacing: 1.8,
                   textTransform: 'uppercase',
-                  color: '#c9f568',
+                  color: '#FF7600',
                 }}
               >
                 See How It Works
@@ -150,7 +204,7 @@ export default function VideoShowcase() {
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1.04,
-                color: 'rgba(247,255,232,0.96)',
+                color: '#F7F9E8',
               }}
             >
               From Practice to Performance
@@ -163,7 +217,7 @@ export default function VideoShowcase() {
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1.04,
-                color: '#ff6b2f',
+                color: '#FF7600',
               }}
             >
               AI Practice Partner
@@ -176,9 +230,9 @@ export default function VideoShowcase() {
               position: 'relative',
               borderRadius: { xs: '16px', md: '22px' },
               overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.08)',
+              border: '1px solid rgba(247,249,232,0.16)',
               boxShadow:
-                '0 0 0 1px rgba(201,245,104,0.05), 0 48px 120px rgba(0,0,0,0.55)',
+                '0 40px 110px rgba(0,0,0,0.42), 0 0 0 1px rgba(255,118,0,0.1)',
               mb: { xs: 5, md: 7 },
               '&::before': {
                 content: '""',
@@ -188,7 +242,7 @@ export default function VideoShowcase() {
                 right: '15%',
                 height: '1px',
                 background:
-                  'linear-gradient(90deg, transparent, rgba(201,245,104,0.28) 50%, transparent)',
+                  'linear-gradient(90deg, transparent, rgba(255,118,0,0.28) 50%, transparent)',
                 zIndex: 1,
                 pointerEvents: 'none',
               },
@@ -199,7 +253,7 @@ export default function VideoShowcase() {
                 inset: -1,
                 borderRadius: 'inherit',
                 background: 'transparent',
-                boxShadow: '0 0 60px 4px rgba(201,245,104,0.06)',
+                boxShadow: '0 0 60px 4px rgba(255,118,0,0.06)',
                 pointerEvents: 'none',
                 zIndex: 0,
               },
@@ -238,9 +292,8 @@ export default function VideoShowcase() {
                   px: { xs: 2.5, md: 3.5 },
                   py: { xs: 1.2, md: 1.5 },
                   borderRadius: '100px',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  bgcolor: 'rgba(255,255,255,0.03)',
-                  backdropFilter: 'blur(24px)',
+                  border: '1px solid rgba(247,249,232,0.14)',
+                  bgcolor: '#F7F9E8',
                   display: 'flex',
                   alignItems: 'center',
                   gap: 1.2,
@@ -251,7 +304,7 @@ export default function VideoShowcase() {
                     fontSize: { xs: 17, md: 20 },
                     fontWeight: 900,
                     letterSpacing: -0.5,
-                    color: '#c9f568',
+                    color: '#FF7600',
                     lineHeight: 1,
                   }}
                 >
@@ -261,7 +314,7 @@ export default function VideoShowcase() {
                   sx={{
                     fontSize: { xs: 12.5, md: 13.5 },
                     fontWeight: 500,
-                    color: 'rgba(247,255,232,0.38)',
+                    color: 'rgba(0,66,37,0.5)',
                     lineHeight: 1,
                   }}
                 >
@@ -285,19 +338,19 @@ export default function VideoShowcase() {
                 px: 4,
                 py: '14px',
                 borderRadius: '100px',
-                background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
-                color: '#063323',
+                background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+                color: '#00331d',
                 fontSize: 15.5,
                 fontWeight: 800,
                 textDecoration: 'none',
                 boxShadow:
-                  '0 0 0 1px rgba(201,245,104,0.3), 0 16px 48px rgba(201,245,104,0.2)',
+                  '0 0 0 1px rgba(255,118,0,0.3), 0 16px 48px rgba(255,118,0,0.2)',
                 transition:
                   'transform 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s ease',
                 '&:hover': {
                   transform: 'translateY(-2px)',
                   boxShadow:
-                    '0 0 0 1px rgba(201,245,104,0.48), 0 22px 64px rgba(201,245,104,0.32)',
+                    '0 0 0 1px rgba(255,118,0,0.48), 0 22px 64px rgba(255,118,0,0.32)',
                 },
               }}
             >

@@ -48,6 +48,7 @@ const SLIDES = [
 function SlideCard({ slide }) {
   return (
     <Box
+      className="premium-card"
       sx={{
         position: 'relative',
         display: 'flex',
@@ -58,13 +59,40 @@ function SlideCard({ slide }) {
         p: { xs: '28px 22px', sm: '36px 32px', md: '44px 48px' },
         borderRadius: { xs: '20px', md: '28px' },
         overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.07)',
-        bgcolor: 'rgba(255,255,255,0.04)',
-        backdropFilter: 'blur(48px)',
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px rgba(0,0,0,0.3)',
+        border: '1px solid rgba(0,66,37,0.12)',
+        bgcolor: '#F7F9E8',
+        boxShadow: '0 18px 50px rgba(0,66,37,0.08)',
         height: '100%',
       }}
     >
+      <Box
+        component="img"
+        src="/images/brand-patterns/line-pattern.png"
+        alt=""
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          top: { xs: 18, md: 24 },
+          right: { xs: '-38%', md: '-6%' },
+          width: { xs: 520, sm: 700, md: 860 },
+          maxWidth: 'none',
+          opacity: 0.2,
+          mixBlendMode: 'multiply',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+      <Box
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'linear-gradient(90deg, #F7F9E8 0%, rgba(247,249,232,0.88) 38%, rgba(247,249,232,0.5) 100%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
       {/* Ghost number */}
       <Typography
         aria-hidden
@@ -77,7 +105,7 @@ function SlideCard({ slide }) {
           lineHeight: 1,
           letterSpacing: -8,
           color: 'transparent',
-          WebkitTextStroke: '1px rgba(255,255,255,0.045)',
+          WebkitTextStroke: '1px rgba(0,66,37,0.08)',
           pointerEvents: 'none',
           userSelect: 'none',
           zIndex: 0,
@@ -104,13 +132,13 @@ function SlideCard({ slide }) {
               width: 22,
               height: 22,
               borderRadius: '5px',
-              background: 'linear-gradient(135deg, #ff6b2f 0%, #d94f1f 100%)',
+              background: 'linear-gradient(135deg, #FF7600 0%, #CC5E00 100%)',
               flexShrink: 0,
-              boxShadow: '0 0 14px rgba(255,107,47,0.5)',
+              boxShadow: '0 0 14px rgba(255,118,0,0.5)',
             }}
           />
           <Typography
-            sx={{ fontSize: 26, fontWeight: 900, letterSpacing: -0.5, color: 'rgba(247,255,232,0.22)', lineHeight: 1 }}
+            sx={{ fontSize: 26, fontWeight: 900, letterSpacing: -0.5, color: 'rgba(0,66,37,0.28)', lineHeight: 1 }}
           >
             {slide.num}
           </Typography>
@@ -124,7 +152,7 @@ function SlideCard({ slide }) {
             fontWeight: 900,
             letterSpacing: { xs: -0.8, md: -1.5 },
             lineHeight: 1.05,
-            color: 'rgba(247,255,232,0.96)',
+            color: '#004225',
             mb: { xs: 2.5, md: 3 },
           }}
         >
@@ -132,7 +160,7 @@ function SlideCard({ slide }) {
         </Typography>
 
         <Typography
-          sx={{ fontSize: { xs: 15, md: 17.5 }, lineHeight: 1.75, color: 'rgba(247,255,232,0.42)', mb: 4 }}
+          sx={{ fontSize: { xs: 15, md: 17.5 }, lineHeight: 1.75, color: 'rgba(0,66,37,0.58)', mb: 4 }}
         >
           {slide.sub}
         </Typography>
@@ -149,16 +177,16 @@ function SlideCard({ slide }) {
             px: 3.5,
             py: '13px',
             borderRadius: '100px',
-            background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
-            color: '#063323',
+            background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+            color: '#00331d',
             fontSize: 15,
             fontWeight: 800,
             textDecoration: 'none',
-            boxShadow: '0 0 0 1px rgba(201,245,104,0.3), 0 12px 36px rgba(201,245,104,0.2)',
+            boxShadow: '0 0 0 1px rgba(255,118,0,0.3), 0 12px 36px rgba(255,118,0,0.2)',
             transition: 'transform 0.22s ease, box-shadow 0.22s ease',
             '&:hover': {
               transform: 'translateY(-2px)',
-              boxShadow: '0 0 0 1px rgba(201,245,104,0.48), 0 18px 48px rgba(201,245,104,0.32)',
+              boxShadow: '0 0 0 1px rgba(255,118,0,0.48), 0 18px 48px rgba(255,118,0,0.32)',
             },
           }}
         >
@@ -231,7 +259,7 @@ export default function ProgramsCarousel() {
           position: 'sticky',
           top: 0,
           height: '100vh',
-          bgcolor: '#060f0a',
+          bgcolor: '#004225',
           px: { xs: '12px', sm: '18px', md: '24px' },
           py: { xs: '12px', md: '16px' },
           display: 'flex',
@@ -244,7 +272,7 @@ export default function ProgramsCarousel() {
           sx={{
             flex: 1,
             position: 'relative',
-            bgcolor: '#0b1e12',
+            bgcolor: '#004225',
             borderRadius: { xs: '24px', md: '32px' },
             overflow: 'hidden',
             display: 'flex',
@@ -260,7 +288,7 @@ export default function ProgramsCarousel() {
               right: '10%',
               height: '1px',
               background:
-                'linear-gradient(90deg, transparent, rgba(201,245,104,0.25) 50%, transparent)',
+                'linear-gradient(90deg, transparent, rgba(255,118,0,0.25) 50%, transparent)',
             },
           }}
         >
@@ -278,7 +306,7 @@ export default function ProgramsCarousel() {
               maxHeight: 900,
               borderRadius: '50%',
               background:
-                'radial-gradient(circle, rgba(201,245,104,0.07) 0%, transparent 60%)',
+                'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 60%)',
               filter: 'blur(80px)',
               pointerEvents: 'none',
             }}
@@ -296,7 +324,7 @@ export default function ProgramsCarousel() {
               maxHeight: 600,
               borderRadius: '50%',
               background:
-                'radial-gradient(circle, rgba(255,107,47,0.07) 0%, transparent 65%)',
+                'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 65%)',
               filter: 'blur(70px)',
               pointerEvents: 'none',
             }}
@@ -326,12 +354,12 @@ export default function ProgramsCarousel() {
                 fontWeight: 900,
                 letterSpacing: { xs: -0.8, md: -1.5 },
                 lineHeight: 1.06,
-                color: 'rgba(247,255,232,0.96)',
+                color: '#F7F9E8',
                 textAlign: 'center',
               }}
             >
               Transform The Way You{' '}
-              <Box component="span" sx={{ color: '#ff6b2f' }}>
+              <Box component="span" sx={{ color: '#FF7600' }}>
                 Communicate
               </Box>
             </Typography>
@@ -390,17 +418,17 @@ export default function ProgramsCarousel() {
                     height: 40,
                     borderRadius: '50%',
                     border: '1.5px solid',
-                    borderColor: off ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.2)',
+                    borderColor: off ? 'rgba(247,249,232,0.1)' : 'rgba(247,249,232,0.22)',
                     bgcolor: 'transparent',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: off ? 'default' : 'pointer',
                     transition: 'border-color 0.2s ease, background 0.2s ease',
-                    '&:hover': !off ? { borderColor: '#c9f568', bgcolor: 'rgba(201,245,104,0.06)' } : {},
+                    '&:hover': !off ? { borderColor: '#FF7600', bgcolor: 'rgba(255,118,0,0.06)' } : {},
                   }}
                 >
-                  <Icon size={16} color={off ? 'rgba(247,255,232,0.18)' : 'rgba(247,255,232,0.75)'} aria-hidden />
+                  <Icon size={16} color={off ? 'rgba(247,249,232,0.18)' : 'rgba(247,249,232,0.78)'} aria-hidden />
                 </Box>
               ))}
             </Stack>
@@ -416,12 +444,12 @@ export default function ProgramsCarousel() {
                     width: i === active ? 28 : 8,
                     height: 8,
                     borderRadius: '100px',
-                    bgcolor: i === active ? '#c9f568' : 'rgba(247,255,232,0.18)',
+                    bgcolor: i === active ? '#FF7600' : 'rgba(247,249,232,0.2)',
                     border: 'none',
                     cursor: 'pointer',
                     p: 0,
                     transition: 'width 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.3s ease',
-                    boxShadow: i === active ? '0 0 8px rgba(201,245,104,0.5)' : 'none',
+                    boxShadow: i === active ? '0 0 8px rgba(255,118,0,0.5)' : 'none',
                   }}
                 />
               ))}

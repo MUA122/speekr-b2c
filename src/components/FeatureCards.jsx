@@ -42,6 +42,7 @@ const CARDS = [
 function FeatureCard({ num, title, sub, img }) {
   return (
     <Box
+      className="premium-card"
       sx={{
         position: 'relative',
         display: 'flex',
@@ -52,18 +53,15 @@ function FeatureCard({ num, title, sub, img }) {
         p: { xs: '28px 22px', sm: '36px 32px', md: '44px 48px' },
         borderRadius: { xs: '20px', md: '28px' },
         overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.07)',
-        bgcolor: 'rgba(255,255,255,0.04)',
-        backdropFilter: 'blur(48px)',
-        boxShadow:
-          'inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px rgba(0,0,0,0.3)',
+        border: '1px solid rgba(0,66,37,0.12)',
+        bgcolor: '#F7F9E8',
+        boxShadow: '0 18px 50px rgba(0,66,37,0.08)',
         transition:
           'border-color 0.3s ease, transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease',
         '&:hover': {
-          borderColor: 'rgba(201,245,104,0.15)',
+          borderColor: 'rgba(255,118,0,0.15)',
           transform: 'translateY(-4px)',
-          boxShadow:
-            'inset 0 1px 0 rgba(255,255,255,0.08), 0 36px 90px rgba(0,0,0,0.42), 0 0 44px rgba(201,245,104,0.05)',
+          boxShadow: '0 26px 70px rgba(0,66,37,0.12), 0 0 0 1px rgba(255,118,0,0.12)',
         },
       }}
     >
@@ -79,7 +77,7 @@ function FeatureCard({ num, title, sub, img }) {
           lineHeight: 1,
           letterSpacing: -8,
           color: 'transparent',
-          WebkitTextStroke: '1px rgba(255,255,255,0.045)',
+          WebkitTextStroke: '1px rgba(0,66,37,0.08)',
           pointerEvents: 'none',
           userSelect: 'none',
           zIndex: 0,
@@ -110,9 +108,9 @@ function FeatureCard({ num, title, sub, img }) {
               width: 22,
               height: 22,
               borderRadius: '5px',
-              background: 'linear-gradient(135deg, #ff6b2f 0%, #d94f1f 100%)',
+              background: 'linear-gradient(135deg, #FF7600 0%, #CC5E00 100%)',
               flexShrink: 0,
-              boxShadow: '0 0 14px rgba(255,107,47,0.5)',
+              boxShadow: '0 0 14px rgba(255,118,0,0.5)',
             }}
           />
           <Typography
@@ -120,7 +118,7 @@ function FeatureCard({ num, title, sub, img }) {
               fontSize: 26,
               fontWeight: 900,
               letterSpacing: -0.5,
-              color: 'rgba(247,255,232,0.22)',
+              color: 'rgba(0,66,37,0.28)',
               lineHeight: 1,
             }}
           >
@@ -136,7 +134,7 @@ function FeatureCard({ num, title, sub, img }) {
             fontWeight: 900,
             letterSpacing: { xs: -0.8, md: -1.5 },
             lineHeight: 1.05,
-            color: 'rgba(247,255,232,0.96)',
+            color: '#004225',
             mb: { xs: 2.5, md: 3 },
           }}
         >
@@ -147,7 +145,7 @@ function FeatureCard({ num, title, sub, img }) {
           sx={{
             fontSize: { xs: 15, md: 17.5 },
             lineHeight: 1.75,
-            color: 'rgba(247,255,232,0.42)',
+            color: 'rgba(0,66,37,0.58)',
           }}
         >
           {sub}
@@ -189,14 +187,14 @@ function FeatureCard({ num, title, sub, img }) {
 function FeatureCards() {
   return (
     /* Outer gutter — matches hero/scenarios dark background */
-    <Box sx={{ bgcolor: '#060f0a', px: { xs: '12px', sm: '18px', md: '24px' }, py: { xs: 3, md: 4 } }}>
+    <Box sx={{ bgcolor: '#F7F9E8', px: { xs: '12px', sm: '18px', md: '24px' }, py: { xs: 3, md: 4 } }}>
       <Box
         id="product"
         component="section"
         aria-labelledby="features-title"
         sx={{
           position: 'relative',
-          bgcolor: '#0b1e12',
+          bgcolor: '#004225',
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -210,11 +208,42 @@ function FeatureCards() {
             right: '10%',
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(201,245,104,0.25) 50%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(255,118,0,0.25) 50%, transparent)',
           },
         }}
       >
         {/* Ambient orb — top center */}
+        <Box
+          component="img"
+          src="/images/brand-patterns/line-pattern-wide.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: { xs: 28, md: 42 },
+            right: { xs: '-42%', md: '-10%' },
+            width: { xs: 620, md: 920 },
+            maxWidth: 'none',
+            opacity: 0.11,
+            pointerEvents: 'none',
+            filter: 'saturate(0.85)',
+          }}
+        />
+        <Box
+          component="img"
+          src="/images/brand-patterns/frame.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            bottom: { xs: -110, md: -160 },
+            left: { xs: -130, md: -170 },
+            width: { xs: 300, md: 420 },
+            opacity: 0.16,
+            transform: 'rotate(-12deg)',
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           aria-hidden
           sx={{
@@ -228,7 +257,7 @@ function FeatureCards() {
             maxHeight: 1000,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,245,104,0.08) 0%, transparent 60%)',
+              'radial-gradient(circle, rgba(255,118,0,0.08) 0%, transparent 60%)',
             filter: 'blur(80px)',
             pointerEvents: 'none',
           }}
@@ -246,7 +275,7 @@ function FeatureCards() {
             maxHeight: 600,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(255,107,47,0.08) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.08) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -277,11 +306,11 @@ function FeatureCards() {
                 fontWeight: 900,
                 letterSpacing: { xs: -1, md: -2 },
                 lineHeight: { xs: 1.1, md: 1.06 },
-                color: 'rgba(247,255,232,0.96)',
+                color: '#F7F9E8',
               }}
             >
               Transform The Way You{' '}
-              <Box component="span" sx={{ color: '#ff6b2f' }}>
+              <Box component="span" sx={{ color: '#FF7600' }}>
                 Communicate
               </Box>
             </Typography>
@@ -308,19 +337,19 @@ function FeatureCards() {
                 px: 4,
                 py: '14px',
                 borderRadius: '100px',
-                background: 'linear-gradient(135deg, #c9f568 0%, #a5e02a 100%)',
-                color: '#063323',
+                background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+                color: '#00331d',
                 fontSize: 15.5,
                 fontWeight: 800,
                 textDecoration: 'none',
                 boxShadow:
-                  '0 0 0 1px rgba(201,245,104,0.3), 0 16px 48px rgba(201,245,104,0.2)',
+                  '0 0 0 1px rgba(255,118,0,0.3), 0 16px 48px rgba(255,118,0,0.2)',
                 transition:
                   'transform 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s ease',
                 '&:hover': {
                   transform: 'translateY(-2px)',
                   boxShadow:
-                    '0 0 0 1px rgba(201,245,104,0.48), 0 22px 64px rgba(201,245,104,0.32)',
+                    '0 0 0 1px rgba(255,118,0,0.48), 0 22px 64px rgba(255,118,0,0.32)',
                 },
               }}
             >

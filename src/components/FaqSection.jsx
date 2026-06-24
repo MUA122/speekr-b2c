@@ -43,14 +43,15 @@ const FAQS = [
 function FaqItem({ q, a, isOpen, onToggle }) {
   return (
     <Box
+      className="premium-card"
       component="article"
       sx={{
         borderRadius: '16px',
-        border: `1px solid ${isOpen ? 'rgba(201,245,104,0.2)' : 'rgba(255,255,255,0.055)'}`,
-        bgcolor: isOpen ? 'rgba(201,245,104,0.028)' : 'rgba(255,255,255,0.018)',
+        border: `1px solid ${isOpen ? 'rgba(255,118,0,0.28)' : 'rgba(0,66,37,0.12)'}`,
+        bgcolor: '#F7F9E8',
         boxShadow: isOpen
-          ? '0 0 0 1px rgba(201,245,104,0.06) inset, 0 8px 40px rgba(0,0,0,0.28)'
-          : 'none',
+          ? '0 18px 50px rgba(255,118,0,0.12), 0 0 0 1px rgba(255,118,0,0.08)'
+          : '0 12px 34px rgba(0,66,37,0.06)',
         transition: 'border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease',
         overflow: 'hidden',
       }}
@@ -82,10 +83,10 @@ function FaqItem({ q, a, isOpen, onToggle }) {
             width: 8,
             height: 8,
             borderRadius: '3px',
-            bgcolor: '#ff6b2f',
+            bgcolor: '#FF7600',
             mt: '8px',
             display: { xs: 'none', sm: 'block' },
-            boxShadow: '0 0 8px rgba(255,107,47,0.5)',
+            boxShadow: '0 0 8px rgba(255,118,0,0.5)',
           }}
         />
 
@@ -97,7 +98,7 @@ function FaqItem({ q, a, isOpen, onToggle }) {
             fontWeight: 700,
             letterSpacing: -0.3,
             lineHeight: 1.3,
-            color: isOpen ? 'rgba(247,255,232,0.97)' : 'rgba(247,255,232,0.78)',
+            color: isOpen ? '#004225' : 'rgba(0,66,37,0.78)',
             transition: 'color 0.25s ease',
             textAlign: 'left',
           }}
@@ -113,8 +114,8 @@ function FaqItem({ q, a, isOpen, onToggle }) {
             width: 28,
             height: 28,
             borderRadius: '50%',
-            border: `1.5px solid ${isOpen ? 'rgba(201,245,104,0.32)' : 'rgba(255,255,255,0.1)'}`,
-            bgcolor: isOpen ? 'rgba(201,245,104,0.09)' : 'rgba(255,255,255,0.04)',
+            border: `1.5px solid ${isOpen ? 'rgba(255,118,0,0.32)' : 'rgba(0,66,37,0.12)'}`,
+            bgcolor: isOpen ? 'rgba(255,118,0,0.09)' : '#F7F9E8',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -125,7 +126,7 @@ function FaqItem({ q, a, isOpen, onToggle }) {
         >
           <ChevronDown
             size={14}
-            color={isOpen ? '#c9f568' : 'rgba(247,255,232,0.4)'}
+            color={isOpen ? '#FF7600' : 'rgba(0,66,37,0.5)'}
             aria-hidden
           />
         </Box>
@@ -155,7 +156,7 @@ function FaqItem({ q, a, isOpen, onToggle }) {
               fontSize: { xs: 14, md: 15 },
               fontWeight: 500,
               lineHeight: 1.8,
-              color: 'rgba(247,255,232,0.46)',
+              color: 'rgba(0,66,37,0.58)',
             }}
           >
             {a}
@@ -173,7 +174,7 @@ export default function FaqSection({ onDemoClick }) {
   return (
     <Box
       sx={{
-        bgcolor: '#060f0a',
+        bgcolor: '#F7F9E8',
         px: { xs: '12px', sm: '18px', md: '24px' },
         py: { xs: 3, md: 4 },
       }}
@@ -184,7 +185,7 @@ export default function FaqSection({ onDemoClick }) {
         aria-labelledby="faq-title"
         sx={{
           position: 'relative',
-          bgcolor: '#0b1e12',
+          bgcolor: '#F7F9E8',
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -198,11 +199,27 @@ export default function FaqSection({ onDemoClick }) {
             right: '10%',
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(201,245,104,0.28) 50%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(255,118,0,0.28) 50%, transparent)',
           },
         }}
       >
         {/* Ambient orb — lime top center */}
+        <Box
+          component="img"
+          src="/images/brand-patterns/faq-bg.png"
+          alt=""
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: { xs: 8, md: 18 },
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: { xs: 760, md: 1120 },
+            maxWidth: 'none',
+            opacity: 0.09,
+            pointerEvents: 'none',
+          }}
+        />
         <Box
           aria-hidden
           sx={{
@@ -216,7 +233,7 @@ export default function FaqSection({ onDemoClick }) {
             maxHeight: 800,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,245,104,0.055) 0%, transparent 62%)',
+              'radial-gradient(circle, rgba(255,118,0,0.055) 0%, transparent 62%)',
             filter: 'blur(80px)',
             pointerEvents: 'none',
           }}
@@ -234,7 +251,7 @@ export default function FaqSection({ onDemoClick }) {
             maxHeight: 520,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(255,107,47,0.05) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(255,118,0,0.05) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -266,18 +283,18 @@ export default function FaqSection({ onDemoClick }) {
                 py: 0.75,
                 mb: 3,
                 borderRadius: '100px',
-                border: '1px solid rgba(201,245,104,0.2)',
-                bgcolor: 'rgba(201,245,104,0.06)',
+                border: '1px solid rgba(255,118,0,0.2)',
+                bgcolor: 'rgba(255,118,0,0.06)',
               }}
             >
-              <HelpCircle size={12} color="#c9f568" aria-hidden />
+              <HelpCircle size={12} color="#FF7600" aria-hidden />
               <Typography
                 sx={{
                   fontSize: 11,
                   fontWeight: 800,
                   letterSpacing: 1.8,
                   textTransform: 'uppercase',
-                  color: '#c9f568',
+                  color: '#FF7600',
                 }}
               >
                 Common Questions
@@ -293,11 +310,11 @@ export default function FaqSection({ onDemoClick }) {
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1.0,
-                color: 'rgba(247,255,232,0.96)',
+                color: '#004225',
               }}
             >
               Frequently{' '}
-              <Box component="span" sx={{ color: '#c9f568' }}>
+              <Box component="span" sx={{ color: '#FF7600' }}>
                 Asked
               </Box>
               <br />
@@ -310,7 +327,7 @@ export default function FaqSection({ onDemoClick }) {
                 fontSize: { xs: 14.5, md: 16 },
                 fontWeight: 500,
                 lineHeight: 1.65,
-                color: 'rgba(247,255,232,0.36)',
+                color: 'rgba(0,66,37,0.5)',
                 maxWidth: 460,
                 mx: 'auto',
               }}
@@ -322,7 +339,7 @@ export default function FaqSection({ onDemoClick }) {
                 onClick={onDemoClick}
                 sx={{
                   display: 'inline',
-                  color: 'rgba(201,245,104,0.7)',
+                  color: 'rgba(255,118,0,0.7)',
                   bgcolor: 'transparent',
                   border: 'none',
                   p: 0,
@@ -331,9 +348,9 @@ export default function FaqSection({ onDemoClick }) {
                   fontSize: 'inherit',
                   fontWeight: 600,
                   textDecoration: 'underline',
-                  textDecorationColor: 'rgba(201,245,104,0.3)',
+                  textDecorationColor: 'rgba(255,118,0,0.3)',
                   transition: 'color 0.2s ease',
-                  '&:hover': { color: '#c9f568' },
+                  '&:hover': { color: '#FF7600' },
                 }}
               >
                 Talk to our team.
@@ -375,8 +392,8 @@ export default function FaqSection({ onDemoClick }) {
               mx: 'auto',
               p: { xs: '28px 24px', sm: '32px 36px', md: '36px 44px' },
               borderRadius: '20px',
-              border: '1px solid rgba(255,107,47,0.14)',
-              bgcolor: 'rgba(255,107,47,0.022)',
+              border: '1px solid rgba(255,118,0,0.14)',
+              bgcolor: '#F7F9E8',
               backdropFilter: 'blur(20px)',
               position: 'relative',
               overflow: 'hidden',
@@ -393,7 +410,7 @@ export default function FaqSection({ onDemoClick }) {
                 height: '200%',
                 borderRadius: '50%',
                 background:
-                  'radial-gradient(circle, rgba(255,107,47,0.1) 0%, transparent 70%)',
+                  'radial-gradient(circle, rgba(255,118,0,0.1) 0%, transparent 70%)',
                 filter: 'blur(40px)',
                 pointerEvents: 'none',
               }}
@@ -406,7 +423,7 @@ export default function FaqSection({ onDemoClick }) {
                   fontWeight: 800,
                   letterSpacing: -0.4,
                   lineHeight: 1.2,
-                  color: 'rgba(247,255,232,0.92)',
+                  color: '#004225',
                   mb: 0.5,
                 }}
               >
@@ -417,7 +434,7 @@ export default function FaqSection({ onDemoClick }) {
                   fontSize: { xs: 13.5, md: 15 },
                   fontWeight: 500,
                   lineHeight: 1.6,
-                  color: 'rgba(247,255,232,0.38)',
+                  color: 'rgba(0,66,37,0.5)',
                 }}
               >
                 Our team is happy to walk you through everything Speekr can do.
@@ -436,8 +453,8 @@ export default function FaqSection({ onDemoClick }) {
                 px: { xs: 3, md: 3.5 },
                 py: 1.5,
                 borderRadius: '100px',
-                bgcolor: '#ff6b2f',
-                color: '#0b1e12',
+                bgcolor: '#FF7600',
+                color: '#062D1B',
                 fontSize: { xs: 13.5, md: 14 },
                 fontWeight: 800,
                 letterSpacing: -0.2,
@@ -445,12 +462,12 @@ export default function FaqSection({ onDemoClick }) {
                 border: 'none',
                 fontFamily: 'inherit',
                 transition: 'transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease',
-                boxShadow: '0 0 22px rgba(255,107,47,0.28)',
+                boxShadow: '0 0 22px rgba(255,118,0,0.28)',
                 position: 'relative',
                 zIndex: 1,
                 '&:hover': {
                   transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 32px rgba(255,107,47,0.42)',
+                  boxShadow: '0 8px 32px rgba(255,118,0,0.42)',
                   filter: 'brightness(1.07)',
                 },
               }}
