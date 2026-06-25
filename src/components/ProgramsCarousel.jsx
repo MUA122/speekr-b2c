@@ -281,6 +281,7 @@ export default function ProgramsCarousel() {
 
   return (
     <Box
+      id="product-communication"
       ref={containerRef}
       sx={{ height: `${(SLIDES.length + 1) * 100}vh`, position: "relative" }}
     >

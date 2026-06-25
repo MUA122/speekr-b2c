@@ -5,7 +5,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react'
 
 const NAV_ITEMS = [
   { label: 'Blog', href: '/blog' },
-  { label: 'Product', href: '#product', sectionId: 'product' },
+  { label: 'Product', href: '#product-communication', sectionId: 'product-communication' },
   { label: 'Pricing', href: '#pricing', sectionId: 'pricing' },
   { label: 'Contact', isContact: true },
 ]
@@ -325,7 +325,7 @@ export default function Header({ onContactClick }) {
     return () => observers.forEach((obs) => obs?.disconnect())
   }, [])
 
-  const desktopLinkSx = (isActive) => ({
+  const desktopLinkSx = (isActive, isScrolled) => ({
     display: 'inline-flex',
     alignItems: 'center',
     gap: 0.4,
@@ -335,7 +335,7 @@ export default function Header({ onContactClick }) {
     fontSize: 13.5,
     fontWeight: 600,
     letterSpacing: 0.1,
-    color: isActive ? '#F26433' : 'rgba(238,243,205,0.62)',
+    color: isActive ? '#F26433' : isScrolled ? 'rgba(238,243,205,0.62)' : 'rgba(7,66,37,0.72)',
     bgcolor: isActive ? 'rgba(242,100,51,0.1)' : 'transparent',
     textDecoration: 'none',
     border: 'none',
@@ -343,8 +343,12 @@ export default function Header({ onContactClick }) {
     fontFamily: 'inherit',
     transition: 'color 0.2s ease, background 0.2s ease',
     '&:hover': {
-      color: 'rgba(238,243,205,0.96)',
-      bgcolor: isActive ? 'rgba(242,100,51,0.14)' : 'rgba(238,243,205,0.07)',
+      color: isActive ? '#F26433' : isScrolled ? 'rgba(238,243,205,0.96)' : '#074225',
+      bgcolor: isActive
+        ? 'rgba(242,100,51,0.14)'
+        : isScrolled
+          ? 'rgba(238,243,205,0.07)'
+          : 'rgba(7,66,37,0.06)',
     },
   })
 
@@ -374,12 +378,15 @@ export default function Header({ onContactClick }) {
               height: { xs: 60, md: 64 },
               borderRadius: '100px',
               border: '1px solid',
-              borderColor: scrolled ? 'rgba(242,100,51,0.18)' : 'rgba(238,243,205,0.09)',
-              bgcolor: scrolled ? 'rgba(0,34,19,0.94)' : 'rgba(7,66,37,0.68)',
+              borderColor: scrolled ? 'rgba(242,100,51,0.18)' : 'rgba(7,66,37,0.18)',
+              bgcolor: scrolled ? 'rgba(0,34,19,0.94)' : '#EEF3CD',
+              background: scrolled
+                ? 'rgba(0,34,19,0.94)'
+                : 'radial-gradient(circle at 82% 18%, rgba(242,100,51,0.14) 0%, transparent 28%), radial-gradient(circle at 12% 82%, rgba(7,66,37,0.12) 0%, transparent 34%), linear-gradient(135deg, #EEF3CD 0%, #EEF3CD 56%, rgba(7,66,37,0.08) 100%)',
               backdropFilter: 'blur(32px) saturate(1.5)',
               boxShadow: scrolled
                 ? '0 8px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(238,243,205,0.04)'
-                : '0 4px 28px rgba(0,0,0,0.25)',
+                : '0 14px 34px rgba(7,66,37,0.12)',
               transition:
                 'background-color 380ms ease, border-color 380ms ease, box-shadow 380ms ease',
             }}
@@ -407,7 +414,9 @@ export default function Header({ onContactClick }) {
                 sx={{
                   width: { xs: 108, sm: 120 },
                   display: 'block',
-                  filter: 'brightness(0) invert(1)',
+                  filter: scrolled
+                    ? 'brightness(0) invert(1)'
+                    : 'brightness(0) saturate(100%) invert(17%) sepia(34%) saturate(1031%) hue-rotate(104deg) brightness(92%) contrast(97%)',
                 }}
               />
             </Box>
@@ -432,7 +441,7 @@ export default function Header({ onContactClick }) {
                       component="button"
                       type="button"
                       onClick={onContactClick}
-                      sx={desktopLinkSx(false)}
+                      sx={desktopLinkSx(false, scrolled)}
                     >
                       {item.label}
                     </Box>
@@ -449,7 +458,7 @@ export default function Header({ onContactClick }) {
                           .getElementById(item.sectionId)
                           ?.scrollIntoView({ behavior: 'smooth' })
                       }
-                      sx={desktopLinkSx(isActive)}
+                      sx={desktopLinkSx(isActive, scrolled)}
                     >
                       {item.label}
                     </Box>
@@ -462,7 +471,7 @@ export default function Header({ onContactClick }) {
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noreferrer' : undefined}
-                    sx={desktopLinkSx(isActive)}
+                    sx={desktopLinkSx(isActive, scrolled)}
                   >
                     {item.label}
                     {item.external && (
