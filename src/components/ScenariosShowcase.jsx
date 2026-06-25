@@ -1,74 +1,76 @@
-import { useState, useRef, useEffect } from 'react'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
-import { Sparkles, ChevronRight } from 'lucide-react'
+import { useState, useRef, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { Sparkles, ChevronRight } from "lucide-react";
 
-const IMG = id =>
-  `https://cdn.builder.io/api/v1/image/assets%2F7a4e07e52a2c4a8bb3890e0c17931328%2F${id}`
-const VID = id =>
-  `https://cdn.builder.io/o/assets%2F7a4e07e52a2c4a8bb3890e0c17931328%2F${id}%2Fcompressed?apiKey=7a4e07e52a2c4a8bb3890e0c17931328&token=${id}&alt=media&optimized=true`
+const IMG = (id) =>
+  `https://cdn.builder.io/api/v1/image/assets%2F7a4e07e52a2c4a8bb3890e0c17931328%2F${id}`;
+const VID = (id) =>
+  `https://cdn.builder.io/o/assets%2F7a4e07e52a2c4a8bb3890e0c17931328%2F${id}%2Fcompressed?apiKey=7a4e07e52a2c4a8bb3890e0c17931328&token=${id}&alt=media&optimized=true`;
 
 const SCENARIOS = [
   {
     id: 0,
-    category: 'Sales',
-    label: 'Win The Sales Call',
-    title: 'Budget Objection Handling',
-    cover: IMG('f7eab9a39403473294738370b4d35535'),
-    video: VID('df1e132ba6d44f749a6944b725ece1f2'),
+    category: "Sales",
+    label: "Win The Sales Call",
+    title: "Budget Objection Handling",
+    cover: IMG("f7eab9a39403473294738370b4d35535"),
+    video: VID("df1e132ba6d44f749a6944b725ece1f2"),
     coach: {
-      name: 'Sherif',
-      avatar: IMG('95f5a6bd88644b1bbc8f801c9abcb4e7'),
-      type: 'Sales Call',
-      lang: 'Arabic',
+      name: "Sherif",
+      avatar: IMG("95f5a6bd88644b1bbc8f801c9abcb4e7"),
+      type: "Sales Call",
+      lang: "Arabic",
     },
     goalPct: 53,
   },
   {
     id: 1,
-    category: 'Career Development',
-    label: 'Land Your Next Job Interview',
-    title: 'Land Your Next Job Interview',
-    cover: IMG('614cafc44e9448128d84001138eeb4fc'),
-    video: VID('6ea221d79df943639db72c03f4a83ab0'),
+    category: "Career Development",
+    label: "Land Your Next Job Interview",
+    title: "Land Your Next Job Interview",
+    cover: IMG("614cafc44e9448128d84001138eeb4fc"),
+    video: VID("6ea221d79df943639db72c03f4a83ab0"),
     coach: {
-      name: 'Iman',
-      avatar: IMG('10b2d34e81f945aea586f4b34751f9d7'),
-      type: 'Interview',
-      lang: 'English',
+      name: "Iman",
+      avatar: IMG("10b2d34e81f945aea586f4b34751f9d7"),
+      type: "Interview",
+      lang: "English",
     },
     goalPct: 90,
   },
   {
     id: 2,
-    category: 'Sales',
-    label: 'Unexpected Cold Call',
-    title: 'Unexpected Cold Call',
-    cover: IMG('1619f156e8e6411b9c78e1bf76d0be6c'),
-    video: VID('787b7e773c16491c8be9465d90909bbd'),
+    category: "Sales",
+    label: "Unexpected Cold Call",
+    title: "Unexpected Cold Call",
+    cover: IMG("1619f156e8e6411b9c78e1bf76d0be6c"),
+    video: VID("787b7e773c16491c8be9465d90909bbd"),
     coach: {
-      name: 'Sherif',
-      avatar: IMG('9554ef8a6ceb442380dd0dd162e3413d'),
-      type: 'Pitch',
-      lang: 'Arabic',
+      name: "Sherif",
+      avatar: IMG("9554ef8a6ceb442380dd0dd162e3413d"),
+      type: "Pitch",
+      lang: "Arabic",
     },
     goalPct: 65,
   },
-]
+];
 
 function ProgressRing({ pct, size = 52 }) {
-  const sw = 3
-  const r = (size - sw * 2) / 2
-  const circ = 2 * Math.PI * r
-  const fill = (pct / 100) * circ
+  const sw = 3;
+  const r = (size - sw * 2) / 2;
+  const circ = 2 * Math.PI * r;
+  const fill = (pct / 100) * circ;
   return (
-    <Box sx={{ position: 'relative', width: size, height: size, flexShrink: 0 }}>
+    <Box
+      sx={{ position: "relative", width: size, height: size, flexShrink: 0 }}
+    >
       <svg
         width={size}
         height={size}
-        style={{ display: 'block', transform: 'rotate(-90deg)' }}
+        style={{ display: "block", transform: "rotate(-90deg)" }}
         aria-hidden
       >
         <circle
@@ -76,7 +78,7 @@ function ProgressRing({ pct, size = 52 }) {
           cy={size / 2}
           r={r}
           fill="none"
-          stroke="rgba(255,255,255,0.1)"
+          stroke="rgba(238,243,205,0.1)"
           strokeWidth={sw}
         />
         <circle
@@ -84,51 +86,55 @@ function ProgressRing({ pct, size = 52 }) {
           cy={size / 2}
           r={r}
           fill="none"
-          stroke="#FF7600"
+          stroke="#F26433"
           strokeWidth={sw}
           strokeLinecap="round"
           strokeDasharray={`${fill} ${circ}`}
-          style={{ transition: 'stroke-dasharray 0.7s cubic-bezier(0.4, 0, 0.2, 1)' }}
+          style={{
+            transition: "stroke-dasharray 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
         />
       </svg>
       <Box
         sx={{
-          position: 'absolute',
+          position: "absolute",
           inset: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           fontSize: 11,
           fontWeight: 800,
-          color: '#FF7600',
+          color: "#F26433",
           lineHeight: 1,
         }}
       >
         {pct}%
       </Box>
     </Box>
-  )
+  );
 }
 
 function CoachTag({ children }) {
   return (
     <Box
       sx={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
         px: 1.4,
         height: 22,
-        borderRadius: '100px',
-        border: '1px solid rgba(247,249,232,0.15)',
-        bgcolor: 'rgba(255,255,255,0.04)',
+        borderRadius: "100px",
+        border: "1px solid rgba(238,243,205,0.15)",
+        bgcolor: "rgba(238,243,205,0.04)",
       }}
     >
-      <Typography sx={{ fontSize: 11, color: 'rgba(247,249,232,0.45)', lineHeight: 1 }}>
+      <Typography
+        sx={{ fontSize: 11, color: "rgba(238,243,205,0.45)", lineHeight: 1 }}
+      >
         {children}
       </Typography>
     </Box>
-  )
+  );
 }
 
 function ExpandedContent({ scenario }) {
@@ -141,14 +147,14 @@ function ExpandedContent({ scenario }) {
         target="_blank"
         rel="noreferrer"
         sx={{
-          display: 'block',
-          position: 'relative',
-          borderRadius: '12px',
-          overflow: 'hidden',
+          display: "block",
+          position: "relative",
+          borderRadius: "12px",
+          overflow: "hidden",
           height: 140,
           flexShrink: 0,
-          textDecoration: 'none',
-          '&:hover img': { transform: 'scale(1.04)' },
+          textDecoration: "none",
+          "&:hover img": { transform: "scale(1.04)" },
         }}
       >
         <Box
@@ -156,38 +162,44 @@ function ExpandedContent({ scenario }) {
           src={scenario.cover}
           alt={scenario.title}
           sx={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-            transition: 'transform 0.4s ease',
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+            transition: "transform 0.4s ease",
           }}
         />
         {/* gradient overlay */}
         <Box
           sx={{
-            position: 'absolute',
+            position: "absolute",
             inset: 0,
-            background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)',
-            pointerEvents: 'none',
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)",
+            pointerEvents: "none",
           }}
         />
         {/* category pill */}
         <Box
           sx={{
-            position: 'absolute',
+            position: "absolute",
             top: 10,
             left: 10,
             px: 1.4,
             py: 0.45,
-            borderRadius: '100px',
-            bgcolor: 'rgba(0,34,19,0.88)',
-            border: '1px solid rgba(255,118,0,0.25)',
-            backdropFilter: 'blur(8px)',
+            borderRadius: "100px",
+            bgcolor: "rgba(0,34,19,0.88)",
+            border: "1px solid rgba(242,100,51,0.25)",
+            backdropFilter: "blur(8px)",
           }}
         >
           <Typography
-            sx={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.6, color: '#FF7600' }}
+            sx={{
+              fontSize: 10,
+              fontWeight: 800,
+              letterSpacing: 0.6,
+              color: "#F26433",
+            }}
           >
             {scenario.category}
           </Typography>
@@ -195,17 +207,17 @@ function ExpandedContent({ scenario }) {
         {/* title overlay */}
         <Typography
           sx={{
-            position: 'absolute',
+            position: "absolute",
             bottom: 10,
             left: 12,
             right: 12,
             fontSize: 12.5,
             fontWeight: 800,
             letterSpacing: 0.2,
-            color: '#fff',
+            color: "#EEF3CD",
             lineHeight: 1.3,
-            textTransform: 'uppercase',
-            textShadow: '0 1px 6px rgba(0,0,0,0.6)',
+            textTransform: "uppercase",
+            textShadow: "0 1px 6px rgba(0,0,0,0.6)",
           }}
         >
           {scenario.title}
@@ -214,25 +226,36 @@ function ExpandedContent({ scenario }) {
 
       {/* Coach */}
       <Stack spacing={1}>
-        <Typography sx={{ fontSize: 11.5, color: 'rgba(247,249,232,0.35)', fontWeight: 500 }}>
+        <Typography
+          sx={{
+            fontSize: 11.5,
+            color: "rgba(238,243,205,0.35)",
+            fontWeight: 500,
+          }}
+        >
           Practice with
         </Typography>
-        <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
           <Box
             sx={{
               width: 50,
               height: 50,
-              borderRadius: '50%',
-              overflow: 'hidden',
+              borderRadius: "50%",
+              overflow: "hidden",
               flexShrink: 0,
-              border: '2px solid rgba(255,118,0,0.22)',
+              border: "2px solid rgba(242,100,51,0.22)",
             }}
           >
             <Box
               component="img"
               src={scenario.coach.avatar}
               alt={scenario.coach.name}
-              sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
             />
           </Box>
           <Box>
@@ -240,7 +263,7 @@ function ExpandedContent({ scenario }) {
               sx={{
                 fontSize: 15,
                 fontWeight: 700,
-                color: 'rgba(247,249,232,0.9)',
+                color: "rgba(238,243,205,0.9)",
                 mb: 0.7,
                 lineHeight: 1,
               }}
@@ -258,11 +281,17 @@ function ExpandedContent({ scenario }) {
       {/* Goal + CTA */}
       <Stack
         direction="row"
-        sx={{ alignItems: 'center', justifyContent: 'space-between' }}
+        sx={{ alignItems: "center", justifyContent: "space-between" }}
       >
-        <Stack direction="row" spacing={1.2} sx={{ alignItems: 'center' }}>
+        <Stack direction="row" spacing={1.2} sx={{ alignItems: "center" }}>
           <ProgressRing pct={scenario.goalPct} />
-          <Typography sx={{ fontSize: 11, color: 'rgba(247,249,232,0.38)', lineHeight: 1.3 }}>
+          <Typography
+            sx={{
+              fontSize: 11,
+              color: "rgba(238,243,205,0.38)",
+              lineHeight: 1.3,
+            }}
+          >
             Goal
             <br />
             Achieved
@@ -274,21 +303,21 @@ function ExpandedContent({ scenario }) {
           target="_blank"
           rel="noreferrer"
           sx={{
-            display: 'inline-flex',
-            alignItems: 'center',
+            display: "inline-flex",
+            alignItems: "center",
             gap: 0.5,
             px: 2,
             py: 0.9,
-            borderRadius: '100px',
-            background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
-            color: '#00331d',
+            borderRadius: "100px",
+            background: "linear-gradient(135deg, #F26433 0%, #F6845F 100%)",
+            color: "#074225",
             fontSize: 12.5,
             fontWeight: 800,
-            textDecoration: 'none',
-            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-            '&:hover': {
-              transform: 'translateY(-2px)',
-              boxShadow: '0 8px 24px rgba(255,118,0,0.32)',
+            textDecoration: "none",
+            transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            "&:hover": {
+              transform: "translateY(-2px)",
+              boxShadow: "0 8px 24px rgba(242,100,51,0.32)",
             },
           }}
         >
@@ -297,7 +326,7 @@ function ExpandedContent({ scenario }) {
         </Box>
       </Stack>
     </Stack>
-  )
+  );
 }
 
 function TabCard({ scenario, isActive, onClick }) {
@@ -306,106 +335,116 @@ function TabCard({ scenario, isActive, onClick }) {
       onClick={onClick}
       role="button"
       tabIndex={0}
-      onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onClick()}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onClick()}
       aria-pressed={isActive}
       sx={{
-        position: 'relative',
-        p: '16px 20px',
-        borderRadius: '18px',
-        border: '1px solid',
+        position: "relative",
+        p: "16px 20px",
+        borderRadius: "18px",
+        border: "1px solid",
         borderColor: isActive
-          ? 'rgba(255,118,0,0.22)'
-          : 'rgba(255,255,255,0.07)',
-        bgcolor: isActive ? 'rgba(255,118,0,0.04)' : 'rgba(255,255,255,0.025)',
-        backdropFilter: 'blur(24px)',
-        cursor: 'pointer',
-        outline: 'none',
+          ? "rgba(242,100,51,0.22)"
+          : "rgba(238,243,205,0.07)",
+        bgcolor: isActive ? "rgba(242,100,51,0.04)" : "rgba(238,243,205,0.025)",
+        backdropFilter: "blur(24px)",
+        cursor: "pointer",
+        outline: "none",
         transition:
-          'border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease',
+          "border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease",
         boxShadow: isActive
-          ? '0 0 36px rgba(255,118,0,0.07), inset 0 1px 0 rgba(255,255,255,0.06)'
-          : 'inset 0 1px 0 rgba(255,255,255,0.04)',
-        '&:hover': !isActive
+          ? "0 0 36px rgba(242,100,51,0.07), inset 0 1px 0 rgba(238,243,205,0.06)"
+          : "inset 0 1px 0 rgba(238,243,205,0.04)",
+        "&:hover": !isActive
           ? {
-              borderColor: 'rgba(255,255,255,0.13)',
-              bgcolor: 'rgba(255,255,255,0.04)',
+              borderColor: "rgba(238,243,205,0.13)",
+              bgcolor: "rgba(238,243,205,0.04)",
             }
           : {},
-        '&:focus-visible': {
-          outline: '2px solid rgba(255,118,0,0.5)',
+        "&:focus-visible": {
+          outline: "2px solid rgba(242,100,51,0.5)",
           outlineOffset: 2,
         },
         /* lime left accent bar */
-        '&::before': {
+        "&::before": {
           content: '""',
-          position: 'absolute',
+          position: "absolute",
           left: 0,
-          top: '50%',
-          transform: 'translateY(-50%)',
+          top: "50%",
+          transform: "translateY(-50%)",
           width: 3,
-          height: isActive ? '55%' : '0%',
-          borderRadius: '0 3px 3px 0',
-          bgcolor: '#FF7600',
-          transition: 'height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+          height: isActive ? "55%" : "0%",
+          borderRadius: "0 3px 3px 0",
+          bgcolor: "#F26433",
+          transition: "height 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
         },
       }}
     >
       {isActive ? (
         <ExpandedContent scenario={scenario} />
       ) : (
-        <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
           <Box
             sx={{
               width: 44,
               height: 44,
-              borderRadius: '50%',
-              overflow: 'hidden',
+              borderRadius: "50%",
+              overflow: "hidden",
               flexShrink: 0,
-              bgcolor: 'rgba(255,255,255,0.06)',
+              bgcolor: "rgba(238,243,205,0.06)",
             }}
           >
             <Box
               component="img"
               src={scenario.coach.avatar}
               alt={scenario.coach.name}
-              sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
             />
           </Box>
           <Typography
             sx={{
               fontSize: 13.5,
               fontWeight: 600,
-              color: 'rgba(247,249,232,0.6)',
+              color: "rgba(238,243,205,0.6)",
               flex: 1,
               lineHeight: 1.35,
             }}
           >
             {scenario.label}
           </Typography>
-          <ChevronRight size={15} color="rgba(247,249,232,0.25)" aria-hidden />
+          <ChevronRight size={15} color="rgba(238,243,205,0.25)" aria-hidden />
         </Stack>
       )}
     </Box>
-  )
+  );
 }
 
 function ScenariosShowcase() {
-  const [active, setActive] = useState(0)
-  const videoRef = useRef(null)
+  const [active, setActive] = useState(0);
+  const videoRef = useRef(null);
 
   useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    v.load()
-    v.play().catch(() => {})
-  }, [active])
+    const v = videoRef.current;
+    if (!v) return;
+    v.load();
+    v.play().catch(() => {});
+  }, [active]);
 
   return (
     <Box
       component="section"
       id="product"
       aria-labelledby="scenarios-title"
-      sx={{ position: 'relative', bgcolor: '#004225', py: { xs: 10, md: 14 }, overflow: 'hidden' }}
+      sx={{
+        position: "relative",
+        bgcolor: "#074225",
+        py: { xs: 10, md: 14 },
+        overflow: "hidden",
+      }}
     >
       {/* Ambient orb — lime top-right */}
       <Box
@@ -414,91 +453,91 @@ function ScenariosShowcase() {
         alt=""
         aria-hidden
         sx={{
-          position: 'absolute',
+          position: "absolute",
           top: { xs: 22, md: 40 },
-          left: { xs: '-42%', md: '-10%' },
+          left: { xs: "-42%", md: "-10%" },
           width: { xs: 620, md: 900 },
-          maxWidth: 'none',
+          maxWidth: "none",
           opacity: 0.1,
-          pointerEvents: 'none',
+          pointerEvents: "none",
         }}
       />
       <Box
         aria-hidden
         sx={{
-          position: 'absolute',
-          top: '5%',
-          right: '-10%',
-          width: '55vw',
-          height: '55vw',
+          position: "absolute",
+          top: "5%",
+          right: "-10%",
+          width: "55vw",
+          height: "55vw",
           maxWidth: 750,
           maxHeight: 750,
-          borderRadius: '50%',
+          borderRadius: "50%",
           background:
-            'radial-gradient(circle, rgba(255,118,0,0.13) 0%, transparent 65%)',
-          filter: 'blur(90px)',
-          pointerEvents: 'none',
+            "radial-gradient(circle, rgba(242,100,51,0.13) 0%, transparent 65%)",
+          filter: "blur(90px)",
+          pointerEvents: "none",
         }}
       />
       {/* Ambient orb — orange bottom-left */}
       <Box
         aria-hidden
         sx={{
-          position: 'absolute',
-          bottom: '-8%',
-          left: '-6%',
-          width: '48vw',
-          height: '48vw',
+          position: "absolute",
+          bottom: "-8%",
+          left: "-6%",
+          width: "48vw",
+          height: "48vw",
           maxWidth: 640,
           maxHeight: 640,
-          borderRadius: '50%',
+          borderRadius: "50%",
           background:
-            'radial-gradient(circle, rgba(255,118,0,0.1) 0%, transparent 65%)',
-          filter: 'blur(80px)',
-          pointerEvents: 'none',
+            "radial-gradient(circle, rgba(242,100,51,0.1) 0%, transparent 65%)",
+          filter: "blur(80px)",
+          pointerEvents: "none",
         }}
       />
       {/* Noise grain */}
       <Box
         aria-hidden
         sx={{
-          position: 'absolute',
+          position: "absolute",
           inset: 0,
-          pointerEvents: 'none',
+          pointerEvents: "none",
           opacity: 0.022,
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat',
-          backgroundSize: '200px 200px',
+          backgroundRepeat: "repeat",
+          backgroundSize: "200px 200px",
         }}
       />
 
       <Container
         maxWidth="xl"
-        sx={{ position: 'relative', zIndex: 1, px: { xs: 2.5, sm: 4, lg: 5 } }}
+        sx={{ position: "relative", zIndex: 1, px: { xs: 2.5, sm: 4, lg: 5 } }}
       >
         {/* Section header */}
         <Box sx={{ mb: { xs: 7, md: 9 }, maxWidth: 680 }}>
           <Box
             sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
+              display: "inline-flex",
+              alignItems: "center",
               gap: 1,
               px: 1.6,
               py: 0.8,
               mb: 3,
-              borderRadius: '100px',
-              border: '1px solid rgba(255,118,0,0.22)',
-              bgcolor: 'rgba(255,118,0,0.06)',
-              backdropFilter: 'blur(12px)',
+              borderRadius: "100px",
+              border: "1px solid rgba(242,100,51,0.22)",
+              bgcolor: "rgba(242,100,51,0.06)",
+              backdropFilter: "blur(12px)",
             }}
           >
-            <Sparkles size={12} color="#FF7600" aria-hidden />
+            <Sparkles size={12} color="#F26433" aria-hidden />
             <Typography
               sx={{
                 fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: 0.6,
-                color: 'rgba(255,118,0,0.88)',
+                color: "rgba(242,100,51,0.88)",
               }}
             >
               AI Roleplay · 3 Scenarios
@@ -511,21 +550,22 @@ function ScenariosShowcase() {
             sx={{
               m: 0,
               fontSize: { xs: 38, sm: 50, md: 58, lg: 66 },
+              fontFamily: (theme) => theme.palette.brand.fontHeadline,
               fontWeight: 900,
               lineHeight: 1.06,
               letterSpacing: { xs: -1, md: -2 },
-              color: '#F7F9E8',
+              color: "#EEF3CD",
               mb: 2.5,
             }}
           >
-            Real scenarios.{' '}
+            Real scenarios.{" "}
             <Box
               component="span"
               sx={{
-                background: 'linear-gradient(130deg, #FF7600 0%, #004225 48%, #FF7600 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                background: "#F26433",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
             >
               Real feedback.
@@ -535,67 +575,67 @@ function ScenariosShowcase() {
           <Typography
             sx={{
               fontSize: { xs: 16, md: 17.5 },
-              color: 'rgba(247,249,232,0.68)',
+              color: "rgba(238,243,205,0.68)",
               lineHeight: 1.78,
               fontWeight: 400,
             }}
           >
-            Pick a scenario, practice with your AI coach, and get instant actionable
-            feedback on every session.
+            Pick a scenario, practice with your AI coach, and get instant
+            actionable feedback on every session.
           </Typography>
         </Box>
 
         {/* ── Desktop layout ── */}
         <Box
           sx={{
-            display: { xs: 'none', md: 'grid' },
-            gridTemplateColumns: { md: '1fr 350px', lg: '1fr 380px' },
+            display: { xs: "none", md: "grid" },
+            gridTemplateColumns: { md: "1fr 350px", lg: "1fr 380px" },
             gap: { md: 3, lg: 4 },
-            alignItems: 'start',
+            alignItems: "start",
           }}
         >
           {/* Video panel */}
           <Box
             sx={{
-              position: 'relative',
-              borderRadius: '24px',
-              overflow: 'hidden',
-              border: '1px solid rgba(247,249,232,0.14)',
+              position: "relative",
+              borderRadius: "24px",
+              overflow: "hidden",
+              border: "1px solid rgba(238,243,205,0.14)",
               boxShadow:
-                '0 40px 100px rgba(0,0,0,0.48), 0 0 0 1px rgba(255,118,0,0.08)',
+                "0 40px 100px rgba(0,0,0,0.48), 0 0 0 1px rgba(242,100,51,0.08)",
             }}
           >
             {/* "PLAYING" badge */}
             <Box
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 top: 16,
                 right: 16,
                 zIndex: 2,
-                display: 'flex',
-                alignItems: 'center',
+                display: "flex",
+                alignItems: "center",
                 gap: 0.8,
                 px: 1.4,
                 py: 0.6,
-                borderRadius: '100px',
-                bgcolor: 'rgba(0,34,19,0.88)',
-                border: '1px solid rgba(255,118,0,0.22)',
-                backdropFilter: 'blur(12px)',
+                borderRadius: "100px",
+                bgcolor: "rgba(0,34,19,0.88)",
+                border: "1px solid rgba(242,100,51,0.22)",
+                backdropFilter: "blur(12px)",
               }}
             >
               <Box
                 sx={{
                   width: 7,
                   height: 7,
-                  borderRadius: '50%',
-                  bgcolor: '#FF7600',
+                  borderRadius: "50%",
+                  bgcolor: "#F26433",
                   flexShrink: 0,
-                  boxShadow: '0 0 8px rgba(255,118,0,0.9)',
-                  '@keyframes scenarioPulse': {
-                    '0%, 100%': { opacity: 1, transform: 'scale(1)' },
-                    '50%': { opacity: 0.5, transform: 'scale(0.75)' },
+                  boxShadow: "0 0 8px rgba(242,100,51,0.9)",
+                  "@keyframes scenarioPulse": {
+                    "0%, 100%": { opacity: 1, transform: "scale(1)" },
+                    "50%": { opacity: 0.5, transform: "scale(0.75)" },
                   },
-                  animation: 'scenarioPulse 2.2s ease-in-out infinite',
+                  animation: "scenarioPulse 2.2s ease-in-out infinite",
                 }}
               />
               <Typography
@@ -603,7 +643,7 @@ function ScenariosShowcase() {
                   fontSize: 10.5,
                   fontWeight: 800,
                   letterSpacing: 0.8,
-                  color: '#FF7600',
+                  color: "#F26433",
                 }}
               >
                 PLAYING
@@ -612,15 +652,46 @@ function ScenariosShowcase() {
 
             {/* Corner accents */}
             {[
-              { top: 0, left: 0, borderTop: '2px solid rgba(255,118,0,0.35)', borderLeft: '2px solid rgba(255,118,0,0.35)', borderRadius: '24px 0 0 0' },
-              { top: 0, right: 0, borderTop: '2px solid rgba(255,118,0,0.35)', borderRight: '2px solid rgba(255,118,0,0.35)', borderRadius: '0 24px 0 0' },
-              { bottom: 0, left: 0, borderBottom: '2px solid rgba(255,118,0,0.35)', borderLeft: '2px solid rgba(255,118,0,0.35)', borderRadius: '0 0 0 24px' },
-              { bottom: 0, right: 0, borderBottom: '2px solid rgba(255,118,0,0.35)', borderRight: '2px solid rgba(255,118,0,0.35)', borderRadius: '0 0 24px 0' },
+              {
+                top: 0,
+                left: 0,
+                borderTop: "2px solid rgba(242,100,51,0.35)",
+                borderLeft: "2px solid rgba(242,100,51,0.35)",
+                borderRadius: "24px 0 0 0",
+              },
+              {
+                top: 0,
+                right: 0,
+                borderTop: "2px solid rgba(242,100,51,0.35)",
+                borderRight: "2px solid rgba(242,100,51,0.35)",
+                borderRadius: "0 24px 0 0",
+              },
+              {
+                bottom: 0,
+                left: 0,
+                borderBottom: "2px solid rgba(242,100,51,0.35)",
+                borderLeft: "2px solid rgba(242,100,51,0.35)",
+                borderRadius: "0 0 0 24px",
+              },
+              {
+                bottom: 0,
+                right: 0,
+                borderBottom: "2px solid rgba(242,100,51,0.35)",
+                borderRight: "2px solid rgba(242,100,51,0.35)",
+                borderRadius: "0 0 24px 0",
+              },
             ].map((pos, i) => (
               <Box
                 key={i}
                 aria-hidden
-                sx={{ position: 'absolute', zIndex: 2, width: 28, height: 28, pointerEvents: 'none', ...pos }}
+                sx={{
+                  position: "absolute",
+                  zIndex: 2,
+                  width: 28,
+                  height: 28,
+                  pointerEvents: "none",
+                  ...pos,
+                }}
               />
             ))}
 
@@ -630,7 +701,12 @@ function ScenariosShowcase() {
               muted
               playsInline
               preload="metadata"
-              sx={{ width: '100%', aspectRatio: '16/9', display: 'block', objectFit: 'cover' }}
+              sx={{
+                width: "100%",
+                aspectRatio: "16/9",
+                display: "block",
+                objectFit: "cover",
+              }}
             >
               <source src={SCENARIOS[active].video} type="video/mp4" />
             </Box>
@@ -650,17 +726,17 @@ function ScenariosShowcase() {
         </Box>
 
         {/* ── Mobile layout ── */}
-        <Stack spacing={4} sx={{ display: { xs: 'flex', md: 'none' } }}>
-          {SCENARIOS.map(s => (
+        <Stack spacing={4} sx={{ display: { xs: "flex", md: "none" } }}>
+          {SCENARIOS.map((s) => (
             <Stack key={s.id} spacing={1.5}>
               {/* Full scenario card */}
               <Box
                 sx={{
-                  p: '20px',
-                  borderRadius: '18px',
-                  border: '1px solid rgba(255,255,255,0.09)',
-                  bgcolor: 'rgba(255,255,255,0.03)',
-                  backdropFilter: 'blur(24px)',
+                  p: "20px",
+                  borderRadius: "18px",
+                  border: "1px solid rgba(238,243,205,0.09)",
+                  bgcolor: "rgba(238,243,205,0.03)",
+                  backdropFilter: "blur(24px)",
                 }}
               >
                 <ExpandedContent scenario={s} />
@@ -669,10 +745,10 @@ function ScenariosShowcase() {
               {/* Video */}
               <Box
                 sx={{
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  border: "1px solid rgba(238,243,205,0.08)",
+                  boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
                 }}
               >
                 <Box
@@ -682,7 +758,12 @@ function ScenariosShowcase() {
                   autoPlay
                   loop
                   preload="metadata"
-                  sx={{ width: '100%', aspectRatio: '16/9', display: 'block', objectFit: 'cover' }}
+                  sx={{
+                    width: "100%",
+                    aspectRatio: "16/9",
+                    display: "block",
+                    objectFit: "cover",
+                  }}
                 >
                   <source src={s.video} type="video/mp4" />
                 </Box>
@@ -692,7 +773,7 @@ function ScenariosShowcase() {
         </Stack>
       </Container>
     </Box>
-  )
+  );
 }
 
-export default ScenariosShowcase
+export default ScenariosShowcase;

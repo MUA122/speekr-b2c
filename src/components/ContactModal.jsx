@@ -9,21 +9,21 @@ const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http:
 const fieldInputSx = {
   display: 'block',
   width: '100%',
-  background: 'rgba(255,255,255,0.05)',
-  border: '1px solid rgba(255,255,255,0.09)',
+  background: 'rgba(238,243,205,0.05)',
+  border: '1px solid rgba(238,243,205,0.09)',
   borderRadius: '12px',
   padding: '13px 16px',
-  color: 'rgba(247,249,232,0.9)',
+  color: 'rgba(238,243,205,0.9)',
   fontSize: '14.5px',
   fontFamily: 'inherit',
   outline: 'none',
   boxSizing: 'border-box',
   transition: 'border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease',
-  '&::placeholder': { color: 'rgba(247,249,232,0.22)' },
+  '&::placeholder': { color: 'rgba(238,243,205,0.22)' },
   '&:focus': {
-    background: 'rgba(255,118,0,0.04)',
-    borderColor: 'rgba(255,118,0,0.38)',
-    boxShadow: '0 0 0 3px rgba(255,118,0,0.07)',
+    background: 'rgba(242,100,51,0.04)',
+    borderColor: 'rgba(242,100,51,0.38)',
+    boxShadow: '0 0 0 3px rgba(242,100,51,0.07)',
   },
 }
 
@@ -38,13 +38,13 @@ function Field({ label, required, multiline, rows = 4, id, ...rest }) {
           fontWeight: 700,
           letterSpacing: 0.9,
           textTransform: 'uppercase',
-          color: 'rgba(247,249,232,0.35)',
+          color: 'rgba(238,243,205,0.35)',
           userSelect: 'none',
         }}
       >
         {label}
         {required && (
-          <Box component="span" sx={{ color: '#FF7600', ml: 0.4 }}>*</Box>
+          <Box component="span" sx={{ color: '#F26433', ml: 0.4 }}>*</Box>
         )}
       </Box>
       <Box
@@ -70,17 +70,17 @@ function SuccessState({ onClose }) {
           width: 72,
           height: 72,
           borderRadius: '50%',
-          background: 'rgba(255,118,0,0.1)',
-          border: '1px solid rgba(255,118,0,0.25)',
+          background: 'rgba(242,100,51,0.1)',
+          border: '1px solid rgba(242,100,51,0.25)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           mx: 'auto',
           mb: 3,
-          boxShadow: '0 0 40px rgba(255,118,0,0.14)',
+          boxShadow: '0 0 40px rgba(242,100,51,0.14)',
         }}
       >
-        <Check size={32} color="#FF7600" strokeWidth={2.5} aria-hidden />
+        <Check size={32} color="#F26433" strokeWidth={2.5} aria-hidden />
       </Box>
       <Typography
         component="h3"
@@ -89,7 +89,7 @@ function SuccessState({ onClose }) {
           fontSize: { xs: 26, sm: 30 },
           fontWeight: 900,
           letterSpacing: -1,
-          color: 'rgba(247,249,232,0.96)',
+          color: 'rgba(238,243,205,0.96)',
           mb: 1.2,
         }}
       >
@@ -99,7 +99,7 @@ function SuccessState({ onClose }) {
         sx={{
           fontSize: 15,
           lineHeight: 1.72,
-          color: 'rgba(247,249,232,0.38)',
+          color: 'rgba(238,243,205,0.38)',
           maxWidth: 340,
           mx: 'auto',
           mb: 4.5,
@@ -118,18 +118,18 @@ function SuccessState({ onClose }) {
           px: 4.5,
           py: '13px',
           borderRadius: '100px',
-          background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+          background: 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)',
           border: 'none',
-          color: '#00331d',
+          color: '#074225',
           fontSize: 15,
           fontWeight: 800,
           cursor: 'pointer',
           fontFamily: 'inherit',
-          boxShadow: '0 0 0 1px rgba(255,118,0,0.3), 0 12px 36px rgba(255,118,0,0.2)',
+          boxShadow: '0 0 0 1px rgba(242,100,51,0.3), 0 12px 36px rgba(242,100,51,0.2)',
           transition: 'transform 0.22s ease, box-shadow 0.22s ease',
           '&:hover': {
             transform: 'translateY(-2px)',
-            boxShadow: '0 0 0 1px rgba(255,118,0,0.5), 0 16px 48px rgba(255,118,0,0.3)',
+            boxShadow: '0 0 0 1px rgba(242,100,51,0.5), 0 16px 48px rgba(242,100,51,0.3)',
           },
         }}
       >
@@ -229,9 +229,9 @@ function ContactModal({ open, onClose, onSubmit }) {
           maxHeight: '90dvh',
           overflowY: 'auto',
           borderRadius: { xs: '20px', sm: '24px' },
-          border: '1px solid rgba(255,255,255,0.08)',
-          background: '#062D1B',
-          boxShadow: '0 0 0 1px rgba(255,118,0,0.06), 0 60px 140px rgba(0,0,0,0.75)',
+          border: '1px solid rgba(238,243,205,0.08)',
+          background: '#074225',
+          boxShadow: '0 0 0 1px rgba(242,100,51,0.06), 0 60px 140px rgba(0,0,0,0.75)',
           animation: 'panelIn 0.26s cubic-bezier(0.34,1.4,0.64,1)',
         }}
       >
@@ -260,7 +260,7 @@ function ContactModal({ open, onClose, onSubmit }) {
             width: '130%',
             height: '100%',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(242,100,51,0.07) 0%, transparent 70%)',
             filter: 'blur(50px)',
             pointerEvents: 'none',
           }}
@@ -274,7 +274,7 @@ function ContactModal({ open, onClose, onSubmit }) {
             left: '10%',
             right: '10%',
             height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(255,118,0,0.32) 50%, transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(242,100,51,0.32) 50%, transparent)',
           }}
         />
 
@@ -312,11 +312,11 @@ function ContactModal({ open, onClose, onSubmit }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: '50%',
-                  background: 'rgba(255,118,0,0.1)',
-                  border: '1px solid rgba(255,118,0,0.2)',
+                  background: 'rgba(242,100,51,0.1)',
+                  border: '1px solid rgba(242,100,51,0.2)',
                 }}
               >
-                <Sparkles size={14} color="#FF7600" aria-hidden />
+                <Sparkles size={14} color="#F26433" aria-hidden />
               </Box>
             </Box>
 
@@ -330,8 +330,8 @@ function ContactModal({ open, onClose, onSubmit }) {
                 height: 36,
                 flexShrink: 0,
                 borderRadius: '50%',
-                border: '1px solid rgba(255,255,255,0.08)',
-                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(238,243,205,0.08)',
+                background: 'rgba(238,243,205,0.04)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -339,12 +339,12 @@ function ContactModal({ open, onClose, onSubmit }) {
                 fontFamily: 'inherit',
                 transition: 'background 0.2s ease, border-color 0.2s ease',
                 '&:hover': {
-                  background: 'rgba(255,255,255,0.09)',
-                  borderColor: 'rgba(255,255,255,0.15)',
+                  background: 'rgba(238,243,205,0.09)',
+                  borderColor: 'rgba(238,243,205,0.15)',
                 },
               }}
             >
-              <X size={16} color="rgba(247,249,232,0.55)" aria-hidden />
+              <X size={16} color="rgba(238,243,205,0.55)" aria-hidden />
             </Box>
           </Box>
 
@@ -362,18 +362,18 @@ function ContactModal({ open, onClose, onSubmit }) {
                   fontWeight: 900,
                   letterSpacing: { xs: -0.8, sm: -1.2 },
                   lineHeight: 1.1,
-                  color: 'rgba(247,249,232,0.96)',
+                  color: 'rgba(238,243,205,0.96)',
                   mb: 0.9,
                 }}
               >
                 Book a Speekr{' '}
-                <Box component="span" sx={{ color: '#FF7600' }}>Demo</Box>
+                <Box component="span" sx={{ color: '#F26433' }}>Demo</Box>
               </Typography>
               <Typography
                 sx={{
                   fontSize: 14,
                   lineHeight: 1.65,
-                  color: 'rgba(247,249,232,0.35)',
+                  color: 'rgba(238,243,205,0.35)',
                   mb: { xs: 3, sm: 3.5 },
                 }}
               >
@@ -460,18 +460,18 @@ function ContactModal({ open, onClose, onSubmit }) {
                     px: 3,
                     py: '14px',
                     borderRadius: '100px',
-                    background: 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)',
+                    background: 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)',
                     border: 'none',
-                    color: '#00331d',
+                    color: '#074225',
                     fontSize: 15,
                     fontWeight: 800,
                     cursor: 'pointer',
                     fontFamily: 'inherit',
-                    boxShadow: '0 0 0 1px rgba(255,118,0,0.3), 0 12px 36px rgba(255,118,0,0.2)',
+                    boxShadow: '0 0 0 1px rgba(242,100,51,0.3), 0 12px 36px rgba(242,100,51,0.2)',
                     transition: 'transform 0.22s ease, box-shadow 0.22s ease',
                     '&:hover': {
                       transform: 'translateY(-2px)',
-                      boxShadow: '0 0 0 1px rgba(255,118,0,0.5), 0 16px 48px rgba(255,118,0,0.3)',
+                      boxShadow: '0 0 0 1px rgba(242,100,51,0.5), 0 16px 48px rgba(242,100,51,0.3)',
                     },
                   }}
                 >
@@ -489,18 +489,18 @@ function ContactModal({ open, onClose, onSubmit }) {
                     px: 3,
                     py: '14px',
                     borderRadius: '100px',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    border: '1px solid rgba(238,243,205,0.1)',
                     background: 'transparent',
-                    color: 'rgba(247,249,232,0.45)',
+                    color: 'rgba(238,243,205,0.45)',
                     fontSize: 15,
                     fontWeight: 600,
                     cursor: 'pointer',
                     fontFamily: 'inherit',
                     transition: 'border-color 0.2s ease, color 0.2s ease, background 0.2s ease',
                     '&:hover': {
-                      borderColor: 'rgba(255,255,255,0.18)',
-                      color: 'rgba(247,249,232,0.75)',
-                      background: 'rgba(255,255,255,0.04)',
+                      borderColor: 'rgba(238,243,205,0.18)',
+                      color: 'rgba(238,243,205,0.75)',
+                      background: 'rgba(238,243,205,0.04)',
                     },
                   }}
                 >

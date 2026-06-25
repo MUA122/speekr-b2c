@@ -42,11 +42,11 @@ function LogosMarquee() {
       aria-label="Trusted by leading teams"
       sx={{
         position: "relative",
-        bgcolor: "#F7F9E8",
+        bgcolor: "#EEF3CD",
         py: { xs: "50px", md: "78px" },
         overflow: "hidden",
         background:
-          "radial-gradient(circle at 50% 18%, rgba(255,118,0,0.08) 0%, transparent 28%), linear-gradient(180deg, #F7F9E8 0%, #F7F9E8 100%)",
+          "radial-gradient(circle at 50% 18%, rgba(242,100,51,0.08) 0%, transparent 28%), linear-gradient(180deg, #EEF3CD 0%, #EEF3CD 100%)",
         /* top shimmer line */
         "&::before": {
           content: '""',
@@ -56,7 +56,7 @@ function LogosMarquee() {
           right: 0,
           height: "1px",
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(0,66,37,0.12) 18%, rgba(0,66,37,0.22) 50%, rgba(0,66,37,0.12) 82%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(7,66,37,0.12) 18%, rgba(7,66,37,0.22) 50%, rgba(7,66,37,0.12) 82%, transparent 100%)",
         },
         /* bottom shimmer line */
         "&::after": {
@@ -67,7 +67,7 @@ function LogosMarquee() {
           right: 0,
           height: "1px",
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(0,66,37,0.12) 18%, rgba(0,66,37,0.22) 50%, rgba(0,66,37,0.12) 82%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(7,66,37,0.12) 18%, rgba(7,66,37,0.22) 50%, rgba(7,66,37,0.12) 82%, transparent 100%)",
         },
       }}
     >
@@ -82,7 +82,7 @@ function LogosMarquee() {
           width: '65%',
           height: '220%',
           background:
-            'radial-gradient(ellipse at center, rgba(255,118,0,0.08) 0%, transparent 62%)',
+            'radial-gradient(ellipse at center, rgba(242,100,51,0.08) 0%, transparent 62%)',
           pointerEvents: 'none',
         }}
       /> */}
@@ -112,18 +112,18 @@ function LogosMarquee() {
               px: 1.8,
               py: 0.7,
               borderRadius: "100px",
-              border: "1px solid rgba(0,66,37,0.16)",
-              bgcolor: "rgba(255,118,0,0.08)",
+              border: "1px solid rgba(7,66,37,0.16)",
+              bgcolor: "rgba(242,100,51,0.08)",
             }}
           >
-            <Sparkles size={12} color="#004225" aria-hidden />
+            <Sparkles size={12} color="#074225" aria-hidden />
             <Typography
               sx={{
                 fontSize: 11,
                 fontWeight: 800,
                 letterSpacing: 1.8,
                 textTransform: "uppercase",
-                color: "#004225",
+                color: "#074225",
               }}
             >
               Trusted by leading teams
@@ -133,7 +133,7 @@ function LogosMarquee() {
           <Typography
             sx={{
               fontSize: { xs: 13.5, md: 14.5 },
-              color: "rgba(16,32,25,0.38)",
+              color: "rgba(7,56,33,0.38)",
               fontWeight: 400,
               textAlign: "center",
             }}
@@ -156,7 +156,7 @@ function LogosMarquee() {
             top: 0,
             bottom: 0,
             width: { xs: 60, md: 140 },
-            background: "linear-gradient(90deg, #F7F9E8 0%, transparent 100%)",
+            background: "linear-gradient(90deg, #EEF3CD 0%, transparent 100%)",
             zIndex: 2,
             pointerEvents: "none",
           },
@@ -168,7 +168,7 @@ function LogosMarquee() {
             top: 0,
             bottom: 0,
             width: { xs: 60, md: 140 },
-            background: "linear-gradient(270deg, #F7F9E8 0%, transparent 100%)",
+            background: "linear-gradient(270deg, #EEF3CD 0%, transparent 100%)",
             zIndex: 2,
             pointerEvents: "none",
           },
@@ -204,14 +204,14 @@ function LogosMarquee() {
                   position: "absolute",
                   inset: "-6px -10px",
                   borderRadius: "10px",
-                  background: "rgba(255,118,0,0)",
-                  boxShadow: "0 0 0px 0px rgba(255,118,0,0)",
+                  background: "rgba(242,100,51,0)",
+                  boxShadow: "0 0 0px 0px rgba(242,100,51,0)",
                   transition: "background 0.35s ease, box-shadow 0.35s ease",
                   pointerEvents: "none",
                 },
                 "&:hover::after": {
-                  background: "rgba(255,118,0,0.06)",
-                  boxShadow: "0 0 18px 2px rgba(255,118,0,0.18)",
+                  background: "rgba(242,100,51,0.06)",
+                  boxShadow: "0 0 18px 2px rgba(242,100,51,0.18)",
                 },
                 "& img": {
                   height: { xs: "40px", md: "55px" },
@@ -225,7 +225,7 @@ function LogosMarquee() {
                 },
                 "&:hover img": {
                   filter:
-                    "grayscale(0%) drop-shadow(0 0 6px rgba(255,118,0,0.45))",
+                    "grayscale(0%) drop-shadow(0 0 6px rgba(242,100,51,0.45))",
                   opacity: 1,
                   transform: "scale(1.08)",
                 },

@@ -89,9 +89,9 @@ function MetaPill({ children, icon: Icon }) {
         px: 1.35,
         py: 0.75,
         borderRadius: "999px",
-        border: "1px solid rgba(0,66,37,0.12)",
-        bgcolor: "rgba(255,255,255,0.48)",
-        color: "rgba(0,66,37,0.72)",
+        border: "1px solid rgba(7,66,37,0.12)",
+        bgcolor: "rgba(238,243,205,0.48)",
+        color: "rgba(7,66,37,0.72)",
         fontSize: 12.5,
         fontWeight: 850,
       }}
@@ -114,17 +114,17 @@ function ArticleCard({ post, index }) {
         minHeight: "100%",
         overflow: "hidden",
         borderRadius: "18px",
-        border: "1px solid rgba(0,66,37,0.12)",
-        bgcolor: "rgba(255,255,255,0.62)",
-        color: "#102019",
+        border: "1px solid rgba(7,66,37,0.12)",
+        bgcolor: "rgba(238,243,205,0.62)",
+        color: "#073821",
         textDecoration: "none",
-        boxShadow: "0 20px 70px rgba(0,66,37,0.08)",
+        boxShadow: "0 20px 70px rgba(7,66,37,0.08)",
         "&:hover": {
-          borderColor: "rgba(255,118,0,0.34)",
-          boxShadow: "0 28px 84px rgba(0,66,37,0.13)",
+          borderColor: "rgba(242,100,51,0.34)",
+          boxShadow: "0 28px 84px rgba(7,66,37,0.13)",
         },
         "&:hover .article-img": { transform: "scale(1.045)" },
-        "&:hover .read-more": { color: "#FF7600" },
+        "&:hover .read-more": { color: "#F26433" },
       }}
     >
       <Box sx={{ position: "relative", aspectRatio: "16 / 9", overflow: "hidden" }}>
@@ -150,8 +150,8 @@ function ArticleCard({ post, index }) {
             px: 1.2,
             py: 0.65,
             borderRadius: "999px",
-            bgcolor: "rgba(247,249,232,0.92)",
-            color: "#004225",
+            bgcolor: "rgba(238,243,205,0.92)",
+            color: "#074225",
             fontSize: 11,
             fontWeight: 900,
           }}
@@ -161,10 +161,10 @@ function ArticleCard({ post, index }) {
       </Box>
       <Box sx={{ p: { xs: 2.3, md: 2.7 }, display: "flex", flexDirection: "column", gap: 1.6 }}>
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-          <Typography sx={{ fontSize: 12.5, fontWeight: 850, color: "rgba(0,66,37,0.56)" }}>
+          <Typography sx={{ fontSize: 12.5, fontWeight: 850, color: "rgba(7,66,37,0.56)" }}>
             {post.date}
           </Typography>
-          <Typography sx={{ fontSize: 12.5, fontWeight: 850, color: "rgba(0,66,37,0.38)" }}>
+          <Typography sx={{ fontSize: 12.5, fontWeight: 850, color: "rgba(7,66,37,0.38)" }}>
             {post.readingTime}
           </Typography>
         </Box>
@@ -176,12 +176,12 @@ function ArticleCard({ post, index }) {
             fontWeight: 950,
             lineHeight: 1.08,
             letterSpacing: 0,
-            color: "#004225",
+            color: "#074225",
           }}
         >
           {post.title}
         </Typography>
-        <Typography sx={{ color: "rgba(16,32,25,0.66)", lineHeight: 1.68, fontSize: 14.5 }}>
+        <Typography sx={{ color: "rgba(7,56,33,0.66)", lineHeight: 1.68, fontSize: 14.5 }}>
           {post.excerpt}
         </Typography>
         <Box
@@ -192,7 +192,7 @@ function ArticleCard({ post, index }) {
             display: "inline-flex",
             alignItems: "center",
             gap: 0.8,
-            color: "#004225",
+            color: "#074225",
             fontSize: 13.5,
             fontWeight: 950,
             transition: "color 180ms ease",
@@ -224,19 +224,19 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
           height: 70,
           pl: 7.8,
           pr: 4.8,
-          border: "1px solid rgba(0,66,37,0.12)",
+          border: "1px solid rgba(7,66,37,0.12)",
           borderRadius: "16px",
-          bgcolor: open ? "rgba(247,249,232,0.98)" : "rgba(255,255,255,0.72)",
-          color: "#102019",
+          bgcolor: open ? "rgba(238,243,205,0.98)" : "rgba(238,243,205,0.72)",
+          color: "#073821",
           fontFamily: "inherit",
           cursor: "pointer",
           textAlign: "left",
           boxShadow: open
-            ? "0 16px 44px rgba(0,66,37,0.12), inset 0 1px 0 rgba(255,255,255,0.9)"
-            : "inset 0 1px 0 rgba(255,255,255,0.86)",
+            ? "0 16px 44px rgba(7,66,37,0.12), inset 0 1px 0 rgba(238,243,205,0.9)"
+            : "inset 0 1px 0 rgba(238,243,205,0.86)",
           transition: "border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease",
           "&:hover": {
-            borderColor: "rgba(255,118,0,0.32)",
+            borderColor: "rgba(242,100,51,0.32)",
           },
         }}
       >
@@ -249,8 +249,8 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
             width: 42,
             height: 42,
             borderRadius: "14px",
-            bgcolor: "rgba(0,66,37,0.08)",
-            color: "#004225",
+            bgcolor: "rgba(7,66,37,0.08)",
+            color: "#074225",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -267,7 +267,7 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
             fontWeight: 950,
             letterSpacing: 1.25,
             textTransform: "uppercase",
-            color: "rgba(0,66,37,0.42)",
+            color: "rgba(7,66,37,0.42)",
           }}
         >
           {label}
@@ -282,14 +282,14 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
             whiteSpace: "nowrap",
             fontSize: 14,
             fontWeight: 950,
-            color: "#102019",
+            color: "#073821",
           }}
         >
           {selected.label}
         </Typography>
         <ChevronDown
           size={17}
-          color="rgba(0,66,37,0.62)"
+          color="rgba(7,66,37,0.62)"
           aria-hidden
           style={{
             position: "absolute",
@@ -311,9 +311,9 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
             zIndex: 20,
             p: 0.65,
             borderRadius: "16px",
-            border: "1px solid rgba(0,66,37,0.12)",
-            bgcolor: "#F7F9E8",
-            boxShadow: "0 24px 70px rgba(0,66,37,0.18)",
+            border: "1px solid rgba(7,66,37,0.12)",
+            bgcolor: "#EEF3CD",
+            boxShadow: "0 24px 70px rgba(7,66,37,0.18)",
           }}
         >
           {options.map((option) => {
@@ -333,8 +333,8 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
                   px: 1.3,
                   border: "none",
                   borderRadius: "12px",
-                  bgcolor: active ? "rgba(255,118,0,0.12)" : "transparent",
-                  color: active ? "#004225" : "rgba(0,66,37,0.76)",
+                  bgcolor: active ? "rgba(242,100,51,0.12)" : "transparent",
+                  color: active ? "#074225" : "rgba(7,66,37,0.76)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
@@ -345,15 +345,15 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
                   textAlign: "left",
                   cursor: "pointer",
                   "&:hover": {
-                    bgcolor: active ? "rgba(255,118,0,0.16)" : "rgba(0,66,37,0.06)",
-                    color: "#004225",
+                    bgcolor: active ? "rgba(242,100,51,0.16)" : "rgba(7,66,37,0.06)",
+                    color: "#074225",
                   },
                 }}
               >
                 <Box component="span" sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {option.label}
                 </Box>
-                {active && <Check size={15} color="#FF7600" aria-hidden />}
+                {active && <Check size={15} color="#F26433" aria-hidden />}
               </Box>
             );
           })}
@@ -394,9 +394,9 @@ function FilterPanel({
         },
         p: { xs: 1.4, md: 1.55 },
         borderRadius: { xs: "20px", md: "22px" },
-        border: "1px solid rgba(0,66,37,0.08)",
-        bgcolor: "rgba(255,255,255,0.7)",
-        boxShadow: "0 20px 70px rgba(0,66,37,0.08)",
+        border: "1px solid rgba(7,66,37,0.08)",
+        bgcolor: "rgba(238,243,205,0.7)",
+        boxShadow: "0 20px 70px rgba(7,66,37,0.08)",
         backdropFilter: "blur(18px)",
       }}
     >
@@ -418,14 +418,14 @@ function FilterPanel({
             alignItems: "center",
             minHeight: 70,
             borderRadius: "16px",
-            border: "1px solid rgba(0,66,37,0.12)",
-            bgcolor: "rgba(255,255,255,0.72)",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.86)",
+            border: "1px solid rgba(7,66,37,0.12)",
+            bgcolor: "rgba(238,243,205,0.72)",
+            boxShadow: "inset 0 1px 0 rgba(238,243,205,0.86)",
           }}
         >
           <Search
             size={20}
-            color="rgba(0,66,37,0.7)"
+            color="rgba(7,66,37,0.7)"
             aria-hidden
             style={{ position: "absolute", left: 22 }}
           />
@@ -445,12 +445,12 @@ function FilterPanel({
               border: "none",
               outline: "none",
               bgcolor: "transparent",
-              color: "#102019",
+              color: "#073821",
               fontFamily: "inherit",
               fontSize: { xs: 14.5, md: 15.5 },
               fontWeight: 780,
               "&::placeholder": {
-                color: "rgba(0,66,37,0.42)",
+                color: "rgba(7,66,37,0.42)",
                 opacity: 1,
               },
             }}
@@ -491,8 +491,8 @@ function FilterPanel({
             minHeight: 70,
             border: "none",
             borderRadius: "16px",
-            bgcolor: hasFilters ? "rgba(255,118,0,0.14)" : "rgba(0,66,37,0.06)",
-            color: hasFilters ? "#004225" : "rgba(0,66,37,0.4)",
+            bgcolor: hasFilters ? "rgba(242,100,51,0.14)" : "rgba(7,66,37,0.06)",
+            color: hasFilters ? "#074225" : "rgba(7,66,37,0.4)",
             fontFamily: "inherit",
             fontSize: 13,
             fontWeight: 950,
@@ -500,8 +500,8 @@ function FilterPanel({
             transition: "background-color 180ms ease, color 180ms ease, transform 180ms ease",
             "&:hover": hasFilters
               ? {
-                  bgcolor: "#FF7600",
-                  color: "#062D1B",
+                  bgcolor: "#F26433",
+                  color: "#074225",
                   transform: "translateY(-1px)",
                 }
               : {},
@@ -517,7 +517,7 @@ function FilterPanel({
           px: 0.4,
           fontSize: 12.5,
           fontWeight: 850,
-          color: "rgba(0,66,37,0.56)",
+          color: "rgba(7,66,37,0.56)",
         }}
       >
         Showing {resultCount} of {totalCount} articles
@@ -540,27 +540,27 @@ function RankedReadCard({ post, rank }) {
         gap: { xs: 1.5, md: 2 },
         p: { xs: 1.25, md: 1.5 },
         borderRadius: "18px",
-        border: "1px solid rgba(247,249,232,0.12)",
-        bgcolor: "#061f14",
-        color: "#F7F9E8",
+        border: "1px solid rgba(238,243,205,0.12)",
+        bgcolor: "#074225",
+        color: "#EEF3CD",
         textDecoration: "none",
         overflow: "hidden",
-        boxShadow: "0 22px 76px rgba(0,66,37,0.18)",
+        boxShadow: "0 22px 76px rgba(7,66,37,0.18)",
         "&::before": {
           content: '""',
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(110deg, rgba(255,118,0,0.12), transparent 34%, rgba(247,249,232,0.035))",
+            "linear-gradient(110deg, rgba(242,100,51,0.12), transparent 34%, rgba(238,243,205,0.035))",
           pointerEvents: "none",
         },
         "&:hover": {
-          borderColor: "rgba(255,118,0,0.34)",
-          boxShadow: "0 28px 88px rgba(0,66,37,0.25)",
+          borderColor: "rgba(242,100,51,0.34)",
+          boxShadow: "0 28px 88px rgba(7,66,37,0.25)",
         },
         "&:hover .rank-arrow": {
-          bgcolor: "#FF7600",
-          color: "#062D1B",
+          bgcolor: "#F26433",
+          color: "#074225",
           transform: "translateX(3px)",
         },
       }}
@@ -573,7 +573,7 @@ function RankedReadCard({ post, rank }) {
           height: { xs: 64, sm: 82 },
           borderRadius: "16px",
           overflow: "hidden",
-          border: "1px solid rgba(247,249,232,0.1)",
+          border: "1px solid rgba(238,243,205,0.1)",
         }}
       >
         <Box
@@ -591,8 +591,8 @@ function RankedReadCard({ post, rank }) {
             height: 24,
             px: 0.7,
             borderRadius: "999px",
-            bgcolor: "#FF7600",
-            color: "#062D1B",
+            bgcolor: "#F26433",
+            color: "#074225",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -606,10 +606,10 @@ function RankedReadCard({ post, rank }) {
 
       <Box sx={{ position: "relative", zIndex: 1, minWidth: 0 }}>
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mb: 0.8 }}>
-          <Typography sx={{ fontSize: 11.5, fontWeight: 950, color: "#FF7600" }}>
+          <Typography sx={{ fontSize: 11.5, fontWeight: 950, color: "#F26433" }}>
             {post.category}
           </Typography>
-          <Typography sx={{ fontSize: 11.5, fontWeight: 850, color: "rgba(247,249,232,0.44)" }}>
+          <Typography sx={{ fontSize: 11.5, fontWeight: 850, color: "rgba(238,243,205,0.44)" }}>
             {post.readingTime}
           </Typography>
         </Box>
@@ -620,7 +620,7 @@ function RankedReadCard({ post, rank }) {
             fontSize: { xs: 18, md: 22 },
             fontWeight: 950,
             lineHeight: 1.1,
-            color: "#F7F9E8",
+            color: "#EEF3CD",
           }}
         >
           {post.title}
@@ -629,7 +629,7 @@ function RankedReadCard({ post, rank }) {
           sx={{
             mt: 0.8,
             display: { xs: "none", md: "block" },
-            color: "rgba(247,249,232,0.58)",
+            color: "rgba(238,243,205,0.58)",
             fontSize: 13.5,
             lineHeight: 1.55,
           }}
@@ -647,9 +647,9 @@ function RankedReadCard({ post, rank }) {
           width: 42,
           height: 42,
           borderRadius: "50%",
-          border: "1px solid rgba(247,249,232,0.12)",
-          bgcolor: "rgba(247,249,232,0.06)",
-          color: "#F7F9E8",
+          border: "1px solid rgba(238,243,205,0.12)",
+          bgcolor: "rgba(238,243,205,0.06)",
+          color: "#EEF3CD",
           alignItems: "center",
           justifyContent: "center",
           transition: "transform 220ms ease, background-color 220ms ease, color 220ms ease",
@@ -719,7 +719,7 @@ export default function BlogPage() {
         sx={{
           position: "relative",
           overflow: "hidden",
-          bgcolor: "#F7F9E8",
+          bgcolor: "#EEF3CD",
           pt: { xs: 12.5, md: 15 },
           pb: { xs: 8, md: 11 },
         }}
@@ -766,10 +766,10 @@ export default function BlogPage() {
                   py: 0.75,
                   mb: 2.4,
                   borderRadius: "999px",
-                  border: "1px solid rgba(0,66,37,0.13)",
-                  bgcolor: "rgba(255,255,255,0.58)",
-                  color: "#004225",
-                  boxShadow: "0 14px 44px rgba(0,66,37,0.06)",
+                  border: "1px solid rgba(7,66,37,0.13)",
+                  bgcolor: "rgba(238,243,205,0.58)",
+                  color: "#074225",
+                  boxShadow: "0 14px 44px rgba(7,66,37,0.06)",
                 }}
               >
                 <BookOpenText size={14} aria-hidden />
@@ -791,10 +791,11 @@ export default function BlogPage() {
                   m: 0,
                   maxWidth: 850,
                   fontSize: { xs: 46, sm: 62, md: 78 },
+                  fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 950,
                   letterSpacing: 0,
                   lineHeight: 0.93,
-                  color: "#004225",
+                  color: "#074225",
                 }}
               >
                 Communication insights built for real conversations.
@@ -805,7 +806,7 @@ export default function BlogPage() {
                   maxWidth: 690,
                   fontSize: { xs: 16, md: 18 },
                   lineHeight: 1.72,
-                  color: "rgba(0,66,37,0.62)",
+                  color: "rgba(7,66,37,0.62)",
                 }}
               >
                 Practical guides for leadership presence, sales conversations,
@@ -817,14 +818,14 @@ export default function BlogPage() {
               sx={{
                 p: 2.4,
                 borderRadius: "20px",
-                bgcolor: "#004225",
-                color: "#F7F9E8",
-                border: "1px solid rgba(247,249,232,0.12)",
-                boxShadow: "0 24px 80px rgba(0,66,37,0.16)",
+                bgcolor: "#074225",
+                color: "#EEF3CD",
+                border: "1px solid rgba(238,243,205,0.12)",
+                boxShadow: "0 24px 80px rgba(7,66,37,0.16)",
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-                <Library size={17} color="#FF7600" aria-hidden />
+                <Library size={17} color="#F26433" aria-hidden />
                 <Typography sx={{ fontSize: 12, fontWeight: 950, letterSpacing: 1.4, textTransform: "uppercase" }}>
                   Library
                 </Typography>
@@ -841,14 +842,14 @@ export default function BlogPage() {
                     sx={{
                       p: 1.4,
                       borderRadius: "14px",
-                      bgcolor: "rgba(247,249,232,0.06)",
-                      border: "1px solid rgba(247,249,232,0.09)",
+                      bgcolor: "rgba(238,243,205,0.06)",
+                      border: "1px solid rgba(238,243,205,0.09)",
                     }}
                   >
-                    <Typography sx={{ fontSize: 11, color: "rgba(247,249,232,0.46)", fontWeight: 800 }}>
+                    <Typography sx={{ fontSize: 11, color: "rgba(238,243,205,0.46)", fontWeight: 800 }}>
                       {label}
                     </Typography>
-                    <Typography sx={{ mt: 0.25, fontSize: 22, lineHeight: 1, fontWeight: 950, color: "#FF7600" }}>
+                    <Typography sx={{ mt: 0.25, fontSize: 22, lineHeight: 1, fontWeight: 950, color: "#F26433" }}>
                       {value}
                     </Typography>
                   </Box>
@@ -896,7 +897,7 @@ export default function BlogPage() {
           >
             <Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.8 }}>
-                <Flame size={18} color="#FF7600" aria-hidden />
+                <Flame size={18} color="#F26433" aria-hidden />
                 <Typography
                   component="p"
                   sx={{
@@ -905,7 +906,7 @@ export default function BlogPage() {
                     fontWeight: 950,
                     letterSpacing: 1.5,
                     textTransform: "uppercase",
-                    color: "#FF7600",
+                    color: "#F26433",
                   }}
                 >
                   Latest
@@ -916,15 +917,16 @@ export default function BlogPage() {
                 sx={{
                   m: 0,
                   fontSize: { xs: 30, md: 42 },
+                  fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 950,
                   lineHeight: 1,
-                  color: "#004225",
+                  color: "#074225",
                 }}
               >
                 All Blog Articles
               </Typography>
             </Box>
-            <Typography sx={{ maxWidth: 390, color: "rgba(0,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
+            <Typography sx={{ maxWidth: 390, color: "rgba(7,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
               Every article is structured for readers, search engines, and AI answer
               engines with clean hierarchy and focused topic signals.
             </Typography>
@@ -952,8 +954,8 @@ export default function BlogPage() {
                 mt: 2.5,
                 p: { xs: 3, md: 4 },
                 borderRadius: "20px",
-                border: "1px solid rgba(0,66,37,0.12)",
-                bgcolor: "rgba(255,255,255,0.56)",
+                border: "1px solid rgba(7,66,37,0.12)",
+                bgcolor: "rgba(238,243,205,0.56)",
                 textAlign: "center",
               }}
             >
@@ -961,13 +963,13 @@ export default function BlogPage() {
                 sx={{
                   fontSize: { xs: 24, md: 30 },
                   fontWeight: 950,
-                  color: "#004225",
+                  color: "#074225",
                   lineHeight: 1.08,
                 }}
               >
                 No articles match those filters.
               </Typography>
-              <Typography sx={{ mt: 1, color: "rgba(0,66,37,0.58)", lineHeight: 1.6 }}>
+              <Typography sx={{ mt: 1, color: "rgba(7,66,37,0.58)", lineHeight: 1.6 }}>
                 Try a broader keyword or reset the filters to view the full library.
               </Typography>
             </Box>
@@ -980,9 +982,9 @@ export default function BlogPage() {
               mt: { xs: 6, md: 8 },
               p: { xs: 2.2, sm: 3, md: 3.5 },
               borderRadius: { xs: "22px", md: "28px" },
-              bgcolor: "rgba(0,66,37,0.06)",
-              border: "1px solid rgba(0,66,37,0.12)",
-              boxShadow: "0 22px 80px rgba(0,66,37,0.08)",
+              bgcolor: "rgba(7,66,37,0.06)",
+              border: "1px solid rgba(7,66,37,0.12)",
+              boxShadow: "0 22px 80px rgba(7,66,37,0.08)",
             }}
           >
             <Box
@@ -997,7 +999,7 @@ export default function BlogPage() {
             >
               <Box>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.8 }}>
-                  <TrendingUp size={18} color="#FF7600" aria-hidden />
+                  <TrendingUp size={18} color="#F26433" aria-hidden />
                   <Typography
                     component="p"
                     sx={{
@@ -1006,7 +1008,7 @@ export default function BlogPage() {
                       fontWeight: 950,
                       letterSpacing: 1.5,
                       textTransform: "uppercase",
-                      color: "#FF7600",
+                      color: "#F26433",
                     }}
                   >
                     Most Read
@@ -1018,15 +1020,16 @@ export default function BlogPage() {
                   sx={{
                     m: 0,
                     fontSize: { xs: 30, md: 42 },
+                    fontFamily: (theme) => theme.palette.brand.fontHeadline,
                     fontWeight: 950,
                     lineHeight: 1,
-                    color: "#004225",
+                    color: "#074225",
                   }}
                 >
                   Top Reads in the Last 7 Days
                 </Typography>
               </Box>
-              <Typography sx={{ maxWidth: 420, color: "rgba(0,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
+              <Typography sx={{ maxWidth: 420, color: "rgba(7,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
                 A ranked reading list for the guides getting the most attention
                 right now. More posts can be added here as your library grows.
               </Typography>

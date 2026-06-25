@@ -89,7 +89,7 @@ function ArticleNotFound() {
     <Box
       sx={{
         minHeight: "100svh",
-        bgcolor: "#F7F9E8",
+        bgcolor: "#EEF3CD",
         pt: { xs: 15, md: 18 },
         pb: 10,
         px: { xs: 2.5, md: 5 },
@@ -101,14 +101,15 @@ function ArticleNotFound() {
           sx={{
             m: 0,
             fontSize: { xs: 42, md: 64 },
+            fontFamily: (theme) => theme.palette.brand.fontHeadline,
             fontWeight: 950,
             lineHeight: 0.95,
-            color: "#004225",
+            color: "#074225",
           }}
         >
           Article not found.
         </Typography>
-        <Typography sx={{ mt: 2, color: "rgba(0,66,37,0.62)", lineHeight: 1.7 }}>
+        <Typography sx={{ mt: 2, color: "rgba(7,66,37,0.62)", lineHeight: 1.7 }}>
           The article may have moved, or the link may be incomplete.
         </Typography>
         <Box
@@ -122,8 +123,8 @@ function ArticleNotFound() {
             px: 3,
             py: 1.45,
             borderRadius: "999px",
-            bgcolor: "#FF7600",
-            color: "#00331d",
+            bgcolor: "#F26433",
+            color: "#074225",
             fontWeight: 900,
             textDecoration: "none",
           }}
@@ -147,9 +148,9 @@ function MetaChip({ icon: Icon, children }) {
         px: 1.45,
         py: 0.8,
         borderRadius: "999px",
-        border: "1px solid rgba(0,66,37,0.12)",
-        bgcolor: "rgba(255,255,255,0.52)",
-        color: "rgba(0,66,37,0.72)",
+        border: "1px solid rgba(7,66,37,0.12)",
+        bgcolor: "rgba(238,243,205,0.52)",
+        color: "rgba(7,66,37,0.72)",
         fontSize: 12.5,
         fontWeight: 850,
       }}
@@ -169,7 +170,7 @@ function SectionBlock({ section, index }) {
         scrollMarginTop: 120,
         pt: index === 0 ? 0 : { xs: 4.2, md: 5.6 },
         mt: index === 0 ? 0 : { xs: 4.2, md: 5.6 },
-        borderTop: index === 0 ? "none" : "1px solid rgba(0,66,37,0.1)",
+        borderTop: index === 0 ? "none" : "1px solid rgba(7,66,37,0.1)",
       }}
     >
       {section.heading && (
@@ -182,7 +183,7 @@ function SectionBlock({ section, index }) {
             fontWeight: 950,
             lineHeight: 1.05,
             letterSpacing: 0,
-            color: "#004225",
+            color: "#074225",
           }}
         >
           {section.heading}
@@ -197,7 +198,7 @@ function SectionBlock({ section, index }) {
             mb: 2.15,
             fontSize: { xs: 16.5, md: 18.5 },
             lineHeight: 1.86,
-            color: "rgba(16,32,25,0.76)",
+            color: "rgba(7,56,33,0.76)",
           }}
         >
           {paragraph}
@@ -211,7 +212,7 @@ function SectionBlock({ section, index }) {
             mb: 1.45,
             fontSize: { xs: 17, md: 18 },
             fontWeight: 950,
-            color: "#004225",
+            color: "#074225",
           }}
         >
           {section.listIntro}
@@ -230,8 +231,8 @@ function SectionBlock({ section, index }) {
                 gap: 1.25,
                 p: { xs: 1.35, md: 1.5 },
                 borderRadius: "14px",
-                border: "1px solid rgba(0,66,37,0.1)",
-                bgcolor: "rgba(255,255,255,0.56)",
+                border: "1px solid rgba(7,66,37,0.1)",
+                bgcolor: "rgba(238,243,205,0.56)",
               }}
             >
               <Box
@@ -240,8 +241,8 @@ function SectionBlock({ section, index }) {
                   height: 22,
                   mt: 0.2,
                   borderRadius: "50%",
-                  bgcolor: "rgba(255,118,0,0.12)",
-                  color: "#FF7600",
+                  bgcolor: "rgba(242,100,51,0.12)",
+                  color: "#F26433",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -250,7 +251,7 @@ function SectionBlock({ section, index }) {
               >
                 <Check size={13} aria-hidden />
               </Box>
-              <Typography sx={{ fontSize: { xs: 15.5, md: 16.2 }, lineHeight: 1.6, color: "#102019" }}>
+              <Typography sx={{ fontSize: { xs: 15.5, md: 16.2 }, lineHeight: 1.6, color: "#073821" }}>
                 {item}
               </Typography>
             </Box>
@@ -266,9 +267,9 @@ function SectionBlock({ section, index }) {
               sx={{
                 p: { xs: 2.1, md: 2.5 },
                 borderRadius: "17px",
-                border: "1px solid rgba(0,66,37,0.12)",
-                bgcolor: "rgba(255,255,255,0.6)",
-                boxShadow: "0 16px 50px rgba(0,66,37,0.06)",
+                border: "1px solid rgba(7,66,37,0.12)",
+                bgcolor: "rgba(238,243,205,0.6)",
+                boxShadow: "0 16px 50px rgba(7,66,37,0.06)",
               }}
             >
               <Typography
@@ -278,12 +279,12 @@ function SectionBlock({ section, index }) {
                   mb: 0.7,
                   fontSize: { xs: 19, md: 23 },
                   fontWeight: 950,
-                  color: "#004225",
+                  color: "#074225",
                 }}
               >
                 {item.title}
               </Typography>
-              <Typography sx={{ color: "rgba(16,32,25,0.7)", lineHeight: 1.72 }}>
+              <Typography sx={{ color: "rgba(7,56,33,0.7)", lineHeight: 1.72 }}>
                 {item.text}
               </Typography>
             </Box>
@@ -306,10 +307,10 @@ function RelatedCard({ post }) {
         gap: 1.6,
         p: 1,
         borderRadius: "18px",
-        border: "1px solid rgba(0,66,37,0.12)",
-        bgcolor: "rgba(255,255,255,0.56)",
+        border: "1px solid rgba(7,66,37,0.12)",
+        bgcolor: "rgba(238,243,205,0.56)",
         textDecoration: "none",
-        color: "#004225",
+        color: "#074225",
         alignItems: "center",
       }}
     >
@@ -325,7 +326,7 @@ function RelatedCard({ post }) {
         }}
       />
       <Box sx={{ minWidth: 0, pr: 1 }}>
-        <Typography sx={{ fontSize: 11, fontWeight: 950, color: "#FF7600", mb: 0.5 }}>
+        <Typography sx={{ fontSize: 11, fontWeight: 950, color: "#F26433", mb: 0.5 }}>
           {post.category}
         </Typography>
         <Typography sx={{ fontSize: { xs: 16, sm: 20 }, fontWeight: 950, lineHeight: 1.12 }}>
@@ -352,8 +353,8 @@ export default function BlogPostPage({ slug }) {
         sx={{
           position: "relative",
           overflow: "hidden",
-          bgcolor: "#F7F9E8",
-          color: "#102019",
+          bgcolor: "#EEF3CD",
+          color: "#073821",
           pt: { xs: 12.5, md: 14.5 },
           pb: { xs: 8, md: 11 },
         }}
@@ -383,12 +384,12 @@ export default function BlogPostPage({ slug }) {
               alignItems: "center",
               gap: 1,
               mb: { xs: 3, md: 4 },
-              color: "rgba(0,66,37,0.66)",
+              color: "rgba(7,66,37,0.66)",
               fontSize: 14,
               fontWeight: 900,
               textDecoration: "none",
               transition: "color 180ms ease, transform 180ms ease",
-              "&:hover": { color: "#FF7600", transform: "translateX(-2px)" },
+              "&:hover": { color: "#F26433", transform: "translateX(-2px)" },
             }}
           >
             <ArrowLeft size={16} aria-hidden />
@@ -416,10 +417,11 @@ export default function BlogPostPage({ slug }) {
                   m: 0,
                   maxWidth: 850,
                   fontSize: { xs: 40, sm: 56, md: 70 },
+                  fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 950,
                   letterSpacing: 0,
                   lineHeight: 0.94,
-                  color: "#004225",
+                  color: "#074225",
                 }}
               >
                 {post.title}
@@ -430,7 +432,7 @@ export default function BlogPostPage({ slug }) {
                   maxWidth: 760,
                   fontSize: { xs: 16.5, md: 19 },
                   lineHeight: 1.72,
-                  color: "rgba(0,66,37,0.64)",
+                  color: "rgba(7,66,37,0.64)",
                 }}
               >
                 {post.metaDescription}
@@ -442,10 +444,10 @@ export default function BlogPostPage({ slug }) {
                 position: "relative",
                 borderRadius: { xs: "22px", md: "28px" },
                 overflow: "hidden",
-                border: "1px solid rgba(0,66,37,0.12)",
-                boxShadow: "0 30px 95px rgba(0,66,37,0.18)",
+                border: "1px solid rgba(7,66,37,0.12)",
+                boxShadow: "0 30px 95px rgba(7,66,37,0.18)",
                 aspectRatio: "16 / 10",
-                bgcolor: "#061f14",
+                bgcolor: "#074225",
               }}
             >
               <Box
@@ -470,14 +472,14 @@ export default function BlogPostPage({ slug }) {
                 sx={{
                   p: 2.2,
                   borderRadius: "18px",
-                  border: "1px solid rgba(0,66,37,0.12)",
-                  bgcolor: "rgba(255,255,255,0.54)",
-                  boxShadow: "0 16px 52px rgba(0,66,37,0.06)",
+                  border: "1px solid rgba(7,66,37,0.12)",
+                  bgcolor: "rgba(238,243,205,0.54)",
+                  boxShadow: "0 16px 52px rgba(7,66,37,0.06)",
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 0.85, mb: 1.4 }}>
-                  <FileText size={15} color="#FF7600" aria-hidden />
-                  <Typography sx={{ fontSize: 11, fontWeight: 950, letterSpacing: 1.35, textTransform: "uppercase", color: "#FF7600" }}>
+                  <FileText size={15} color="#F26433" aria-hidden />
+                  <Typography sx={{ fontSize: 11, fontWeight: 950, letterSpacing: 1.35, textTransform: "uppercase", color: "#F26433" }}>
                     In this guide
                   </Typography>
                 </Box>
@@ -488,12 +490,12 @@ export default function BlogPostPage({ slug }) {
                       component="a"
                       href={`#${slugify(section.heading)}`}
                       sx={{
-                        color: "rgba(0,66,37,0.72)",
+                        color: "rgba(7,66,37,0.72)",
                         textDecoration: "none",
                         fontSize: 13.5,
                         fontWeight: 850,
                         lineHeight: 1.35,
-                        "&:hover": { color: "#FF7600" },
+                        "&:hover": { color: "#F26433" },
                       }}
                     >
                       {section.heading}
@@ -510,8 +512,8 @@ export default function BlogPostPage({ slug }) {
                       px: 1.1,
                       py: 0.65,
                       borderRadius: "999px",
-                      bgcolor: "rgba(0,66,37,0.08)",
-                      color: "rgba(0,66,37,0.72)",
+                      bgcolor: "rgba(7,66,37,0.08)",
+                      color: "rgba(7,66,37,0.72)",
                       fontSize: 12,
                       fontWeight: 850,
                     }}
@@ -528,12 +530,12 @@ export default function BlogPostPage({ slug }) {
                   mb: { xs: 4, md: 5 },
                   p: { xs: 2.5, md: 3.2 },
                   borderRadius: "20px",
-                  bgcolor: "#004225",
-                  color: "#F7F9E8",
-                  boxShadow: "0 24px 80px rgba(0,66,37,0.18)",
+                  bgcolor: "#074225",
+                  color: "#EEF3CD",
+                  boxShadow: "0 24px 80px rgba(7,66,37,0.18)",
                 }}
               >
-                <Quote size={27} color="#FF7600" aria-hidden />
+                <Quote size={27} color="#F26433" aria-hidden />
                 <Typography
                   sx={{
                     mt: 1.3,
@@ -561,13 +563,13 @@ export default function BlogPostPage({ slug }) {
                 sx={{
                   p: 2.2,
                   borderRadius: "18px",
-                  bgcolor: "#061f14",
-                  color: "#F7F9E8",
-                  border: "1px solid rgba(247,249,232,0.12)",
-                  boxShadow: "0 20px 70px rgba(0,66,37,0.16)",
+                  bgcolor: "#074225",
+                  color: "#EEF3CD",
+                  border: "1px solid rgba(238,243,205,0.12)",
+                  boxShadow: "0 20px 70px rgba(7,66,37,0.16)",
                 }}
               >
-                <Typography sx={{ fontSize: 12, fontWeight: 950, color: "#FF7600", mb: 1 }}>
+                <Typography sx={{ fontSize: 12, fontWeight: 950, color: "#F26433", mb: 1 }}>
                   Practice with Speekr
                 </Typography>
                 <Typography sx={{ fontSize: 20, fontWeight: 950, lineHeight: 1.12 }}>
@@ -583,7 +585,7 @@ export default function BlogPostPage({ slug }) {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 1,
-                    color: "#FF7600",
+                    color: "#F26433",
                     fontSize: 14,
                     fontWeight: 950,
                     textDecoration: "none",
@@ -597,18 +599,18 @@ export default function BlogPostPage({ slug }) {
                 sx={{
                   p: 2.2,
                   borderRadius: "18px",
-                  border: "1px solid rgba(0,66,37,0.12)",
-                  bgcolor: "rgba(255,255,255,0.54)",
+                  border: "1px solid rgba(7,66,37,0.12)",
+                  bgcolor: "rgba(238,243,205,0.54)",
                 }}
               >
-                <Typography sx={{ fontSize: 11, fontWeight: 950, letterSpacing: 1.35, textTransform: "uppercase", color: "#FF7600", mb: 1.4 }}>
+                <Typography sx={{ fontSize: 11, fontWeight: 950, letterSpacing: 1.35, textTransform: "uppercase", color: "#F26433", mb: 1.4 }}>
                   Key takeaways
                 </Typography>
                 <Box sx={{ display: "grid", gap: 1.15 }}>
                   {post.highlights.map((highlight) => (
                     <Typography
                       key={highlight}
-                      sx={{ fontSize: 13.5, fontWeight: 850, lineHeight: 1.5, color: "rgba(0,66,37,0.75)" }}
+                      sx={{ fontSize: 13.5, fontWeight: 850, lineHeight: 1.5, color: "rgba(7,66,37,0.75)" }}
                     >
                       {highlight}
                     </Typography>
@@ -623,7 +625,7 @@ export default function BlogPostPage({ slug }) {
               sx={{
                 mt: { xs: 7, md: 9 },
                 pt: { xs: 4.5, md: 6 },
-                borderTop: "1px solid rgba(0,66,37,0.12)",
+                borderTop: "1px solid rgba(7,66,37,0.12)",
               }}
             >
               <Typography
@@ -632,8 +634,9 @@ export default function BlogPostPage({ slug }) {
                   m: 0,
                   mb: 2.3,
                   fontSize: { xs: 30, md: 42 },
+                  fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 950,
-                  color: "#004225",
+                  color: "#074225",
                 }}
               >
                 Keep Reading

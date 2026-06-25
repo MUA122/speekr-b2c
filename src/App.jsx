@@ -26,6 +26,75 @@ function getRoute() {
   return { name: "home" };
 }
 
+function GreenSectionDivider() {
+  return (
+    <Box
+      aria-hidden
+      sx={{
+        position: "relative",
+        bgcolor: "#074225",
+        px: { xs: 3, md: 6 },
+        py: { xs: 5, md: 7 },
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          position: "relative",
+          maxWidth: 1216,
+          mx: "auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: { xs: 2.4, md: 3.5 },
+        }}
+      >
+        <Box
+          sx={{
+            height: "1px",
+            flex: 1,
+            maxWidth: 550,
+            bgcolor: "rgba(238,243,205,0.34)",
+          }}
+        />
+        <Box
+          sx={{
+            width: { xs: 58, md: 72 },
+            height: { xs: 58, md: 72 },
+            borderRadius: "50%",
+            border: "1px solid rgba(238,243,205,0.18)",
+            bgcolor: "rgba(238,243,205,0.08)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow:
+              "0 24px 70px rgba(0,0,0,0.16), inset 0 1px 0 rgba(238,243,205,0.12)",
+          }}
+        >
+          <Box
+            sx={{
+              width: { xs: 16, md: 18 },
+              height: { xs: 16, md: 18 },
+              borderRadius: "5px",
+              bgcolor: "#EEF3CD",
+              transform: "rotate(45deg)",
+              boxShadow: "0 0 0 12px rgba(238,243,205,0.08)",
+            }}
+          />
+        </Box>
+        <Box
+          sx={{
+            height: "1px",
+            flex: 1,
+            maxWidth: 550,
+            bgcolor: "rgba(238,243,205,0.34)",
+          }}
+        />
+      </Box>
+    </Box>
+  );
+}
+
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [route, setRoute] = useState(getRoute);
@@ -56,7 +125,7 @@ function App() {
             aria-hidden
             sx={{
               position: "relative",
-              bgcolor: "#F7F9E8",
+              bgcolor: "#EEF3CD",
               py: { xs: 4, md: 5.5 },
               overflow: "hidden",
             }}
@@ -73,18 +142,18 @@ function App() {
                 gap: { xs: 2, md: 3 },
               }}
             >
-              <Box sx={{ flex: 1, height: "1px", bgcolor: "rgba(0,66,37,0.34)" }} />
+              <Box sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }} />
               <Box
                 sx={{
                   width: 64,
                   height: 64,
                   borderRadius: "50%",
-                  border: "1px solid rgba(0,66,37,0.16)",
-                  bgcolor: "rgba(0,66,37,0.06)",
+                  border: "1px solid rgba(7,66,37,0.16)",
+                  bgcolor: "rgba(7,66,37,0.06)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "0 18px 50px rgba(0,66,37,0.08)",
+                  boxShadow: "0 18px 50px rgba(7,66,37,0.08)",
                 }}
               >
                 <Box
@@ -92,13 +161,13 @@ function App() {
                     width: 18,
                     height: 18,
                     borderRadius: "5px",
-                    bgcolor: "#004225",
+                    bgcolor: "#074225",
                     transform: "rotate(45deg)",
-                    boxShadow: "0 0 0 10px rgba(0,66,37,0.08)",
+                    boxShadow: "0 0 0 10px rgba(7,66,37,0.08)",
                   }}
                 />
               </Box>
-              <Box sx={{ flex: 1, height: "1px", bgcolor: "rgba(0,66,37,0.34)" }} />
+              <Box sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }} />
             </Box>
           </Box>
           {/* <LogosMarquee /> */}
@@ -109,6 +178,7 @@ function App() {
           <TestimonialsCarousel />
           <PricingSection />
           <TeamsPricingSection onDemoClick={openContactModal} />
+          <GreenSectionDivider />
           <CaseStudiesCarousel />
           <SplitCtaSection onDemoClick={openContactModal} />
           <FaqSection onDemoClick={openContactModal} />

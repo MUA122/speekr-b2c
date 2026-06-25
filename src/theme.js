@@ -1,17 +1,21 @@
 import { createTheme } from '@mui/material/styles'
 
 const brand = {
-  green: '#004225',
-  greenDeep: '#00331d',
-  greenSoft: '#E3ECD6',
-  lime: '#F7F9E8',
-  limeStrong: '#FF7600',
-  orange: '#FF7600',
-  orangeDeep: '#CC5E00',
-  ink: '#102019',
-  muted: '#5a6a60',
-  border: 'rgba(0, 66, 37, 0.14)',
-  paper: '#F7F9E8',
+  green: '#074225',
+  greenDeep: '#074225',
+  grass: '#8EC640',
+  greenSoft: '#EEF3CD',
+  lime: '#EEF3CD',
+  limeStrong: '#8EC640',
+  orange: '#F26433',
+  orangeDeep: '#C84D27',
+  lavender: '#E8DCEB',
+  ink: '#073821',
+  muted: '#4f6659',
+  border: 'rgba(7, 66, 37, 0.14)',
+  paper: '#EEF3CD',
+  fontHeadline: '"Belwe Bold", "Belwe", "Cooper Black", Georgia, serif',
+  fontBody: '"Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
 }
 
 const theme = createTheme({
@@ -21,12 +25,12 @@ const theme = createTheme({
       main: brand.green,
       dark: brand.greenDeep,
       light: brand.greenSoft,
-      contrastText: '#ffffff',
+      contrastText: '#EEF3CD',
     },
     secondary: {
       main: brand.orange,
       dark: brand.orangeDeep,
-      contrastText: '#ffffff',
+      contrastText: '#EEF3CD',
     },
     background: {
       default: brand.lime,
@@ -40,14 +44,51 @@ const theme = createTheme({
     brand,
   },
   typography: {
-    fontFamily:
-      '"Aptos", "Segoe UI", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif',
+    fontFamily: brand.fontBody,
     h1: {
+      fontFamily: brand.fontHeadline,
       fontWeight: 800,
       letterSpacing: 0,
       lineHeight: 0.94,
     },
+    h2: {
+      fontFamily: brand.fontHeadline,
+      fontWeight: 800,
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+    h3: {
+      fontFamily: brand.fontHeadline,
+      fontWeight: 800,
+      letterSpacing: 0,
+      lineHeight: 1.05,
+    },
+    h4: {
+      fontFamily: brand.fontHeadline,
+      fontWeight: 800,
+      letterSpacing: 0,
+      lineHeight: 1.08,
+    },
+    h5: {
+      fontFamily: brand.fontHeadline,
+      fontWeight: 800,
+      letterSpacing: 0,
+      lineHeight: 1.12,
+    },
+    h6: {
+      fontFamily: brand.fontHeadline,
+      fontWeight: 800,
+      letterSpacing: 0,
+      lineHeight: 1.16,
+    },
+    body1: {
+      fontFamily: brand.fontBody,
+    },
+    body2: {
+      fontFamily: brand.fontBody,
+    },
     button: {
+      fontFamily: brand.fontBody,
       textTransform: 'none',
       fontWeight: 800,
     },
@@ -68,6 +109,7 @@ const theme = createTheme({
         body: {
           margin: 0,
           minWidth: 320,
+          fontFamily: brand.fontBody,
           color: brand.ink,
           background: brand.lime,
         },
@@ -75,7 +117,7 @@ const theme = createTheme({
           WebkitTapHighlightColor: 'transparent',
         },
         '::selection': {
-          color: '#ffffff',
+          color: '#EEF3CD',
           backgroundColor: brand.green,
         },
       },
@@ -120,7 +162,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 8,
-          backgroundColor: 'rgba(255, 255, 255, 0.72)',
+          backgroundColor: 'rgba(238,243,205, 0.72)',
         },
       },
     },

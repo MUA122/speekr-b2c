@@ -70,8 +70,8 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
           right: 0,
           bottom: 0,
           width: 'min(84vw, 320px)',
-          background: '#062D1B',
-          borderLeft: '1px solid rgba(255,118,0,0.12)',
+          background: '#074225',
+          borderLeft: '1px solid rgba(242,100,51,0.12)',
           boxShadow: '-24px 0 72px rgba(0,0,0,0.65)',
           display: 'flex',
           flexDirection: 'column',
@@ -90,7 +90,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
             height: '80%',
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 70%)',
+              'radial-gradient(circle, rgba(242,100,51,0.07) 0%, transparent 70%)',
             filter: 'blur(40px)',
             pointerEvents: 'none',
           }}
@@ -104,7 +104,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
             justifyContent: 'space-between',
             px: 2.5,
             py: 2,
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
+            borderBottom: '1px solid rgba(238,243,205,0.06)',
             position: 'relative',
             zIndex: 1,
           }}
@@ -124,17 +124,17 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
               width: 34,
               height: 34,
               borderRadius: '10px',
-              border: '1px solid rgba(255,255,255,0.1)',
-              bgcolor: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(238,243,205,0.1)',
+              bgcolor: 'rgba(238,243,205,0.04)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: 'rgba(247,249,232,0.5)',
+              color: 'rgba(238,243,205,0.5)',
               transition: 'background 0.2s ease, color 0.2s ease',
               '&:hover': {
-                bgcolor: 'rgba(255,255,255,0.09)',
-                color: 'rgba(247,249,232,0.95)',
+                bgcolor: 'rgba(238,243,205,0.09)',
+                color: 'rgba(238,243,205,0.95)',
               },
             }}
           >
@@ -186,16 +186,16 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
                   fontSize: 15,
                   fontWeight: 600,
                   letterSpacing: -0.1,
-                  color: isActive ? '#FF7600' : 'rgba(247,249,232,0.68)',
-                  bgcolor: isActive ? 'rgba(255,118,0,0.08)' : 'transparent',
-                  border: `1px solid ${isActive ? 'rgba(255,118,0,0.18)' : 'transparent'}`,
+                  color: isActive ? '#F26433' : 'rgba(238,243,205,0.68)',
+                  bgcolor: isActive ? 'rgba(242,100,51,0.08)' : 'transparent',
+                  border: `1px solid ${isActive ? 'rgba(242,100,51,0.18)' : 'transparent'}`,
                   textDecoration: 'none',
                   cursor: 'pointer',
                   fontFamily: 'inherit',
                   transition: 'background 0.2s ease, color 0.2s ease, border-color 0.2s ease',
                   '&:hover': {
-                    bgcolor: isActive ? 'rgba(255,118,0,0.1)' : 'rgba(255,255,255,0.05)',
-                    color: isActive ? '#FF7600' : 'rgba(247,249,232,0.96)',
+                    bgcolor: isActive ? 'rgba(242,100,51,0.1)' : 'rgba(238,243,205,0.05)',
+                    color: isActive ? '#F26433' : 'rgba(238,243,205,0.96)',
                   },
                 }}
               >
@@ -217,7 +217,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
             display: 'flex',
             flexDirection: 'column',
             gap: 1.2,
-            borderTop: '1px solid rgba(255,255,255,0.06)',
+            borderTop: '1px solid rgba(238,243,205,0.06)',
             position: 'relative',
             zIndex: 1,
           }}
@@ -234,18 +234,18 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
               gap: 0.75,
               py: 1.7,
               borderRadius: '12px',
-              bgcolor: '#FF7600',
-              color: '#062D1B',
+              bgcolor: '#F26433',
+              color: '#074225',
               fontSize: 14.5,
               fontWeight: 800,
               letterSpacing: -0.2,
               textDecoration: 'none',
               fontFamily: 'inherit',
-              boxShadow: '0 0 18px rgba(255,118,0,0.2)',
+              boxShadow: '0 0 18px rgba(242,100,51,0.2)',
               transition: 'filter 0.2s ease, box-shadow 0.2s ease',
               '&:hover': {
                 filter: 'brightness(1.08)',
-                boxShadow: '0 4px 20px rgba(255,118,0,0.38)',
+                boxShadow: '0 4px 20px rgba(242,100,51,0.38)',
               },
             }}
           >
@@ -265,18 +265,18 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
               gap: 0.75,
               py: 1.7,
               borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.1)',
-              bgcolor: 'rgba(255,255,255,0.04)',
-              color: 'rgba(247,249,232,0.6)',
+              border: '1px solid rgba(238,243,205,0.1)',
+              bgcolor: 'rgba(238,243,205,0.04)',
+              color: 'rgba(238,243,205,0.6)',
               fontSize: 14.5,
               fontWeight: 600,
               textDecoration: 'none',
               fontFamily: 'inherit',
               transition: 'background 0.2s ease, color 0.2s ease, border-color 0.2s ease',
               '&:hover': {
-                bgcolor: 'rgba(255,255,255,0.08)',
-                color: 'rgba(247,249,232,0.92)',
-                borderColor: 'rgba(255,255,255,0.18)',
+                bgcolor: 'rgba(238,243,205,0.08)',
+                color: 'rgba(238,243,205,0.92)',
+                borderColor: 'rgba(238,243,205,0.18)',
               },
             }}
           >
@@ -335,16 +335,16 @@ export default function Header({ onContactClick }) {
     fontSize: 13.5,
     fontWeight: 600,
     letterSpacing: 0.1,
-    color: isActive ? '#FF7600' : 'rgba(247,249,232,0.62)',
-    bgcolor: isActive ? 'rgba(255,118,0,0.1)' : 'transparent',
+    color: isActive ? '#F26433' : 'rgba(238,243,205,0.62)',
+    bgcolor: isActive ? 'rgba(242,100,51,0.1)' : 'transparent',
     textDecoration: 'none',
     border: 'none',
     cursor: 'pointer',
     fontFamily: 'inherit',
     transition: 'color 0.2s ease, background 0.2s ease',
     '&:hover': {
-      color: 'rgba(247,249,232,0.96)',
-      bgcolor: isActive ? 'rgba(255,118,0,0.14)' : 'rgba(255,255,255,0.07)',
+      color: 'rgba(238,243,205,0.96)',
+      bgcolor: isActive ? 'rgba(242,100,51,0.14)' : 'rgba(238,243,205,0.07)',
     },
   })
 
@@ -374,11 +374,11 @@ export default function Header({ onContactClick }) {
               height: { xs: 60, md: 64 },
               borderRadius: '100px',
               border: '1px solid',
-              borderColor: scrolled ? 'rgba(255,118,0,0.18)' : 'rgba(255,255,255,0.09)',
-              bgcolor: scrolled ? 'rgba(0,34,19,0.94)' : 'rgba(0,66,37,0.68)',
+              borderColor: scrolled ? 'rgba(242,100,51,0.18)' : 'rgba(238,243,205,0.09)',
+              bgcolor: scrolled ? 'rgba(0,34,19,0.94)' : 'rgba(7,66,37,0.68)',
               backdropFilter: 'blur(32px) saturate(1.5)',
               boxShadow: scrolled
-                ? '0 8px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)'
+                ? '0 8px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(238,243,205,0.04)'
                 : '0 4px 28px rgba(0,0,0,0.25)',
               transition:
                 'background-color 380ms ease, border-color 380ms ease, box-shadow 380ms ease',
@@ -394,7 +394,7 @@ export default function Header({ onContactClick }) {
                 alignItems: 'center',
                 textDecoration: 'none',
                 '&:focus-visible': {
-                  outline: '2px solid #FF7600',
+                  outline: '2px solid #F26433',
                   outlineOffset: 4,
                   borderRadius: 2,
                 },
@@ -489,17 +489,17 @@ export default function Header({ onContactClick }) {
                 borderRadius: '100px',
                 fontSize: 13.5,
                 fontWeight: 700,
-                bgcolor: '#FF7600',
-                color: '#00331d',
+                bgcolor: '#F26433',
+                color: '#074225',
                 textDecoration: 'none',
                 fontFamily: 'inherit',
-                boxShadow: '0 0 16px rgba(255,118,0,0.15)',
+                boxShadow: '0 0 16px rgba(242,100,51,0.15)',
                 transition:
                   'transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease',
                 '&:hover': {
                   filter: 'brightness(1.08)',
                   transform: 'translateY(-1px)',
-                  boxShadow: '0 8px 28px rgba(255,118,0,0.38)',
+                  boxShadow: '0 8px 28px rgba(242,100,51,0.38)',
                 },
               }}
             >
@@ -521,13 +521,13 @@ export default function Header({ onContactClick }) {
                 height: 40,
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FF7600',
-                border: '1px solid rgba(255,118,0,0.22)',
+                color: '#F26433',
+                border: '1px solid rgba(242,100,51,0.22)',
                 borderRadius: '12px',
                 bgcolor: 'transparent',
                 cursor: 'pointer',
                 transition: 'background 0.2s ease',
-                '&:hover': { bgcolor: 'rgba(255,118,0,0.1)' },
+                '&:hover': { bgcolor: 'rgba(242,100,51,0.1)' },
               }}
             >
               <Menu size={20} strokeWidth={2} aria-hidden />

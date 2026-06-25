@@ -37,21 +37,21 @@ const PLANS = {
 function FeatureIcon({ type }) {
   if (type === 'check') {
     return (
-      <Box sx={{ width: 22, height: 22, borderRadius: '50%', bgcolor: 'rgba(255,118,0,0.1)', border: '1px solid rgba(255,118,0,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-        <Check size={13} color="#FF7600" strokeWidth={2.5} aria-hidden />
+      <Box sx={{ width: 22, height: 22, borderRadius: '50%', bgcolor: 'rgba(242,100,51,0.1)', border: '1px solid rgba(242,100,51,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <Check size={13} color="#F26433" strokeWidth={2.5} aria-hidden />
       </Box>
     )
   }
   if (type === 'x') {
     return (
-      <Box sx={{ width: 22, height: 22, borderRadius: '50%', bgcolor: 'rgba(0,66,37,0.04)', border: '1px solid rgba(0,66,37,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-        <X size={12} color="rgba(0,66,37,0.3)" strokeWidth={2} aria-hidden />
+      <Box sx={{ width: 22, height: 22, borderRadius: '50%', bgcolor: 'rgba(7,66,37,0.04)', border: '1px solid rgba(7,66,37,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <X size={12} color="rgba(7,66,37,0.3)" strokeWidth={2} aria-hidden />
       </Box>
     )
   }
   return (
-    <Box sx={{ width: 22, height: 22, borderRadius: '50%', bgcolor: 'rgba(255,118,0,0.14)', border: '1px solid rgba(255,118,0,0.32)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-      <Star size={11} color="#FF7600" fill="#FF7600" aria-hidden />
+    <Box sx={{ width: 22, height: 22, borderRadius: '50%', bgcolor: 'rgba(242,100,51,0.14)', border: '1px solid rgba(242,100,51,0.32)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <Star size={11} color="#F26433" fill="#F26433" aria-hidden />
     </Box>
   )
 }
@@ -68,18 +68,18 @@ function PricingCard({ plan }) {
         flexDirection: 'column',
         p: { xs: '28px 24px 24px', md: '38px 36px 32px' },
         borderRadius: { xs: '20px', md: '24px' },
-        border: highlight ? '1px solid rgba(255,118,0,0.3)' : '1px solid rgba(0,66,37,0.12)',
-        bgcolor: '#F7F9E8',
+        border: highlight ? '1px solid rgba(242,100,51,0.3)' : '1px solid rgba(7,66,37,0.12)',
+        bgcolor: '#EEF3CD',
         overflow: 'hidden',
         boxShadow: highlight
-          ? '0 24px 70px rgba(255,118,0,0.16), 0 0 0 1px rgba(255,118,0,0.12)'
-          : '0 18px 50px rgba(0,66,37,0.08)',
+          ? '0 24px 70px rgba(242,100,51,0.16), 0 0 0 1px rgba(242,100,51,0.12)'
+          : '0 18px 50px rgba(7,66,37,0.08)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         '&:hover': {
           transform: 'translateY(-3px)',
           boxShadow: highlight
-            ? '0 30px 82px rgba(255,118,0,0.2), 0 0 0 1px rgba(255,118,0,0.18)'
-            : '0 26px 70px rgba(0,66,37,0.12)',
+            ? '0 30px 82px rgba(242,100,51,0.2), 0 0 0 1px rgba(242,100,51,0.18)'
+            : '0 26px 70px rgba(7,66,37,0.12)',
         },
       }}
     >
@@ -109,7 +109,7 @@ function PricingCard({ plan }) {
             width: '140%',
             height: '70%',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,118,0,0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(242,100,51,0.1) 0%, transparent 70%)',
             filter: 'blur(50px)',
             pointerEvents: 'none',
           }}
@@ -126,14 +126,14 @@ function PricingCard({ plan }) {
             px: 1.5,
             py: 0.55,
             borderRadius: '100px',
-            bgcolor: '#FF7600',
+            bgcolor: '#F26433',
             display: 'inline-flex',
             alignItems: 'center',
             gap: 0.6,
           }}
         >
-          <Zap size={10} color="#00331d" fill="#00331d" aria-hidden />
-          <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#00331d', letterSpacing: 0.4, lineHeight: 1 }}>
+          <Zap size={10} color="#074225" fill="#074225" aria-hidden />
+          <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#074225', letterSpacing: 0.4, lineHeight: 1 }}>
             {badge}
           </Typography>
         </Box>
@@ -146,14 +146,14 @@ function PricingCard({ plan }) {
             fontSize: { xs: 17, md: 19 },
             fontWeight: 800,
             letterSpacing: -0.3,
-            color: highlight ? '#FF7600' : '#004225',
+            color: highlight ? '#F26433' : '#074225',
             mb: 0.6,
             lineHeight: 1.2,
           }}
         >
           {name}
         </Typography>
-        <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(0,66,37,0.46)' }}>
+        <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(7,66,37,0.46)' }}>
           {audience}
         </Typography>
       </Box>
@@ -161,22 +161,23 @@ function PricingCard({ plan }) {
       {/* Price */}
       <Box sx={{ mb: { xs: 3, md: 3.5 } }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.4, lineHeight: 1 }}>
-          <Typography sx={{ fontSize: 22, fontWeight: 800, color: 'rgba(0,66,37,0.56)', lineHeight: 1, mt: '10px' }}>
+          <Typography sx={{ fontSize: 22, fontWeight: 800, color: 'rgba(7,66,37,0.56)', lineHeight: 1, mt: '10px' }}>
             $
           </Typography>
           <Typography
             sx={{
               fontSize: { xs: 64, md: 76 },
+              fontFamily: (theme) => theme.palette.brand.fontHeadline,
               fontWeight: 900,
               letterSpacing: { xs: -3, md: -4 },
               lineHeight: 0.9,
-              color: '#004225',
+              color: '#074225',
             }}
           >
             {price}
           </Typography>
         </Box>
-        <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(0,66,37,0.42)', mt: 1 }}>
+        <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(7,66,37,0.42)', mt: 1 }}>
           {period}
         </Typography>
       </Box>
@@ -186,8 +187,8 @@ function PricingCard({ plan }) {
         sx={{
           height: '1px',
           background: highlight
-            ? 'linear-gradient(90deg, rgba(255,118,0,0.12), rgba(255,118,0,0.04))'
-            : 'rgba(0,66,37,0.12)',
+            ? 'linear-gradient(90deg, rgba(242,100,51,0.12), rgba(242,100,51,0.04))'
+            : 'rgba(7,66,37,0.12)',
           mb: { xs: 3, md: 3.5 },
         }}
       />
@@ -201,7 +202,7 @@ function PricingCard({ plan }) {
               sx={{
                 fontSize: { xs: 13.5, md: 14 },
                 fontWeight: type === 'x' ? 400 : 600,
-                color: type === 'x' ? 'rgba(0,66,37,0.32)' : 'rgba(0,66,37,0.78)',
+                color: type === 'x' ? 'rgba(7,66,37,0.32)' : 'rgba(7,66,37,0.78)',
                 lineHeight: 1.4,
               }}
             >
@@ -226,18 +227,18 @@ function PricingCard({ plan }) {
           py: '14px',
           borderRadius: '100px',
           background: highlight
-            ? 'linear-gradient(135deg, #FF7600 0%, #FF9A3D 100%)'
-            : '#F7F9E8',
-          border: highlight ? 'none' : '1px solid rgba(0,66,37,0.16)',
-          color: highlight ? '#00331d' : '#004225',
+            ? 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)'
+            : '#EEF3CD',
+          border: highlight ? 'none' : '1px solid rgba(7,66,37,0.16)',
+          color: highlight ? '#074225' : '#074225',
           fontSize: { xs: 14.5, md: 15 },
           fontWeight: 800,
           textDecoration: 'none',
-          boxShadow: highlight ? '0 0 0 1px rgba(255,118,0,0.3), 0 14px 44px rgba(255,118,0,0.2)' : 'none',
+          boxShadow: highlight ? '0 0 0 1px rgba(242,100,51,0.3), 0 14px 44px rgba(242,100,51,0.2)' : 'none',
           transition: 'transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease',
           '&:hover': highlight
-            ? { transform: 'translateY(-2px)', boxShadow: '0 0 0 1px rgba(255,118,0,0.5), 0 20px 60px rgba(255,118,0,0.3)' }
-            : { background: 'rgba(255,118,0,0.08)', transform: 'translateY(-1px)' },
+            ? { transform: 'translateY(-2px)', boxShadow: '0 0 0 1px rgba(242,100,51,0.5), 0 20px 60px rgba(242,100,51,0.3)' }
+            : { background: 'rgba(242,100,51,0.08)', transform: 'translateY(-1px)' },
         }}
       >
         Start Free Trial
@@ -253,7 +254,7 @@ export default function PricingSection() {
   return (
     <Box
       sx={{
-        bgcolor: '#F7F9E8',
+        bgcolor: '#EEF3CD',
         px: { xs: '12px', sm: '18px', md: '24px' },
         py: { xs: 3, md: 4 },
       }}
@@ -264,7 +265,7 @@ export default function PricingSection() {
         aria-labelledby="pricing-title"
         sx={{
           position: 'relative',
-          bgcolor: '#F7F9E8',
+          bgcolor: '#EEF3CD',
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -277,7 +278,7 @@ export default function PricingSection() {
             left: '10%',
             right: '10%',
             height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(255,118,0,0.25) 50%, transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(242,100,51,0.25) 50%, transparent)',
           },
         }}
       >
@@ -308,7 +309,7 @@ export default function PricingSection() {
             maxWidth: 900,
             maxHeight: 900,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,118,0,0.06) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(242,100,51,0.06) 0%, transparent 60%)',
             filter: 'blur(80px)',
             pointerEvents: 'none',
           }}
@@ -325,7 +326,7 @@ export default function PricingSection() {
             maxWidth: 580,
             maxHeight: 580,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 65%)',
+            background: 'radial-gradient(circle, rgba(242,100,51,0.07) 0%, transparent 65%)',
             filter: 'blur(70px)',
             pointerEvents: 'none',
           }}
@@ -357,14 +358,14 @@ export default function PricingSection() {
                 px: 2,
                 py: 0.75,
                 borderRadius: '100px',
-                border: '1px solid rgba(255,118,0,0.18)',
-                bgcolor: 'rgba(255,118,0,0.06)',
+                border: '1px solid rgba(242,100,51,0.18)',
+                bgcolor: 'rgba(242,100,51,0.06)',
                 mb: 3,
               }}
             >
-              <Zap size={12} color="#FF7600" fill="#FF7600" aria-hidden />
+              <Zap size={12} color="#F26433" fill="#F26433" aria-hidden />
               <Typography
-                sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#FF7600' }}
+                sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#F26433' }}
               >
                 Simple Pricing
               </Typography>
@@ -376,14 +377,15 @@ export default function PricingSection() {
               sx={{
                 m: 0,
                 fontSize: { xs: 34, sm: 46, md: 56, lg: 64 },
+                fontFamily: (theme) => theme.palette.brand.fontHeadline,
                 fontWeight: 900,
                 letterSpacing: { xs: -1.5, md: -2.5 },
                 lineHeight: 1.04,
-                color: '#004225',
+                color: '#074225',
               }}
             >
               Simple Plans.{' '}
-              <Box component="span" sx={{ color: '#FF7600' }}>
+              <Box component="span" sx={{ color: '#F26433' }}>
                 Serious Results.
               </Box>
             </Typography>
@@ -393,7 +395,7 @@ export default function PricingSection() {
                 mt: { xs: 2.5, md: 3 },
                 fontSize: { xs: 15, md: 16.5 },
                 lineHeight: 1.72,
-                color: 'rgba(0,66,37,0.5)',
+                color: 'rgba(7,66,37,0.5)',
                 maxWidth: 500,
                 mx: 'auto',
               }}
@@ -408,8 +410,8 @@ export default function PricingSection() {
               sx={{
                 display: 'inline-flex',
                 borderRadius: '100px',
-                border: '1px solid rgba(0,66,37,0.12)',
-                bgcolor: '#F7F9E8',
+                border: '1px solid rgba(7,66,37,0.12)',
+                bgcolor: '#EEF3CD',
                 p: '4px',
                 gap: '4px',
               }}
@@ -429,9 +431,9 @@ export default function PricingSection() {
                     fontSize: { xs: 13.5, md: 14 },
                     fontWeight: 700,
                     transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease',
-                    bgcolor: billing === b ? '#FF7600' : 'transparent',
-                    color: billing === b ? '#00331d' : 'rgba(0,66,37,0.6)',
-                    boxShadow: billing === b ? '0 2px 14px rgba(255,118,0,0.28)' : 'none',
+                    bgcolor: billing === b ? '#F26433' : 'transparent',
+                    color: billing === b ? '#074225' : 'rgba(7,66,37,0.6)',
+                    boxShadow: billing === b ? '0 2px 14px rgba(242,100,51,0.28)' : 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: 1,
@@ -444,8 +446,8 @@ export default function PricingSection() {
                         px: 1,
                         py: '3px',
                         borderRadius: '100px',
-                        bgcolor: billing === 'annual' ? 'rgba(0,66,37,0.28)' : 'rgba(255,118,0,0.12)',
-                        border: billing === 'annual' ? 'none' : '1px solid rgba(255,118,0,0.2)',
+                        bgcolor: billing === 'annual' ? 'rgba(7,66,37,0.28)' : 'rgba(242,100,51,0.12)',
+                        border: billing === 'annual' ? 'none' : '1px solid rgba(242,100,51,0.2)',
                       }}
                     >
                       <Typography
@@ -453,7 +455,7 @@ export default function PricingSection() {
                           fontSize: 10,
                           fontWeight: 800,
                           letterSpacing: 0.3,
-                          color: billing === 'annual' ? 'rgba(0,66,37,0.8)' : '#FF7600',
+                          color: billing === 'annual' ? 'rgba(7,66,37,0.8)' : '#F26433',
                           lineHeight: 1,
                         }}
                       >

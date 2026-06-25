@@ -62,9 +62,9 @@ function Lightbox({ slide, onClose }) {
           maxWidth: 1080,
           borderRadius: { xs: '16px', md: '22px' },
           overflow: 'hidden',
-          border: '1px solid rgba(255,118,0,0.14)',
-          boxShadow: '0 0 0 1px rgba(255,118,0,0.05), 0 56px 140px rgba(0,0,0,0.95)',
-          bgcolor: '#02150D',
+          border: '1px solid rgba(242,100,51,0.14)',
+          boxShadow: '0 0 0 1px rgba(242,100,51,0.05), 0 56px 140px rgba(0,0,0,0.95)',
+          bgcolor: '#074225',
           '@keyframes lbUp': {
             from: { opacity: 0, transform: 'translateY(28px) scale(0.96)' },
             to: { opacity: 1, transform: 'translateY(0) scale(1)' },
@@ -75,7 +75,7 @@ function Lightbox({ slide, onClose }) {
         {/* Top shimmer */}
         <Box aria-hidden sx={{
           position: 'absolute', top: 0, left: '20%', right: '20%', height: '1px', zIndex: 1,
-          background: 'linear-gradient(90deg, transparent, rgba(255,118,0,0.3) 50%, transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(242,100,51,0.3) 50%, transparent)',
           pointerEvents: 'none',
         }} />
 
@@ -96,20 +96,20 @@ function Lightbox({ slide, onClose }) {
         <Box sx={{
           px: { xs: 3, md: 4 }, py: { xs: 2, md: 2.5 },
           bgcolor: 'rgba(11,30,18,0.95)',
-          borderTop: '1px solid rgba(255,255,255,0.05)',
+          borderTop: '1px solid rgba(238,243,205,0.05)',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           flexWrap: 'wrap', gap: 1,
         }}>
           <Stack direction="row" spacing={1.5} alignItems="center">
-            <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#FF7600', flexShrink: 0, boxShadow: '0 0 8px rgba(255,118,0,0.6)' }} />
-            <Typography sx={{ fontSize: 14.5, fontWeight: 700, color: '#F7F9E8', letterSpacing: 0.2 }}>
+            <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#F26433', flexShrink: 0, boxShadow: '0 0 8px rgba(242,100,51,0.6)' }} />
+            <Typography sx={{ fontSize: 14.5, fontWeight: 700, color: '#EEF3CD', letterSpacing: 0.2 }}>
               {slide.name}
             </Typography>
-            <Typography sx={{ fontSize: 13, color: 'rgba(247,249,232,0.5)' }}>
+            <Typography sx={{ fontSize: 13, color: 'rgba(238,243,205,0.5)' }}>
               {slide.location}
             </Typography>
           </Stack>
-          <Typography sx={{ fontSize: 11, color: 'rgba(247,249,232,0.32)', letterSpacing: 1, textTransform: 'uppercase' }}>
+          <Typography sx={{ fontSize: 11, color: 'rgba(238,243,205,0.32)', letterSpacing: 1, textTransform: 'uppercase' }}>
             Press ESC to close
           </Typography>
         </Box>
@@ -123,14 +123,14 @@ function Lightbox({ slide, onClose }) {
             position: 'absolute', top: 12, right: 12, zIndex: 10,
             width: 36, height: 36, borderRadius: '50%',
             bgcolor: 'rgba(0,0,0,0.72)', backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255,255,255,0.18)',
+            border: '1px solid rgba(238,243,205,0.18)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', p: 0,
             transition: 'background 0.2s ease, border-color 0.2s ease',
-            '&:hover': { bgcolor: 'rgba(255,255,255,0.14)', borderColor: 'rgba(255,255,255,0.36)' },
+            '&:hover': { bgcolor: 'rgba(238,243,205,0.14)', borderColor: 'rgba(238,243,205,0.36)' },
           }}
         >
-          <X size={16} color="white" aria-hidden />
+          <X size={16} color="#EEF3CD" aria-hidden />
         </Box>
       </Box>
     </Box>
@@ -176,10 +176,10 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
         borderRadius: { xs: '14px', md: '18px' },
         overflow: 'hidden',
         border: isActive
-          ? '1px solid rgba(255,118,0,0.22)'
-          : '1px solid rgba(255,255,255,0.06)',
+          ? '1px solid rgba(242,100,51,0.22)'
+          : '1px solid rgba(238,243,205,0.06)',
         boxShadow: isActive
-          ? '0 0 0 1px rgba(255,118,0,0.08), 0 28px 70px rgba(0,0,0,0.5), 0 0 48px rgba(255,118,0,0.07)'
+          ? '0 0 0 1px rgba(242,100,51,0.08), 0 28px 70px rgba(0,0,0,0.5), 0 0 48px rgba(242,100,51,0.07)'
           : '0 8px 30px rgba(0,0,0,0.3)',
         transition: 'border-color 0.4s ease, box-shadow 0.4s ease, filter 0.3s ease',
         filter: isActive ? 'none' : 'brightness(0.68)',
@@ -187,7 +187,7 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
     >
       {/* Video area */}
       <Box
-        sx={{ position: 'relative', pt: '56.34%', bgcolor: '#02150D' }}
+        sx={{ position: 'relative', pt: '56.34%', bgcolor: '#074225' }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -231,15 +231,15 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
               width: { xs: 52, md: 62 },
               height: { xs: 52, md: 62 },
               borderRadius: '50%',
-              bgcolor: 'rgba(255,118,0,0.12)',
-              border: '2px solid #FF7600',
+              bgcolor: 'rgba(242,100,51,0.12)',
+              border: '2px solid #F26433',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 32px rgba(255,118,0,0.35)',
+              boxShadow: '0 0 32px rgba(242,100,51,0.35)',
               opacity: hovered ? 1 : 0,
               transform: hovered ? 'scale(1)' : 'scale(0.82)',
               transition: 'opacity 0.25s ease, transform 0.28s cubic-bezier(0.34,1.56,0.64,1)',
             }}>
-              <Play size={22} color="#FF7600" fill="#FF7600" aria-hidden />
+              <Play size={22} color="#F26433" fill="#F26433" aria-hidden />
             </Box>
 
             {/* "Watch Story" label */}
@@ -248,7 +248,7 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
               fontWeight: 800,
               letterSpacing: 1.6,
               textTransform: 'uppercase',
-              color: '#F7F9E8',
+              color: '#EEF3CD',
               opacity: hovered ? 1 : 0,
               transform: hovered ? 'translateY(0)' : 'translateY(6px)',
               transition: 'opacity 0.22s ease 0.04s, transform 0.22s ease 0.04s',
@@ -259,13 +259,13 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
             {/* "Click to expand" chip */}
             <Box sx={{
               px: 1.8, py: 0.55, borderRadius: '100px',
-              bgcolor: 'rgba(255,255,255,0.07)',
-              border: '1px solid rgba(255,255,255,0.1)',
+              bgcolor: 'rgba(238,243,205,0.07)',
+              border: '1px solid rgba(238,243,205,0.1)',
               opacity: hovered ? 1 : 0,
               transform: hovered ? 'translateY(0)' : 'translateY(8px)',
               transition: 'opacity 0.22s ease 0.08s, transform 0.22s ease 0.08s',
             }}>
-              <Typography sx={{ fontSize: 10.5, color: 'rgba(247,249,232,0.72)', letterSpacing: 0.6, display: 'flex', alignItems: 'center', gap: 0.6 }}>
+              <Typography sx={{ fontSize: 10.5, color: 'rgba(238,243,205,0.72)', letterSpacing: 0.6, display: 'flex', alignItems: 'center', gap: 0.6 }}>
                 <Maximize2 size={10} aria-hidden /> Click to expand
               </Typography>
             </Box>
@@ -281,16 +281,16 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
             position: 'absolute', bottom: 10, right: 10, zIndex: 4,
             width: 34, height: 34, borderRadius: '50%',
             bgcolor: 'rgba(0,0,0,0.62)', backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255,255,255,0.15)',
+            border: '1px solid rgba(238,243,205,0.15)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', p: 0,
             transition: 'background 0.2s ease, border-color 0.2s ease',
-            '&:hover': { bgcolor: 'rgba(0,0,0,0.85)', borderColor: 'rgba(255,118,0,0.4)' },
+            '&:hover': { bgcolor: 'rgba(0,0,0,0.85)', borderColor: 'rgba(242,100,51,0.4)' },
           }}
         >
           {muted
-            ? <VolumeX size={14} color="rgba(255,255,255,0.82)" />
-            : <Volume2 size={14} color="#FF7600" />
+            ? <VolumeX size={14} color="rgba(238,243,205,0.82)" />
+            : <Volume2 size={14} color="#F26433" />
           }
         </Box>
       </Box>
@@ -299,20 +299,20 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
       <Box sx={{
         px: 2.5, py: 1.8,
         bgcolor: 'rgba(0,0,0,0.22)',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        borderTop: '1px solid rgba(238,243,205,0.05)',
         display: 'flex', alignItems: 'center', gap: 1.5,
       }}>
         <Box sx={{
           width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
-          bgcolor: isActive ? '#FF7600' : 'rgba(0,66,37,0.16)',
-          boxShadow: isActive ? '0 0 8px rgba(255,118,0,0.6)' : 'none',
+          bgcolor: isActive ? '#F26433' : 'rgba(7,66,37,0.16)',
+          boxShadow: isActive ? '0 0 8px rgba(242,100,51,0.6)' : 'none',
           transition: 'background-color 0.4s ease, box-shadow 0.4s ease',
         }} />
-        <Typography sx={{ fontSize: 13.5, fontWeight: 700, color: '#F7F9E8', letterSpacing: 0.2 }}>
+        <Typography sx={{ fontSize: 13.5, fontWeight: 700, color: '#EEF3CD', letterSpacing: 0.2 }}>
           {slide.name}
         </Typography>
-        <Box sx={{ width: 3, height: 3, borderRadius: '50%', bgcolor: 'rgba(247,249,232,0.18)', flexShrink: 0 }} />
-        <Typography sx={{ fontSize: 12.5, color: 'rgba(247,249,232,0.52)', letterSpacing: 0.3 }}>
+        <Box sx={{ width: 3, height: 3, borderRadius: '50%', bgcolor: 'rgba(238,243,205,0.18)', flexShrink: 0 }} />
+        <Typography sx={{ fontSize: 12.5, color: 'rgba(238,243,205,0.52)', letterSpacing: 0.3 }}>
           {slide.location}
         </Typography>
       </Box>
@@ -330,13 +330,13 @@ export default function TestimonialsCarousel() {
 
   return (
     <>
-      <Box sx={{ bgcolor: '#F7F9E8', px: { xs: '12px', sm: '18px', md: '24px' }, py: { xs: 3, md: 4 } }}>
+      <Box sx={{ bgcolor: '#EEF3CD', px: { xs: '12px', sm: '18px', md: '24px' }, py: { xs: 3, md: 4 } }}>
         <Box
           component="section"
           aria-labelledby="test-title"
           sx={{
             position: 'relative',
-            bgcolor: '#004225',
+            bgcolor: '#074225',
             borderRadius: { xs: '24px', md: '32px' },
             overflow: 'hidden',
             pt: { xs: 8, md: 12 },
@@ -344,7 +344,7 @@ export default function TestimonialsCarousel() {
             '&::before': {
               content: '""',
               position: 'absolute', top: 0, left: '10%', right: '10%', height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(255,118,0,0.25) 50%, transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(242,100,51,0.25) 50%, transparent)',
             },
           }}
         >
@@ -367,14 +367,14 @@ export default function TestimonialsCarousel() {
           <Box aria-hidden sx={{
             position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)',
             width: '80vw', height: '80vw', maxWidth: 900, maxHeight: 900, borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,118,0,0.06) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(242,100,51,0.06) 0%, transparent 60%)',
             filter: 'blur(80px)', pointerEvents: 'none',
           }} />
           {/* Ambient orb — orange bottom right */}
           <Box aria-hidden sx={{
             position: 'absolute', bottom: '-8%', right: '-4%',
             width: '50vw', height: '50vw', maxWidth: 600, maxHeight: 600, borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,118,0,0.07) 0%, transparent 65%)',
+            background: 'radial-gradient(circle, rgba(242,100,51,0.07) 0%, transparent 65%)',
             filter: 'blur(70px)', pointerEvents: 'none',
           }} />
           {/* Noise grain */}
@@ -390,10 +390,10 @@ export default function TestimonialsCarousel() {
               <Box sx={{
                 display: 'inline-flex', alignItems: 'center', gap: 1,
                 px: 2, py: 0.75, borderRadius: '100px',
-                border: '1px solid rgba(255,118,0,0.18)', bgcolor: 'rgba(255,118,0,0.06)', mb: 3,
+                border: '1px solid rgba(242,100,51,0.18)', bgcolor: 'rgba(242,100,51,0.06)', mb: 3,
               }}>
-                <Quote size={12} color="#FF7600" aria-hidden />
-                <Typography sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#FF7600' }}>
+                <Quote size={12} color="#F26433" aria-hidden />
+                <Typography sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#F26433' }}>
                   Success Stories
                 </Typography>
               </Box>
@@ -403,14 +403,15 @@ export default function TestimonialsCarousel() {
                 sx={{
                   m: 0,
                   fontSize: { xs: 34, sm: 46, md: 56, lg: 64 },
+                  fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 900,
                   letterSpacing: { xs: -1.5, md: -2.5 },
                   lineHeight: 1.04,
-                  color: '#F7F9E8',
+                  color: '#EEF3CD',
                 }}
               >
                 Real People.{' '}
-                <Box component="span" sx={{ color: '#FF7600' }}>Real Results.</Box>
+                <Box component="span" sx={{ color: '#F26433' }}>Real Results.</Box>
               </Typography>
             </Box>
 
@@ -450,14 +451,14 @@ export default function TestimonialsCarousel() {
                 component="button" onClick={prev} aria-label="Previous"
                 sx={{
                   width: 40, height: 40, borderRadius: '50%',
-                  border: '1.5px solid rgba(247,249,232,0.18)', bgcolor: 'transparent',
+                  border: '1.5px solid rgba(238,243,205,0.18)', bgcolor: 'transparent',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   cursor: 'pointer', p: 0,
                   transition: 'border-color 0.2s ease, background 0.2s ease',
-                  '&:hover': { borderColor: '#FF7600', bgcolor: 'rgba(255,118,0,0.06)' },
+                  '&:hover': { borderColor: '#F26433', bgcolor: 'rgba(242,100,51,0.06)' },
                 }}
               >
-                <ChevronLeft size={16} color="rgba(247,249,232,0.7)" aria-hidden />
+                <ChevronLeft size={16} color="rgba(238,243,205,0.7)" aria-hidden />
               </Box>
 
               {SLIDES.map((_, i) => (
@@ -467,9 +468,9 @@ export default function TestimonialsCarousel() {
                   sx={{
                     width: i === active ? 28 : 8, height: 8,
                     borderRadius: '100px', border: 'none', p: 0, cursor: 'pointer',
-                    bgcolor: i === active ? '#FF7600' : 'rgba(247,249,232,0.2)',
+                    bgcolor: i === active ? '#F26433' : 'rgba(238,243,205,0.2)',
                     transition: 'width 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.3s ease',
-                    boxShadow: i === active ? '0 0 8px rgba(255,118,0,0.5)' : 'none',
+                    boxShadow: i === active ? '0 0 8px rgba(242,100,51,0.5)' : 'none',
                   }}
                 />
               ))}
@@ -478,14 +479,14 @@ export default function TestimonialsCarousel() {
                 component="button" onClick={next} aria-label="Next"
                 sx={{
                   width: 40, height: 40, borderRadius: '50%',
-                  border: '1.5px solid rgba(247,249,232,0.18)', bgcolor: 'transparent',
+                  border: '1.5px solid rgba(238,243,205,0.18)', bgcolor: 'transparent',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   cursor: 'pointer', p: 0,
                   transition: 'border-color 0.2s ease, background 0.2s ease',
-                  '&:hover': { borderColor: '#FF7600', bgcolor: 'rgba(255,118,0,0.06)' },
+                  '&:hover': { borderColor: '#F26433', bgcolor: 'rgba(242,100,51,0.06)' },
                 }}
               >
-                <ChevronRight size={16} color="rgba(247,249,232,0.7)" aria-hidden />
+                <ChevronRight size={16} color="rgba(238,243,205,0.7)" aria-hidden />
               </Box>
             </Stack>
           </Box>

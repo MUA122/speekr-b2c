@@ -72,7 +72,7 @@ const NAV_COLS = [
   },
 ]
 
-const TAIL_BG = '#111e16'
+const TAIL_BG = '#074225'
 
 /* ── Sub-components ── */
 
@@ -88,23 +88,23 @@ function SocialBtn({ label, href, vb, w, h, paths }) {
         width: 36,
         height: 36,
         borderRadius: '50%',
-        border: '1px solid rgba(255,255,255,0.09)',
-        bgcolor: 'rgba(255,255,255,0.04)',
+        border: '1px solid rgba(238,243,205,0.09)',
+        bgcolor: 'rgba(238,243,205,0.04)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
         transition: 'background 0.22s ease, border-color 0.22s ease, transform 0.22s ease',
         '&:hover': {
-          bgcolor: 'rgba(255,118,0,0.1)',
-          borderColor: 'rgba(255,118,0,0.32)',
+          bgcolor: 'rgba(242,100,51,0.1)',
+          borderColor: 'rgba(242,100,51,0.32)',
           transform: 'translateY(-2px)',
         },
       }}
     >
       <svg viewBox={vb} width={w} height={h} fill="none" aria-hidden="true">
         {paths.map((d, i) => (
-          <path key={i} d={d} fill="white" />
+          <path key={i} d={d} fill="#EEF3CD" />
         ))}
       </svg>
     </Box>
@@ -125,7 +125,7 @@ function NavLink({ label, href, onClick }) {
         display: 'block',
         fontSize: 14,
         fontWeight: 500,
-        color: 'rgba(247,249,232,0.42)',
+        color: 'rgba(238,243,205,0.42)',
         textDecoration: 'none',
         bgcolor: 'transparent',
         border: 'none',
@@ -134,7 +134,7 @@ function NavLink({ label, href, onClick }) {
         p: 0,
         textAlign: 'left',
         transition: 'color 0.2s ease',
-        '&:hover': { color: '#FF7600' },
+        '&:hover': { color: '#F26433' },
       }}
     >
       {label}
@@ -151,7 +151,7 @@ function TickTalkCard() {
           fontWeight: 700,
           letterSpacing: 1.3,
           textTransform: 'uppercase',
-          color: 'rgba(247,249,232,0.2)',
+          color: 'rgba(238,243,205,0.2)',
           mb: 0.5,
         }}
       >
@@ -163,7 +163,7 @@ function TickTalkCard() {
         sx={{
           position: 'relative',
           bgcolor: TAIL_BG,
-          border: '1px solid rgba(255,118,0,0.1)',
+          border: '1px solid rgba(242,100,51,0.1)',
           borderRadius: '4px 18px 18px 18px',
           p: '20px 22px 16px',
           maxWidth: 300,
@@ -184,7 +184,7 @@ function TickTalkCard() {
           sx={{
             fontSize: 13.5,
             lineHeight: 1.72,
-            color: 'rgba(247,249,232,0.55)',
+            color: 'rgba(238,243,205,0.55)',
             mb: 2.5,
           }}
         >
@@ -192,7 +192,7 @@ function TickTalkCard() {
           <br />
           <br />
           Explore bootcamps and workshops on{' '}
-          <Box component="span" sx={{ color: '#FF7600', fontWeight: 700 }}>
+          <Box component="span" sx={{ color: '#F26433', fontWeight: 700 }}>
             tickandtalk.com
           </Box>
         </Typography>
@@ -209,7 +209,7 @@ function TickTalkCard() {
             gap: 0.75,
             fontSize: 13,
             fontWeight: 700,
-            color: '#FF7600',
+            color: '#F26433',
             textDecoration: 'none',
             transition: 'gap 0.2s ease, filter 0.2s ease',
             '&:hover': { gap: 1.4, filter: 'brightness(1.15)' },
@@ -229,13 +229,13 @@ function TickTalkCard() {
             mt: 2,
           }}
         >
-          <Typography sx={{ fontSize: 10, fontWeight: 500, color: 'rgba(247,249,232,0.22)' }}>
+          <Typography sx={{ fontSize: 10, fontWeight: 500, color: 'rgba(238,243,205,0.22)' }}>
             10:11
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Check size={10} color="#FF7600" strokeWidth={2.5} aria-hidden />
+            <Check size={10} color="#F26433" strokeWidth={2.5} aria-hidden />
             <Box sx={{ ml: '-5px' }}>
-              <Check size={10} color="#FF7600" strokeWidth={2.5} aria-hidden />
+              <Check size={10} color="#F26433" strokeWidth={2.5} aria-hidden />
             </Box>
           </Box>
         </Box>
@@ -252,8 +252,8 @@ export default function Footer({ onContactClick }) {
       component="footer"
       sx={{
         position: 'relative',
-        bgcolor: '#02150D',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        bgcolor: '#074225',
+        borderTop: '1px solid rgba(238,243,205,0.05)',
         overflow: 'hidden',
       }}
     >
@@ -281,11 +281,12 @@ export default function Footer({ onContactClick }) {
           left: '50%',
           transform: 'translateX(-50%)',
           fontSize: { xs: 72, sm: 130, md: 196, lg: 256 },
+          fontFamily: (theme) => theme.palette.brand.fontHeadline,
           fontWeight: 900,
           letterSpacing: { xs: -4, md: -12 },
           lineHeight: 1,
           color: 'transparent',
-          WebkitTextStroke: '1px rgba(255,255,255,0.028)',
+          WebkitTextStroke: '1px rgba(238,243,205,0.028)',
           whiteSpace: 'nowrap',
           pointerEvents: 'none',
           userSelect: 'none',
@@ -307,7 +308,7 @@ export default function Footer({ onContactClick }) {
           maxWidth: 620,
           maxHeight: 620,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255,118,0,0.045) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(242,100,51,0.045) 0%, transparent 65%)',
           filter: 'blur(80px)',
           pointerEvents: 'none',
           zIndex: 0,
@@ -325,7 +326,7 @@ export default function Footer({ onContactClick }) {
           maxWidth: 440,
           maxHeight: 440,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255,118,0,0.042) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(242,100,51,0.042) 0%, transparent 65%)',
           filter: 'blur(70px)',
           pointerEvents: 'none',
           zIndex: 0,
@@ -360,15 +361,16 @@ export default function Footer({ onContactClick }) {
               sx={{
                 m: 0,
                 fontSize: { xs: 34, sm: 44, md: 52, lg: 58 },
+                fontFamily: (theme) => theme.palette.brand.fontHeadline,
                 fontWeight: 900,
                 letterSpacing: { xs: -1.2, md: -2 },
                 lineHeight: 1.0,
-                color: 'rgba(247,249,232,0.95)',
+                color: 'rgba(238,243,205,0.95)',
               }}
             >
               Ready to speak
               <br />
-              <Box component="span" sx={{ color: '#FF7600' }}>
+              <Box component="span" sx={{ color: '#F26433' }}>
                 with confidence?
               </Box>
             </Typography>
@@ -378,7 +380,7 @@ export default function Footer({ onContactClick }) {
                 fontSize: { xs: 14, md: 15 },
                 fontWeight: 500,
                 lineHeight: 1.65,
-                color: 'rgba(247,249,232,0.3)',
+                color: 'rgba(238,243,205,0.3)',
                 maxWidth: 360,
               }}
             >
@@ -407,18 +409,18 @@ export default function Footer({ onContactClick }) {
                 px: { xs: 3, md: 3.5 },
                 py: 1.6,
                 borderRadius: '100px',
-                bgcolor: '#FF7600',
-                color: '#062D1B',
+                bgcolor: '#F26433',
+                color: '#074225',
                 fontSize: 14,
                 fontWeight: 800,
                 letterSpacing: -0.2,
                 textDecoration: 'none',
                 fontFamily: 'inherit',
-                boxShadow: '0 0 24px rgba(255,118,0,0.22)',
+                boxShadow: '0 0 24px rgba(242,100,51,0.22)',
                 transition: 'transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease',
                 '&:hover': {
                   transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 32px rgba(255,118,0,0.38)',
+                  boxShadow: '0 8px 32px rgba(242,100,51,0.38)',
                   filter: 'brightness(1.07)',
                 },
               }}
@@ -437,14 +439,14 @@ export default function Footer({ onContactClick }) {
                 gap: 0.5,
                 fontSize: 13,
                 fontWeight: 600,
-                color: 'rgba(247,249,232,0.32)',
+                color: 'rgba(238,243,205,0.32)',
                 bgcolor: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
                 p: 0,
                 transition: 'color 0.2s ease',
-                '&:hover': { color: 'rgba(247,249,232,0.68)' },
+                '&:hover': { color: 'rgba(238,243,205,0.68)' },
               }}
             >
               or Book a Demo →
@@ -457,7 +459,7 @@ export default function Footer({ onContactClick }) {
           sx={{
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 25%, rgba(255,255,255,0.07) 75%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(238,243,205,0.07) 25%, rgba(238,243,205,0.07) 75%, transparent)',
           }}
         />
 
@@ -496,7 +498,7 @@ export default function Footer({ onContactClick }) {
                 fontSize: 13,
                 lineHeight: 1.72,
                 fontWeight: 500,
-                color: 'rgba(247,249,232,0.34)',
+                color: 'rgba(238,243,205,0.34)',
                 maxWidth: 280,
               }}
             >
@@ -520,7 +522,7 @@ export default function Footer({ onContactClick }) {
                   fontWeight: 800,
                   letterSpacing: 1.6,
                   textTransform: 'uppercase',
-                  color: 'rgba(247,249,232,0.28)',
+                  color: 'rgba(238,243,205,0.28)',
                 }}
               >
                 {title}
@@ -547,7 +549,7 @@ export default function Footer({ onContactClick }) {
           sx={{
             height: '1px',
             background:
-              'linear-gradient(90deg, transparent, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 75%, transparent)',
+              'linear-gradient(90deg, transparent, rgba(238,243,205,0.05) 25%, rgba(238,243,205,0.05) 75%, transparent)',
           }}
         />
 
@@ -562,7 +564,7 @@ export default function Footer({ onContactClick }) {
             gap: { xs: 2, sm: 0 },
           }}
         >
-          <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(247,249,232,0.22)' }}>
+          <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(238,243,205,0.22)' }}>
             © 2026 Speekr. All rights reserved.
           </Typography>
 
@@ -578,10 +580,10 @@ export default function Footer({ onContactClick }) {
                 sx={{
                   fontSize: 12,
                   fontWeight: 500,
-                  color: 'rgba(247,249,232,0.22)',
+                  color: 'rgba(238,243,205,0.22)',
                   textDecoration: 'none',
                   transition: 'color 0.2s ease',
-                  '&:hover': { color: 'rgba(247,249,232,0.52)' },
+                  '&:hover': { color: 'rgba(238,243,205,0.52)' },
                 }}
               >
                 {label}
