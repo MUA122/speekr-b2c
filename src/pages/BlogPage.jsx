@@ -305,8 +305,8 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
           position: "relative",
           width: "100%",
           height: 70,
-          pl: 7.8,
-          pr: 4.8,
+          pl: locale === "ar" ? 4.8 : 7.8,
+          pr: locale === "ar" ? 7.8 : 4.8,
           border: "1px solid rgba(7,66,37,0.12)",
           borderRadius: "16px",
           bgcolor: open ? "rgba(238,243,205,0.98)" : "rgba(238,243,205,0.72)",
@@ -352,6 +352,7 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
             letterSpacing: 1.25,
             textTransform: "uppercase",
             color: "rgba(7,66,37,0.42)",
+            textAlign: locale === "ar" ? "right" : "left",
           }}
         >
           {label}
@@ -367,6 +368,7 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
             fontSize: 14,
             fontWeight: 950,
             color: "#073821",
+            textAlign: locale === "ar" ? "right" : "left",
           }}
         >
           {selected.label}
@@ -514,7 +516,11 @@ function FilterPanel({
             size={20}
             color="rgba(7,66,37,0.7)"
             aria-hidden
-            style={{ position: "absolute", left: 22 }}
+            style={{
+              position: "absolute",
+              left: locale === "ar" ? "auto" : 22,
+              right: locale === "ar" ? 22 : "auto",
+            }}
           />
           <Box
             component="input"
@@ -536,6 +542,7 @@ function FilterPanel({
               fontFamily: "inherit",
               fontSize: { xs: 14.5, md: 15.5 },
               fontWeight: 780,
+              textAlign: locale === "ar" ? "right" : "left",
               "&::placeholder": {
                 color: "rgba(7,66,37,0.42)",
                 opacity: 1,

@@ -36,6 +36,7 @@ function ProductPreview() {
 function Hero({ locale = "en", onBookDemoClick }) {
   const copy = landingCopy[locale].hero;
   const common = commonCopy[locale];
+  const isAr = locale === "ar";
   return (
     <Box
       component="section"
@@ -194,7 +195,9 @@ function Hero({ locale = "en", onBookDemoClick }) {
           <Box
             sx={{
               maxWidth: { xs: "100%", lg: 640, xl: 700 },
-              pl: { xs: 1, sm: 2, md: 3, lg: 4 },
+              pl: isAr ? 0 : { xs: 1, sm: 2, md: 3, lg: 4 },
+              pr: isAr ? { xs: 1, sm: 2, md: 3, lg: 4 } : 0,
+              textAlign: isAr ? "right" : "left",
             }}
           >
             {/* Headline */}
@@ -249,6 +252,11 @@ function Hero({ locale = "en", onBookDemoClick }) {
               sx={{
                 mt: { xs: 4, md: 5 },
                 alignItems: { xs: "stretch", sm: "center" },
+                justifyContent: isAr ? "flex-start" : "flex-start",
+                "& .MuiButton-endIcon": {
+                  ml: isAr ? 0 : 1,
+                  mr: isAr ? 1 : -0.5,
+                },
               }}
             >
               <Button
@@ -309,12 +317,18 @@ function Hero({ locale = "en", onBookDemoClick }) {
 
             {/* Social proof */}
             <Stack
-              direction="row"
+              direction={isAr ? "row-reverse" : "row"}
               spacing={2}
-              sx={{ mt: 4.5, alignItems: "center" }}
+              sx={{
+                mt: 4.5,
+                alignItems: "center",
+                justifyContent: isAr ? "flex-start" : "flex-start",
+                width: "fit-content",
+                maxWidth: "100%",
+              }}
             >
               {/* Avatar stack */}
-              <Stack direction="row" sx={{ position: "relative" }}>
+              <Stack direction={isAr ? "row-reverse" : "row"} sx={{ position: "relative" }}>
                 {AVATARS.map((a, i) => (
                   <Box
                     key={i}
@@ -325,7 +339,8 @@ function Hero({ locale = "en", onBookDemoClick }) {
                       borderRadius: "50%",
                       bgcolor: a.bg,
                       border: "2px solid #EEF3CD",
-                      ml: i > 0 ? -1.3 : 0,
+                      ml: !isAr && i > 0 ? -1.3 : 0,
+                      mr: isAr && i > 0 ? -1.3 : 0,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -340,8 +355,12 @@ function Hero({ locale = "en", onBookDemoClick }) {
                   </Box>
                 ))}
               </Stack>
-              <Box>
-                <Stack direction="row" spacing={0.3} sx={{ mb: 0.4 }}>
+              <Box sx={{ textAlign: isAr ? "right" : "left" }}>
+                <Stack
+                  direction={isAr ? "row-reverse" : "row"}
+                  spacing={0.3}
+                  sx={{ mb: 0.4, justifyContent: isAr ? "flex-end" : "flex-start" }}
+                >
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
