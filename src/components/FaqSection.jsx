@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { ChevronDown, HelpCircle, ArrowRight } from 'lucide-react'
+import { commonCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -39,6 +40,66 @@ const FAQS = [
     a: "Speekr takes privacy seriously. All session data is encrypted in transit and at rest. Enterprise customers benefit from SSO, role-based access controls, and optional data residency configurations. We never sell or share your personal data with third parties.",
   },
 ]
+
+const AR_FAQS = [
+  {
+    q: 'ما Speekr؟',
+    a: 'Speekr منصة تدريب تواصل مدعومة بالذكاء الاصطناعي تساعد المهنيين على إتقان محادثات العمل الواقعية عبر المحاكاة، والملاحظات الفورية، والتوجيه الشخصي دون الحاجة إلى مدرب بشري في كل مرة.',
+  },
+  {
+    q: 'كيف يعمل Speekr؟',
+    a: 'تختار سيناريو مثل مقابلة عمل أو عرض مبيعات أو تفاوض أو عرض تقديمي، ثم تتدرب مع شريك محادثة ذكي. بعد الجلسة يحلل Speekr الوضوح والثقة والنبرة وبنية الرسالة ويقدم ملاحظات قابلة للتطبيق.',
+  },
+  {
+    q: 'لمن صمم Speekr؟',
+    a: 'صمم Speekr لكل من تؤثر كلماته في مساره المهني أو نتائج عمله: الباحثين عن فرص، فرق المبيعات، المديرين، وفرق الموارد البشرية والتعلم والتطوير.',
+  },
+  {
+    q: 'ما أنواع السيناريوهات المتاحة؟',
+    a: 'تتضمن المنصة مقابلات العمل، مفاوضات الراتب، عروض العملاء، مكالمات البيع، عروض المستثمرين، مراجعات الأداء، محادثات القيادة، وسيناريوهات مخصصة للمؤسسات.',
+  },
+  {
+    q: 'هل توجد تجربة مجانية؟',
+    a: 'نعم، يمكنك بدء تجربة مجانية دون بطاقة ائتمان، لتجربة مجموعة منتقاة من سيناريوهات التدريب قبل اختيار الخطة المناسبة.',
+  },
+  {
+    q: 'كيف يختلف Speekr عن مشاهدة الدروس؟',
+    a: 'المشاهدة تبني الوعي، أما التدريب النشط فيبني المهارة. Speekr يضعك داخل المحادثة ويجعل الذكاء الاصطناعي يتفاعل مع ردودك كما يحدث في الواقع.',
+  },
+  {
+    q: 'هل يمكن استخدام Speekr للفريق أو المؤسسة؟',
+    a: 'نعم. تتضمن خطط الأعمال لوحات متابعة للفريق، وتحليلات للمديرين، وإدارة مقاعد، وسيناريوهات تدريب مخصصة، ودعما للتهيئة المؤسسية.',
+  },
+  {
+    q: 'كيف تتم حماية بياناتي؟',
+    a: 'نتعامل مع الخصوصية بجدية. يتم تشفير بيانات الجلسات أثناء النقل والتخزين، وتتوفر للمؤسسات خيارات مثل SSO وصلاحيات الوصول المتقدمة.',
+  },
+]
+
+const UI = {
+  en: {
+    badge: 'Common Questions',
+    title: 'Frequently',
+    accent: 'Asked',
+    title2: 'Questions',
+    subtitle: 'Everything you need to know about Speekr. Can\'t find an answer?',
+    talk: 'Talk to our team.',
+    still: 'Still have questions?',
+    bottom: 'Our team is happy to walk you through everything Speekr can do.',
+    faqs: FAQS,
+  },
+  ar: {
+    badge: 'أسئلة شائعة',
+    title: 'أسئلة',
+    accent: 'متكررة',
+    title2: '',
+    subtitle: 'كل ما تحتاج إلى معرفته عن Speekr. لم تجد الإجابة المناسبة؟',
+    talk: 'تحدث مع فريقنا.',
+    still: 'هل لديك أسئلة أخرى؟',
+    bottom: 'يسعد فريقنا أن يشرح لك كيف يمكن أن يساعدك Speekr خطوة بخطوة.',
+    faqs: AR_FAQS,
+  },
+}
 
 function FaqItem({ q, a, isOpen, onToggle }) {
   return (
@@ -167,9 +228,11 @@ function FaqItem({ q, a, isOpen, onToggle }) {
   )
 }
 
-export default function FaqSection({ onDemoClick }) {
+export default function FaqSection({ locale = 'en', onDemoClick }) {
   const [open, setOpen] = useState(null)
   const toggle = (idx) => setOpen(open === idx ? null : idx)
+  const ui = UI[locale]
+  const common = commonCopy[locale]
 
   return (
     <Box
@@ -199,6 +262,8 @@ export default function FaqSection({ onDemoClick }) {
           src="/images/brand-patterns/faq-bg.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             top: { xs: 8, md: 18 },
@@ -324,7 +389,7 @@ export default function FaqSection({ onDemoClick }) {
                   color: '#F26433',
                 }}
               >
-                Common Questions
+                {ui.badge}
               </Typography>
             </Box>
 
@@ -341,12 +406,11 @@ export default function FaqSection({ onDemoClick }) {
                 color: '#074225',
               }}
             >
-              Frequently{' '}
+              {ui.title}{' '}
               <Box component="span" sx={{ color: '#F26433' }}>
-                Asked
+                {ui.accent}
               </Box>
-              <br />
-              Questions
+              {ui.title2 && <><br />{ui.title2}</>}
             </Typography>
 
             <Typography
@@ -360,7 +424,7 @@ export default function FaqSection({ onDemoClick }) {
                 mx: 'auto',
               }}
             >
-              Everything you need to know about Speekr. Can&apos;t find an answer?{' '}
+              {ui.subtitle}{' '}
               <Box
                 component="button"
                 type="button"
@@ -381,7 +445,7 @@ export default function FaqSection({ onDemoClick }) {
                   '&:hover': { color: '#F26433' },
                 }}
               >
-                Talk to our team.
+                {ui.talk}
               </Box>
             </Typography>
           </Box>
@@ -396,7 +460,7 @@ export default function FaqSection({ onDemoClick }) {
               gap: 1.5,
             }}
           >
-            {FAQS.map((faq, i) => (
+            {ui.faqs.map((faq, i) => (
               <FaqItem
                 key={i}
                 q={faq.q}
@@ -455,7 +519,7 @@ export default function FaqSection({ onDemoClick }) {
                   mb: 0.5,
                 }}
               >
-                Still have questions?
+                {ui.still}
               </Typography>
               <Typography
                 sx={{
@@ -465,7 +529,7 @@ export default function FaqSection({ onDemoClick }) {
                   color: 'rgba(7,66,37,0.5)',
                 }}
               >
-                Our team is happy to walk you through everything Speekr can do.
+                {ui.bottom}
               </Typography>
             </Box>
 
@@ -500,7 +564,7 @@ export default function FaqSection({ onDemoClick }) {
                 },
               }}
             >
-              Book a Demo
+              {common.bookDemo}
               <ArrowRight size={14} aria-hidden />
             </Box>
           </Box>

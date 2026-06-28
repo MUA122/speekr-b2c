@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { Check, X, Star, Zap, ArrowRight } from 'lucide-react'
 import { splitPrice } from '../utils/pricing'
+import { commonCopy, pricingCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -57,7 +58,7 @@ function FeatureIcon({ type }) {
   )
 }
 
-function PricingCard({ plan, prices }) {
+function PricingCard({ plan, prices, copy, common }) {
   const { name, priceKey, period, audience, highlight, badge, href, features } = plan
   const { prefix, amount } = splitPrice(prices[priceKey])
   return (
@@ -91,6 +92,8 @@ function PricingCard({ plan, prices }) {
         src="/images/brand-patterns/pricing-card-bg.png"
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         sx={{
           position: 'absolute',
           top: -36,
@@ -135,8 +138,8 @@ function PricingCard({ plan, prices }) {
           }}
         >
           <Zap size={10} color="#074225" fill="#074225" aria-hidden />
-          <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#074225', letterSpacing: 0.4, lineHeight: 1 }}>
-            {badge}
+        <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#074225', letterSpacing: 0.4, lineHeight: 1 }}>
+            {copy.mostPopular}
           </Typography>
         </Box>
       )}
@@ -243,15 +246,29 @@ function PricingCard({ plan, prices }) {
             : { background: 'rgba(242,100,51,0.08)', transform: 'translateY(-1px)' },
         }}
       >
-        Start Free Trial
+        {common.startFreeTrial}
         <ArrowRight size={16} aria-hidden />
       </Box>
     </Box>
   )
 }
 
-export default function PricingSection({ prices }) {
+export default function PricingSection({ locale = 'en', prices }) {
   const [billing, setBilling] = useState('monthly')
+  const copy = pricingCopy[locale]
+  const common = commonCopy[locale]
+  const starterFeatures = STARTER_FEATURES.map((item, index) => ({ ...item, text: copy.starterFeatures[index] }))
+  const proFeatures = PRO_FEATURES.map((item, index) => ({ ...item, text: copy.proFeatures[index] }))
+  const plans = {
+    monthly: [
+      { id: 'starter-m', name: copy.starter, priceKey: 'starterMonthly', period: copy.perMonth, audience: copy.forIndividuals, highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: starterFeatures },
+      { id: 'pro-m', name: copy.pro, priceKey: 'proMonthly', period: copy.perMonth, audience: copy.forIndividuals, highlight: true, badge: copy.mostPopular, href: 'https://app.speekr.ai/auth/sign-up/', features: proFeatures },
+    ],
+    annual: [
+      { id: 'starter-a', name: copy.starter, priceKey: 'starterAnnual', period: copy.perYear, audience: copy.forIndividuals, highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: starterFeatures },
+      { id: 'pro-a', name: copy.pro, priceKey: 'proAnnual', period: copy.perYear, audience: copy.forIndividuals, highlight: true, badge: copy.mostPopular, href: 'https://app.speekr.ai/auth/sign-up/', features: proFeatures },
+    ],
+  }
 
   return (
     <Box
@@ -290,6 +307,8 @@ export default function PricingSection({ prices }) {
           src="/images/brand-patterns/line-pattern.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             bottom: { xs: -18, md: 8 },
@@ -369,7 +388,7 @@ export default function PricingSection({ prices }) {
               <Typography
                 sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#F26433' }}
               >
-                Simple Pricing
+                {copy.badge}
               </Typography>
             </Box>
 
@@ -386,9 +405,9 @@ export default function PricingSection({ prices }) {
                 color: '#074225',
               }}
             >
-              Simple Plans.{' '}
+              {copy.title}{' '}
               <Box component="span" sx={{ color: '#F26433' }}>
-                Serious Results.
+                {copy.accent}
               </Box>
             </Typography>
 
@@ -402,7 +421,7 @@ export default function PricingSection({ prices }) {
                 mx: 'auto',
               }}
             >
-              Speekr for professional individuals looking to practice communication, presentation, and soft-skills.
+              {copy.subtitle}
             </Typography>
           </Box>
 
@@ -441,7 +460,7 @@ export default function PricingSection({ prices }) {
                     gap: 1,
                   }}
                 >
-                  {b === 'monthly' ? 'Monthly' : 'Annually'}
+                  {b === 'monthly' ? copy.monthly : copy.annual}
                   {b === 'annual' && (
                     <Box
                       sx={{
@@ -461,7 +480,7 @@ export default function PricingSection({ prices }) {
                           lineHeight: 1,
                         }}
                       >
-                        Save 14%
+                        {copy.save14}
                       </Typography>
                     </Box>
                   )}
@@ -479,8 +498,8 @@ export default function PricingSection({ prices }) {
               alignItems: 'stretch',
             }}
           >
-            {PLANS[billing].map((plan) => (
-              <PricingCard key={plan.id} plan={plan} prices={prices} />
+            {plans[billing].map((plan) => (
+              <PricingCard key={plan.id} plan={plan} prices={prices} copy={copy} common={common} />
             ))}
           </Box>
 

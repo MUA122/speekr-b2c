@@ -11,7 +11,9 @@ import {
   Quote,
   Sparkles,
 } from "lucide-react";
-import { blogPosts, getBlogPostBySlug } from "../data/blogPosts";
+import { getBlogPostBySlug, getBlogPosts } from "../data/blogPosts";
+import { localizedPath } from "../utils/i18n";
+import { applySeo, organizationSchema, setJsonLd } from "../utils/seo";
 
 const slugify = (value) =>
   value
@@ -19,34 +21,45 @@ const slugify = (value) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-function setMeta(name, content) {
-  let tag = document.querySelector(`meta[name="${name}"]`);
-  if (!tag) {
-    tag = document.createElement("meta");
-    tag.setAttribute("name", name);
-    document.head.appendChild(tag);
-  }
-  tag.setAttribute("content", content);
-}
+const UI = {
+  en: {
+    notFound: "Article not found.",
+    notFoundText: "The article may have moved, or the link may be incomplete.",
+    back: "Back to Blog",
+    inGuide: "In this guide",
+    practice: "Practice with Speekr",
+    start: "Start Free Trial",
+    takeaways: "Key takeaways",
+    keepReading: "Keep Reading",
+  },
+  ar: {
+    notFound: "المقال غير موجود.",
+    notFoundText: "ربما تم نقل المقال أو أن الرابط غير مكتمل.",
+    back: "العودة إلى المدونة",
+    inGuide: "في هذا الدليل",
+    practice: "تدرّب مع Speekr",
+    start: "ابدأ التجربة المجانية",
+    takeaways: "أهم الخلاصات",
+    keepReading: "تابع القراءة",
+  },
+};
 
-function ArticleSeo({ post }) {
+function ArticleSeo({ post, locale }) {
   useEffect(() => {
     if (!post) return undefined;
 
-    document.title = post.metaTitle;
-    setMeta("description", post.metaDescription);
-    setMeta("keywords", post.tags.join(", "));
+    applySeo({
+      title: post.metaTitle,
+      description: post.metaDescription,
+      keywords: post.tags.join(", "),
+      path: `/blog/${post.slug}`,
+      locale,
+      type: "article",
+      image: post.image,
+    });
 
-    const canonical =
-      document.querySelector('link[rel="canonical"]') ||
-      document.head.appendChild(document.createElement("link"));
-    canonical.setAttribute("rel", "canonical");
-    canonical.setAttribute("href", `${window.location.origin}/blog/${post.slug}`);
-
-    const jsonLd = document.createElement("script");
-    jsonLd.type = "application/ld+json";
-    jsonLd.dataset.seo = "blog-post";
-    jsonLd.textContent = JSON.stringify({
+    const postUrl = `${window.location.origin}${localizedPath(`/blog/${post.slug}`, locale)}`;
+    const removePost = setJsonLd("blog-post", {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: post.title,
@@ -54,37 +67,56 @@ function ArticleSeo({ post }) {
       image: `${window.location.origin}${post.image}`,
       datePublished: post.isoDate,
       dateModified: post.isoDate,
+      inLanguage: locale === "ar" ? "ar" : "en",
       author: {
         "@type": "Organization",
         name: post.author,
         url: window.location.origin,
       },
-      publisher: {
-        "@type": "Organization",
-        name: "Speekr",
-        logo: {
-          "@type": "ImageObject",
-          url: `${window.location.origin}/images/logo.svg`,
-        },
-      },
+      publisher: organizationSchema(),
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": `${window.location.origin}/blog/${post.slug}`,
+        "@id": postUrl,
       },
       articleSection: post.category,
       keywords: post.tags.join(", "),
     });
-    document.head.appendChild(jsonLd);
+
+    const removeBreadcrumb = setJsonLd("article-breadcrumb", {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: locale === "ar" ? "الرئيسية" : "Home",
+          item: `${window.location.origin}${localizedPath("/", locale)}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: locale === "ar" ? "المدونة" : "Blog",
+          item: `${window.location.origin}${localizedPath("/blog", locale)}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: post.title,
+          item: postUrl,
+        },
+      ],
+    });
 
     return () => {
-      document.querySelector('script[data-seo="blog-post"]')?.remove();
+      removePost();
+      removeBreadcrumb();
     };
-  }, [post]);
+  }, [locale, post]);
 
   return null;
 }
 
-function ArticleNotFound() {
+function ArticleNotFound({ locale, ui }) {
   return (
     <Box
       sx={{
@@ -107,14 +139,14 @@ function ArticleNotFound() {
             color: "#074225",
           }}
         >
-          Article not found.
+          {ui.notFound}
         </Typography>
         <Typography sx={{ mt: 2, color: "rgba(7,66,37,0.62)", lineHeight: 1.7 }}>
-          The article may have moved, or the link may be incomplete.
+          {ui.notFoundText}
         </Typography>
         <Box
           component="a"
-          href="/blog"
+          href={localizedPath("/blog", locale)}
           sx={{
             mt: 4,
             display: "inline-flex",
@@ -129,7 +161,7 @@ function ArticleNotFound() {
             textDecoration: "none",
           }}
         >
-          Back to Blog
+          {ui.back}
           <ArrowRight size={16} aria-hidden />
         </Box>
       </Box>
@@ -295,11 +327,11 @@ function SectionBlock({ section, index }) {
   );
 }
 
-function RelatedCard({ post }) {
+function RelatedCard({ post, locale }) {
   return (
     <Box
       component="a"
-      href={`/blog/${post.slug}`}
+      href={localizedPath(`/blog/${post.slug}`, locale)}
       className="premium-card"
       sx={{
         display: "grid",
@@ -318,6 +350,8 @@ function RelatedCard({ post }) {
         component="img"
         src={post.image}
         alt={post.imageAlt}
+        loading="lazy"
+        decoding="async"
         sx={{
           width: "100%",
           aspectRatio: "4 / 3",
@@ -337,17 +371,19 @@ function RelatedCard({ post }) {
   );
 }
 
-export default function BlogPostPage({ slug }) {
-  const post = getBlogPostBySlug(slug);
+export default function BlogPostPage({ slug, locale = "en" }) {
+  const ui = UI[locale];
+  const posts = getBlogPosts(locale);
+  const post = getBlogPostBySlug(slug, locale);
 
-  if (!post) return <ArticleNotFound />;
+  if (!post) return <ArticleNotFound locale={locale} ui={ui} />;
 
   const headings = post.sections.filter((section) => section.heading);
-  const related = blogPosts.filter((item) => item.slug !== slug).slice(0, 3);
+  const related = posts.filter((item) => item.slug !== slug).slice(0, 3);
 
   return (
     <>
-      <ArticleSeo post={post} />
+      <ArticleSeo post={post} locale={locale} />
       <Box
         component="article"
         sx={{
@@ -364,6 +400,8 @@ export default function BlogPostPage({ slug }) {
           src="/images/brand-patterns/line-pattern-wide.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: "absolute",
             top: 120,
@@ -378,7 +416,7 @@ export default function BlogPostPage({ slug }) {
         <Box sx={{ position: "relative", maxWidth: 1210, mx: "auto", px: { xs: 2.5, md: 5 } }}>
           <Box
             component="a"
-            href="/blog"
+            href={localizedPath("/blog", locale)}
             sx={{
               display: "inline-flex",
               alignItems: "center",
@@ -393,7 +431,7 @@ export default function BlogPostPage({ slug }) {
             }}
           >
             <ArrowLeft size={16} aria-hidden />
-            Back to Blog
+            {ui.back}
           </Box>
 
           <Box
@@ -454,6 +492,8 @@ export default function BlogPostPage({ slug }) {
                 component="img"
                 src={post.image}
                 alt={post.imageAlt}
+                decoding="async"
+                fetchPriority="high"
                 sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </Box>
@@ -480,7 +520,7 @@ export default function BlogPostPage({ slug }) {
                 <Box sx={{ display: "flex", alignItems: "center", gap: 0.85, mb: 1.4 }}>
                   <FileText size={15} color="#F26433" aria-hidden />
                   <Typography sx={{ fontSize: 11, fontWeight: 950, letterSpacing: 1.35, textTransform: "uppercase", color: "#F26433" }}>
-                    In this guide
+                    {ui.inGuide}
                   </Typography>
                 </Box>
                 <Box component="nav" aria-label="Article sections" sx={{ display: "grid", gap: 0.85 }}>
@@ -570,7 +610,7 @@ export default function BlogPostPage({ slug }) {
                 }}
               >
                 <Typography sx={{ fontSize: 12, fontWeight: 950, color: "#F26433", mb: 1 }}>
-                  Practice with Speekr
+                  {ui.practice}
                 </Typography>
                 <Typography sx={{ fontSize: 20, fontWeight: 950, lineHeight: 1.12 }}>
                   {post.ctaTitle}
@@ -591,7 +631,7 @@ export default function BlogPostPage({ slug }) {
                     textDecoration: "none",
                   }}
                 >
-                  Start Free Trial
+                  {ui.start}
                   <ArrowRight size={15} aria-hidden />
                 </Box>
               </Box>
@@ -604,7 +644,7 @@ export default function BlogPostPage({ slug }) {
                 }}
               >
                 <Typography sx={{ fontSize: 11, fontWeight: 950, letterSpacing: 1.35, textTransform: "uppercase", color: "#F26433", mb: 1.4 }}>
-                  Key takeaways
+                  {ui.takeaways}
                 </Typography>
                 <Box sx={{ display: "grid", gap: 1.15 }}>
                   {post.highlights.map((highlight) => (
@@ -639,7 +679,7 @@ export default function BlogPostPage({ slug }) {
                   color: "#074225",
                 }}
               >
-                Keep Reading
+                {ui.keepReading}
               </Typography>
               <Box
                 sx={{
@@ -649,7 +689,7 @@ export default function BlogPostPage({ slug }) {
                 }}
               >
                 {related.map((item) => (
-                  <RelatedCard key={item.slug} post={item} />
+                  <RelatedCard key={item.slug} post={item} locale={locale} />
                 ))}
               </Box>
             </Box>

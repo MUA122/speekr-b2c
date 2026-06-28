@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { ArrowRight, Play } from 'lucide-react'
+import { commonCopy, landingCopy } from '../utils/i18n'
 
 const STATS = [
   { value: '10K+', label: 'Active Users' },
@@ -10,7 +11,9 @@ const STATS = [
   { value: '50+', label: 'AI Scenarios' },
 ]
 
-export default function VideoShowcase() {
+export default function VideoShowcase({ locale = 'en' }) {
+  const copy = landingCopy[locale].video
+  const common = commonCopy[locale]
   useEffect(() => {
     const existing = document.querySelector('script[data-vimeo]')
     if (existing) return
@@ -57,6 +60,8 @@ export default function VideoShowcase() {
           src="/images/brand-patterns/line-pattern-wide.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             top: { xs: 20, md: 34 },
@@ -188,7 +193,7 @@ export default function VideoShowcase() {
                   color: '#F26433',
                 }}
               >
-                See How It Works
+                {copy.badge}
               </Typography>
             </Stack>
           </Stack>
@@ -208,7 +213,7 @@ export default function VideoShowcase() {
                 color: '#EEF3CD',
               }}
             >
-              From Practice to Performance
+              {copy.title}
             </Typography>
             <Typography
               component="p"
@@ -222,7 +227,7 @@ export default function VideoShowcase() {
                 color: '#F26433',
               }}
             >
-              AI Practice Partner
+              {copy.accent}
             </Typography>
           </Box>
 
@@ -269,6 +274,7 @@ export default function VideoShowcase() {
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 title="How Does Speekr Work?"
+                loading="lazy"
                 sx={{
                   position: 'absolute',
                   top: 0,
@@ -287,7 +293,7 @@ export default function VideoShowcase() {
             spacing={{ xs: 1.5, md: 2.5 }}
             sx={{ justifyContent: 'center', flexWrap: 'wrap', gap: { xs: 1.5, md: 0 }, mb: { xs: 5, md: 7 } }}
           >
-            {STATS.map(({ value, label }) => (
+            {copy.stats.map(([value, label]) => (
               <Box
                 key={label}
                 sx={{
@@ -356,7 +362,7 @@ export default function VideoShowcase() {
                 },
               }}
             >
-              Start Free Trial
+              {common.startFreeTrial}
               <ArrowRight size={17} aria-hidden />
             </Box>
           </Box>

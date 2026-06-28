@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { Sparkles, ChevronRight } from "lucide-react";
+import { landingCopy } from "../utils/i18n";
 
 const IMG = (id) =>
   `https://cdn.builder.io/api/v1/image/assets%2F7a4e07e52a2c4a8bb3890e0c17931328%2F${id}`;
@@ -137,7 +138,7 @@ function CoachTag({ children }) {
   );
 }
 
-function ExpandedContent({ scenario }) {
+function ExpandedContent({ scenario, copy }) {
   return (
     <Stack spacing={2.5}>
       {/* Cover thumbnail */}
@@ -161,6 +162,8 @@ function ExpandedContent({ scenario }) {
           component="img"
           src={scenario.cover}
           alt={scenario.title}
+          loading="lazy"
+          decoding="async"
           sx={{
             width: "100%",
             height: "100%",
@@ -233,7 +236,7 @@ function ExpandedContent({ scenario }) {
             fontWeight: 500,
           }}
         >
-          Practice with
+          {copy.practiceWith}
         </Typography>
         <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
           <Box
@@ -250,6 +253,8 @@ function ExpandedContent({ scenario }) {
               component="img"
               src={scenario.coach.avatar}
               alt={scenario.coach.name}
+              loading="lazy"
+              decoding="async"
               sx={{
                 width: "100%",
                 height: "100%",
@@ -292,9 +297,9 @@ function ExpandedContent({ scenario }) {
               lineHeight: 1.3,
             }}
           >
-            Goal
+            {copy.goal}
             <br />
-            Achieved
+            {copy.achieved}
           </Typography>
         </Stack>
         <Box
@@ -321,7 +326,7 @@ function ExpandedContent({ scenario }) {
             },
           }}
         >
-          Practice Now
+          {copy.practiceNow}
           <ChevronRight size={13} aria-hidden />
         </Box>
       </Stack>
@@ -329,7 +334,7 @@ function ExpandedContent({ scenario }) {
   );
 }
 
-function TabCard({ scenario, isActive, onClick }) {
+function TabCard({ scenario, isActive, onClick, copy }) {
   return (
     <Box
       onClick={onClick}
@@ -380,7 +385,7 @@ function TabCard({ scenario, isActive, onClick }) {
       }}
     >
       {isActive ? (
-        <ExpandedContent scenario={scenario} />
+        <ExpandedContent scenario={scenario} copy={copy} />
       ) : (
         <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
           <Box
@@ -397,6 +402,8 @@ function TabCard({ scenario, isActive, onClick }) {
               component="img"
               src={scenario.coach.avatar}
               alt={scenario.coach.name}
+              loading="lazy"
+              decoding="async"
               sx={{
                 width: "100%",
                 height: "100%",
@@ -423,9 +430,15 @@ function TabCard({ scenario, isActive, onClick }) {
   );
 }
 
-function ScenariosShowcase() {
+function ScenariosShowcase({ locale = "en" }) {
   const [active, setActive] = useState(0);
   const videoRef = useRef(null);
+  const copy = landingCopy[locale].scenarios;
+  const scenarios = SCENARIOS.map((scenario, index) => ({
+    ...scenario,
+    ...copy.items[index],
+    coach: { ...scenario.coach, ...copy.items[index].coach },
+  }));
 
   useEffect(() => {
     const v = videoRef.current;
@@ -452,6 +465,8 @@ function ScenariosShowcase() {
         src="/images/brand-patterns/line-pattern-wide.png"
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         sx={{
           position: "absolute",
           top: { xs: 22, md: 40 },
@@ -540,7 +555,7 @@ function ScenariosShowcase() {
                 color: "rgba(242,100,51,0.88)",
               }}
             >
-              AI Roleplay · 3 Scenarios
+              {copy.badge}
             </Typography>
           </Box>
 
@@ -558,7 +573,7 @@ function ScenariosShowcase() {
               mb: 2.5,
             }}
           >
-            Real scenarios.{" "}
+            {copy.title}{" "}
             <Box
               component="span"
               sx={{
@@ -568,7 +583,7 @@ function ScenariosShowcase() {
                 backgroundClip: "text",
               }}
             >
-              Real feedback.
+              {copy.accent}
             </Box>
           </Typography>
 
@@ -580,8 +595,7 @@ function ScenariosShowcase() {
               fontWeight: 400,
             }}
           >
-            Pick a scenario, practice with your AI coach, and get instant
-            actionable feedback on every session.
+            {copy.subtitle}
           </Typography>
         </Box>
 
@@ -646,7 +660,7 @@ function ScenariosShowcase() {
                   color: "#F26433",
                 }}
               >
-                PLAYING
+                {copy.playing}
               </Typography>
             </Box>
 
@@ -708,18 +722,19 @@ function ScenariosShowcase() {
                 objectFit: "cover",
               }}
             >
-              <source src={SCENARIOS[active].video} type="video/mp4" />
+              <source src={scenarios[active].video} type="video/mp4" />
             </Box>
           </Box>
 
           {/* Tab list */}
           <Stack spacing={1.5}>
-            {SCENARIOS.map((s, i) => (
+            {scenarios.map((s, i) => (
               <TabCard
                 key={s.id}
                 scenario={s}
                 isActive={active === i}
                 onClick={() => setActive(i)}
+                copy={copy}
               />
             ))}
           </Stack>
@@ -727,7 +742,7 @@ function ScenariosShowcase() {
 
         {/* ── Mobile layout ── */}
         <Stack spacing={4} sx={{ display: { xs: "flex", md: "none" } }}>
-          {SCENARIOS.map((s) => (
+          {scenarios.map((s) => (
             <Stack key={s.id} spacing={1.5}>
               {/* Full scenario card */}
               <Box
@@ -739,7 +754,7 @@ function ScenariosShowcase() {
                   backdropFilter: "blur(24px)",
                 }}
               >
-                <ExpandedContent scenario={s} />
+                <ExpandedContent scenario={s} copy={copy} />
               </Box>
 
               {/* Video */}

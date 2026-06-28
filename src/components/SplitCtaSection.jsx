@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Check, ArrowRight, Sparkles } from "lucide-react";
+import { commonCopy } from "../utils/i18n";
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
@@ -315,7 +316,62 @@ function CtaCard({
   );
 }
 
-export default function SplitCtaSection({ onDemoClick }) {
+const UI = {
+  en: {
+    badge: "Powered by AI",
+    titleAccent: "Communication Skills",
+    title: "That Open Doors",
+    subtitle: "The simplest way professionals and organizations can improve soft skills with AI-driven communication training.",
+    individual: {
+      badge: "For Individuals",
+      title: "Speekr for Individuals",
+      tagline: "Master important scenarios before they happen.",
+      quote: "Ready to own the room?",
+      features: INDIVIDUAL_FEATURES,
+    },
+    business: {
+      badge: "For Business",
+      title: "Speekr for Business",
+      tagline: "Communication translates directly into revenue.",
+      quote: "Ready to win every conversation?",
+      features: BUSINESS_FEATURES,
+    },
+  },
+  ar: {
+    badge: "مدعوم بالذكاء الاصطناعي",
+    titleAccent: "مهارات تواصل",
+    title: "تفتح أبواب الفرص",
+    subtitle: "أبسط طريقة لتمكين الأفراد والمنظمات من تطوير المهارات الناعمة عبر تدريب تواصلي مدعوم بالذكاء الاصطناعي.",
+    individual: {
+      badge: "للأفراد",
+      title: "Speekr للأفراد",
+      tagline: "أتقن المواقف المهمة قبل حدوثها.",
+      quote: "هل أنت مستعد لامتلاك حضورك؟",
+      features: [
+        "محاكاة ذكية لأكثر من 100 سيناريو واقعي",
+        "توجيه فوري حول النبرة والوضوح والثقة",
+        "أوضاع تدريب للمقابلات والعروض والمحادثات",
+        "تحليلات نمو المهارات بعد كل جلسة",
+      ],
+    },
+    business: {
+      badge: "للأعمال",
+      title: "Speekr للأعمال",
+      tagline: "التواصل الجيد ينعكس مباشرة على النتائج والإيرادات.",
+      quote: "هل فريقك مستعد للفوز بكل محادثة؟",
+      features: [
+        "لوحات تدريب للفرق وإطلالات للمديرين",
+        "سيناريوهات ذكية مخصصة لمجال عملك",
+        "إدارة جماعية للمقاعد وتقارير استخدام",
+        "دعم مؤسسي وتسجيل دخول موحد وتهيئة مخصصة",
+      ],
+    },
+  },
+};
+
+export default function SplitCtaSection({ locale = "en", onDemoClick }) {
+  const ui = UI[locale];
+  const common = commonCopy[locale];
   return (
     <Box
       sx={{
@@ -460,7 +516,7 @@ export default function SplitCtaSection({ onDemoClick }) {
                   color: "#F26433",
                 }}
               >
-                Powered by AI
+                {ui.badge}
               </Typography>
             </Box>
 
@@ -478,10 +534,10 @@ export default function SplitCtaSection({ onDemoClick }) {
               }}
             >
               <Box component="span" sx={{ color: "#F26433" }}>
-                Communication Skills
+                {ui.titleAccent}
               </Box>
               <br />
-              That Open Doors
+              {ui.title}
             </Typography>
 
             <Typography
@@ -495,8 +551,7 @@ export default function SplitCtaSection({ onDemoClick }) {
                 mx: "auto",
               }}
             >
-              The simplest way professionals and organizations can improve soft
-              skills with AI-driven communication training.
+              {ui.subtitle}
             </Typography>
           </Box>
 
@@ -510,23 +565,23 @@ export default function SplitCtaSection({ onDemoClick }) {
           >
             <CtaCard
               isLime
-              badge="For Individuals"
-              title="Speekr for Individuals"
-              tagline="Master important scenarios before they happen."
-              quote="Ready to own the room?"
-              features={INDIVIDUAL_FEATURES}
-              primaryLabel="Start Free Trial"
+              badge={ui.individual.badge}
+              title={ui.individual.title}
+              tagline={ui.individual.tagline}
+              quote={ui.individual.quote}
+              features={ui.individual.features}
+              primaryLabel={common.startFreeTrial}
               primaryHref="https://app.speekr.ai/auth/sign-up/"
             />
             <CtaCard
-              badge="For Business"
-              title="Speekr for Business"
-              tagline="Communication translates directly into revenue."
-              quote="Ready to win every conversation?"
-              features={BUSINESS_FEATURES}
-              primaryLabel="Start Free Trial"
+              badge={ui.business.badge}
+              title={ui.business.title}
+              tagline={ui.business.tagline}
+              quote={ui.business.quote}
+              features={ui.business.features}
+              primaryLabel={common.startFreeTrial}
               primaryHref="https://app.speekr.ai/auth/sign-up/"
-              secondaryLabel="Book a Demo"
+              secondaryLabel={common.bookDemo}
               onSecondaryClick={onDemoClick}
             />
           </Box>

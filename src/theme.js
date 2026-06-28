@@ -14,8 +14,8 @@ const brand = {
   muted: '#4f6659',
   border: 'rgba(7, 66, 37, 0.14)',
   paper: '#EEF3CD',
-  fontHeadline: '"Belwe Bold", "Belwe", "Cooper Black", Georgia, serif',
-  fontBody: '"Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
+  fontHeadline: 'var(--font-headline, "Belwe Bold", "Belwe", "Cooper Black", Georgia, serif)',
+  fontBody: 'var(--font-body, "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif)',
 }
 
 const theme = createTheme({

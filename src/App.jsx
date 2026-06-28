@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -14,17 +14,37 @@ import SplitCtaSection from "./components/SplitCtaSection";
 import FaqSection from "./components/FaqSection";
 import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
-import BlogPage from "./pages/BlogPage";
-import BlogPostPage from "./pages/BlogPostPage";
 import { useLocalizedPrices } from "./utils/pricing";
+import { splitLocalePath } from "./utils/i18n";
+import { applySeo, organizationSchema, setJsonLd, websiteSchema } from "./utils/seo";
+
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
+
+const HOME_SEO = {
+  en: {
+    title: "Speekr.ai | AI Communication Coach for Business Conversations",
+    description:
+      "Practice business conversations with Speekr's AI communication coach. Improve presentations, interviews, sales calls, leadership conversations, and workplace confidence.",
+    keywords:
+      "AI communication coach, business communication training, presentation practice, sales roleplay, interview practice, Speekr",
+  },
+  ar: {
+    title: "Speekr.ai | مدرب تواصل ذكي لمحادثات الأعمال",
+    description:
+      "تدرّب على محادثات العمل مع مدرب التواصل الذكي من Speekr وطور العروض والمقابلات ومكالمات البيع ومحادثات القيادة بثقة.",
+    keywords:
+      "مدرب تواصل ذكي, تدريب مهارات التواصل, تدريب العروض, محاكاة مبيعات, تدريب مقابلات, Speekr",
+  },
+};
 
 function getRoute() {
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
-  if (path === "/blog") return { name: "blog" };
+  const { locale, path } = splitLocalePath(window.location.pathname);
+  if (path === "/blog") return { name: "blog", locale };
   if (path.startsWith("/blog/")) {
-    return { name: "blogPost", slug: decodeURIComponent(path.replace("/blog/", "")) };
+    return { name: "blogPost", slug: decodeURIComponent(path.replace("/blog/", "")), locale };
   }
-  return { name: "home" };
+  return { name: "home", locale };
 }
 
 function GreenSectionDivider() {
@@ -100,6 +120,8 @@ function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [route, setRoute] = useState(getRoute);
   const prices = useLocalizedPrices();
+  const locale = route.locale || "en";
+  const isBlogRoute = route.name === "blog" || route.name === "blogPost";
 
   const openContactModal = () => setIsContactOpen(true);
   const closeContactModal = () => setIsContactOpen(false);
@@ -110,19 +132,64 @@ function App() {
     return () => window.removeEventListener("popstate", handleNavigation);
   }, []);
 
-  const isBlogRoute = route.name === "blog" || route.name === "blogPost";
+  useEffect(() => {
+    document.documentElement.lang = locale === "ar" ? "ar" : "en";
+    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+  }, [locale]);
+
+  useEffect(() => {
+    if (isBlogRoute) return undefined;
+    const seo = HOME_SEO[locale];
+    applySeo({
+      ...seo,
+      path: "/",
+      locale,
+      image: "/images/hero.png",
+      type: "website",
+    });
+    const removeOrg = setJsonLd("organization", organizationSchema());
+    const removeWebsite = setJsonLd("website", websiteSchema(locale));
+    const removeApp = setJsonLd("software-application", {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Speekr",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: window.location.origin,
+      inLanguage: locale === "ar" ? ["ar", "en"] : ["en", "ar"],
+      offers: {
+        "@type": "Offer",
+        category: "Subscription",
+        availability: "https://schema.org/InStock",
+      },
+      publisher: organizationSchema(),
+    });
+    return () => {
+      removeOrg();
+      removeWebsite();
+      removeApp();
+    };
+  }, [isBlogRoute, locale]);
 
   return (
     <Box
       component="main"
       sx={{ minHeight: "100svh", bgcolor: "background.default" }}
     >
-      <Header onContactClick={openContactModal} />
-      {route.name === "blog" && <BlogPage />}
-      {route.name === "blogPost" && <BlogPostPage slug={route.slug} />}
+      <Header locale={locale} onContactClick={openContactModal} />
+      {route.name === "blog" && (
+        <Suspense fallback={null}>
+          <BlogPage locale={locale} />
+        </Suspense>
+      )}
+      {route.name === "blogPost" && (
+        <Suspense fallback={null}>
+          <BlogPostPage slug={route.slug} locale={locale} />
+        </Suspense>
+      )}
       {!isBlogRoute && (
         <>
-          <Hero onBookDemoClick={openContactModal} />
+          <Hero locale={locale} onBookDemoClick={openContactModal} />
           <Box
             aria-hidden
             sx={{
@@ -173,21 +240,21 @@ function App() {
             </Box>
           </Box>
           {/* <LogosMarquee /> */}
-          <ScenariosShowcase />
-          <ProgramsCarousel />
-          <VideoShowcase />
-          <ConversationsCovered />
-          <TestimonialsCarousel />
-          <PricingSection prices={prices} />
-          <TeamsPricingSection prices={prices} onDemoClick={openContactModal} />
+          <ScenariosShowcase locale={locale} />
+          <ProgramsCarousel locale={locale} />
+          <VideoShowcase locale={locale} />
+          <ConversationsCovered locale={locale} />
+          <TestimonialsCarousel locale={locale} />
+          <PricingSection locale={locale} prices={prices} />
+          <TeamsPricingSection locale={locale} prices={prices} onDemoClick={openContactModal} />
           <GreenSectionDivider />
-          <CaseStudiesCarousel />
-          <SplitCtaSection onDemoClick={openContactModal} />
-          <FaqSection onDemoClick={openContactModal} />
+          <CaseStudiesCarousel locale={locale} />
+          <SplitCtaSection locale={locale} onDemoClick={openContactModal} />
+          <FaqSection locale={locale} onDemoClick={openContactModal} />
         </>
       )}
-      <Footer onContactClick={openContactModal} />
-      <ContactModal open={isContactOpen} onClose={closeContactModal} />
+      <Footer locale={locale} onContactClick={openContactModal} />
+      <ContactModal locale={locale} open={isContactOpen} onClose={closeContactModal} />
     </Box>
   );
 }

@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { TrendingUp, Briefcase, Users, Headphones, MessageSquare } from 'lucide-react'
+import { landingCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -127,6 +128,8 @@ function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, 
         src={pattern}
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         sx={{
           position: 'absolute',
           top: { xs: 16, md: featured ? 24 : 18 },
@@ -346,6 +349,8 @@ function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, 
                 component="img"
                 src={pattern}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 sx={{
                   width: '100%',
                   aspectRatio: '1 / 1',
@@ -383,7 +388,14 @@ function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, 
   )
 }
 
-export default function ConversationsCovered() {
+export default function ConversationsCovered({ locale = 'en' }) {
+  const copy = landingCopy[locale].conversations
+  const scenarios = SCENARIOS.map((item, index) => ({
+    ...item,
+    cat: copy.scenarios[index][0],
+    title: copy.scenarios[index][1],
+    sub: copy.scenarios[index][2],
+  }))
   return (
     <Box
       sx={{
@@ -423,6 +435,8 @@ export default function ConversationsCovered() {
           src="/images/brand-patterns/line-pattern.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             top: { xs: 20, md: 36 },
@@ -437,6 +451,8 @@ export default function ConversationsCovered() {
           src="/images/brand-patterns/frame.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             left: { xs: '-28%', md: '-4%' },
@@ -452,6 +468,8 @@ export default function ConversationsCovered() {
           src="/images/brand-patterns/block.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             right: { xs: '-18%', lg: '5%' },
@@ -560,7 +578,7 @@ export default function ConversationsCovered() {
                 lineHeight: 1,
               }}
             >
-              50+ Real-World Scenarios
+              {copy.badge}
               </Typography>
             </Box>
 
@@ -577,9 +595,9 @@ export default function ConversationsCovered() {
                 color: '#074225',
               }}
             >
-              Every Important Conversation{' '}
+              {copy.title}{' '}
               <Box component="span" sx={{ color: '#F26433' }}>
-                Covered
+                {copy.accent}
               </Box>
             </Typography>
           </Box>
@@ -595,17 +613,17 @@ export default function ConversationsCovered() {
           >
             {/* Row 1: Sales (wide) | Leadership */}
             <Box sx={{ gridColumn: { xs: '1', md: '1 / 3' } }}>
-              <ScenarioCard featured {...SCENARIOS[0]} />
+              <ScenarioCard featured {...scenarios[0]} />
             </Box>
             <Box>
-              <ScenarioCard {...SCENARIOS[2]} />
+              <ScenarioCard {...scenarios[2]} />
             </Box>
             {/* Row 2: Career Dev | Customer Care (wide) */}
             <Box>
-              <ScenarioCard {...SCENARIOS[1]} />
+              <ScenarioCard {...scenarios[1]} />
             </Box>
             <Box sx={{ gridColumn: { xs: '1', md: '2 / 4' } }}>
-              <ScenarioCard featured {...SCENARIOS[3]} />
+              <ScenarioCard featured {...scenarios[3]} />
             </Box>
           </Box>
 
@@ -692,7 +710,7 @@ export default function ConversationsCovered() {
                   color: '#074225',
                 }}
               >
-                A Training Platform
+                {copy.platformTitle}
               </Typography>
               <Typography
                 component="p"
@@ -706,7 +724,7 @@ export default function ConversationsCovered() {
                   color: '#F26433',
                 }}
               >
-                Optimized For Arabic
+                {copy.platformAccent}
               </Typography>
             </Box>
 
@@ -724,7 +742,9 @@ export default function ConversationsCovered() {
                 boxShadow: 'inset 0 1px 0 rgba(238,243,205,0.42)',
               }}
             >
-              {STATS.map(({ value, label, accent, rgb }, i) => (
+              {STATS.map(({ accent, rgb }, i) => {
+                const [value, label] = copy.stats[i]
+                return (
                 <Box
                   key={label}
                   sx={{
@@ -783,7 +803,7 @@ export default function ConversationsCovered() {
                     {label}
                   </Typography>
                 </Box>
-              ))}
+              )})}
             </Box>
           </Box>
         </Box>

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { ChevronLeft, ChevronRight, Volume2, VolumeX, Quote, Play, X, Maximize2 } from 'lucide-react'
+import { landingCopy } from '../utils/i18n'
 
 const N = 3
 
@@ -30,7 +31,7 @@ const SLIDES = [
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
 /* ─── Lightbox ─────────────────────────────────────────── */
-function Lightbox({ slide, onClose }) {
+function Lightbox({ slide, onClose, copy }) {
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
@@ -88,6 +89,7 @@ function Lightbox({ slide, onClose }) {
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             title={`${slide.name} - Speekr testimonial`}
+            loading="lazy"
             sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'block' }}
           />
         </Box>
@@ -110,7 +112,7 @@ function Lightbox({ slide, onClose }) {
             </Typography>
           </Stack>
           <Typography sx={{ fontSize: 11, color: 'rgba(238,243,205,0.32)', letterSpacing: 1, textTransform: 'uppercase' }}>
-            Press ESC to close
+            {copy.closeHint}
           </Typography>
         </Box>
 
@@ -138,7 +140,7 @@ function Lightbox({ slide, onClose }) {
 }
 
 /* ─── VideoCard ────────────────────────────────────────── */
-function VideoCard({ slide, isActive, onOpenLightbox }) {
+function VideoCard({ slide, isActive, onOpenLightbox, copy }) {
   const iframeRef = useRef(null)
   const playerRef = useRef(null)
   const [muted, setMuted] = useState(true)
@@ -199,6 +201,7 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           title={`${slide.name} - Speekr testimonial`}
+          loading="lazy"
           sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'block', zIndex: 1 }}
         />
 
@@ -253,7 +256,7 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
               transform: hovered ? 'translateY(0)' : 'translateY(6px)',
               transition: 'opacity 0.22s ease 0.04s, transform 0.22s ease 0.04s',
             }}>
-              Watch Story
+              {copy.watch}
             </Typography>
 
             {/* "Click to expand" chip */}
@@ -266,7 +269,7 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
               transition: 'opacity 0.22s ease 0.08s, transform 0.22s ease 0.08s',
             }}>
               <Typography sx={{ fontSize: 10.5, color: 'rgba(238,243,205,0.72)', letterSpacing: 0.6, display: 'flex', alignItems: 'center', gap: 0.6 }}>
-                <Maximize2 size={10} aria-hidden /> Click to expand
+                <Maximize2 size={10} aria-hidden /> {copy.expand}
               </Typography>
             </Box>
           </Box>
@@ -321,9 +324,10 @@ function VideoCard({ slide, isActive, onOpenLightbox }) {
 }
 
 /* ─── Main section ─────────────────────────────────────── */
-export default function TestimonialsCarousel() {
+export default function TestimonialsCarousel({ locale = 'en' }) {
   const [active, setActive] = useState(0)
   const [lightboxSlide, setLightboxSlide] = useState(null)
+  const copy = landingCopy[locale].testimonials
 
   const prev = () => setActive(a => (a - 1 + N) % N)
   const next = () => setActive(a => (a + 1) % N)
@@ -354,6 +358,8 @@ export default function TestimonialsCarousel() {
             src="/images/brand-patterns/line-pattern-wide.png"
             alt=""
             aria-hidden
+            loading="lazy"
+            decoding="async"
             sx={{
               position: 'absolute',
               top: { xs: 24, md: 40 },
@@ -394,7 +400,7 @@ export default function TestimonialsCarousel() {
               }}>
                 <Quote size={12} color="#F26433" aria-hidden />
                 <Typography sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#F26433' }}>
-                  Success Stories
+                  {copy.badge}
                 </Typography>
               </Box>
               <Typography
@@ -410,8 +416,8 @@ export default function TestimonialsCarousel() {
                   color: '#EEF3CD',
                 }}
               >
-                Real People.{' '}
-                <Box component="span" sx={{ color: '#F26433' }}>Real Results.</Box>
+                {copy.title}{' '}
+                <Box component="span" sx={{ color: '#F26433' }}>{copy.accent}</Box>
               </Typography>
             </Box>
 
@@ -436,6 +442,7 @@ export default function TestimonialsCarousel() {
                       slide={slide}
                       isActive={slide.id === active}
                       onOpenLightbox={() => setLightboxSlide(slide)}
+                      copy={copy}
                     />
                   </Box>
                 ))}
@@ -495,7 +502,7 @@ export default function TestimonialsCarousel() {
 
       {/* Lightbox — rendered outside section so it can escape overflow:hidden */}
       {lightboxSlide && (
-        <Lightbox slide={lightboxSlide} onClose={() => setLightboxSlide(null)} />
+        <Lightbox slide={lightboxSlide} onClose={() => setLightboxSlide(null)} copy={copy} />
       )}
     </>
   )

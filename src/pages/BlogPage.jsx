@@ -14,66 +14,146 @@ import {
   Tags,
   TrendingUp,
 } from "lucide-react";
-import { blogPosts } from "../data/blogPosts";
+import { getBlogPosts } from "../data/blogPosts";
+import { localizedPath } from "../utils/i18n";
+import { applySeo, organizationSchema, setJsonLd } from "../utils/seo";
 
-const ALL_CATEGORIES = "All categories";
-const DATE_FILTERS = [
-  { label: "All dates", value: "all" },
-  { label: "Newest first", value: "newest" },
-  { label: "Oldest first", value: "oldest" },
-];
-
-function setMeta(name, content) {
-  let tag = document.querySelector(`meta[name="${name}"]`);
-  if (!tag) {
-    tag = document.createElement("meta");
-    tag.setAttribute("name", name);
-    document.head.appendChild(tag);
-  }
-  tag.setAttribute("content", content);
-}
-
-function BlogSeo() {
-  useEffect(() => {
-    document.title = "Speekr Blog | Communication, Sales & Leadership Guides";
-    setMeta(
-      "description",
+const UI = {
+  en: {
+    allCategories: "All categories",
+    dateFilters: [
+      { label: "All dates", value: "all" },
+      { label: "Newest first", value: "newest" },
+      { label: "Oldest first", value: "oldest" },
+    ],
+    title: "Communication insights built for real conversations.",
+    subtitle:
+      "Practical guides for leadership presence, sales conversations, AI coaching, and the moments where clarity changes the outcome.",
+    badge: "Speekr Blog",
+    library: "Library",
+    stats: ["Articles", "Categories", "Focus", "Level"],
+    statValues: ["AI", "Practical"],
+    allInsights: "All insights",
+    search: "Search by article, skill, or keyword",
+    searchLabel: "Search blog articles",
+    category: "Category",
+    date: "Date",
+    clear: "Clear filters",
+    showing: (result, total) => `Showing ${result} of ${total} articles`,
+    latest: "Latest",
+    allArticles: "All Blog Articles",
+    sectionNote:
+      "Every article is structured for readers, search engines, and AI answer engines with clean hierarchy and focused topic signals.",
+    readArticle: "Read article",
+    noMatch: "No articles match those filters.",
+    noMatchNote: "Try a broader keyword or reset the filters to view the full library.",
+    mostRead: "Most Read",
+    topReads: "Top Reads in the Last 7 Days",
+    topReadsNote:
+      "A ranked reading list for the guides getting the most attention right now. More posts can be added here as your library grows.",
+    seoTitle: "Speekr Blog | Communication, Sales & Leadership Guides",
+    seoDescription:
       "Explore Speekr guides on executive presence, AI sales objection handling, leadership communication, presentations, and workplace soft skills.",
-    );
-    setMeta(
-      "keywords",
+    seoKeywords:
       "Speekr blog, AI sales objection handling, executive presence, leadership communication, communication skills, AI communication coach",
-    );
+  },
+  ar: {
+    allCategories: "كل التصنيفات",
+    dateFilters: [
+      { label: "كل التواريخ", value: "all" },
+      { label: "الأحدث أولا", value: "newest" },
+      { label: "الأقدم أولا", value: "oldest" },
+    ],
+    title: "رؤى تواصل مصممة للمحادثات المهنية الحقيقية.",
+    subtitle:
+      "أدلة عملية حول الحضور القيادي، ومحادثات المبيعات، والتدريب بالذكاء الاصطناعي، واللحظات التي يغيّر فيها الوضوح النتيجة.",
+    badge: "مدونة Speekr",
+    library: "المكتبة",
+    stats: ["المقالات", "التصنيفات", "التركيز", "المستوى"],
+    statValues: ["الذكاء الاصطناعي", "عملي"],
+    allInsights: "كل الرؤى",
+    search: "ابحث باسم المقال أو المهارة أو الكلمة المفتاحية",
+    searchLabel: "البحث في مقالات المدونة",
+    category: "التصنيف",
+    date: "التاريخ",
+    clear: "مسح الفلاتر",
+    showing: (result, total) => `عرض ${result} من أصل ${total} مقالات`,
+    latest: "الأحدث",
+    allArticles: "كل مقالات المدونة",
+    sectionNote:
+      "كل مقال منظم بعناية للقارئ ومحركات البحث ومحركات الإجابة الذكية، مع بنية واضحة وإشارات موضوعية دقيقة.",
+    readArticle: "قراءة المقال",
+    noMatch: "لا توجد مقالات تطابق هذه الفلاتر.",
+    noMatchNote: "جرّب كلمة بحث أوسع أو امسح الفلاتر لعرض المكتبة كاملة.",
+    mostRead: "الأكثر قراءة",
+    topReads: "الأكثر قراءة خلال آخر 7 أيام",
+    topReadsNote:
+      "قائمة مختارة للأدلة التي تحظى بأكبر اهتمام حاليا، ويمكن توسيعها مع نمو مكتبة المحتوى.",
+    seoTitle: "مدونة Speekr | أدلة التواصل والمبيعات والقيادة",
+    seoDescription:
+      "استكشف أدلة Speekr حول الحضور التنفيذي، والتعامل مع اعتراضات البيع، والتواصل القيادي، والعروض التقديمية، ومهارات العمل.",
+    seoKeywords:
+      "مدونة Speekr, مهارات التواصل, القيادة, المبيعات, التدريب بالذكاء الاصطناعي, العروض التقديمية",
+  },
+};
 
-    const jsonLd = document.createElement("script");
-    jsonLd.type = "application/ld+json";
-    jsonLd.dataset.seo = "blog-list";
-    jsonLd.textContent = JSON.stringify({
+function BlogSeo({ locale, posts, ui }) {
+  useEffect(() => {
+    applySeo({
+      title: ui.seoTitle,
+      description: ui.seoDescription,
+      keywords: ui.seoKeywords,
+      path: "/blog",
+      locale,
+      type: "website",
+      image: "/images/blog/speekr-communication-skills-ai-riyadh-cairo.png",
+    });
+
+    const removeBlog = setJsonLd("blog-list", {
       "@context": "https://schema.org",
       "@type": "Blog",
-      name: "Speekr Blog",
-      url: `${window.location.origin}/blog`,
+      name: ui.badge,
+      url: `${window.location.origin}${localizedPath("/blog", locale)}`,
+      inLanguage: locale === "ar" ? "ar" : "en",
       description:
         "Communication, sales, leadership, and AI coaching insights from Speekr.",
-      publisher: {
-        "@type": "Organization",
-        name: "Speekr",
-        url: window.location.origin,
-      },
-      blogPost: blogPosts.map((post) => ({
+      publisher: organizationSchema(),
+      blogPost: posts.map((post) => ({
         "@type": "BlogPosting",
         headline: post.title,
-        url: `${window.location.origin}/blog/${post.slug}`,
+        url: `${window.location.origin}${localizedPath(`/blog/${post.slug}`, locale)}`,
         datePublished: post.isoDate,
+        dateModified: post.isoDate,
+        image: `${window.location.origin}${post.image}`,
+        description: post.metaDescription,
         author: { "@type": "Organization", name: post.author },
       })),
     });
-    document.head.appendChild(jsonLd);
+
+    const removeBreadcrumb = setJsonLd("blog-breadcrumb", {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: locale === "ar" ? "الرئيسية" : "Home",
+          item: `${window.location.origin}${localizedPath("/", locale)}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: ui.badge,
+          item: `${window.location.origin}${localizedPath("/blog", locale)}`,
+        },
+      ],
+    });
 
     return () => {
-      document.querySelector('script[data-seo="blog-list"]')?.remove();
+      removeBlog();
+      removeBreadcrumb();
     };
-  }, []);
+  }, [locale, posts, ui]);
 
   return null;
 }
@@ -102,11 +182,11 @@ function MetaPill({ children, icon: Icon }) {
   );
 }
 
-function ArticleCard({ post, index }) {
+function ArticleCard({ post, index, locale, ui }) {
   return (
     <Box
       component="a"
-      href={`/blog/${post.slug}`}
+      href={localizedPath(`/blog/${post.slug}`, locale)}
       className="premium-card"
       sx={{
         display: "grid",
@@ -134,6 +214,8 @@ function ArticleCard({ post, index }) {
           src={post.image}
           alt={post.imageAlt}
           loading={index > 0 ? "lazy" : undefined}
+          decoding="async"
+          fetchPriority={index === 0 ? "high" : "auto"}
           sx={{
             width: "100%",
             height: "100%",
@@ -198,7 +280,7 @@ function ArticleCard({ post, index }) {
             transition: "color 180ms ease",
           }}
         >
-          Read article
+          {ui.readArticle}
           <ArrowRight size={16} aria-hidden />
         </Box>
       </Box>
@@ -206,7 +288,7 @@ function ArticleCard({ post, index }) {
   );
 }
 
-function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openDropdown, setOpenDropdown }) {
+function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openDropdown, setOpenDropdown, locale }) {
   const open = openDropdown === id;
   const selected = options.find((option) => option.value === value) || options[0];
 
@@ -230,7 +312,7 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
           color: "#073821",
           fontFamily: "inherit",
           cursor: "pointer",
-          textAlign: "left",
+          textAlign: locale === "ar" ? "right" : "left",
           boxShadow: open
             ? "0 16px 44px rgba(7,66,37,0.12), inset 0 1px 0 rgba(238,243,205,0.9)"
             : "inset 0 1px 0 rgba(238,243,205,0.86)",
@@ -243,7 +325,8 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
         <Box
           sx={{
             position: "absolute",
-            left: 16,
+            left: locale === "ar" ? "auto" : 16,
+            right: locale === "ar" ? 16 : "auto",
             top: "50%",
             transform: "translateY(-50%)",
             width: 42,
@@ -293,7 +376,8 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
           aria-hidden
           style={{
             position: "absolute",
-            right: 18,
+            right: locale === "ar" ? "auto" : 18,
+            left: locale === "ar" ? 18 : "auto",
             top: 27,
             transform: open ? "rotate(180deg)" : "rotate(0deg)",
             transition: "transform 180ms ease",
@@ -342,7 +426,7 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
                   fontFamily: "inherit",
                   fontSize: 13.5,
                   fontWeight: active ? 950 : 850,
-                  textAlign: "left",
+                  textAlign: locale === "ar" ? "right" : "left",
                   cursor: "pointer",
                   "&:hover": {
                     bgcolor: active ? "rgba(242,100,51,0.16)" : "rgba(7,66,37,0.06)",
@@ -364,6 +448,8 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
 }
 
 function FilterPanel({
+  locale,
+  ui,
   categories,
   selectedCategory,
   setSelectedCategory,
@@ -377,8 +463,8 @@ function FilterPanel({
 }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const hasFilters =
-    selectedCategory !== ALL_CATEGORIES || dateFilter !== "newest" || query.trim();
-  const categoryOptions = [ALL_CATEGORIES, ...categories].map((category) => ({
+    selectedCategory !== ui.allCategories || dateFilter !== "newest" || query.trim();
+  const categoryOptions = [ui.allCategories, ...categories].map((category) => ({
     label: category,
     value: category,
   }));
@@ -434,14 +520,14 @@ function FilterPanel({
             value={query}
             onFocus={() => setOpenDropdown(null)}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search by article, skill, or keyword"
-            aria-label="Search blog articles"
+            placeholder={ui.search}
+            aria-label={ui.searchLabel}
             sx={{
               width: "100%",
               minWidth: 0,
               height: 70,
-              pl: 6.4,
-              pr: 2,
+              pl: locale === "ar" ? 2 : 6.4,
+              pr: locale === "ar" ? 6.4 : 2,
               border: "none",
               outline: "none",
               bgcolor: "transparent",
@@ -459,24 +545,26 @@ function FilterPanel({
 
         <FilterDropdown
           id="category"
-          label="Category"
+          label={ui.category}
           icon={Tags}
           value={selectedCategory}
           options={categoryOptions}
           onChange={setSelectedCategory}
           openDropdown={openDropdown}
           setOpenDropdown={setOpenDropdown}
+          locale={locale}
         />
 
         <FilterDropdown
           id="date"
-          label="Date"
+          label={ui.date}
           icon={CalendarDays}
           value={dateFilter}
-          options={DATE_FILTERS}
+          options={ui.dateFilters}
           onChange={setDateFilter}
           openDropdown={openDropdown}
           setOpenDropdown={setOpenDropdown}
+          locale={locale}
         />
 
         <Box
@@ -507,7 +595,7 @@ function FilterPanel({
               : {},
           }}
         >
-          Clear filters
+          {ui.clear}
         </Box>
       </Box>
 
@@ -520,17 +608,17 @@ function FilterPanel({
           color: "rgba(7,66,37,0.56)",
         }}
       >
-        Showing {resultCount} of {totalCount} articles
+        {ui.showing(resultCount, totalCount)}
       </Typography>
     </Box>
   );
 }
 
-function RankedReadCard({ post, rank }) {
+function RankedReadCard({ post, rank, locale }) {
   return (
     <Box
       component="a"
-      href={`/blog/${post.slug}`}
+      href={localizedPath(`/blog/${post.slug}`, locale)}
       className="premium-card"
       sx={{
         position: "relative",
@@ -580,6 +668,8 @@ function RankedReadCard({ post, rank }) {
           component="img"
           src={post.image}
           alt={post.imageAlt}
+          loading="lazy"
+          decoding="async"
           sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
         <Box
@@ -661,22 +751,24 @@ function RankedReadCard({ post, rank }) {
   );
 }
 
-export default function BlogPage() {
-  const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORIES);
+export default function BlogPage({ locale = "en" }) {
+  const ui = UI[locale];
+  const posts = getBlogPosts(locale);
+  const [selectedCategory, setSelectedCategory] = useState(ui.allCategories);
   const [dateFilter, setDateFilter] = useState("newest");
   const [query, setQuery] = useState("");
-  const categories = [...new Set(blogPosts.map((post) => post.category))];
+  const categories = [...new Set(posts.map((post) => post.category))];
   const mostReadPosts = [
-    blogPosts.find((post) => post.slug === "ai-sales-objection-handling-guide"),
-    blogPosts.find((post) => post.slug === "speekr-communication-skills-ai-riyadh-cairo"),
+    posts.find((post) => post.slug === "ai-sales-objection-handling-guide"),
+    posts.find((post) => post.slug === "speekr-communication-skills-ai-riyadh-cairo"),
   ].filter(Boolean);
   const filteredPosts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return blogPosts
+    return posts
       .filter((post) => {
         const matchesCategory =
-          selectedCategory === ALL_CATEGORIES || post.category === selectedCategory;
+          selectedCategory === ui.allCategories || post.category === selectedCategory;
         if (!matchesCategory) return false;
 
         if (!normalizedQuery) return true;
@@ -703,17 +795,17 @@ export default function BlogPage() {
         }
         return new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime();
       });
-  }, [dateFilter, query, selectedCategory]);
+  }, [dateFilter, posts, query, selectedCategory, ui.allCategories]);
 
   const resetFilters = () => {
-    setSelectedCategory(ALL_CATEGORIES);
+    setSelectedCategory(ui.allCategories);
     setDateFilter("newest");
     setQuery("");
   };
 
   return (
     <>
-      <BlogSeo />
+      <BlogSeo locale={locale} posts={posts} ui={ui} />
       <Box
         component="section"
         sx={{
@@ -729,6 +821,8 @@ export default function BlogPage() {
           src="/images/brand-patterns/line-pattern-wide.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: "absolute",
             top: { xs: 92, md: 116 },
@@ -782,7 +876,7 @@ export default function BlogPage() {
                     textTransform: "uppercase",
                   }}
                 >
-                  Speekr Blog
+                  {ui.badge}
                 </Typography>
               </Box>
               <Typography
@@ -798,7 +892,21 @@ export default function BlogPage() {
                   color: "#074225",
                 }}
               >
-                Communication insights built for real conversations.
+                {locale === "en" ? (
+                  <>
+                    Communication insights built for{" "}
+                    <Box component="span" sx={{ color: "#F26433" }}>
+                      real conversations.
+                    </Box>
+                  </>
+                ) : (
+                  <>
+                    رؤى تواصل مصممة لـ
+                    <Box component="span" sx={{ color: "#F26433" }}>
+                      المحادثات المهنية الحقيقية.
+                    </Box>
+                  </>
+                )}
               </Typography>
               <Typography
                 sx={{
@@ -809,8 +917,7 @@ export default function BlogPage() {
                   color: "rgba(7,66,37,0.62)",
                 }}
               >
-                Practical guides for leadership presence, sales conversations,
-                AI coaching, and the moments where clarity changes the outcome.
+                {ui.subtitle}
               </Typography>
             </Box>
 
@@ -827,15 +934,15 @@ export default function BlogPage() {
               <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
                 <Library size={17} color="#F26433" aria-hidden />
                 <Typography sx={{ fontSize: 12, fontWeight: 950, letterSpacing: 1.4, textTransform: "uppercase" }}>
-                  Library
+                  {ui.library}
                 </Typography>
               </Box>
               <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1.3 }}>
                 {[
-                  ["Articles", blogPosts.length],
-                  ["Categories", categories.length],
-                  ["Focus", "AI"],
-                  ["Level", "Practical"],
+                  [ui.stats[0], posts.length],
+                  [ui.stats[1], categories.length],
+                  [ui.stats[2], ui.statValues[0]],
+                  [ui.stats[3], ui.statValues[1]],
                 ].map(([label, value]) => (
                   <Box
                     key={label}
@@ -866,13 +973,15 @@ export default function BlogPage() {
               mb: { xs: 3, md: 4 },
             }}
           >
-            <MetaPill icon={Sparkles}>All insights</MetaPill>
+            <MetaPill icon={Sparkles}>{ui.allInsights}</MetaPill>
             {categories.map((category) => (
               <MetaPill key={category}>{category}</MetaPill>
             ))}
           </Box>
 
           <FilterPanel
+            locale={locale}
+            ui={ui}
             categories={categories}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
@@ -881,7 +990,7 @@ export default function BlogPage() {
             query={query}
             setQuery={setQuery}
             resultCount={filteredPosts.length}
-            totalCount={blogPosts.length}
+            totalCount={posts.length}
             onReset={resetFilters}
           />
 
@@ -909,7 +1018,7 @@ export default function BlogPage() {
                     color: "#F26433",
                   }}
                 >
-                  Latest
+                  {ui.latest}
                 </Typography>
               </Box>
               <Typography
@@ -923,12 +1032,11 @@ export default function BlogPage() {
                   color: "#074225",
                 }}
               >
-                All Blog Articles
+                {ui.allArticles}
               </Typography>
             </Box>
             <Typography sx={{ maxWidth: 390, color: "rgba(7,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
-              Every article is structured for readers, search engines, and AI answer
-              engines with clean hierarchy and focused topic signals.
+              {ui.sectionNote}
             </Typography>
           </Box>
 
@@ -944,7 +1052,7 @@ export default function BlogPage() {
             }}
           >
             {filteredPosts.map((post, index) => (
-              <ArticleCard key={post.slug} post={post} index={index} />
+              <ArticleCard key={post.slug} post={post} index={index} locale={locale} ui={ui} />
             ))}
           </Box>
 
@@ -967,10 +1075,10 @@ export default function BlogPage() {
                   lineHeight: 1.08,
                 }}
               >
-                No articles match those filters.
+                {ui.noMatch}
               </Typography>
               <Typography sx={{ mt: 1, color: "rgba(7,66,37,0.58)", lineHeight: 1.6 }}>
-                Try a broader keyword or reset the filters to view the full library.
+                {ui.noMatchNote}
               </Typography>
             </Box>
           )}
@@ -1011,7 +1119,7 @@ export default function BlogPage() {
                       color: "#F26433",
                     }}
                   >
-                    Most Read
+                    {ui.mostRead}
                   </Typography>
                 </Box>
                 <Typography
@@ -1026,18 +1134,17 @@ export default function BlogPage() {
                     color: "#074225",
                   }}
                 >
-                  Top Reads in the Last 7 Days
+                  {ui.topReads}
                 </Typography>
               </Box>
               <Typography sx={{ maxWidth: 420, color: "rgba(7,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
-                A ranked reading list for the guides getting the most attention
-                right now. More posts can be added here as your library grows.
+                {ui.topReadsNote}
               </Typography>
             </Box>
 
             <Box sx={{ display: "grid", gap: 1.35 }}>
               {mostReadPosts.map((post, index) => (
-                <RankedReadCard key={post.slug} post={post} rank={index + 1} />
+                <RankedReadCard key={post.slug} post={post} rank={index + 1} locale={locale} />
               ))}
             </Box>
           </Box>

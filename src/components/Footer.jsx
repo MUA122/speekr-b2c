@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { ArrowRight, Check } from 'lucide-react'
+import { commonCopy, localizedPath } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -74,6 +75,39 @@ const NAV_COLS = [
 
 const TAIL_BG = '#074225'
 
+const UI = {
+  en: {
+    ready: ['Ready to speak', 'with confidence?'],
+    subtitle: 'Join thousands of professionals already training with Speekr.',
+    brand: 'Speekr helps individuals and teams master communication skills through AI-powered practice and coaching.',
+    platform: 'Platform',
+    company: 'Company',
+    links1: ['Dashboard', 'Blog', 'Pricing', 'Case Studies', 'FAQ'],
+    links2: ['Contact Us', 'Privacy Policy', 'Terms of Service'],
+    messageTitle: 'Message from tick&talk',
+    message: 'Interested in offline public speaking and presentation masterclasses?',
+    explore: 'Explore bootcamps and workshops on',
+    visit: 'Visit tick&talk',
+    demoInline: 'or Book a Demo →',
+    copyright: '© 2026 Speekr. All rights reserved.',
+  },
+  ar: {
+    ready: ['جاهز للتحدث', 'بثقة؟'],
+    subtitle: 'انضم إلى آلاف المهنيين الذين يطورون مهاراتهم يوميا مع Speekr.',
+    brand: 'يساعد Speekr الأفراد والفرق على إتقان مهارات التواصل عبر التدريب والممارسة المدعومة بالذكاء الاصطناعي.',
+    platform: 'المنصة',
+    company: 'الشركة',
+    links1: ['لوحة التحكم', 'المدونة', 'الأسعار', 'دراسات الحالة', 'الأسئلة الشائعة'],
+    links2: ['تواصل معنا', 'سياسة الخصوصية', 'شروط الخدمة'],
+    messageTitle: 'رسالة من tick&talk',
+    message: 'هل تبحث عن ورش حضورية في التحدث أمام الجمهور والعروض التقديمية؟',
+    explore: 'استكشف المعسكرات وورش العمل عبر',
+    visit: 'زيارة tick&talk',
+    demoInline: 'أو احجز عرضا توضيحيا ←',
+    copyright: '© 2026 Speekr. جميع الحقوق محفوظة.',
+  },
+}
+
 /* ── Sub-components ── */
 
 function SocialBtn({ label, href, vb, w, h, paths }) {
@@ -142,7 +176,7 @@ function NavLink({ label, href, onClick }) {
   )
 }
 
-function TickTalkCard() {
+function TickTalkCard({ ui }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75 }}>
       <Typography
@@ -155,7 +189,7 @@ function TickTalkCard() {
           mb: 0.5,
         }}
       >
-        Message from tick&talk
+        {ui.messageTitle}
       </Typography>
 
       {/* Chat bubble */}
@@ -188,10 +222,10 @@ function TickTalkCard() {
             mb: 2.5,
           }}
         >
-          Interested in offline public speaking and presentation masterclasses?
+          {ui.message}
           <br />
           <br />
-          Explore bootcamps and workshops on{' '}
+          {ui.explore}{' '}
           <Box component="span" sx={{ color: '#F26433', fontWeight: 700 }}>
             tickandtalk.com
           </Box>
@@ -215,7 +249,7 @@ function TickTalkCard() {
             '&:hover': { gap: 1.4, filter: 'brightness(1.15)' },
           }}
         >
-          Visit tick&amp;talk
+          {ui.visit}
           <ArrowRight size={12} aria-hidden />
         </Box>
 
@@ -246,7 +280,29 @@ function TickTalkCard() {
 
 /* ── Main export ── */
 
-export default function Footer({ onContactClick }) {
+export default function Footer({ locale = 'en', onContactClick }) {
+  const ui = UI[locale]
+  const common = commonCopy[locale]
+  const navCols = [
+    {
+      title: ui.platform,
+      links: [
+        { label: ui.links1[0], href: 'https://app.speekr.ai/auth/sign-in/?returnTo=%2Fdashboard%2F' },
+        { label: ui.links1[1], href: localizedPath('/blog', locale) },
+        { label: ui.links1[2], href: '#pricing' },
+        { label: ui.links1[3], href: '#case-studies' },
+        { label: ui.links1[4], href: '#faq' },
+      ],
+    },
+    {
+      title: ui.company,
+      links: [
+        { label: ui.links2[0], isContact: true },
+        { label: ui.links2[1], href: localizedPath('/privacy', locale) },
+        { label: ui.links2[2], href: localizedPath('/terms', locale) },
+      ],
+    },
+  ]
   return (
     <Box
       component="footer"
@@ -368,10 +424,10 @@ export default function Footer({ onContactClick }) {
                 color: 'rgba(238,243,205,0.95)',
               }}
             >
-              Ready to speak
+              {ui.ready[0]}
               <br />
               <Box component="span" sx={{ color: '#F26433' }}>
-                with confidence?
+                {ui.ready[1]}
               </Box>
             </Typography>
             <Typography
@@ -384,7 +440,7 @@ export default function Footer({ onContactClick }) {
                 maxWidth: 360,
               }}
             >
-              Join thousands of professionals already training with Speekr.
+              {ui.subtitle}
             </Typography>
           </Box>
 
@@ -425,7 +481,7 @@ export default function Footer({ onContactClick }) {
                 },
               }}
             >
-              Start Free Trial
+              {common.startFreeTrial}
               <ArrowRight size={14} aria-hidden />
             </Box>
 
@@ -449,7 +505,7 @@ export default function Footer({ onContactClick }) {
                 '&:hover': { color: 'rgba(238,243,205,0.68)' },
               }}
             >
-              or Book a Demo →
+              {ui.demoInline}
             </Box>
           </Box>
         </Box>
@@ -485,6 +541,7 @@ export default function Footer({ onContactClick }) {
               src={LOGO}
               alt="Speekr"
               loading="lazy"
+              decoding="async"
               sx={{
                 height: 38,
                 width: 'auto',
@@ -502,8 +559,7 @@ export default function Footer({ onContactClick }) {
                 maxWidth: 280,
               }}
             >
-              Speekr helps individuals and teams master communication skills through
-              AI-powered practice and coaching.
+              {ui.brand}
             </Typography>
 
             <Box sx={{ display: 'flex', gap: 1 }}>
@@ -514,7 +570,7 @@ export default function Footer({ onContactClick }) {
           </Box>
 
           {/* ── Col 2 & 3: Nav ── */}
-          {NAV_COLS.map(({ title, links }) => (
+          {navCols.map(({ title, links }) => (
             <Box key={title} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
               <Typography
                 sx={{
@@ -541,7 +597,7 @@ export default function Footer({ onContactClick }) {
           ))}
 
           {/* ── Col 4: tick&talk card ── */}
-          <TickTalkCard />
+          <TickTalkCard ui={ui} />
         </Box>
 
         {/* Separator */}
@@ -565,13 +621,13 @@ export default function Footer({ onContactClick }) {
           }}
         >
           <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(238,243,205,0.22)' }}>
-            © 2026 Speekr. All rights reserved.
+            {ui.copyright}
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
             {[
-              { label: 'Privacy Policy', href: '/privacy' },
-              { label: 'Terms of Service', href: '/terms' },
+              { label: ui.links2[1], href: localizedPath('/privacy', locale) },
+              { label: ui.links2[2], href: localizedPath('/terms', locale) },
             ].map(({ label, href }) => (
               <Box
                 key={label}

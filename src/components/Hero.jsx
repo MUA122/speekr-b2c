@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { ArrowRight, CalendarDays, Star } from "lucide-react";
+import { commonCopy, landingCopy } from "../utils/i18n";
 
 const AVATARS = [
   { bg: "#8EC640", initials: "MK" },
@@ -19,6 +20,8 @@ function ProductPreview() {
       src="/images/hero.png"
       alt=""
       aria-hidden
+      decoding="async"
+      fetchPriority="high"
       sx={{
         display: "block",
         width: { lg: 690, xl: 820 },
@@ -29,7 +32,9 @@ function ProductPreview() {
     />
   );
 }
-function Hero({ onBookDemoClick }) {
+function Hero({ locale = "en", onBookDemoClick }) {
+  const copy = landingCopy[locale].hero;
+  const common = commonCopy[locale];
   return (
     <Box
       component="section"
@@ -145,6 +150,8 @@ function Hero({ onBookDemoClick }) {
         src="/images/brand-patterns/hero-bg.png"
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         sx={{
           position: "absolute",
           right: { xs: "-42%", md: "-12%", xl: "-4%" },
@@ -204,7 +211,7 @@ function Hero({ onBookDemoClick }) {
               }}
             >
               <Box component="span" sx={{ display: "block" }}>
-                Train With AI.
+                {copy.line1}
               </Box>
               <Box
                 component="span"
@@ -212,9 +219,9 @@ function Hero({ onBookDemoClick }) {
                   display: "block",
                 }}
               >
-                Speak{" "}
+                {copy.line2}{" "}
                 <Box component="span" sx={{ color: "#F26433" }}>
-                  With Confidence.
+                  {copy.accent}
                 </Box>
               </Box>
             </Typography>
@@ -230,9 +237,7 @@ function Hero({ onBookDemoClick }) {
                 fontWeight: 500,
               }}
             >
-              Practice real business scenarios with AI roleplay, get instant
-              feedback, and level up with expert coaching built for ambitious
-              professionals.
+              {copy.subtitle}
             </Typography>
 
             {/* CTAs */}
@@ -270,7 +275,7 @@ function Hero({ onBookDemoClick }) {
                   transition: "all 220ms cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               >
-                Start Free Trial
+                {common.startFreeTrial}
               </Button>
 
               <Button
@@ -296,7 +301,7 @@ function Hero({ onBookDemoClick }) {
                   transition: "all 220ms cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               >
-                Book a Demo
+                {common.bookDemo}
               </Button>
             </Stack>
 
@@ -348,12 +353,12 @@ function Hero({ onBookDemoClick }) {
                 <Typography
                   sx={{ fontSize: 12.5, color: "rgba(7, 66, 37, 0.55)" }}
                 >
-                  Trusted by{" "}
+                  {copy.trusted}{" "}
                   <Box
                     component="span"
                     sx={{ color: "#074225", fontWeight: 700 }}
                   >
-                    12,000+ professionals
+                    {copy.trustedCount}
                   </Box>
                 </Typography>
               </Box>

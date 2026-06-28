@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { Send, Sparkles, X, Check } from 'lucide-react'
+import { commonCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -62,7 +63,44 @@ function Field({ label, required, multiline, rows = 4, id, ...rest }) {
   )
 }
 
-function SuccessState({ onClose }) {
+const UI = {
+  en: {
+    sent: 'Request Sent!',
+    sentText: 'We received your details and will be in touch with you shortly.',
+    done: 'Done',
+    titleA: 'Book a Speekr',
+    titleB: 'Demo',
+    subtitle: 'Share your details and we will get back to you.',
+    fields: {
+      name: ['Name', 'Your full name'],
+      email: ['Email', 'your@email.com'],
+      company: ['Company', 'Company / Organization'],
+      phone: ['Phone', '+1 234 567 8900'],
+      message: ['Message', 'Tell us about your team and goals...'],
+    },
+    submit: 'Submit Request',
+    cancel: 'Cancel',
+  },
+  ar: {
+    sent: 'تم إرسال الطلب',
+    sentText: 'استلمنا بياناتك وسيتواصل معك فريقنا قريبا.',
+    done: 'تم',
+    titleA: 'احجز عرضا',
+    titleB: 'توضيحيا',
+    subtitle: 'شاركنا بياناتك وسنعود إليك في أقرب وقت.',
+    fields: {
+      name: ['الاسم', 'الاسم الكامل'],
+      email: ['البريد الإلكتروني', 'name@example.com'],
+      company: ['الشركة', 'الشركة / المنظمة'],
+      phone: ['رقم الهاتف', '+966 5x xxx xxxx'],
+      message: ['الرسالة', 'أخبرنا عن فريقك وأهدافك...'],
+    },
+    submit: 'إرسال الطلب',
+    cancel: 'إلغاء',
+  },
+}
+
+function SuccessState({ onClose, ui }) {
   return (
     <Box sx={{ textAlign: 'center', py: { xs: 3, sm: 5 } }}>
       <Box
@@ -93,7 +131,7 @@ function SuccessState({ onClose }) {
           mb: 1.2,
         }}
       >
-        Request Sent!
+        {ui.sent}
       </Typography>
       <Typography
         sx={{
@@ -105,7 +143,7 @@ function SuccessState({ onClose }) {
           mb: 4.5,
         }}
       >
-        We received your details and will be in touch with you shortly.
+        {ui.sentText}
       </Typography>
       <Box
         component="button"
@@ -133,7 +171,7 @@ function SuccessState({ onClose }) {
           },
         }}
       >
-        Done
+        {ui.done}
       </Box>
     </Box>
   )
@@ -141,9 +179,10 @@ function SuccessState({ onClose }) {
 
 const initialFormState = { name: '', email: '', company: '', phone: '', message: '' }
 
-function ContactModal({ open, onClose, onSubmit }) {
+function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
   const [formData, setFormData] = useState(initialFormState)
   const [submitted, setSubmitted] = useState(false)
+  const ui = UI[locale]
 
   /* Body scroll lock + ESC key */
   useEffect(() => {
@@ -300,6 +339,8 @@ function ContactModal({ open, onClose, onSubmit }) {
                 component="img"
                 src="/images/logo.svg"
                 alt="Speekr.ai"
+                loading="lazy"
+                decoding="async"
                 sx={{ width: 100, filter: 'brightness(0) invert(1)', opacity: 0.88 }}
               />
               <Box
@@ -349,7 +390,7 @@ function ContactModal({ open, onClose, onSubmit }) {
           </Box>
 
           {submitted ? (
-            <SuccessState onClose={handleClose} />
+            <SuccessState onClose={handleClose} ui={ui} />
           ) : (
             <Box component="form" onSubmit={handleSubmit} noValidate>
               {/* Title */}
@@ -366,8 +407,8 @@ function ContactModal({ open, onClose, onSubmit }) {
                   mb: 0.9,
                 }}
               >
-                Book a Speekr{' '}
-                <Box component="span" sx={{ color: '#F26433' }}>Demo</Box>
+                {ui.titleA}{' '}
+                <Box component="span" sx={{ color: '#F26433' }}>{ui.titleB}</Box>
               </Typography>
               <Typography
                 sx={{
@@ -377,7 +418,7 @@ function ContactModal({ open, onClose, onSubmit }) {
                   mb: { xs: 3, sm: 3.5 },
                 }}
               >
-                Share your details and we will get back to you.
+                {ui.subtitle}
               </Typography>
 
               {/* Fields */}
@@ -385,22 +426,22 @@ function ContactModal({ open, onClose, onSubmit }) {
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                   <Field
                     id="cm-name"
-                    label="Name"
+                    label={ui.fields.name[0]}
                     required
                     name="name"
                     type="text"
-                    placeholder="Your full name"
+                    placeholder={ui.fields.name[1]}
                     value={formData.name}
                     onChange={handleChange}
                     autoComplete="name"
                   />
                   <Field
                     id="cm-email"
-                    label="Email"
+                    label={ui.fields.email[0]}
                     required
                     name="email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder={ui.fields.email[1]}
                     value={formData.email}
                     onChange={handleChange}
                     autoComplete="email"
@@ -409,20 +450,20 @@ function ContactModal({ open, onClose, onSubmit }) {
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                   <Field
                     id="cm-company"
-                    label="Company"
+                    label={ui.fields.company[0]}
                     name="company"
                     type="text"
-                    placeholder="Company / Organization"
+                    placeholder={ui.fields.company[1]}
                     value={formData.company}
                     onChange={handleChange}
                     autoComplete="organization"
                   />
                   <Field
                     id="cm-phone"
-                    label="Phone"
+                    label={ui.fields.phone[0]}
                     name="phone"
                     type="tel"
-                    placeholder="+1 234 567 8900"
+                    placeholder={ui.fields.phone[1]}
                     value={formData.phone}
                     onChange={handleChange}
                     autoComplete="tel"
@@ -430,10 +471,10 @@ function ContactModal({ open, onClose, onSubmit }) {
                 </Box>
                 <Field
                   id="cm-message"
-                  label="Message"
+                  label={ui.fields.message[0]}
                   name="message"
                   multiline
-                  placeholder="Tell us about your team and goals..."
+                  placeholder={ui.fields.message[1]}
                   value={formData.message}
                   onChange={handleChange}
                 />
@@ -476,7 +517,7 @@ function ContactModal({ open, onClose, onSubmit }) {
                   }}
                 >
                   <Send size={15} aria-hidden />
-                  Submit Request
+                  {ui.submit}
                 </Box>
                 <Box
                   component="button"
@@ -504,7 +545,7 @@ function ContactModal({ open, onClose, onSubmit }) {
                     },
                   }}
                 >
-                  Cancel
+                  {ui.cancel}
                 </Box>
               </Box>
             </Box>

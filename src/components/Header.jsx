@@ -2,18 +2,22 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Box from '@mui/material/Box'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { commonCopy, localizedPath, navCopy } from '../utils/i18n'
 
-const NAV_ITEMS = [
-  { label: 'Blog', href: '/blog' },
-  { label: 'Product', href: '#product-communication', sectionId: 'product-communication' },
-  { label: 'Pricing', href: '#pricing', sectionId: 'pricing' },
-  { label: 'Contact', isContact: true },
-]
+const WATCH_IDS = ['product-communication', 'pricing']
 
-const WATCH_IDS = NAV_ITEMS.filter((i) => i.sectionId).map((i) => i.sectionId)
+function getLanguageHref(locale) {
+  const path = window.location.pathname.replace(/\/+$/, '') || '/'
+  if (locale === 'ar') {
+    return path.replace(/^\/ar(?=\/|$)/, '') || '/'
+  }
+  return path === '/' ? '/ar' : `/ar${path}`
+}
 
 /* ── Mobile panel (createPortal — bypasses MUI light theme on Paper) ── */
-function MobileMenu({ open, onClose, activeSection, onContactClick }) {
+function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
+  const navItems = navCopy[locale]
+  const copy = commonCopy[locale]
   useEffect(() => {
     if (!open) return
     const prev = document.body.style.overflow
@@ -113,6 +117,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
             component="img"
             src="/images/logo.svg"
             alt="Speekr.ai"
+            decoding="async"
             sx={{ height: 26, width: 'auto', filter: 'brightness(0) invert(1)' }}
           />
           <Box
@@ -158,14 +163,14 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
             zIndex: 1,
           }}
         >
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             const isActive = Boolean(item.sectionId && activeSection === item.sectionId)
             return (
               <Box
                 key={item.label}
                 component={item.isContact || item.sectionId ? 'button' : 'a'}
                 type={item.isContact || item.sectionId ? 'button' : undefined}
-                href={item.isContact || item.sectionId ? undefined : item.href}
+                href={item.isContact || item.sectionId ? undefined : localizedPath(item.href, locale)}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noreferrer' : undefined}
                 onClick={() => {
@@ -249,7 +254,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
               },
             }}
           >
-            Start Free Trial
+            {copy.startFreeTrial}
             <ArrowUpRight size={14} aria-hidden />
           </Box>
 
@@ -280,7 +285,27 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
               },
             }}
           >
-            Login
+            {copy.login}
+          </Box>
+          <Box
+            component="a"
+            href={getLanguageHref(locale)}
+            onClick={onClose}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              py: 1.35,
+              borderRadius: '12px',
+              border: '1px solid rgba(238,243,205,0.1)',
+              bgcolor: 'rgba(238,243,205,0.03)',
+              color: 'rgba(238,243,205,0.72)',
+              textDecoration: 'none',
+              fontSize: 13.5,
+              fontWeight: 800,
+            }}
+          >
+            {locale === 'ar' ? 'English' : 'العربية'}
           </Box>
         </Box>
       </Box>
@@ -290,10 +315,12 @@ function MobileMenu({ open, onClose, activeSection, onContactClick }) {
 }
 
 /* ── Main header ── */
-export default function Header({ onContactClick }) {
+export default function Header({ locale = 'en', onContactClick }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const navItems = navCopy[locale]
+  const copy = commonCopy[locale]
 
   /* Scroll detection for header bg */
   useEffect(() => {
@@ -371,7 +398,7 @@ export default function Header({ onContactClick }) {
             sx={{
               pointerEvents: 'auto',
               display: 'grid',
-              gridTemplateColumns: { xs: '1fr auto', md: 'auto 1fr auto' },
+              gridTemplateColumns: { xs: '1fr auto', md: 'auto 1fr auto auto' },
               alignItems: 'center',
               gap: 2,
               px: { xs: 1.8, sm: 2.2 },
@@ -394,7 +421,7 @@ export default function Header({ onContactClick }) {
             {/* Logo */}
             <Box
               component="a"
-              href="/"
+              href={localizedPath('/', locale)}
               aria-label="Speekr.ai home"
               sx={{
                 display: 'inline-flex',
@@ -411,6 +438,7 @@ export default function Header({ onContactClick }) {
                 component="img"
                 src="/images/logo.svg"
                 alt="Speekr.ai"
+                decoding="async"
                 sx={{
                   width: { xs: 108, sm: 120 },
                   display: 'block',
@@ -432,7 +460,7 @@ export default function Header({ onContactClick }) {
                 gap: 0.25,
               }}
             >
-              {NAV_ITEMS.map((item) => {
+              {navItems.map((item) => {
                 const isActive = Boolean(item.sectionId && activeSection === item.sectionId)
                 if (item.isContact) {
                   return (
@@ -468,7 +496,7 @@ export default function Header({ onContactClick }) {
                   <Box
                     key={item.label}
                     component="a"
-                    href={item.href}
+                    href={localizedPath(item.href, locale)}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noreferrer' : undefined}
                     sx={desktopLinkSx(isActive, scrolled)}
@@ -512,8 +540,31 @@ export default function Header({ onContactClick }) {
                 },
               }}
             >
-              Login
+              {copy.login}
               <ArrowUpRight size={14} strokeWidth={2.6} aria-hidden />
+            </Box>
+
+            <Box
+              component="a"
+              href={getLanguageHref(locale)}
+              aria-label={locale === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
+              sx={{
+                display: { xs: 'none', md: 'inline-flex' },
+                alignItems: 'center',
+                justifyContent: 'center',
+                justifySelf: 'end',
+                height: 40,
+                minWidth: 44,
+                px: 1.4,
+                borderRadius: '100px',
+                border: scrolled ? '1px solid rgba(238,243,205,0.12)' : '1px solid rgba(7,66,37,0.14)',
+                color: scrolled ? 'rgba(238,243,205,0.78)' : 'rgba(7,66,37,0.76)',
+                textDecoration: 'none',
+                fontSize: 13,
+                fontWeight: 900,
+              }}
+            >
+              {locale === 'ar' ? 'EN' : 'ع'}
             </Box>
 
             {/* Mobile hamburger */}
@@ -551,6 +602,7 @@ export default function Header({ onContactClick }) {
         onClose={() => setMobileOpen(false)}
         activeSection={activeSection}
         onContactClick={onContactClick}
+        locale={locale}
       />
     </>
   )

@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { landingCopy } from "../utils/i18n";
 
 const SLIDES = [
   {
@@ -42,7 +43,7 @@ const SLIDES = [
   },
 ];
 
-function SlideCard({ slide }) {
+function SlideCard({ slide, cta }) {
   return (
     <Box
       className="premium-card"
@@ -67,6 +68,8 @@ function SlideCard({ slide }) {
         src="/images/brand-patterns/line-pattern.png"
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         sx={{
           position: "absolute",
           top: { xs: 18, md: 24 },
@@ -205,7 +208,7 @@ function SlideCard({ slide }) {
             },
           }}
         >
-          Start Free Trial
+          {cta}
           <ArrowRight size={17} aria-hidden />
         </Box>
       </Box>
@@ -231,6 +234,7 @@ function SlideCard({ slide }) {
           src={slide.img}
           alt={slide.title}
           loading="lazy"
+          decoding="async"
           sx={{
             width: "100%",
             height: "100%",
@@ -245,9 +249,15 @@ function SlideCard({ slide }) {
   );
 }
 
-export default function ProgramsCarousel() {
+export default function ProgramsCarousel({ locale = "en" }) {
   const [active, setActive] = useState(0);
   const containerRef = useRef(null);
+  const copy = landingCopy[locale].programs;
+  const slides = SLIDES.map((slide, index) => ({
+    ...slide,
+    title: copy.slides[index][0],
+    sub: copy.slides[index][1],
+  }));
 
   useEffect(() => {
     const handle = () => {
@@ -394,16 +404,16 @@ export default function ProgramsCarousel() {
                 textAlign: "center",
               }}
             >
-              Transform The Way You{" "}
+              {copy.title}{" "}
               <Box component="span" sx={{ color: "#F26433" }}>
-                Communicate
+                {copy.accent}
               </Box>
             </Typography>
           </Box>
 
           {/* Slide area */}
           <Box sx={{ flex: 1, position: "relative", zIndex: 1, minHeight: 0 }}>
-            {SLIDES.map((slide, i) => (
+            {slides.map((slide, i) => (
               <Box
                 key={slide.id}
                 aria-hidden={active !== i}
@@ -422,7 +432,7 @@ export default function ProgramsCarousel() {
                   pointerEvents: active === i ? "auto" : "none",
                 }}
               >
-                <SlideCard slide={slide} />
+                <SlideCard slide={slide} cta={copy.cta} />
               </Box>
             ))}
           </Box>
@@ -513,7 +523,7 @@ export default function ProgramsCarousel() {
             </Stack>
 
             <Stack direction="row" spacing={0.9} sx={{ alignItems: "center" }}>
-              {SLIDES.map((_, i) => (
+              {slides.map((_, i) => (
                 <Box
                   key={i}
                   component="button"

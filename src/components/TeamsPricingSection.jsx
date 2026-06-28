@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { Check, ArrowRight, Phone, Users, Building2 } from 'lucide-react'
 import { splitPrice } from '../utils/pricing'
+import { commonCopy, pricingCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -88,7 +89,7 @@ function FeatureRow({ text, note, CheckIcon }) {
   )
 }
 
-function TeamsCard({ billing, prices }) {
+function TeamsCard({ billing, prices, copy, common }) {
   const { prefix, amount } = splitPrice(billing === 'monthly' ? prices.teamMonthly : prices.teamAnnual)
 
   return (
@@ -145,7 +146,7 @@ function TeamsCard({ billing, prices }) {
       >
         <Users size={10} color="#074225" aria-hidden />
         <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#074225', letterSpacing: 0.4, lineHeight: 1 }}>
-          Teams
+          {copy.teams}
         </Typography>
       </Box>
 
@@ -161,10 +162,10 @@ function TeamsCard({ billing, prices }) {
             lineHeight: 1.2,
           }}
         >
-          Speekr Teams
+          {copy.speekrTeams}
         </Typography>
         <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(7,66,37,0.46)' }}>
-          Teams of 3–15 users
+          {copy.teamAudience}
         </Typography>
       </Box>
 
@@ -188,7 +189,7 @@ function TeamsCard({ billing, prices }) {
           </Typography>
         </Box>
         <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(7,66,37,0.42)', mt: 1 }}>
-          per user / {billing === 'monthly' ? 'month' : 'year'}
+          {billing === 'monthly' ? copy.perUserMonth : copy.perUserYear}
           {billing === 'annual' && (
             <Box
               component="span"
@@ -205,7 +206,7 @@ function TeamsCard({ billing, prices }) {
                 letterSpacing: 0.3,
               }}
             >
-              Save 17%
+              {copy.save17}
             </Box>
           )}
         </Typography>
@@ -222,7 +223,7 @@ function TeamsCard({ billing, prices }) {
 
       {/* Features */}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, mb: { xs: 4, md: 4.5 } }}>
-        {TEAMS_FEATURES.map(({ text, note }) => (
+        {copy.teamFeatures.map(([text, note]) => (
           <FeatureRow key={text} text={text} note={note} CheckIcon={LimeCheck} />
         ))}
       </Box>
@@ -254,14 +255,14 @@ function TeamsCard({ billing, prices }) {
           },
         }}
       >
-        Subscribe
+        {common.subscribe}
         <ArrowRight size={16} aria-hidden />
       </Box>
     </Box>
   )
 }
 
-function EnterpriseCard({ onDemoClick }) {
+function EnterpriseCard({ onDemoClick, copy, common }) {
   return (
     <Box
       sx={{
@@ -317,7 +318,7 @@ function EnterpriseCard({ onDemoClick }) {
       >
         <Building2 size={10} color="#F26433" aria-hidden />
         <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: '#F26433', letterSpacing: 0.4, lineHeight: 1 }}>
-          Enterprise
+          {copy.enterprise}
         </Typography>
       </Box>
 
@@ -333,10 +334,10 @@ function EnterpriseCard({ onDemoClick }) {
             lineHeight: 1.2,
           }}
         >
-          Speekr Enterprise
+          {copy.speekrEnterprise}
         </Typography>
         <Typography sx={{ fontSize: 12, fontWeight: 500, color: 'rgba(7,66,37,0.46)' }}>
-          Large-scale, corporate deployment
+          {copy.enterpriseAudience}
         </Typography>
       </Box>
 
@@ -352,10 +353,10 @@ function EnterpriseCard({ onDemoClick }) {
             color: '#074225',
           }}
         >
-          Custom
+          {copy.custom}
         </Typography>
         <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(7,66,37,0.42)', mt: 1 }}>
-          Tailored to your organization
+          {copy.tailored}
         </Typography>
       </Box>
 
@@ -370,7 +371,7 @@ function EnterpriseCard({ onDemoClick }) {
 
       {/* Features */}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1, mb: { xs: 4, md: 4.5 } }}>
-        {ENTERPRISE_FEATURES.map(({ text, note }) => (
+        {copy.enterpriseFeatures.map(([text, note]) => (
           <FeatureRow key={text} text={text} note={note} CheckIcon={OrangeCheck} />
         ))}
       </Box>
@@ -402,14 +403,16 @@ function EnterpriseCard({ onDemoClick }) {
         }}
       >
         <Phone size={15} aria-hidden />
-        Book a Demo
+        {common.bookDemo}
       </Box>
     </Box>
   )
 }
 
-export default function TeamsPricingSection({ prices, onDemoClick }) {
+export default function TeamsPricingSection({ locale = 'en', prices, onDemoClick }) {
   const [billing, setBilling] = useState('monthly')
+  const copy = pricingCopy[locale]
+  const common = commonCopy[locale]
 
   return (
     <Box
@@ -448,6 +451,8 @@ export default function TeamsPricingSection({ prices, onDemoClick }) {
           src="/images/brand-patterns/block.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             bottom: { xs: -130, md: -190 },
@@ -528,7 +533,7 @@ export default function TeamsPricingSection({ prices, onDemoClick }) {
               <Typography
                 sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#F26433' }}
               >
-                Team Plans
+                {copy.teamBadge}
               </Typography>
             </Box>
 
@@ -545,9 +550,9 @@ export default function TeamsPricingSection({ prices, onDemoClick }) {
                 color: '#EEF3CD',
               }}
             >
-              The{' '}
+              {copy.teamTitle}{' '}
               <Box component="span" sx={{ color: '#F26433' }}>
-                Whole Team
+                {copy.teamAccent}
               </Box>
             </Typography>
 
@@ -561,7 +566,7 @@ export default function TeamsPricingSection({ prices, onDemoClick }) {
                 mx: 'auto',
               }}
             >
-              Equip your people-facing teams with the tools needed to excel in every critical moment.
+              {copy.teamSubtitle}
             </Typography>
           </Box>
 
@@ -599,7 +604,7 @@ export default function TeamsPricingSection({ prices, onDemoClick }) {
                     gap: 1,
                   }}
                 >
-                  {b === 'monthly' ? 'Monthly' : 'Annually'}
+                  {b === 'monthly' ? copy.monthly : copy.annual}
                   {b === 'annual' && (
                     <Box
                       sx={{
@@ -619,7 +624,7 @@ export default function TeamsPricingSection({ prices, onDemoClick }) {
                           lineHeight: 1,
                         }}
                       >
-                        Save 17%
+                        {copy.save17}
                       </Typography>
                     </Box>
                   )}
@@ -637,8 +642,8 @@ export default function TeamsPricingSection({ prices, onDemoClick }) {
               alignItems: 'stretch',
             }}
           >
-            <TeamsCard billing={billing} prices={prices} />
-            <EnterpriseCard onDemoClick={onDemoClick} />
+            <TeamsCard billing={billing} prices={prices} copy={copy} common={common} />
+            <EnterpriseCard onDemoClick={onDemoClick} copy={copy} common={common} />
           </Box>
 
         </Box>

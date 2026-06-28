@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { ChevronLeft, ChevronRight, BarChart3 } from 'lucide-react'
+import { landingCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -32,9 +33,15 @@ const SLIDES = [
   },
 ]
 
-export default function CaseStudiesCarousel() {
+export default function CaseStudiesCarousel({ locale = 'en' }) {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
+  const copy = landingCopy[locale].cases
+  const slides = SLIDES.map((slide, index) => ({
+    ...slide,
+    ...copy.slides[index],
+    stats: copy.slides[index].stats.map(([value, label]) => ({ value, label })),
+  }))
 
   const goTo = useCallback((idx) => {
     setActive(((idx % SLIDES.length) + SLIDES.length) % SLIDES.length)
@@ -86,6 +93,8 @@ export default function CaseStudiesCarousel() {
           src="/images/brand-patterns/block.png"
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           sx={{
             position: 'absolute',
             top: { xs: -120, md: -170 },
@@ -173,7 +182,7 @@ export default function CaseStudiesCarousel() {
                   color: '#F26433',
                 }}
               >
-                Real Results
+                {copy.badge}
               </Typography>
             </Box>
 
@@ -190,7 +199,7 @@ export default function CaseStudiesCarousel() {
                 color: '#EEF3CD',
               }}
             >
-              <Box component="span" sx={{ color: '#F26433' }}>Case</Box>{' '}Studies
+              <Box component="span" sx={{ color: '#F26433' }}>{copy.titleAccent}</Box>{' '}{copy.title}
             </Typography>
             <Typography
               sx={{
@@ -203,13 +212,13 @@ export default function CaseStudiesCarousel() {
                 mx: 'auto',
               }}
             >
-              Real examples of how we solve complex challenges and deliver results.
+              {copy.subtitle}
             </Typography>
           </Box>
 
           {/* ── Slides — CSS grid-area overlap trick for natural height ── */}
           <Box sx={{ display: 'grid', mb: { xs: 3.5, md: 5 } }}>
-            {SLIDES.map((slide, i) => (
+            {slides.map((slide, i) => (
               <Box
                 key={slide.id}
                 aria-hidden={active !== i}
@@ -244,6 +253,7 @@ export default function CaseStudiesCarousel() {
                       src={slide.img}
                       alt={slide.title}
                       loading="lazy"
+                      decoding="async"
                       sx={{
                         position: 'absolute',
                         inset: 0,
@@ -469,7 +479,7 @@ export default function CaseStudiesCarousel() {
 
             {/* Expanding pill dots */}
             <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-              {SLIDES.map((_, i) => (
+              {slides.map((_, i) => (
                 <Box
                   key={i}
                   component="button"
