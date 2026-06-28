@@ -25,14 +25,14 @@ const HOME_SEO = {
   en: {
     title: "Speekr.ai | AI Communication Coach for Business Conversations",
     description:
-      "Practice business conversations with Speekr's AI communication coach. Improve presentations, interviews, sales calls, leadership conversations, and workplace confidence.",
+      "Practice presentations, interviews, sales calls, and leadership conversations with Speekr's AI communication coach.",
     keywords:
       "AI communication coach, business communication training, presentation practice, sales roleplay, interview practice, Speekr",
   },
   ar: {
     title: "Speekr.ai | مدرب تواصل ذكي لمحادثات الأعمال",
     description:
-      "تدرّب على محادثات العمل مع مدرب التواصل الذكي من Speekr وطور العروض والمقابلات ومكالمات البيع ومحادثات القيادة بثقة.",
+      "تدرّب على العروض والمقابلات ومكالمات البيع ومحادثات القيادة مع مدرب التواصل الذكي من Speekr.",
     keywords:
       "مدرب تواصل ذكي, تدريب مهارات التواصل, تدريب العروض, محاكاة مبيعات, تدريب مقابلات, Speekr",
   },

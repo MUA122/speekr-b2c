@@ -408,7 +408,8 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
         <Box
           component="img"
           src="/images/brand-patterns/frame.png"
-          alt=""
+          alt="Speekr solutions background pattern"
+          title="Speekr decorative solutions background pattern"
           aria-hidden
           sx={{
             position: "absolute",

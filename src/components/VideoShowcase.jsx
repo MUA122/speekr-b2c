@@ -58,7 +58,8 @@ export default function VideoShowcase({ locale = 'en' }) {
         <Box
           component="img"
           src="/images/brand-patterns/line-pattern-wide.png"
-          alt=""
+          alt="Speekr video section background pattern"
+          title="Speekr decorative video section background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"

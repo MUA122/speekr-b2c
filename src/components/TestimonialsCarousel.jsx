@@ -356,7 +356,8 @@ export default function TestimonialsCarousel({ locale = 'en' }) {
           <Box
             component="img"
             src="/images/brand-patterns/line-pattern-wide.png"
-            alt=""
+            alt="Speekr testimonials background pattern"
+            title="Speekr decorative testimonials background pattern"
             aria-hidden
             loading="lazy"
             decoding="async"

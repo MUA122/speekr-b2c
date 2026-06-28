@@ -260,7 +260,8 @@ export default function FaqSection({ locale = 'en', onDemoClick }) {
         <Box
           component="img"
           src="/images/brand-patterns/faq-bg.png"
-          alt=""
+          alt="Speekr FAQ background pattern"
+          title="Speekr decorative FAQ background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"

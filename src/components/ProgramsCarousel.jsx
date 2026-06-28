@@ -66,7 +66,8 @@ function SlideCard({ slide, cta }) {
       <Box
         component="img"
         src="/images/brand-patterns/line-pattern.png"
-        alt=""
+        alt="Speekr carousel background pattern"
+        title="Speekr decorative carousel background pattern"
         aria-hidden
         loading="lazy"
         decoding="async"
@@ -233,6 +234,7 @@ function SlideCard({ slide, cta }) {
           component="img"
           src={slide.img}
           alt={slide.title}
+          title={slide.title}
           loading="lazy"
           decoding="async"
           sx={{

@@ -350,6 +350,7 @@ function RelatedCard({ post, locale }) {
         component="img"
         src={post.image}
         alt={post.imageAlt}
+        title={post.imageAlt}
         loading="lazy"
         decoding="async"
         sx={{
@@ -398,7 +399,8 @@ export default function BlogPostPage({ slug, locale = "en" }) {
         <Box
           component="img"
           src="/images/brand-patterns/line-pattern-wide.png"
-          alt=""
+          alt="Speekr article background pattern"
+          title="Speekr decorative article background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"
@@ -492,6 +494,7 @@ export default function BlogPostPage({ slug, locale = "en" }) {
                 component="img"
                 src={post.image}
                 alt={post.imageAlt}
+                title={post.imageAlt}
                 decoding="async"
                 fetchPriority="high"
                 sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}

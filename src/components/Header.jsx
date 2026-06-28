@@ -117,6 +117,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
             component="img"
             src="/images/logo.svg"
             alt="Speekr.ai"
+            title="Speekr.ai logo"
             decoding="async"
             sx={{ height: 26, width: 'auto', filter: 'brightness(0) invert(1)' }}
           />
@@ -438,6 +439,7 @@ export default function Header({ locale = 'en', onContactClick }) {
                 component="img"
                 src="/images/logo.svg"
                 alt="Speekr.ai"
+                title="Speekr.ai logo"
                 decoding="async"
                 sx={{
                   width: { xs: 108, sm: 120 },

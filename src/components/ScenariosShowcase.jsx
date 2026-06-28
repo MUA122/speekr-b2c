@@ -162,6 +162,7 @@ function ExpandedContent({ scenario, copy }) {
           component="img"
           src={scenario.cover}
           alt={scenario.title}
+          title={scenario.title}
           loading="lazy"
           decoding="async"
           sx={{
@@ -253,6 +254,7 @@ function ExpandedContent({ scenario, copy }) {
               component="img"
               src={scenario.coach.avatar}
               alt={scenario.coach.name}
+              title={`${scenario.coach.name} AI coach avatar`}
               loading="lazy"
               decoding="async"
               sx={{
@@ -402,6 +404,7 @@ function TabCard({ scenario, isActive, onClick, copy }) {
               component="img"
               src={scenario.coach.avatar}
               alt={scenario.coach.name}
+              title={`${scenario.coach.name} AI coach avatar`}
               loading="lazy"
               decoding="async"
               sx={{
@@ -463,7 +466,8 @@ function ScenariosShowcase({ locale = "en" }) {
       <Box
         component="img"
         src="/images/brand-patterns/line-pattern-wide.png"
-        alt=""
+        alt="Speekr scenario background pattern"
+        title="Speekr decorative scenario background pattern"
         aria-hidden
         loading="lazy"
         decoding="async"

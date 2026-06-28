@@ -172,7 +172,8 @@ function FeatureCard({ num, title, sub, img }) {
         <Box
           component="img"
           src={img}
-          alt=""
+          alt={`${title} Speekr feature preview`}
+          title={`${title} Speekr feature preview`}
           loading="lazy"
           sx={{
             width: "100%",
@@ -226,7 +227,8 @@ function FeatureCards() {
         <Box
           component="img"
           src="/images/brand-patterns/line-pattern-wide.png"
-          alt=""
+          alt="Speekr feature cards background pattern"
+          title="Speekr decorative feature cards background pattern"
           aria-hidden
           sx={{
             position: "absolute",
@@ -242,7 +244,8 @@ function FeatureCards() {
         <Box
           component="img"
           src="/images/brand-patterns/frame.png"
-          alt=""
+          alt="Speekr feature cards frame pattern"
+          title="Speekr decorative feature cards frame pattern"
           aria-hidden
           sx={{
             position: "absolute",

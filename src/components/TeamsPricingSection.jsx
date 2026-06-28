@@ -449,7 +449,8 @@ export default function TeamsPricingSection({ locale = 'en', prices, onDemoClick
         <Box
           component="img"
           src="/images/brand-patterns/block.png"
-          alt=""
+          alt="Speekr teams pricing background pattern"
+          title="Speekr decorative teams pricing background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"

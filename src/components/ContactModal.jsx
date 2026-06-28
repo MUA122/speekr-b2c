@@ -339,6 +339,7 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
                 component="img"
                 src="/images/logo.svg"
                 alt="Speekr.ai"
+                title="Speekr.ai logo"
                 loading="lazy"
                 decoding="async"
                 sx={{ width: 100, filter: 'brightness(0) invert(1)', opacity: 0.88 }}

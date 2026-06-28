@@ -90,7 +90,8 @@ function PricingCard({ plan, prices, copy, common }) {
       <Box
         component="img"
         src="/images/brand-patterns/pricing-card-bg.png"
-        alt=""
+        alt="Speekr pricing card background pattern"
+        title="Speekr decorative pricing card pattern"
         aria-hidden
         loading="lazy"
         decoding="async"
@@ -305,7 +306,8 @@ export default function PricingSection({ locale = 'en', prices }) {
         <Box
           component="img"
           src="/images/brand-patterns/line-pattern.png"
-          alt=""
+          alt="Speekr pricing background pattern"
+          title="Speekr decorative pricing background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"

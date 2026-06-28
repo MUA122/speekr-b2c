@@ -540,6 +540,7 @@ export default function Footer({ locale = 'en', onContactClick }) {
               component="img"
               src={LOGO}
               alt="Speekr"
+              title="Speekr logo"
               loading="lazy"
               decoding="async"
               sx={{

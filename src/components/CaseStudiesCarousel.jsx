@@ -91,7 +91,8 @@ export default function CaseStudiesCarousel({ locale = 'en' }) {
         <Box
           component="img"
           src="/images/brand-patterns/block.png"
-          alt=""
+          alt="Speekr case studies background pattern"
+          title="Speekr decorative case studies background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"
@@ -252,6 +253,7 @@ export default function CaseStudiesCarousel({ locale = 'en' }) {
                       component="img"
                       src={slide.img}
                       alt={slide.title}
+                      title={slide.title}
                       loading="lazy"
                       decoding="async"
                       sx={{

@@ -18,7 +18,8 @@ function ProductPreview() {
     <Box
       component="img"
       src="/images/hero.png"
-      alt=""
+      alt="Speekr AI communication coaching dashboard preview"
+      title="Speekr AI communication coaching dashboard preview"
       aria-hidden
       decoding="async"
       fetchPriority="high"
@@ -148,7 +149,8 @@ function Hero({ locale = "en", onBookDemoClick }) {
       <Box
         component="img"
         src="/images/brand-patterns/hero-bg.png"
-        alt=""
+        alt="Speekr hero background pattern"
+        title="Speekr decorative hero background pattern"
         aria-hidden
         loading="lazy"
         decoding="async"

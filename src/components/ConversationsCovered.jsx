@@ -126,7 +126,8 @@ function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, 
       <Box
         component="img"
         src={pattern}
-        alt=""
+        alt="Speekr conversation card pattern"
+        title="Speekr decorative conversation card pattern"
         aria-hidden
         loading="lazy"
         decoding="async"
@@ -348,7 +349,8 @@ function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, 
                 key={item}
                 component="img"
                 src={pattern}
-                alt=""
+                alt="Speekr conversation thumbnail pattern"
+                title="Speekr decorative conversation thumbnail pattern"
                 loading="lazy"
                 decoding="async"
                 sx={{
@@ -433,7 +435,8 @@ export default function ConversationsCovered({ locale = 'en' }) {
         <Box
           component="img"
           src="/images/brand-patterns/line-pattern.png"
-          alt=""
+          alt="Speekr conversations background pattern"
+          title="Speekr decorative conversations background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"
@@ -449,7 +452,8 @@ export default function ConversationsCovered({ locale = 'en' }) {
         <Box
           component="img"
           src="/images/brand-patterns/frame.png"
-          alt=""
+          alt="Speekr conversations frame pattern"
+          title="Speekr decorative conversations frame pattern"
           aria-hidden
           loading="lazy"
           decoding="async"
@@ -466,7 +470,8 @@ export default function ConversationsCovered({ locale = 'en' }) {
         <Box
           component="img"
           src="/images/brand-patterns/block.png"
-          alt=""
+          alt="Speekr conversations block pattern"
+          title="Speekr decorative conversations block pattern"
           aria-hidden
           loading="lazy"
           decoding="async"

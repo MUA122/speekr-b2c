@@ -231,7 +231,7 @@ function LogosMarquee() {
                 },
               }}
             >
-              <img src={logo.src} alt={logo.alt} />
+              <img src={logo.src} alt={logo.alt} title={logo.alt} loading="lazy" decoding="async" />
             </Box>
           ))}
         </Box>

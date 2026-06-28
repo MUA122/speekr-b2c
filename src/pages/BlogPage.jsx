@@ -213,6 +213,7 @@ function ArticleCard({ post, index, locale, ui }) {
           component="img"
           src={post.image}
           alt={post.imageAlt}
+          title={post.imageAlt}
           loading={index > 0 ? "lazy" : undefined}
           decoding="async"
           fetchPriority={index === 0 ? "high" : "auto"}
@@ -668,6 +669,7 @@ function RankedReadCard({ post, rank, locale }) {
           component="img"
           src={post.image}
           alt={post.imageAlt}
+          title={post.imageAlt}
           loading="lazy"
           decoding="async"
           sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
@@ -819,7 +821,8 @@ export default function BlogPage({ locale = "en" }) {
         <Box
           component="img"
           src="/images/brand-patterns/line-pattern-wide.png"
-          alt=""
+          alt="Speekr blog background pattern"
+          title="Speekr decorative blog background pattern"
           aria-hidden
           loading="lazy"
           decoding="async"
