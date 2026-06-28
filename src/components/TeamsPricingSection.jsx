@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { Check, ArrowRight, Phone, Users, Building2, Zap } from 'lucide-react'
+import { Check, ArrowRight, Phone, Users, Building2 } from 'lucide-react'
+import { splitPrice } from '../utils/pricing'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -87,7 +88,9 @@ function FeatureRow({ text, note, CheckIcon }) {
   )
 }
 
-function TeamsCard({ billing }) {
+function TeamsCard({ billing, prices }) {
+  const { prefix, amount } = splitPrice(billing === 'monthly' ? prices.teamMonthly : prices.teamAnnual)
+
   return (
     <Box
       sx={{
@@ -169,7 +172,7 @@ function TeamsCard({ billing }) {
       <Box sx={{ mb: { xs: 3, md: 3.5 } }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.4, lineHeight: 1 }}>
           <Typography sx={{ fontSize: 22, fontWeight: 800, color: 'rgba(7,66,37,0.56)', lineHeight: 1, mt: '10px' }}>
-            $
+            {prefix}
           </Typography>
           <Typography
             sx={{
@@ -181,7 +184,7 @@ function TeamsCard({ billing }) {
               color: '#074225',
             }}
           >
-            {billing === 'monthly' ? '48' : '480'}
+            {amount}
           </Typography>
         </Box>
         <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(7,66,37,0.42)', mt: 1 }}>
@@ -405,7 +408,7 @@ function EnterpriseCard({ onDemoClick }) {
   )
 }
 
-export default function TeamsPricingSection({ onDemoClick }) {
+export default function TeamsPricingSection({ prices, onDemoClick }) {
   const [billing, setBilling] = useState('monthly')
 
   return (
@@ -634,7 +637,7 @@ export default function TeamsPricingSection({ onDemoClick }) {
               alignItems: 'stretch',
             }}
           >
-            <TeamsCard billing={billing} />
+            <TeamsCard billing={billing} prices={prices} />
             <EnterpriseCard onDemoClick={onDemoClick} />
           </Box>
 

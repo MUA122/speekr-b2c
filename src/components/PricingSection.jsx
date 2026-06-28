@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { Check, X, Star, Zap, ArrowRight } from 'lucide-react'
+import { splitPrice } from '../utils/pricing'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
@@ -25,12 +26,12 @@ const PRO_FEATURES = [
 
 const PLANS = {
   monthly: [
-    { id: 'starter-m', name: 'Speekr Starter', price: '23', period: 'per month', audience: 'For Individuals', highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: STARTER_FEATURES },
-    { id: 'pro-m', name: 'Speekr Pro Unlimited', price: '29', period: 'per month', audience: 'For Individuals', highlight: true, badge: 'Most Popular', href: 'https://app.speekr.ai/auth/sign-up/', features: PRO_FEATURES },
+    { id: 'starter-m', name: 'Speekr Starter', priceKey: 'starterMonthly', period: 'per month', audience: 'For Individuals', highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: STARTER_FEATURES },
+    { id: 'pro-m', name: 'Speekr Pro Unlimited', priceKey: 'proMonthly', period: 'per month', audience: 'For Individuals', highlight: true, badge: 'Most Popular', href: 'https://app.speekr.ai/auth/sign-up/', features: PRO_FEATURES },
   ],
   annual: [
-    { id: 'starter-a', name: 'Speekr Starter', price: '240', period: 'per year', audience: 'For Individuals', highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: STARTER_FEATURES },
-    { id: 'pro-a', name: 'Speekr Pro Unlimited', price: '299', period: 'per year', audience: 'For Individuals', highlight: true, badge: 'Most Popular', href: 'https://app.speekr.ai/auth/sign-up/', features: PRO_FEATURES },
+    { id: 'starter-a', name: 'Speekr Starter', priceKey: 'starterAnnual', period: 'per year', audience: 'For Individuals', highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: STARTER_FEATURES },
+    { id: 'pro-a', name: 'Speekr Pro Unlimited', priceKey: 'proAnnual', period: 'per year', audience: 'For Individuals', highlight: true, badge: 'Most Popular', href: 'https://app.speekr.ai/auth/sign-up/', features: PRO_FEATURES },
   ],
 }
 
@@ -56,8 +57,9 @@ function FeatureIcon({ type }) {
   )
 }
 
-function PricingCard({ plan }) {
-  const { name, price, period, audience, highlight, badge, href, features } = plan
+function PricingCard({ plan, prices }) {
+  const { name, priceKey, period, audience, highlight, badge, href, features } = plan
+  const { prefix, amount } = splitPrice(prices[priceKey])
   return (
     <Box
       className="premium-card"
@@ -162,7 +164,7 @@ function PricingCard({ plan }) {
       <Box sx={{ mb: { xs: 3, md: 3.5 } }}>
         <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.4, lineHeight: 1 }}>
           <Typography sx={{ fontSize: 22, fontWeight: 800, color: 'rgba(7,66,37,0.56)', lineHeight: 1, mt: '10px' }}>
-            $
+            {prefix}
           </Typography>
           <Typography
             sx={{
@@ -174,7 +176,7 @@ function PricingCard({ plan }) {
               color: '#074225',
             }}
           >
-            {price}
+            {amount}
           </Typography>
         </Box>
         <Typography sx={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(7,66,37,0.42)', mt: 1 }}>
@@ -248,7 +250,7 @@ function PricingCard({ plan }) {
   )
 }
 
-export default function PricingSection() {
+export default function PricingSection({ prices }) {
   const [billing, setBilling] = useState('monthly')
 
   return (
@@ -478,7 +480,7 @@ export default function PricingSection() {
             }}
           >
             {PLANS[billing].map((plan) => (
-              <PricingCard key={plan.id} plan={plan} />
+              <PricingCard key={plan.id} plan={plan} prices={prices} />
             ))}
           </Box>
 

@@ -4,44 +4,41 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
-const IMG = (id) =>
-  `https://cdn.builder.io/api/v1/image/assets%2F7a4e07e52a2c4a8bb3890e0c17931328%2F${id}`;
-
 const SLIDES = [
   {
     id: 0,
     num: "01",
     title: "Practice Solo",
     sub: "Record yourself. Get instant feedback and AI coaching.",
-    img: IMG("072f8695be514dd683ca21a028e6b656"),
+    img: "/images/card1.png",
   },
   {
     id: 1,
     num: "02",
     title: "Practice with AI",
     sub: "Practice real business scenarios with AI that challenges, objects, and engages you.",
-    img: IMG("5ebf70af32a64fd38eb5afe4a9258fdf"),
+    img: "/images/card2.png",
   },
   {
     id: 2,
     num: "03",
     title: "Get Instant Feedback",
     sub: "Science-based insights on your voice, body language, word choice, and conversation.",
-    img: IMG("27116df5851b42e1ae478cfe60470973"),
+    img: "/images/card-3.png",
   },
   {
     id: 3,
     num: "04",
     title: "Customize Your Conversations",
     sub: "Build scenarios around your industry, clients, and real work challenges.",
-    img: IMG("fb920cf9b76c44d68ab90c97210d0a36"),
+    img: "/images/card4.png",
   },
   {
     id: 4,
     num: "05",
     title: "Start a Guided Learning Journey",
     sub: "Learn from international coaches through AI powered structured paths.",
-    img: IMG("48cf416b618f41c38c3af16f330e403e"),
+    img: "/images/card5.png",
   },
 ];
 
@@ -221,11 +218,12 @@ function SlideCard({ slide }) {
           flexShrink: 0,
           width: { xs: "100%", md: "auto" },
           flex: { md: "1 1 0" },
-          maxWidth: { md: 536 },
-          alignSelf: { xs: "auto", md: "stretch" },
+          maxWidth: { sm: 420, md: 440, lg: 480 },
+          alignSelf: { xs: "auto", sm: "center", md: "center" },
           borderRadius: "16px",
           overflow: "hidden",
-          minHeight: { xs: 180, md: "auto" },
+          aspectRatio: "16 / 9",
+          minHeight: { xs: 160, md: 0 },
         }}
       >
         <Box
@@ -442,54 +440,76 @@ export default function ProgramsCarousel() {
             }}
           >
             <Stack direction="row" spacing={1.2}>
-              {[
-                {
-                  fn: () => goTo(Math.max(0, active - 1)),
-                  Icon: ChevronLeft,
-                  off: active === 0,
-                },
-                {
-                  fn: () => goTo(Math.min(SLIDES.length - 1, active + 1)),
-                  Icon: ChevronRight,
-                  off: active === SLIDES.length - 1,
-                },
-              ].map(({ fn, Icon, off }, bi) => (
-                <Box
-                  key={bi}
-                  component="button"
-                  onClick={fn}
-                  disabled={off}
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "50%",
-                    border: "1.5px solid",
-                    borderColor: off
-                      ? "rgba(238,243,205,0.1)"
-                      : "rgba(238,243,205,0.22)",
-                    bgcolor: "transparent",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: off ? "default" : "pointer",
-                    transition: "border-color 0.2s ease, background 0.2s ease",
-                    "&:hover": !off
-                      ? {
+              <Box
+                component="button"
+                onClick={() => goTo(Math.max(0, active - 1))}
+                disabled={active === 0}
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  border: "1.5px solid",
+                  borderColor:
+                    active === 0 ? "rgba(238,243,205,0.1)" : "rgba(238,243,205,0.22)",
+                  bgcolor: "transparent",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: active === 0 ? "default" : "pointer",
+                  transition: "border-color 0.2s ease, background 0.2s ease",
+                  "&:hover":
+                    active === 0
+                      ? {}
+                      : {
                           borderColor: "#F26433",
                           bgcolor: "rgba(242,100,51,0.06)",
-                        }
-                      : {},
-                  }}
-                >
-                  <Icon
-                    size={16}
-                    color={
-                      off ? "rgba(238,243,205,0.18)" : "rgba(238,243,205,0.78)"
-                    }
-                    aria-hidden
-                  />
-                </Box>
-              ))}
+                        },
+                }}
+              >
+                <ChevronLeft
+                  size={16}
+                  color={active === 0 ? "rgba(238,243,205,0.18)" : "rgba(238,243,205,0.78)"}
+                  aria-hidden
+                />
+              </Box>
+              <Box
+                component="button"
+                onClick={() => goTo(Math.min(SLIDES.length - 1, active + 1))}
+                disabled={active === SLIDES.length - 1}
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  border: "1.5px solid",
+                  borderColor:
+                    active === SLIDES.length - 1
+                      ? "rgba(238,243,205,0.1)"
+                      : "rgba(238,243,205,0.22)",
+                  bgcolor: "transparent",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: active === SLIDES.length - 1 ? "default" : "pointer",
+                  transition: "border-color 0.2s ease, background 0.2s ease",
+                  "&:hover":
+                    active === SLIDES.length - 1
+                      ? {}
+                      : {
+                          borderColor: "#F26433",
+                          bgcolor: "rgba(242,100,51,0.06)",
+                        },
+                }}
+              >
+                <ChevronRight
+                  size={16}
+                  color={
+                    active === SLIDES.length - 1
+                      ? "rgba(238,243,205,0.18)"
+                      : "rgba(238,243,205,0.78)"
+                  }
+                  aria-hidden
+                />
+              </Box>
             </Stack>
 
             <Stack direction="row" spacing={0.9} sx={{ alignItems: "center" }}>

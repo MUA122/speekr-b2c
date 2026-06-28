@@ -16,6 +16,7 @@ import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import { useLocalizedPrices } from "./utils/pricing";
 
 function getRoute() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -98,6 +99,7 @@ function GreenSectionDivider() {
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [route, setRoute] = useState(getRoute);
+  const prices = useLocalizedPrices();
 
   const openContactModal = () => setIsContactOpen(true);
   const closeContactModal = () => setIsContactOpen(false);
@@ -176,8 +178,8 @@ function App() {
           <VideoShowcase />
           <ConversationsCovered />
           <TestimonialsCarousel />
-          <PricingSection />
-          <TeamsPricingSection onDemoClick={openContactModal} />
+          <PricingSection prices={prices} />
+          <TeamsPricingSection prices={prices} onDemoClick={openContactModal} />
           <GreenSectionDivider />
           <CaseStudiesCarousel />
           <SplitCtaSection onDemoClick={openContactModal} />
