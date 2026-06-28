@@ -43,14 +43,15 @@ const SLIDES = [
   },
 ];
 
-function SlideCard({ slide, cta }) {
+function SlideCard({ slide, cta, locale = "en" }) {
+  const isAr = locale === "ar";
   return (
     <Box
       className="premium-card"
       sx={{
         position: "relative",
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "column", md: isAr ? "row-reverse" : "row" },
         justifyContent: "space-between",
         alignItems: "flex-start",
         gap: { xs: 3, md: 3 },
@@ -74,7 +75,8 @@ function SlideCard({ slide, cta }) {
         sx={{
           position: "absolute",
           top: { xs: 18, md: 24 },
-          right: { xs: "-38%", md: "-6%" },
+          right: isAr ? "auto" : { xs: "-38%", md: "-6%" },
+          left: isAr ? { xs: "-38%", md: "-6%" } : "auto",
           width: { xs: 520, sm: 700, md: 860 },
           maxWidth: "none",
           opacity: 0.08,
@@ -100,7 +102,8 @@ function SlideCard({ slide, cta }) {
         sx={{
           position: "absolute",
           top: -28,
-          left: -10,
+          left: isAr ? "auto" : -10,
+          right: isAr ? -10 : "auto",
           fontSize: { xs: 120, md: 200 },
           fontWeight: 900,
           lineHeight: 1,
@@ -124,13 +127,18 @@ function SlideCard({ slide, cta }) {
           width: { xs: "100%", md: 440 },
           pb: { xs: 0, md: "48px" },
           my: "auto",
+          textAlign: isAr ? "right" : "left",
         }}
       >
         {/* Step indicator */}
         <Stack
-          direction="row"
+          direction={isAr ? "row-reverse" : "row"}
           spacing={1.5}
-          sx={{ alignItems: "center", mb: { xs: 4, md: "52px" } }}
+          sx={{
+            alignItems: "center",
+            justifyContent: isAr ? "flex-start" : "flex-start",
+            mb: { xs: 4, md: "52px" },
+          }}
         >
           <Box
             sx={{
@@ -210,7 +218,11 @@ function SlideCard({ slide, cta }) {
           }}
         >
           {cta}
-          <ArrowRight size={17} aria-hidden />
+          <ArrowRight
+            size={17}
+            aria-hidden
+            style={{ transform: isAr ? "rotate(180deg)" : "none" }}
+          />
         </Box>
       </Box>
 
@@ -255,6 +267,9 @@ export default function ProgramsCarousel({ locale = "en" }) {
   const [active, setActive] = useState(0);
   const containerRef = useRef(null);
   const copy = landingCopy[locale].programs;
+  const isAr = locale === "ar";
+  const PrevIcon = isAr ? ChevronRight : ChevronLeft;
+  const NextIcon = isAr ? ChevronLeft : ChevronRight;
   const slides = SLIDES.map((slide, index) => ({
     ...slide,
     title: copy.slides[index][0],
@@ -434,7 +449,7 @@ export default function ProgramsCarousel({ locale = "en" }) {
                   pointerEvents: active === i ? "auto" : "none",
                 }}
               >
-                <SlideCard slide={slide} cta={copy.cta} />
+                <SlideCard slide={slide} cta={copy.cta} locale={locale} />
               </Box>
             ))}
           </Box>
@@ -449,6 +464,7 @@ export default function ProgramsCarousel({ locale = "en" }) {
               alignItems: "center",
               position: "relative",
               zIndex: 1,
+              direction: "ltr",
             }}
           >
             <Stack direction="row" spacing={1.2}>
@@ -478,7 +494,7 @@ export default function ProgramsCarousel({ locale = "en" }) {
                         },
                 }}
               >
-                <ChevronLeft
+                <PrevIcon
                   size={16}
                   color={active === 0 ? "rgba(238,243,205,0.18)" : "rgba(238,243,205,0.78)"}
                   aria-hidden
@@ -512,7 +528,7 @@ export default function ProgramsCarousel({ locale = "en" }) {
                         },
                 }}
               >
-                <ChevronRight
+                <NextIcon
                   size={16}
                   color={
                     active === SLIDES.length - 1
@@ -524,7 +540,11 @@ export default function ProgramsCarousel({ locale = "en" }) {
               </Box>
             </Stack>
 
-            <Stack direction="row" spacing={0.9} sx={{ alignItems: "center" }}>
+            <Stack
+              direction={isAr ? "row-reverse" : "row"}
+              spacing={0.9}
+              sx={{ alignItems: "center" }}
+            >
               {slides.map((_, i) => (
                 <Box
                   key={i}

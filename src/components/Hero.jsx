@@ -248,11 +248,11 @@ function Hero({ locale = "en", onBookDemoClick }) {
             {/* CTAs */}
             <Stack
               direction={{ xs: "column", sm: "row" }}
-              spacing={1.5}
               sx={{
                 mt: { xs: 4, md: 5 },
                 alignItems: { xs: "stretch", sm: "center" },
-                justifyContent: isAr ? "flex-start" : "flex-start",
+                justifyContent: "flex-start",
+                gap: isAr ? { xs: 1.6, sm: 2.4 } : 1.5,
                 "& .MuiButton-endIcon": {
                   ml: isAr ? 0 : 1,
                   mr: isAr ? 1 : -0.5,
