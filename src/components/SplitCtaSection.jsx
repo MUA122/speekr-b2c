@@ -39,7 +39,7 @@ function CtaCard({
 
   return (
     <Box
-      className="premium-card premium-sheen"
+      className="premium-card"
       sx={{
         position: "relative",
         flex: "1 1 0",
@@ -48,10 +48,11 @@ function CtaCard({
         border: "1px solid rgba(238,243,205,0.16)",
         background:
           "linear-gradient(145deg, rgba(7,66,37,0.96) 0%, rgba(0,52,30,0.98) 48%, rgba(2,21,13,1) 100%)",
-        overflow: "hidden",
-        p: { xs: "36px 28px", sm: "44px 38px", md: "52px 46px" },
+        overflow: { xs: "visible", md: "hidden" },
+        p: { xs: "26px 20px 24px", sm: "36px 28px", md: "52px 46px" },
         display: "flex",
         flexDirection: "column",
+        minHeight: { xs: "auto", md: 0 },
         boxShadow:
           "0 30px 90px rgba(7,66,37,0.22), 0 0 0 1px rgba(242,100,51,0.06)",
       }}
@@ -60,6 +61,7 @@ function CtaCard({
       <Box
         aria-hidden
         sx={{
+          display: { xs: "none", md: "block" },
           position: "absolute",
           top: "-20%",
           right: "-15%",
@@ -75,6 +77,7 @@ function CtaCard({
       <Box
         aria-hidden
         sx={{
+          display: { xs: "none", md: "block" },
           position: "absolute",
           bottom: "-15%",
           left: "-10%",
@@ -145,7 +148,7 @@ function CtaCard({
             mb: 1.5,
             fontSize: { xs: 26, sm: 30, md: 34, lg: 38 },
             fontWeight: 900,
-            letterSpacing: { xs: -0.8, md: -1.4 },
+            letterSpacing: 0,
             lineHeight: 1.0,
             color: "#EEF3CD",
           }}
@@ -183,7 +186,7 @@ function CtaCard({
             mb: { xs: 2.5, md: 3 },
             fontSize: { xs: 18, md: 22 },
             fontWeight: 800,
-            letterSpacing: -0.4,
+            letterSpacing: 0,
             lineHeight: 1.2,
             color: "#EEF3CD",
           }}
@@ -261,7 +264,7 @@ function CtaCard({
               color: "#074225",
               fontSize: { xs: 13.5, md: 14 },
               fontWeight: 800,
-              letterSpacing: -0.2,
+              letterSpacing: 0,
               textDecoration: "none",
               fontFamily: "inherit",
               transition:
@@ -295,7 +298,7 @@ function CtaCard({
                 color: "rgba(238,243,205,0.78)",
                 fontSize: { xs: 13.5, md: 14 },
                 fontWeight: 700,
-                letterSpacing: -0.2,
+                letterSpacing: 0,
                 cursor: "pointer",
                 fontFamily: "inherit",
                 transition:

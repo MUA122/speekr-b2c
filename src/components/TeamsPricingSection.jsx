@@ -99,11 +99,12 @@ function TeamsCard({ billing, prices, copy, common }) {
         flex: '1 1 0',
         display: 'flex',
         flexDirection: 'column',
-        p: { xs: '28px 24px 24px', md: '38px 36px 32px' },
+        p: { xs: '24px 20px 22px', sm: '28px 24px 24px', md: '38px 36px 32px' },
         borderRadius: { xs: '20px', md: '24px' },
         border: '1px solid rgba(242,100,51,0.18)',
         bgcolor: '#EEF3CD',
-        overflow: 'hidden',
+        overflow: { xs: 'visible', md: 'hidden' },
+        minHeight: { xs: 'auto', md: 0 },
         boxShadow: '0 24px 70px rgba(242,100,51,0.16), 0 0 0 1px rgba(242,100,51,0.12)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         '&:hover': {
@@ -116,6 +117,7 @@ function TeamsCard({ billing, prices, copy, common }) {
       <Box
         aria-hidden
         sx={{
+          display: { xs: 'none', md: 'block' },
           position: 'absolute',
           top: '-30%',
           left: '50%',
@@ -132,9 +134,11 @@ function TeamsCard({ billing, prices, copy, common }) {
       {/* Badge */}
       <Box
         sx={{
-          position: 'absolute',
-          top: 20,
-          right: 20,
+          position: { xs: 'relative', sm: 'absolute' },
+          top: { xs: 'auto', sm: 20 },
+          right: { xs: 'auto', sm: 20 },
+          alignSelf: { xs: 'flex-start', sm: 'auto' },
+          mb: { xs: 2, sm: 0 },
           px: 1.5,
           py: 0.55,
           borderRadius: '100px',
@@ -160,6 +164,7 @@ function TeamsCard({ billing, prices, copy, common }) {
             color: '#F26433',
             mb: 0.6,
             lineHeight: 1.2,
+            pr: { xs: 0, sm: 9 },
           }}
         >
           {copy.speekrTeams}
@@ -180,7 +185,7 @@ function TeamsCard({ billing, prices, copy, common }) {
               fontSize: { xs: 64, md: 76 },
               fontFamily: (theme) => theme.palette.brand.fontHeadline,
               fontWeight: 900,
-              letterSpacing: { xs: -3, md: -4 },
+              letterSpacing: 0,
               lineHeight: 0.9,
               color: '#074225',
             }}
@@ -270,11 +275,12 @@ function EnterpriseCard({ onDemoClick, copy, common }) {
         flex: '1 1 0',
         display: 'flex',
         flexDirection: 'column',
-        p: { xs: '28px 24px 24px', md: '38px 36px 32px' },
+        p: { xs: '24px 20px 22px', sm: '28px 24px 24px', md: '38px 36px 32px' },
         borderRadius: { xs: '20px', md: '24px' },
         border: '1px solid rgba(242,100,51,0.14)',
         bgcolor: '#EEF3CD',
-        overflow: 'hidden',
+        overflow: { xs: 'visible', md: 'hidden' },
+        minHeight: { xs: 'auto', md: 0 },
         boxShadow: '0 18px 50px rgba(7,66,37,0.08)',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         '&:hover': {
@@ -287,6 +293,7 @@ function EnterpriseCard({ onDemoClick, copy, common }) {
       <Box
         aria-hidden
         sx={{
+          display: { xs: 'none', md: 'block' },
           position: 'absolute',
           top: '-30%',
           left: '50%',
@@ -303,9 +310,11 @@ function EnterpriseCard({ onDemoClick, copy, common }) {
       {/* Badge */}
       <Box
         sx={{
-          position: 'absolute',
-          top: 20,
-          right: 20,
+          position: { xs: 'relative', sm: 'absolute' },
+          top: { xs: 'auto', sm: 20 },
+          right: { xs: 'auto', sm: 20 },
+          alignSelf: { xs: 'flex-start', sm: 'auto' },
+          mb: { xs: 2, sm: 0 },
           px: 1.5,
           py: 0.55,
           borderRadius: '100px',
@@ -332,6 +341,7 @@ function EnterpriseCard({ onDemoClick, copy, common }) {
             color: '#F26433',
             mb: 0.6,
             lineHeight: 1.2,
+            pr: { xs: 0, sm: 11 },
           }}
         >
           {copy.speekrEnterprise}
@@ -348,7 +358,7 @@ function EnterpriseCard({ onDemoClick, copy, common }) {
             fontSize: { xs: 64, md: 76 },
             fontFamily: (theme) => theme.palette.brand.fontHeadline,
             fontWeight: 900,
-            letterSpacing: { xs: -3, md: -4 },
+            letterSpacing: 0,
             lineHeight: 0.9,
             color: '#074225',
           }}

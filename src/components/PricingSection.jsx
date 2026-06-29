@@ -69,11 +69,12 @@ function PricingCard({ plan, prices, copy, common }) {
         flex: '1 1 0',
         display: 'flex',
         flexDirection: 'column',
-        p: { xs: '28px 24px 24px', md: '38px 36px 32px' },
+        p: { xs: '24px 20px 22px', sm: '28px 24px 24px', md: '38px 36px 32px' },
         borderRadius: { xs: '20px', md: '24px' },
         border: highlight ? '1px solid rgba(242,100,51,0.3)' : '1px solid rgba(7,66,37,0.12)',
         bgcolor: '#EEF3CD',
-        overflow: 'hidden',
+        overflow: { xs: 'visible', md: 'hidden' },
+        minHeight: { xs: 'auto', md: 0 },
         boxShadow: highlight
           ? '0 24px 70px rgba(242,100,51,0.16), 0 0 0 1px rgba(242,100,51,0.12)'
           : '0 18px 50px rgba(7,66,37,0.08)',
@@ -96,6 +97,7 @@ function PricingCard({ plan, prices, copy, common }) {
         loading="lazy"
         decoding="async"
         sx={{
+          display: { xs: 'none', md: 'block' },
           position: 'absolute',
           top: -36,
           right: -60,
@@ -108,6 +110,7 @@ function PricingCard({ plan, prices, copy, common }) {
         <Box
           aria-hidden
           sx={{
+            display: { xs: 'none', md: 'block' },
             position: 'absolute',
             top: '-30%',
             left: '50%',
@@ -126,9 +129,11 @@ function PricingCard({ plan, prices, copy, common }) {
       {badge && (
         <Box
           sx={{
-            position: 'absolute',
-            top: 20,
-            right: 20,
+            position: { xs: 'relative', sm: 'absolute' },
+            top: { xs: 'auto', sm: 20 },
+            right: { xs: 'auto', sm: 20 },
+            alignSelf: { xs: 'flex-start', sm: 'auto' },
+            mb: { xs: 2, sm: 0 },
             px: 1.5,
             py: 0.55,
             borderRadius: '100px',
@@ -155,6 +160,7 @@ function PricingCard({ plan, prices, copy, common }) {
             color: highlight ? '#F26433' : '#074225',
             mb: 0.6,
             lineHeight: 1.2,
+            pr: { xs: 0, sm: badge ? 13 : 0 },
           }}
         >
           {name}
@@ -175,7 +181,7 @@ function PricingCard({ plan, prices, copy, common }) {
               fontSize: { xs: 64, md: 76 },
               fontFamily: (theme) => theme.palette.brand.fontHeadline,
               fontWeight: 900,
-              letterSpacing: { xs: -3, md: -4 },
+              letterSpacing: 0,
               lineHeight: 0.9,
               color: '#074225',
             }}
