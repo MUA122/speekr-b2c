@@ -253,9 +253,9 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
           position: 'absolute',
           inset: 0,
           background: 'rgba(2,21,13,0.88)',
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
-          animation: 'backdropIn 0.2s ease',
+          backdropFilter: { xs: 'none', md: 'blur(18px)' },
+          WebkitBackdropFilter: { xs: 'none', md: 'blur(18px)' },
+          animation: { xs: 'none', md: 'backdropIn 0.2s ease' },
         }}
       />
 
@@ -271,7 +271,7 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
           border: '1px solid rgba(238,243,205,0.08)',
           background: '#074225',
           boxShadow: '0 0 0 1px rgba(242,100,51,0.06), 0 60px 140px rgba(0,0,0,0.75)',
-          animation: 'panelIn 0.26s cubic-bezier(0.34,1.4,0.64,1)',
+          animation: { xs: 'none', md: 'panelIn 0.26s cubic-bezier(0.34,1.4,0.64,1)' },
         }}
       >
         {/* Noise grain */}
@@ -300,7 +300,7 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
             height: '100%',
             borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(242,100,51,0.07) 0%, transparent 70%)',
-            filter: 'blur(50px)',
+            filter: { xs: 'none', md: 'blur(50px)' },
             pointerEvents: 'none',
           }}
         />

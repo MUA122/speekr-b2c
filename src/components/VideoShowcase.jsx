@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -14,7 +14,18 @@ const STATS = [
 export default function VideoShowcase({ locale = 'en' }) {
   const copy = landingCopy[locale].video
   const common = commonCopy[locale]
+  const [isDesktop, setIsDesktop] = useState(false)
+
   useEffect(() => {
+    const query = window.matchMedia('(min-width: 900px)')
+    const update = () => setIsDesktop(query.matches)
+    update()
+    query.addEventListener?.('change', update)
+    return () => query.removeEventListener?.('change', update)
+  }, [])
+
+  useEffect(() => {
+    if (!isDesktop) return
     const existing = document.querySelector('script[data-vimeo]')
     if (existing) return
     const s = document.createElement('script')
@@ -22,7 +33,7 @@ export default function VideoShowcase({ locale = 'en' }) {
     s.async = true
     s.setAttribute('data-vimeo', '1')
     document.body.appendChild(s)
-  }, [])
+  }, [isDesktop])
 
   return (
     <Box
@@ -267,25 +278,59 @@ export default function VideoShowcase({ locale = 'en' }) {
               },
             }}
           >
-            <Box sx={{ paddingTop: '56.25%', position: 'relative', zIndex: 1 }}>
+            <Box
+              sx={{
+                display: { xs: 'flex', md: 'none' },
+                aspectRatio: '16 / 9',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: 1.5,
+                bgcolor: '#002213',
+                color: '#EEF3CD',
+                px: 3,
+                textAlign: 'center',
+              }}
+            >
               <Box
-                component="iframe"
-                src="https://player.vimeo.com/video/1146534594?h=2d5851ade0&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                title="How Does Speekr Work?"
-                loading="lazy"
                 sx={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  display: 'block',
+                  width: 58,
+                  height: 58,
+                  borderRadius: '50%',
+                  bgcolor: '#F26433',
+                  color: '#074225',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
-              />
+              >
+                <Play size={24} fill="currentColor" aria-hidden />
+              </Box>
+              <Typography sx={{ fontSize: 14, fontWeight: 800, color: '#EEF3CD' }}>
+                {copy.badge}
+              </Typography>
             </Box>
+            {isDesktop && (
+              <Box sx={{ paddingTop: '56.25%', position: 'relative', zIndex: 1 }}>
+                <Box
+                  component="iframe"
+                  src="https://player.vimeo.com/video/1146534594?h=2d5851ade0&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="How Does Speekr Work?"
+                  loading="lazy"
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    display: 'block',
+                  }}
+                />
+              </Box>
+            )}
           </Box>
 
           {/* Stat pills */}

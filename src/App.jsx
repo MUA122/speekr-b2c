@@ -21,6 +21,25 @@ import { applySeo, organizationSchema, setJsonLd, websiteSchema } from "./utils/
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
+function RouteFallback() {
+  return (
+    <Box
+      sx={{
+        minHeight: "100svh",
+        bgcolor: "#EEF3CD",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#074225",
+        fontSize: 14,
+        fontWeight: 800,
+      }}
+    >
+      Loading...
+    </Box>
+  );
+}
+
 const HOME_SEO = {
   en: {
     title: "Speekr.ai | AI Communication Coach for Business Conversations",
@@ -178,12 +197,12 @@ function App() {
     >
       <Header locale={locale} onContactClick={openContactModal} />
       {route.name === "blog" && (
-        <Suspense fallback={null}>
+        <Suspense fallback={<RouteFallback />}>
           <BlogPage locale={locale} />
         </Suspense>
       )}
       {route.name === "blogPost" && (
-        <Suspense fallback={null}>
+        <Suspense fallback={<RouteFallback />}>
           <BlogPostPage slug={route.slug} locale={locale} />
         </Suspense>
       )}

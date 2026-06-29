@@ -58,8 +58,8 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
           position: 'absolute',
           inset: 0,
           background: 'rgba(2,21,13,0.84)',
-          backdropFilter: 'blur(14px)',
-          animation: 'mBackdrop 0.25s ease forwards',
+          backdropFilter: { xs: 'none', md: 'blur(14px)' },
+          animation: { xs: 'none', md: 'mBackdrop 0.25s ease forwards' },
         }}
       />
 
@@ -80,7 +80,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
-          animation: 'mPanel 0.3s cubic-bezier(0.4,0,0.2,1) forwards',
+          animation: { xs: 'none', md: 'mPanel 0.3s cubic-bezier(0.4,0,0.2,1) forwards' },
         }}
       >
         {/* Ambient glow */}
@@ -95,7 +95,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
             borderRadius: '50%',
             background:
               'radial-gradient(circle, rgba(242,100,51,0.07) 0%, transparent 70%)',
-            filter: 'blur(40px)',
+            filter: { xs: 'none', md: 'blur(40px)' },
             pointerEvents: 'none',
           }}
         />
@@ -180,7 +180,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
                   if (item.sectionId)
                     document
                       .getElementById(item.sectionId)
-                      ?.scrollIntoView({ behavior: 'smooth' })
+                      ?.scrollIntoView({ behavior: 'auto' })
                 }}
                 sx={{
                   display: 'flex',
@@ -411,7 +411,7 @@ export default function Header({ locale = 'en', onContactClick }) {
               background: scrolled
                 ? 'rgba(0,34,19,0.94)'
                 : 'radial-gradient(circle at 82% 18%, rgba(242,100,51,0.14) 0%, transparent 28%), radial-gradient(circle at 12% 82%, rgba(7,66,37,0.12) 0%, transparent 34%), linear-gradient(135deg, #EEF3CD 0%, #EEF3CD 56%, rgba(7,66,37,0.08) 100%)',
-              backdropFilter: 'blur(32px) saturate(1.5)',
+              backdropFilter: { xs: 'none', md: 'blur(32px) saturate(1.5)' },
               boxShadow: scrolled
                 ? '0 8px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(238,243,205,0.04)'
                 : '0 14px 34px rgba(7,66,37,0.12)',
@@ -486,7 +486,7 @@ export default function Header({ locale = 'en', onContactClick }) {
                       onClick={() =>
                         document
                           .getElementById(item.sectionId)
-                          ?.scrollIntoView({ behavior: 'smooth' })
+                          ?.scrollIntoView({ behavior: 'auto' })
                       }
                       sx={desktopLinkSx(isActive, scrolled)}
                     >

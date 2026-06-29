@@ -49,10 +49,10 @@ function Lightbox({ slide, onClose, copy }) {
         position: 'fixed', inset: 0, zIndex: 9999,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         bgcolor: 'rgba(0,0,0,0.9)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
+        backdropFilter: { xs: 'none', md: 'blur(20px)' },
+        WebkitBackdropFilter: { xs: 'none', md: 'blur(20px)' },
         '@keyframes lbBack': { from: { opacity: 0 }, to: { opacity: 1 } },
-        animation: 'lbBack 0.22s ease',
+        animation: { xs: 'none', md: 'lbBack 0.22s ease' },
       }}
     >
       <Box
@@ -70,7 +70,7 @@ function Lightbox({ slide, onClose, copy }) {
             from: { opacity: 0, transform: 'translateY(28px) scale(0.96)' },
             to: { opacity: 1, transform: 'translateY(0) scale(1)' },
           },
-          animation: 'lbUp 0.32s cubic-bezier(0.4,0,0.2,1)',
+          animation: { xs: 'none', md: 'lbUp 0.32s cubic-bezier(0.4,0,0.2,1)' },
         }}
       >
         {/* Top shimmer */}
@@ -124,7 +124,7 @@ function Lightbox({ slide, onClose, copy }) {
           sx={{
             position: 'absolute', top: 12, right: 12, zIndex: 10,
             width: 36, height: 36, borderRadius: '50%',
-            bgcolor: 'rgba(0,0,0,0.72)', backdropFilter: 'blur(8px)',
+            bgcolor: 'rgba(0,0,0,0.72)', backdropFilter: { xs: 'none', md: 'blur(8px)' },
             border: '1px solid rgba(238,243,205,0.18)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', p: 0,
@@ -323,11 +323,75 @@ function VideoCard({ slide, isActive, onOpenLightbox, copy }) {
   )
 }
 
+function MobileStoryCard({ slide, isActive, onOpenLightbox, copy }) {
+  return (
+    <Box
+      component="button"
+      type="button"
+      onClick={onOpenLightbox}
+      sx={{
+        width: '100%',
+        minHeight: 220,
+        borderRadius: '16px',
+        border: isActive
+          ? '1px solid rgba(242,100,51,0.24)'
+          : '1px solid rgba(238,243,205,0.1)',
+        bgcolor: '#002213',
+        color: '#EEF3CD',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 1.6,
+        p: 3,
+        fontFamily: 'inherit',
+        cursor: 'pointer',
+        boxShadow: isActive
+          ? '0 20px 54px rgba(0,0,0,0.32)'
+          : '0 10px 26px rgba(0,0,0,0.22)',
+      }}
+    >
+      <Box
+        sx={{
+          width: 58,
+          height: 58,
+          borderRadius: '50%',
+          bgcolor: '#F26433',
+          color: '#074225',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Play size={22} fill="currentColor" aria-hidden />
+      </Box>
+      <Typography sx={{ fontSize: 12, fontWeight: 900, letterSpacing: 1.4, textTransform: 'uppercase', color: '#F26433' }}>
+        {copy.watch}
+      </Typography>
+      <Typography sx={{ fontSize: 20, fontWeight: 900, color: '#EEF3CD', lineHeight: 1.1 }}>
+        {slide.name}
+      </Typography>
+      <Typography sx={{ fontSize: 13, color: 'rgba(238,243,205,0.58)' }}>
+        {slide.location}
+      </Typography>
+    </Box>
+  )
+}
+
 /* ─── Main section ─────────────────────────────────────── */
 export default function TestimonialsCarousel({ locale = 'en' }) {
   const [active, setActive] = useState(0)
   const [lightboxSlide, setLightboxSlide] = useState(null)
+  const [isDesktop, setIsDesktop] = useState(false)
   const copy = landingCopy[locale].testimonials
+
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 900px)')
+    const update = () => setIsDesktop(query.matches)
+    update()
+    query.addEventListener?.('change', update)
+    return () => query.removeEventListener?.('change', update)
+  }, [])
 
   const prev = () => setActive(a => (a - 1 + N) % N)
   const next = () => setActive(a => (a + 1) % N)
@@ -439,12 +503,21 @@ export default function TestimonialsCarousel({ locale = 'en' }) {
                       width: { xs: `${100 / N}%`, md: 'calc((100% - 48px) / 3)' },
                     }}
                   >
-                    <VideoCard
-                      slide={slide}
-                      isActive={slide.id === active}
-                      onOpenLightbox={() => setLightboxSlide(slide)}
-                      copy={copy}
-                    />
+                    {isDesktop ? (
+                      <VideoCard
+                        slide={slide}
+                        isActive={slide.id === active}
+                        onOpenLightbox={() => setLightboxSlide(slide)}
+                        copy={copy}
+                      />
+                    ) : (
+                      <MobileStoryCard
+                        slide={slide}
+                        isActive={slide.id === active}
+                        onOpenLightbox={() => setLightboxSlide(slide)}
+                        copy={copy}
+                      />
+                    )}
                   </Box>
                 ))}
               </Box>
