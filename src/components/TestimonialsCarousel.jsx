@@ -323,75 +323,11 @@ function VideoCard({ slide, isActive, onOpenLightbox, copy }) {
   )
 }
 
-function MobileStoryCard({ slide, isActive, onOpenLightbox, copy }) {
-  return (
-    <Box
-      component="button"
-      type="button"
-      onClick={onOpenLightbox}
-      sx={{
-        width: '100%',
-        minHeight: 220,
-        borderRadius: '16px',
-        border: isActive
-          ? '1px solid rgba(242,100,51,0.24)'
-          : '1px solid rgba(238,243,205,0.1)',
-        bgcolor: '#002213',
-        color: '#EEF3CD',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 1.6,
-        p: 3,
-        fontFamily: 'inherit',
-        cursor: 'pointer',
-        boxShadow: isActive
-          ? '0 20px 54px rgba(0,0,0,0.32)'
-          : '0 10px 26px rgba(0,0,0,0.22)',
-      }}
-    >
-      <Box
-        sx={{
-          width: 58,
-          height: 58,
-          borderRadius: '50%',
-          bgcolor: '#F26433',
-          color: '#074225',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Play size={22} fill="currentColor" aria-hidden />
-      </Box>
-      <Typography sx={{ fontSize: 12, fontWeight: 900, letterSpacing: 1.4, textTransform: 'uppercase', color: '#F26433' }}>
-        {copy.watch}
-      </Typography>
-      <Typography sx={{ fontSize: 20, fontWeight: 900, color: '#EEF3CD', lineHeight: 1.1 }}>
-        {slide.name}
-      </Typography>
-      <Typography sx={{ fontSize: 13, color: 'rgba(238,243,205,0.58)' }}>
-        {slide.location}
-      </Typography>
-    </Box>
-  )
-}
-
 /* ─── Main section ─────────────────────────────────────── */
 export default function TestimonialsCarousel({ locale = 'en' }) {
   const [active, setActive] = useState(0)
   const [lightboxSlide, setLightboxSlide] = useState(null)
-  const [isDesktop, setIsDesktop] = useState(false)
   const copy = landingCopy[locale].testimonials
-
-  useEffect(() => {
-    const query = window.matchMedia('(min-width: 900px)')
-    const update = () => setIsDesktop(query.matches)
-    update()
-    query.addEventListener?.('change', update)
-    return () => query.removeEventListener?.('change', update)
-  }, [])
 
   const prev = () => setActive(a => (a - 1 + N) % N)
   const next = () => setActive(a => (a + 1) % N)
@@ -503,21 +439,12 @@ export default function TestimonialsCarousel({ locale = 'en' }) {
                       width: { xs: `${100 / N}%`, md: 'calc((100% - 48px) / 3)' },
                     }}
                   >
-                    {isDesktop ? (
-                      <VideoCard
-                        slide={slide}
-                        isActive={slide.id === active}
-                        onOpenLightbox={() => setLightboxSlide(slide)}
-                        copy={copy}
-                      />
-                    ) : (
-                      <MobileStoryCard
-                        slide={slide}
-                        isActive={slide.id === active}
-                        onOpenLightbox={() => setLightboxSlide(slide)}
-                        copy={copy}
-                      />
-                    )}
+                    <VideoCard
+                      slide={slide}
+                      isActive={slide.id === active}
+                      onOpenLightbox={() => setLightboxSlide(slide)}
+                      copy={copy}
+                    />
                   </Box>
                 ))}
               </Box>
