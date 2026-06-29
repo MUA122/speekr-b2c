@@ -6,11 +6,13 @@ import App from './App.jsx'
 import theme from './theme.js'
 import './index.css'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
-  </StrictMode>,
-)
+window.setTimeout(() => {
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </StrictMode>,
+  )
+}, 1050)

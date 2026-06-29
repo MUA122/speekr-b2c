@@ -14,31 +14,13 @@ import SplitCtaSection from "./components/SplitCtaSection";
 import FaqSection from "./components/FaqSection";
 import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
+import LoadingScreen from "./components/LoadingScreen";
 import { useLocalizedPrices } from "./utils/pricing";
 import { splitLocalePath } from "./utils/i18n";
 import { applySeo, organizationSchema, setJsonLd, websiteSchema } from "./utils/seo";
 
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
-
-function RouteFallback() {
-  return (
-    <Box
-      sx={{
-        minHeight: "100svh",
-        bgcolor: "#EEF3CD",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#074225",
-        fontSize: 14,
-        fontWeight: 800,
-      }}
-    >
-      Loading...
-    </Box>
-  );
-}
 
 const HOME_SEO = {
   en: {
@@ -136,6 +118,7 @@ function GreenSectionDivider() {
 }
 
 function App() {
+  const [isBootLoading, setIsBootLoading] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [route, setRoute] = useState(getRoute);
   const prices = useLocalizedPrices();
@@ -144,6 +127,27 @@ function App() {
 
   const openContactModal = () => setIsContactOpen(true);
   const closeContactModal = () => setIsContactOpen(false);
+
+  useEffect(() => {
+    const handleInternalLink = (event) => {
+      const link = event.target.closest?.("a[href]");
+      if (!link || link.target || event.defaultPrevented) return;
+
+      const url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.hash && url.pathname === window.location.pathname) return;
+      if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+      event.preventDefault();
+      setIsBootLoading(true);
+      window.setTimeout(() => {
+        window.location.href = url.href;
+      }, 120);
+    };
+
+    document.addEventListener("click", handleInternalLink, true);
+    return () => document.removeEventListener("click", handleInternalLink, true);
+  }, []);
 
   useEffect(() => {
     const handleNavigation = () => setRoute(getRoute());
@@ -197,12 +201,12 @@ function App() {
     >
       <Header locale={locale} onContactClick={openContactModal} />
       {route.name === "blog" && (
-        <Suspense fallback={<RouteFallback />}>
+        <Suspense fallback={<LoadingScreen />}>
           <BlogPage locale={locale} />
         </Suspense>
       )}
       {route.name === "blogPost" && (
-        <Suspense fallback={<RouteFallback />}>
+        <Suspense fallback={<LoadingScreen />}>
           <BlogPostPage slug={route.slug} locale={locale} />
         </Suspense>
       )}
@@ -274,6 +278,7 @@ function App() {
       )}
       <Footer locale={locale} onContactClick={openContactModal} />
       <ContactModal locale={locale} open={isContactOpen} onClose={closeContactModal} />
+      {isBootLoading && <LoadingScreen fixed />}
     </Box>
   );
 }

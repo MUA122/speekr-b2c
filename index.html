@@ -35,9 +35,116 @@
     />
     <meta name="twitter:image" content="/images/hero.png" />
     <title>Speekr.ai | AI Communication Coach for Business Conversations</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #eef3cd;
+      }
+
+      #root:empty {
+        min-height: 100svh;
+      }
+
+      .initial-loader {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        box-sizing: border-box;
+        overflow: hidden;
+        color: #074225;
+        background:
+          radial-gradient(circle at 50% 28%, rgba(242, 100, 51, 0.11), transparent 30%),
+          linear-gradient(180deg, #eef3cd 0%, #f6f8d9 54%, #eef3cd 100%);
+        font-family: Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      }
+
+      .initial-loader__inner {
+        width: min(360px, 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .initial-loader__logo {
+        width: 148px;
+        height: auto;
+        display: block;
+        filter: brightness(0) saturate(100%) invert(17%) sepia(34%) saturate(1031%) hue-rotate(104deg) brightness(92%) contrast(97%);
+      }
+
+      .initial-loader__track {
+        width: 100%;
+        height: 10px;
+        margin-top: 28px;
+        border-radius: 999px;
+        border: 1px solid rgba(7, 66, 37, 0.16);
+        background: rgba(7, 66, 37, 0.08);
+        overflow: hidden;
+      }
+
+      .initial-loader__bar {
+        height: 100%;
+        width: 20%;
+        border-radius: inherit;
+        background: #f26433;
+        animation: speekrLoad 900ms steps(4, end) forwards;
+      }
+
+      .initial-loader__steps {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        color: rgba(7, 66, 37, 0.45);
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .initial-loader__label {
+        margin-top: 22px;
+        color: rgba(7, 66, 37, 0.62);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+      }
+
+      @keyframes speekrLoad {
+        to {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .initial-loader__logo {
+          width: 132px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="initial-loader" role="status" aria-live="polite">
+        <div class="initial-loader__inner">
+          <img class="initial-loader__logo" src="/images/logo.svg" alt="Speekr.ai" />
+          <div class="initial-loader__track" aria-hidden="true">
+            <div class="initial-loader__bar"></div>
+          </div>
+          <div class="initial-loader__steps" aria-hidden="true">
+            <span>20%</span>
+            <span>40%</span>
+            <span>60%</span>
+            <span>80%</span>
+            <span>100%</span>
+          </div>
+          <div class="initial-loader__label">Preparing your AI coach</div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

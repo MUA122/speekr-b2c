@@ -134,6 +134,16 @@ img {
   }
 }
 
+.site-loader,
+.site-loader * {
+  animation-duration: revert !important;
+  animation-iteration-count: revert !important;
+}
+
+.site-loader__bar {
+  transition-duration: 180ms !important;
+}
+
 .signal-line {
   animation: signalPulse 2.8s ease-in-out infinite;
 }
