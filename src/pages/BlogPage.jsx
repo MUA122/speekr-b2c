@@ -821,8 +821,8 @@ export default function BlogPage({ locale = "en" }) {
           position: "relative",
           overflow: "hidden",
           bgcolor: "#EEF3CD",
-          pt: { xs: 12.5, md: 15 },
-          pb: { xs: 8, md: 11 },
+          pt: { xs: 11, sm: 12, md: 15 },
+          pb: { xs: 5.5, sm: 6.5, md: 11 },
         }}
       >
         <Box
@@ -855,9 +855,9 @@ export default function BlogPage({ locale = "en" }) {
             sx={{
               display: "grid",
               gridTemplateColumns: { xs: "1fr", lg: "minmax(0, 0.95fr) 360px" },
-              gap: { xs: 3, lg: 5 },
+              gap: { xs: 2.4, sm: 3, lg: 5 },
               alignItems: "end",
-              mb: { xs: 4.5, md: 6 },
+              mb: { xs: 3, sm: 4, md: 6 },
             }}
           >
             <Box>
@@ -868,7 +868,7 @@ export default function BlogPage({ locale = "en" }) {
                   gap: 1,
                   px: 1.55,
                   py: 0.75,
-                  mb: 2.4,
+                  mb: { xs: 1.8, md: 2.4 },
                   borderRadius: "999px",
                   border: "1px solid rgba(7,66,37,0.13)",
                   bgcolor: "rgba(238,243,205,0.58)",
@@ -894,11 +894,11 @@ export default function BlogPage({ locale = "en" }) {
                 sx={{
                   m: 0,
                   maxWidth: 850,
-                  fontSize: { xs: 46, sm: 62, md: 78 },
+                  fontSize: { xs: 38, sm: 52, md: 78 },
                   fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 950,
                   letterSpacing: 0,
-                  lineHeight: 0.93,
+                  lineHeight: { xs: 0.98, md: 0.93 },
                   color: "#074225",
                 }}
               >
@@ -920,10 +920,10 @@ export default function BlogPage({ locale = "en" }) {
               </Typography>
               <Typography
                 sx={{
-                  mt: { xs: 2, md: 2.4 },
+                  mt: { xs: 1.6, md: 2.4 },
                   maxWidth: 690,
-                  fontSize: { xs: 16, md: 18 },
-                  lineHeight: 1.72,
+                  fontSize: { xs: 15, md: 18 },
+                  lineHeight: { xs: 1.62, md: 1.72 },
                   color: "rgba(7,66,37,0.62)",
                 }}
               >
@@ -933,21 +933,21 @@ export default function BlogPage({ locale = "en" }) {
 
             <Box
               sx={{
-                p: 2.4,
-                borderRadius: "20px",
+                p: { xs: 1.6, sm: 2, md: 2.4 },
+                borderRadius: { xs: "18px", md: "20px" },
                 bgcolor: "#074225",
                 color: "#EEF3CD",
                 border: "1px solid rgba(238,243,205,0.12)",
                 boxShadow: "0 24px 80px rgba(7,66,37,0.16)",
               }}
             >
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: { xs: 1.4, md: 2 } }}>
                 <Library size={17} color="#F26433" aria-hidden />
                 <Typography sx={{ fontSize: 12, fontWeight: 950, letterSpacing: 1.4, textTransform: "uppercase" }}>
                   {ui.library}
                 </Typography>
               </Box>
-              <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1.3 }}>
+              <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: { xs: 1, md: 1.3 } }}>
                 {[
                   [ui.stats[0], posts.length],
                   [ui.stats[1], categories.length],
@@ -957,16 +957,16 @@ export default function BlogPage({ locale = "en" }) {
                   <Box
                     key={label}
                     sx={{
-                      p: 1.4,
-                      borderRadius: "14px",
+                      p: { xs: 1.15, md: 1.4 },
+                      borderRadius: { xs: "12px", md: "14px" },
                       bgcolor: "rgba(238,243,205,0.06)",
                       border: "1px solid rgba(238,243,205,0.09)",
                     }}
                   >
-                    <Typography sx={{ fontSize: 11, color: "rgba(238,243,205,0.46)", fontWeight: 800 }}>
+                    <Typography sx={{ fontSize: { xs: 10, md: 11 }, color: "rgba(238,243,205,0.46)", fontWeight: 800 }}>
                       {label}
                     </Typography>
-                    <Typography sx={{ mt: 0.25, fontSize: 22, lineHeight: 1, fontWeight: 950, color: "#F26433" }}>
+                    <Typography sx={{ mt: 0.25, fontSize: { xs: 19, md: 22 }, lineHeight: 1, fontWeight: 950, color: "#F26433" }}>
                       {value}
                     </Typography>
                   </Box>
@@ -978,9 +978,9 @@ export default function BlogPage({ locale = "en" }) {
           <Box
             sx={{
               display: "flex",
-              gap: 1,
+              gap: { xs: 0.8, md: 1 },
               flexWrap: "wrap",
-              mb: { xs: 3, md: 4 },
+              mb: { xs: 2.4, md: 4 },
             }}
           >
             <MetaPill icon={Sparkles}>{ui.allInsights}</MetaPill>

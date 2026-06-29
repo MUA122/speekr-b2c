@@ -52,7 +52,7 @@ export const navCopy = {
     { label: "Contact", isContact: true },
   ],
   ar: [
-    { label: "Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©", href: "/" },
+    { label: "الرئيسية", href: "/" },
     { label: "المدونة", href: "/blog" },
     { label: "المنتج", href: "#product-communication", sectionId: "product-communication" },
     { label: "الأسعار", href: "#pricing", sectionId: "pricing" },
