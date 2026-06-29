@@ -308,13 +308,13 @@ export default function ProgramsCarousel({ locale = "en" }) {
     <Box
       id="product-communication"
       ref={containerRef}
-      sx={{ height: `${(SLIDES.length + 1) * 100}vh`, position: "relative" }}
+      sx={{ height: `${(SLIDES.length + 1) * 100}svh`, position: "relative" }}
     >
       <Box
         sx={{
           position: "sticky",
           top: 0,
-          height: "calc(100vh / var(--site-scale))",
+          height: "100svh",
           bgcolor: "#074225",
           px: { xs: "12px", sm: "18px", md: "24px" },
           py: { xs: "12px", md: "16px" },

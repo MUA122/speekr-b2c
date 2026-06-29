@@ -1,5 +1,5 @@
 :root {
-  --site-scale: 0.9;
+  --site-scale: 1;
   --font-headline: "Belwe Bold", "Belwe", "Cooper Black", Georgia, serif;
   --font-body: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   font-synthesis: none;
@@ -58,7 +58,6 @@ html[dir="rtl"] [aria-labelledby="faq-title"] h2 {
 
 #root {
   min-height: 100svh;
-  zoom: var(--site-scale);
 }
 
 a {
