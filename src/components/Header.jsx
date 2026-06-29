@@ -8,10 +8,25 @@ const WATCH_IDS = ['product-communication', 'pricing']
 
 function getLanguageHref(locale) {
   const path = window.location.pathname.replace(/\/+$/, '') || '/'
+  const hash = window.location.hash || ''
   if (locale === 'ar') {
-    return path.replace(/^\/ar(?=\/|$)/, '') || '/'
+    const nextPath = path.replace(/^\/ar(?=\/|$)/, '') || '/'
+    return `${nextPath}${hash}`
   }
-  return path === '/' ? '/ar' : `/ar${path}`
+  return `${path === '/' ? '/ar' : `/ar${path}`}${hash}`
+}
+
+function getSectionHref(sectionId, locale) {
+  return `${localizedPath('/', locale)}#${sectionId}`
+}
+
+function goToSection(sectionId, locale) {
+  const section = document.getElementById(sectionId)
+  if (section) {
+    section.scrollIntoView({ behavior: 'auto' })
+    return
+  }
+  window.location.href = getSectionHref(sectionId, locale)
 }
 
 /* ── Mobile panel (createPortal — bypasses MUI light theme on Paper) ── */
@@ -177,10 +192,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
                 onClick={() => {
                   onClose()
                   if (item.isContact) onContactClick?.()
-                  if (item.sectionId)
-                    document
-                      .getElementById(item.sectionId)
-                      ?.scrollIntoView({ behavior: 'auto' })
+                  if (item.sectionId) goToSection(item.sectionId, locale)
                 }}
                 sx={{
                   display: 'flex',
@@ -483,11 +495,7 @@ export default function Header({ locale = 'en', onContactClick }) {
                       key={item.label}
                       component="button"
                       type="button"
-                      onClick={() =>
-                        document
-                          .getElementById(item.sectionId)
-                          ?.scrollIntoView({ behavior: 'auto' })
-                      }
+                      onClick={() => goToSection(item.sectionId, locale)}
                       sx={desktopLinkSx(isActive, scrolled)}
                     >
                       {item.label}

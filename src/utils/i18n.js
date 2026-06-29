@@ -45,12 +45,14 @@ export const commonCopy = {
 
 export const navCopy = {
   en: [
+    { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
     { label: "Product", href: "#product-communication", sectionId: "product-communication" },
     { label: "Pricing", href: "#pricing", sectionId: "pricing" },
     { label: "Contact", isContact: true },
   ],
   ar: [
+    { label: "Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©", href: "/" },
     { label: "المدونة", href: "/blog" },
     { label: "المنتج", href: "#product-communication", sectionId: "product-communication" },
     { label: "الأسعار", href: "#pricing", sectionId: "pricing" },

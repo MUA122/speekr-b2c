@@ -161,6 +161,15 @@ function App() {
   }, [locale]);
 
   useEffect(() => {
+    if (isBlogRoute || !window.location.hash) return undefined;
+    const sectionId = window.location.hash.slice(1);
+    const timer = window.setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "auto" });
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [isBlogRoute, route.name]);
+
+  useEffect(() => {
     if (isBlogRoute) return undefined;
     const seo = HOME_SEO[locale];
     applySeo({
