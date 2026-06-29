@@ -277,7 +277,9 @@ export default function ProgramsCarousel({ locale = "en" }) {
   }));
 
   useEffect(() => {
+    const desktopQuery = window.matchMedia("(min-width: 900px)");
     const handle = () => {
+      if (!desktopQuery.matches) return;
       if (!containerRef.current) return;
       const { top, height } = containerRef.current.getBoundingClientRect();
       const wh = window.innerHeight;
@@ -289,7 +291,9 @@ export default function ProgramsCarousel({ locale = "en" }) {
         Math.min(SLIDES.length - 1, Math.floor(progress * SLIDES.length)),
       );
     };
+    if (!desktopQuery.matches) return undefined;
     window.addEventListener("scroll", handle, { passive: true });
+    handle();
     return () => window.removeEventListener("scroll", handle);
   }, []);
 
@@ -308,17 +312,54 @@ export default function ProgramsCarousel({ locale = "en" }) {
     <Box
       id="product-communication"
       ref={containerRef}
-      sx={{ height: `${(SLIDES.length + 1) * 100}svh`, position: "relative" }}
+      sx={{ height: { xs: "auto", md: `${(SLIDES.length + 1) * 100}svh` }, position: "relative" }}
     >
       <Box
+        component="section"
+        aria-labelledby="features-title-mobile"
         sx={{
+          display: { xs: "block", md: "none" },
+          bgcolor: "#074225",
+          px: { xs: "14px", sm: "22px" },
+          py: { xs: 8, sm: 9 },
+        }}
+      >
+        <Box sx={{ maxWidth: 560, mx: "auto" }}>
+          <Typography
+            id="features-title-mobile"
+            component="h2"
+            sx={{
+              m: 0,
+              mb: 3,
+              fontSize: { xs: 32, sm: 38 },
+              fontWeight: 900,
+              letterSpacing: 0,
+              lineHeight: 1.08,
+              color: "#EEF3CD",
+              textAlign: "center",
+            }}
+          >
+            {copy.title}{" "}
+            <Box component="span" sx={{ color: "#F26433" }}>
+              {copy.accent}
+            </Box>
+          </Typography>
+          <Stack spacing={2.4}>
+            {slides.map((slide) => (
+              <SlideCard key={slide.id} slide={slide} cta={copy.cta} locale={locale} />
+            ))}
+          </Stack>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: { xs: "none", md: "flex" },
           position: "sticky",
           top: 0,
           height: "100svh",
           bgcolor: "#074225",
           px: { xs: "12px", sm: "18px", md: "24px" },
           py: { xs: "12px", md: "16px" },
-          display: "flex",
           flexDirection: "column",
         }}
       >

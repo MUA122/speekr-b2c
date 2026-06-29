@@ -484,6 +484,7 @@ function ScenariosShowcase({ locale = "en" }) {
       <Box
         aria-hidden
         sx={{
+          display: { xs: "none", md: "block" },
           position: "absolute",
           top: "5%",
           right: "-10%",
@@ -502,6 +503,7 @@ function ScenariosShowcase({ locale = "en" }) {
       <Box
         aria-hidden
         sx={{
+          display: { xs: "none", md: "block" },
           position: "absolute",
           bottom: "-8%",
           left: "-6%",
@@ -536,20 +538,20 @@ function ScenariosShowcase({ locale = "en" }) {
       >
         {/* Section header */}
         <Box sx={{ mb: { xs: 7, md: 9 }, maxWidth: 680 }}>
-          <Box
-            sx={{
-              display: "inline-flex",
+            <Box
+              sx={{
+                display: "inline-flex",
               alignItems: "center",
               gap: 1,
               px: 1.6,
               py: 0.8,
               mb: 3,
-              borderRadius: "100px",
-              border: "1px solid rgba(242,100,51,0.22)",
-              bgcolor: "rgba(242,100,51,0.06)",
-              backdropFilter: "blur(12px)",
-            }}
-          >
+                borderRadius: "100px",
+                border: "1px solid rgba(242,100,51,0.22)",
+                bgcolor: "rgba(242,100,51,0.06)",
+                backdropFilter: { xs: "none", md: "blur(12px)" },
+              }}
+            >
             <Sparkles size={12} color="#F26433" aria-hidden />
             <Typography
               sx={{
@@ -755,37 +757,10 @@ function ScenariosShowcase({ locale = "en" }) {
                   borderRadius: "18px",
                   border: "1px solid rgba(238,243,205,0.09)",
                   bgcolor: "rgba(238,243,205,0.03)",
-                  backdropFilter: "blur(24px)",
+                  backdropFilter: "none",
                 }}
               >
                 <ExpandedContent scenario={s} copy={copy} />
-              </Box>
-
-              {/* Video */}
-              <Box
-                sx={{
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  border: "1px solid rgba(238,243,205,0.08)",
-                  boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
-                }}
-              >
-                <Box
-                  component="video"
-                  muted
-                  playsInline
-                  autoPlay
-                  loop
-                  preload="metadata"
-                  sx={{
-                    width: "100%",
-                    aspectRatio: "16/9",
-                    display: "block",
-                    objectFit: "cover",
-                  }}
-                >
-                  <source src={s.video} type="video/mp4" />
-                </Box>
               </Box>
             </Stack>
           ))}
