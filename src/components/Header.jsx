@@ -122,7 +122,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
             alignItems: 'center',
             justifyContent: 'space-between',
             px: 2.5,
-            py: 2.25,
+            py: 2.5,
             borderBottom: '1px solid rgba(238,243,205,0.06)',
             position: 'relative',
             zIndex: 1,
@@ -134,7 +134,7 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
             alt="Speekr.ai"
             title="Speekr.ai logo"
             decoding="async"
-            sx={{ height: 34, width: 'auto', filter: 'brightness(0) invert(1)' }}
+            sx={{ height: 42, width: 'auto', filter: 'brightness(0) invert(1)' }}
           />
           <Box
             component="button"
@@ -142,8 +142,8 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
             onClick={onClose}
             aria-label="Close menu"
             sx={{
-              width: 38,
-              height: 38,
+              width: 40,
+              height: 40,
               borderRadius: '10px',
               border: '1px solid rgba(238,243,205,0.1)',
               bgcolor: 'rgba(238,243,205,0.04)',
