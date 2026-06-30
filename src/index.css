@@ -87,6 +87,15 @@ a[href="https://app.speekr.ai/"],
 a[href*="/auth/sign-up"],
 button[type="submit"] {
   background-color: #F26433 !important;
+  color: #ffffff !important;
+}
+
+a[href="https://app.speekr.ai"] *,
+a[href="https://app.speekr.ai/"] *,
+a[href*="/auth/sign-up"] *,
+button[type="submit"] * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 img {

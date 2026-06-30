@@ -52,27 +52,6 @@ const SOCIAL_ICONS = [
   },
 ]
 
-const NAV_COLS = [
-  {
-    title: 'Platform',
-    links: [
-      { label: 'Dashboard', href: 'https://app.speekr.ai/auth/sign-in/?returnTo=%2Fdashboard%2F' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Pricing', href: '#pricing' },
-      { label: 'Case Studies', href: '#case-studies' },
-      { label: 'FAQ', href: '#faq' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'Contact Us', isContact: true },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
-    ],
-  },
-]
-
 const TAIL_BG = '#074225'
 
 const UI = {

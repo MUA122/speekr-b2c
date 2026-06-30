@@ -25,17 +25,6 @@ const PRO_FEATURES = [
   { text: 'Live Community Practice', type: 'star' },
 ]
 
-const PLANS = {
-  monthly: [
-    { id: 'starter-m', name: 'Speekr Starter', priceKey: 'starterMonthly', period: 'per month', audience: 'For Individuals', highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: STARTER_FEATURES },
-    { id: 'pro-m', name: 'Speekr Pro Unlimited', priceKey: 'proMonthly', period: 'per month', audience: 'For Individuals', highlight: true, badge: 'Most Popular', href: 'https://app.speekr.ai/auth/sign-up/', features: PRO_FEATURES },
-  ],
-  annual: [
-    { id: 'starter-a', name: 'Speekr Starter', priceKey: 'starterAnnual', period: 'per year', audience: 'For Individuals', highlight: false, href: 'https://app.speekr.ai/auth/sign-up/', features: STARTER_FEATURES },
-    { id: 'pro-a', name: 'Speekr Pro Unlimited', priceKey: 'proAnnual', period: 'per year', audience: 'For Individuals', highlight: true, badge: 'Most Popular', href: 'https://app.speekr.ai/auth/sign-up/', features: PRO_FEATURES },
-  ],
-}
-
 function FeatureIcon({ type }) {
   if (type === 'check') {
     return (

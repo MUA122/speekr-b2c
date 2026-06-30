@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { landingCopy } from "../utils/i18n";
 
 const SLIDES = [
@@ -43,7 +43,7 @@ const SLIDES = [
   },
 ];
 
-function SlideCard({ slide, cta, locale = "en" }) {
+function SlideCard({ slide, locale = "en" }) {
   const isAr = locale === "ar";
   return (
     <Box
@@ -54,32 +54,33 @@ function SlideCard({ slide, cta, locale = "en" }) {
         flexDirection: { xs: "column", md: isAr ? "row-reverse" : "row" },
         justifyContent: "space-between",
         alignItems: "flex-start",
-        gap: { xs: 3, md: 3 },
-        p: { xs: "28px 22px", sm: "36px 32px", md: "44px 48px" },
+        gap: { xs: 3.5, md: 3 },
+        p: { xs: "30px 24px", sm: "38px 36px", md: "48px 50px" },
         borderRadius: { xs: "20px", md: "28px" },
         overflow: "hidden",
-        border: "1px solid rgba(238,243,205,0.16)",
-        bgcolor: "rgba(238,243,205,0.62)",
-        boxShadow: "0 14px 42px rgba(0,0,0,0.08)",
+        border: "1px solid rgba(238,243,205,0.72)",
+        bgcolor: "rgba(93,132,109,0.86)",
+        backdropFilter: "blur(14px) saturate(1.08)",
+        boxShadow:
+          "0 24px 70px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.22)",
         height: "100%",
       }}
     >
       <Box
-        component="img"
-        src="/images/brand-patterns/line-pattern.png"
-        alt="Speekr carousel background pattern"
-        title="Speekr decorative carousel background pattern"
         aria-hidden
-        loading="lazy"
-        decoding="async"
         sx={{
           position: "absolute",
-          top: { xs: 18, md: 24 },
-          right: isAr ? "auto" : { xs: "-38%", md: "-6%" },
-          left: isAr ? { xs: "-38%", md: "-6%" } : "auto",
-          width: { xs: 520, sm: 700, md: 860 },
-          maxWidth: "none",
-          opacity: 0.08,
+          top: "50%",
+          left: isAr ? "auto" : { xs: "-42%", md: "-10%" },
+          right: isAr ? { xs: "-42%", md: "-10%" } : "auto",
+          transform: "translateY(-50%) rotate(45deg)",
+          width: { xs: 560, sm: 720, md: 820, lg: 920 },
+          height: { xs: 560, sm: 720, md: 820, lg: 920 },
+          backgroundImage: "url('/images/card-pattern.svg')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          opacity: 0.12,
           mixBlendMode: "multiply",
           pointerEvents: "none",
           zIndex: 0,
@@ -91,7 +92,18 @@ function SlideCard({ slide, cta, locale = "en" }) {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(90deg, rgba(238,243,205,0.5) 0%, rgba(238,243,205,0.38) 38%, rgba(238,243,205,0.12) 100%)",
+            "linear-gradient(90deg, rgba(7,66,37,0.12) 0%, rgba(238,243,205,0.08) 46%, rgba(7,66,37,0.1) 100%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(circle at 82% 32%, rgba(238,243,205,0.12) 0%, transparent 28%), radial-gradient(circle at 12% 88%, rgba(7,66,37,0.14) 0%, transparent 30%)",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -109,7 +121,7 @@ function SlideCard({ slide, cta, locale = "en" }) {
           lineHeight: 1,
           letterSpacing: -8,
           color: "transparent",
-          WebkitTextStroke: "1px rgba(7,66,37,0.04)",
+          WebkitTextStroke: "1px rgba(238,243,205,0.1)",
           pointerEvents: "none",
           userSelect: "none",
           zIndex: 0,
@@ -124,7 +136,7 @@ function SlideCard({ slide, cta, locale = "en" }) {
           position: "relative",
           zIndex: 1,
           flexShrink: 0,
-          width: { xs: "100%", md: 440 },
+          width: { xs: "100%", md: 390, lg: 440 },
           pb: { xs: 0, md: "48px" },
           my: "auto",
           textAlign: isAr ? "right" : "left",
@@ -155,7 +167,7 @@ function SlideCard({ slide, cta, locale = "en" }) {
               fontSize: 26,
               fontWeight: 900,
               letterSpacing: -0.5,
-              color: "rgba(7,66,37,0.18)",
+              color: "rgba(238,243,205,0.96)",
               lineHeight: 1,
             }}
           >
@@ -172,7 +184,7 @@ function SlideCard({ slide, cta, locale = "en" }) {
             fontWeight: 900,
             letterSpacing: { xs: -0.8, md: -1.5 },
             lineHeight: 1.05,
-            color: "#074225",
+            color: "#EEF3CD",
             mb: { xs: 2.5, md: 3 },
           }}
         >
@@ -183,62 +195,30 @@ function SlideCard({ slide, cta, locale = "en" }) {
           sx={{
             fontSize: { xs: 15, md: 17.5 },
             lineHeight: 1.75,
-            color: "rgba(7,66,37,0.58)",
-            mb: 4,
+            color: "rgba(238,243,205,0.92)",
+            fontWeight: 600,
           }}
         >
           {slide.sub}
         </Typography>
-
-        <Box
-          component="a"
-          href="https://app.speekr.ai/auth/sign-up/"
-          target="_blank"
-          rel="noreferrer"
-          sx={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 1,
-            px: 3.5,
-            py: "13px",
-            borderRadius: "100px",
-            bgcolor: "#F26433",
-            color: "#074225",
-            fontSize: 15,
-            fontWeight: 800,
-            textDecoration: "none",
-            boxShadow: "none",
-            transition: "transform 0.22s ease, background-color 0.22s ease",
-            "&:hover": {
-              transform: "translateY(-2px)",
-              bgcolor: "#F26433",
-              boxShadow: "none",
-            },
-          }}
-        >
-          {cta}
-          <ArrowRight
-            size={17}
-            aria-hidden
-            style={{ transform: isAr ? "rotate(180deg)" : "none" }}
-          />
-        </Box>
       </Box>
 
       {/* Right: image */}
       <Box
         sx={{
           position: "relative",
-          zIndex: 3,
+          zIndex: 4,
           flexShrink: 0,
           width: { xs: "100%", md: "auto" },
           flex: { md: "1 1 0" },
-          maxWidth: { sm: 420, md: 440, lg: 480 },
+          maxWidth: { sm: 520, md: 660, lg: 760 },
           alignSelf: { xs: "auto", sm: "center", md: "center" },
-          borderRadius: "16px",
-          overflow: "hidden",
-          aspectRatio: "16 / 9",
-          minHeight: { xs: 160, md: 0 },
+          borderRadius: 0,
+          overflow: "visible",
+          aspectRatio: { xs: "16 / 9", md: "1.72 / 1" },
+          minHeight: { xs: 180, md: 330, lg: 380 },
+          transform: { md: "translateY(-8px)" },
+          boxShadow: "none",
         }}
       >
         <Box
@@ -251,7 +231,7 @@ function SlideCard({ slide, cta, locale = "en" }) {
           sx={{
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            objectFit: "contain",
             display: "block",
             opacity: 1,
             filter: "none",
@@ -345,7 +325,7 @@ export default function ProgramsCarousel({ locale = "en" }) {
           </Typography>
           <Stack spacing={2.4}>
             {slides.map((slide) => (
-              <SlideCard key={slide.id} slide={slide} cta={copy.cta} locale={locale} />
+              <SlideCard key={slide.id} slide={slide} locale={locale} />
             ))}
           </Stack>
         </Box>
@@ -489,7 +469,7 @@ export default function ProgramsCarousel({ locale = "en" }) {
                   pointerEvents: active === i ? "auto" : "none",
                 }}
               >
-                <SlideCard slide={slide} cta={copy.cta} locale={locale} />
+                <SlideCard slide={slide} locale={locale} />
               </Box>
             ))}
           </Box>

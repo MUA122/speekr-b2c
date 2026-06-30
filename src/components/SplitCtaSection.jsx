@@ -380,7 +380,8 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
       sx={{
         bgcolor: "#EEF3CD",
         px: { xs: "12px", sm: "18px", md: "24px" },
-        py: { xs: 3, md: 4 },
+        pt: { xs: 0, md: 0 },
+        pb: { xs: 3, md: 4 },
       }}
     >
       <Box
@@ -393,7 +394,7 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
           borderRadius: { xs: "24px", md: "32px" },
           overflow: "hidden",
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
-          pt: { xs: 8, md: 12 },
+          pt: { xs: 6, md: 8 },
           pb: { xs: 8, md: 10 },
           "&::before": {
             content: '""',

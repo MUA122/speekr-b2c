@@ -73,7 +73,7 @@ export default function CaseStudiesCarousel({ locale = 'en' }) {
           borderRadius: 0,
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
-          pt: { xs: 8, md: 12 },
+          pt: { xs: 5, md: 7 },
           pb: { xs: 8, md: 10 },
         }}
       >
@@ -373,7 +373,6 @@ export default function CaseStudiesCarousel({ locale = 'en' }) {
                               letterSpacing: -2,
                               lineHeight: 0.9,
                               color: '#F26433',
-                              textShadow: '0 0 32px rgba(242,100,51,0.4)',
                               whiteSpace: 'nowrap',
                             }}
                           >

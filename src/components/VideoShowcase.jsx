@@ -5,12 +5,6 @@ import Typography from '@mui/material/Typography'
 import { ArrowRight } from 'lucide-react'
 import { commonCopy, landingCopy } from '../utils/i18n'
 
-const STATS = [
-  { value: '10K+', label: 'Active Users' },
-  { value: '95%', label: 'Satisfaction Rate' },
-  { value: '50+', label: 'AI Scenarios' },
-]
-
 export default function VideoShowcase({ locale = 'en' }) {
   const copy = landingCopy[locale].video
   const common = commonCopy[locale]
@@ -34,7 +28,9 @@ export default function VideoShowcase({ locale = 'en' }) {
     try {
       const player = new window.Vimeo.Player(videoIframeRef.current)
       player.play().catch(() => {})
-    } catch (_) {}
+    } catch {
+      return
+    }
   }
 
   return (

@@ -3,14 +3,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {
   ArrowRight,
-  BookOpenText,
   CalendarDays,
   Check,
   ChevronDown,
   Flame,
   Library,
   Search,
-  Sparkles,
   Tags,
   TrendingUp,
 } from "lucide-react";
@@ -156,30 +154,6 @@ function BlogSeo({ locale, posts, ui }) {
   }, [locale, posts, ui]);
 
   return null;
-}
-
-function MetaPill({ children, icon: Icon }) {
-  return (
-    <Box
-      component="span"
-      sx={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 0.75,
-        px: 1.35,
-        py: 0.75,
-        borderRadius: "999px",
-        border: "1px solid rgba(7,66,37,0.12)",
-        bgcolor: "rgba(238,243,205,0.48)",
-        color: "rgba(7,66,37,0.72)",
-        fontSize: 12.5,
-        fontWeight: 850,
-      }}
-    >
-      {Icon && <Icon size={14} aria-hidden />}
-      {children}
-    </Box>
-  );
 }
 
 function ArticleCard({ post, index, locale, ui }) {
@@ -636,27 +610,29 @@ function RankedReadCard({ post, rank, locale }) {
         gap: { xs: 1.5, md: 2 },
         p: { xs: 1.25, md: 1.5 },
         borderRadius: "18px",
-        border: "1px solid rgba(238,243,205,0.12)",
-        bgcolor: "#074225",
-        color: "#EEF3CD",
+        border: "1px solid rgba(7,66,37,0.28)",
+        bgcolor: "rgba(238,243,205,0.54)",
+        color: "#074225",
         textDecoration: "none",
         overflow: "hidden",
-        boxShadow: "0 22px 76px rgba(7,66,37,0.18)",
+        backdropFilter: "blur(12px) saturate(1.04)",
+        boxShadow: "0 18px 58px rgba(7,66,37,0.08)",
         "&::before": {
           content: '""',
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(110deg, rgba(242,100,51,0.12), transparent 34%, rgba(238,243,205,0.035))",
+            "linear-gradient(110deg, rgba(242,100,51,0.08), transparent 32%, rgba(7,66,37,0.045))",
           pointerEvents: "none",
         },
         "&:hover": {
-          borderColor: "rgba(242,100,51,0.34)",
-          boxShadow: "0 28px 88px rgba(7,66,37,0.25)",
+          borderColor: "rgba(7,66,37,0.42)",
+          bgcolor: "rgba(238,243,205,0.7)",
+          boxShadow: "0 24px 74px rgba(7,66,37,0.12)",
         },
         "&:hover .rank-arrow": {
           bgcolor: "#F26433",
-          color: "#074225",
+          color: "#ffffff",
           transform: "translateX(3px)",
         },
       }}
@@ -669,7 +645,8 @@ function RankedReadCard({ post, rank, locale }) {
           height: { xs: 64, sm: 82 },
           borderRadius: "16px",
           overflow: "hidden",
-          border: "1px solid rgba(238,243,205,0.1)",
+          border: "1px solid rgba(7,66,37,0.12)",
+          boxShadow: "0 14px 34px rgba(7,66,37,0.1)",
         }}
       >
         <Box
@@ -691,7 +668,7 @@ function RankedReadCard({ post, rank, locale }) {
             px: 0.7,
             borderRadius: "999px",
             bgcolor: "#F26433",
-            color: "#074225",
+            color: "#ffffff",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -708,7 +685,7 @@ function RankedReadCard({ post, rank, locale }) {
           <Typography sx={{ fontSize: 11.5, fontWeight: 950, color: "#F26433" }}>
             {post.category}
           </Typography>
-          <Typography sx={{ fontSize: 11.5, fontWeight: 850, color: "rgba(238,243,205,0.44)" }}>
+          <Typography sx={{ fontSize: 11.5, fontWeight: 850, color: "rgba(7,66,37,0.48)" }}>
             {post.readingTime}
           </Typography>
         </Box>
@@ -719,7 +696,7 @@ function RankedReadCard({ post, rank, locale }) {
             fontSize: { xs: 18, md: 22 },
             fontWeight: 950,
             lineHeight: 1.1,
-            color: "#EEF3CD",
+            color: "#074225",
           }}
         >
           {post.title}
@@ -728,7 +705,7 @@ function RankedReadCard({ post, rank, locale }) {
           sx={{
             mt: 0.8,
             display: { xs: "none", md: "block" },
-            color: "rgba(238,243,205,0.58)",
+            color: "rgba(7,66,37,0.58)",
             fontSize: 13.5,
             lineHeight: 1.55,
           }}
@@ -746,9 +723,9 @@ function RankedReadCard({ post, rank, locale }) {
           width: 42,
           height: 42,
           borderRadius: "50%",
-          border: "1px solid rgba(238,243,205,0.12)",
-          bgcolor: "rgba(238,243,205,0.06)",
-          color: "#EEF3CD",
+          border: "1px solid rgba(7,66,37,0.12)",
+          bgcolor: "rgba(7,66,37,0.055)",
+          color: "#074225",
           alignItems: "center",
           justifyContent: "center",
           transition: "transform 220ms ease, background-color 220ms ease, color 220ms ease",
@@ -821,7 +798,7 @@ export default function BlogPage({ locale = "en" }) {
           position: "relative",
           overflow: "hidden",
           bgcolor: "#EEF3CD",
-          pt: { xs: 11, sm: 12, md: 15 },
+          pt: { xs: 14, sm: 16, md: 20 },
           pb: { xs: 5.5, sm: 6.5, md: 11 },
         }}
       >
@@ -835,7 +812,7 @@ export default function BlogPage({ locale = "en" }) {
           decoding="async"
           sx={{
             position: "absolute",
-            top: { xs: 92, md: 116 },
+            top: { xs: 116, md: 156 },
             left: "50%",
             width: "min(1120px, 95vw)",
             transform: "translateX(-50%)",
@@ -861,34 +838,6 @@ export default function BlogPage({ locale = "en" }) {
             }}
           >
             <Box>
-              <Box
-                sx={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 1,
-                  px: 1.55,
-                  py: 0.75,
-                  mb: { xs: 1.8, md: 2.4 },
-                  borderRadius: "999px",
-                  border: "1px solid rgba(7,66,37,0.13)",
-                  bgcolor: "rgba(238,243,205,0.58)",
-                  color: "#074225",
-                  boxShadow: "0 14px 44px rgba(7,66,37,0.06)",
-                }}
-              >
-                <BookOpenText size={14} aria-hidden />
-                <Typography
-                  component="span"
-                  sx={{
-                    fontSize: 11,
-                    fontWeight: 950,
-                    letterSpacing: 1.55,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {ui.badge}
-                </Typography>
-              </Box>
               <Typography
                 component="h1"
                 sx={{
@@ -973,20 +922,6 @@ export default function BlogPage({ locale = "en" }) {
                 ))}
               </Box>
             </Box>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              gap: { xs: 0.8, md: 1 },
-              flexWrap: "wrap",
-              mb: { xs: 2.4, md: 4 },
-            }}
-          >
-            <MetaPill icon={Sparkles}>{ui.allInsights}</MetaPill>
-            {categories.map((category) => (
-              <MetaPill key={category}>{category}</MetaPill>
-            ))}
           </Box>
 
           <FilterPanel

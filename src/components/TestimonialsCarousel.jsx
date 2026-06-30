@@ -157,7 +157,9 @@ function VideoCard({ slide, isActive, onOpenLightbox, copy }) {
           setReady(true)
           playerRef.current.setVolume(0)
         }).catch(() => {})
-      } catch (_) {}
+      } catch {
+        setReady(false)
+      }
     }
     timer = setTimeout(init, 300)
     return () => clearTimeout(timer)
