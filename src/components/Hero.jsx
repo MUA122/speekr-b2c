@@ -30,6 +30,14 @@ function Hero({ locale = "en", onBookDemoClick }) {
   const copy = landingCopy[locale].hero;
   const common = commonCopy[locale];
   const isAr = locale === "ar";
+  const headlineFontSize = isAr
+    ? { xs: 42, sm: 54, md: 66, lg: 74, xl: 82 }
+    : { xs: 48, sm: 64, md: 76, lg: 82, xl: 90 };
+  const headlineLineHeight = isAr
+    ? { xs: 1.18, sm: 1.14, md: 1.12 }
+    : { xs: 1.04, md: 0.98 };
+  const headlineMaxWidth = isAr ? { xs: "100%", md: 720, xl: 800 } : 760;
+
   return (
     <Box
       component="section"
@@ -187,7 +195,7 @@ function Hero({ locale = "en", onBookDemoClick }) {
           {/* Left: text */}
           <Box
             sx={{
-              maxWidth: { xs: "100%", lg: 640, xl: 700 },
+              maxWidth: { xs: "100%", lg: isAr ? 760 : 640, xl: isAr ? 840 : 700 },
               pl: isAr ? 0 : { xs: 1, sm: 2, md: 3, lg: 4 },
               pr: isAr ? { xs: 1, sm: 2, md: 3, lg: 4 } : 0,
               textAlign: isAr ? "right" : "left",
@@ -199,13 +207,14 @@ function Hero({ locale = "en", onBookDemoClick }) {
               component="h1"
               sx={{
                 m: 0,
-                fontSize: { xs: 48, sm: 64, md: 76, lg: 82, xl: 90 },
+                fontSize: headlineFontSize,
                 fontFamily: (theme) => theme.palette.brand.fontHeadline,
-                lineHeight: { xs: 1.04, md: 0.98 },
+                lineHeight: headlineLineHeight,
                 fontWeight: 900,
-                letterSpacing: { xs: -1.4, md: -2.8 },
+                letterSpacing: isAr ? 0 : { xs: 0, md: 0 },
+                wordSpacing: isAr ? { xs: 1, md: 2 } : 0,
                 color: "#074225",
-                maxWidth: 760,
+                maxWidth: headlineMaxWidth,
               }}
             >
               <Box component="span" sx={{ display: "block" }}>
@@ -217,8 +226,17 @@ function Hero({ locale = "en", onBookDemoClick }) {
                   display: "block",
                 }}
               >
-                {copy.line2}{" "}
-                <Box component="span" sx={{ color: "#F26433" }}>
+                <Box component="span" sx={{ display: "inline-block" }}>
+                  {copy.line2}
+                </Box>
+                <Box
+                  component="span"
+                  sx={{
+                    display: "inline-block",
+                    color: "#F26433",
+                    marginInlineStart: isAr ? { xs: 1.2, md: 1.8 } : 1.2,
+                  }}
+                >
                   {copy.accent}
                 </Box>
               </Box>
@@ -228,11 +246,12 @@ function Hero({ locale = "en", onBookDemoClick }) {
             <Typography
               sx={{
                 mt: { xs: 3, md: 3.8 },
-                maxWidth: 560,
+                maxWidth: isAr ? { xs: "100%", md: 650 } : 560,
                 color: "rgba(7, 66, 37, 0.64)",
                 fontSize: { xs: 16, md: 18 },
-                lineHeight: 1.72,
+                lineHeight: isAr ? 1.9 : 1.72,
                 fontWeight: 500,
+                mx: isAr ? { xs: 0, lg: "0" } : 0,
               }}
             >
               {copy.subtitle}

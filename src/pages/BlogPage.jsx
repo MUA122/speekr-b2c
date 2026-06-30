@@ -157,6 +157,8 @@ function BlogSeo({ locale, posts, ui }) {
 }
 
 function ArticleCard({ post, index, locale, ui }) {
+  const isAr = locale === "ar";
+
   return (
     <Box
       component="a"
@@ -172,6 +174,8 @@ function ArticleCard({ post, index, locale, ui }) {
         bgcolor: "rgba(238,243,205,0.62)",
         color: "#073821",
         textDecoration: "none",
+        direction: isAr ? "rtl" : "ltr",
+        textAlign: isAr ? "right" : "left",
         boxShadow: "0 20px 70px rgba(7,66,37,0.08)",
         "&:hover": {
           borderColor: "rgba(242,100,51,0.34)",
@@ -203,7 +207,8 @@ function ArticleCard({ post, index, locale, ui }) {
           sx={{
             position: "absolute",
             top: 12,
-            left: 12,
+            left: isAr ? "auto" : 12,
+            right: isAr ? 12 : "auto",
             px: 1.2,
             py: 0.65,
             borderRadius: "999px",
@@ -229,16 +234,23 @@ function ArticleCard({ post, index, locale, ui }) {
           component="h3"
           sx={{
             m: 0,
-            fontSize: { xs: 23, md: 25 },
+            fontSize: isAr ? { xs: 25, md: 28 } : { xs: 23, md: 25 },
+            fontFamily: (theme) => theme.palette.brand.fontHeadline,
             fontWeight: 950,
-            lineHeight: 1.08,
+            lineHeight: isAr ? 1.22 : 1.08,
             letterSpacing: 0,
             color: "#074225",
           }}
         >
           {post.title}
         </Typography>
-        <Typography sx={{ color: "rgba(7,56,33,0.66)", lineHeight: 1.68, fontSize: 14.5 }}>
+        <Typography
+          sx={{
+            color: "rgba(7,56,33,0.66)",
+            lineHeight: isAr ? 1.86 : 1.68,
+            fontSize: isAr ? 15 : 14.5,
+          }}
+        >
           {post.excerpt}
         </Typography>
         <Box
@@ -248,6 +260,7 @@ function ArticleCard({ post, index, locale, ui }) {
             pt: 0.5,
             display: "inline-flex",
             alignItems: "center",
+            flexDirection: isAr ? "row-reverse" : "row",
             gap: 0.8,
             color: "#074225",
             fontSize: 13.5,
@@ -323,8 +336,8 @@ function FilterDropdown({ id, label, icon: Icon, value, options, onChange, openD
             mb: 0.35,
             fontSize: 9.5,
             fontWeight: 950,
-            letterSpacing: 1.25,
-            textTransform: "uppercase",
+            letterSpacing: locale === "ar" ? 0 : 1.25,
+            textTransform: locale === "ar" ? "none" : "uppercase",
             color: "rgba(7,66,37,0.42)",
             textAlign: locale === "ar" ? "right" : "left",
           }}
@@ -597,6 +610,8 @@ function FilterPanel({
 }
 
 function RankedReadCard({ post, rank, locale }) {
+  const isAr = locale === "ar";
+
   return (
     <Box
       component="a"
@@ -614,6 +629,8 @@ function RankedReadCard({ post, rank, locale }) {
         bgcolor: "rgba(238,243,205,0.54)",
         color: "#074225",
         textDecoration: "none",
+        direction: isAr ? "rtl" : "ltr",
+        textAlign: isAr ? "right" : "left",
         overflow: "hidden",
         backdropFilter: "blur(12px) saturate(1.04)",
         boxShadow: "0 18px 58px rgba(7,66,37,0.08)",
@@ -693,9 +710,10 @@ function RankedReadCard({ post, rank, locale }) {
           component="h3"
           sx={{
             m: 0,
-            fontSize: { xs: 18, md: 22 },
+            fontSize: isAr ? { xs: 21, md: 25 } : { xs: 18, md: 22 },
+            fontFamily: (theme) => theme.palette.brand.fontHeadline,
             fontWeight: 950,
-            lineHeight: 1.1,
+            lineHeight: isAr ? 1.24 : 1.1,
             color: "#074225",
           }}
         >
@@ -707,7 +725,7 @@ function RankedReadCard({ post, rank, locale }) {
             display: { xs: "none", md: "block" },
             color: "rgba(7,66,37,0.58)",
             fontSize: 13.5,
-            lineHeight: 1.55,
+            lineHeight: isAr ? 1.85 : 1.55,
           }}
         >
           {post.excerpt}
@@ -739,6 +757,7 @@ function RankedReadCard({ post, rank, locale }) {
 
 export default function BlogPage({ locale = "en" }) {
   const ui = UI[locale];
+  const isAr = locale === "ar";
   const posts = getBlogPosts(locale);
   const [selectedCategory, setSelectedCategory] = useState(ui.allCategories);
   const [dateFilter, setDateFilter] = useState("newest");
@@ -796,6 +815,7 @@ export default function BlogPage({ locale = "en" }) {
         component="section"
         sx={{
           position: "relative",
+          direction: isAr ? "rtl" : "ltr",
           overflow: "hidden",
           bgcolor: "#EEF3CD",
           pt: { xs: 14, sm: 16, md: 20 },
@@ -842,13 +862,14 @@ export default function BlogPage({ locale = "en" }) {
                 component="h1"
                 sx={{
                   m: 0,
-                  maxWidth: 850,
-                  fontSize: { xs: 38, sm: 52, md: 78 },
+                  maxWidth: isAr ? 790 : 850,
+                  fontSize: isAr ? { xs: 40, sm: 50, md: 68 } : { xs: 38, sm: 52, md: 78 },
                   fontFamily: (theme) => theme.palette.brand.fontHeadline,
-                  fontWeight: 950,
+                  fontWeight: isAr ? 900 : 950,
                   letterSpacing: 0,
-                  lineHeight: { xs: 0.98, md: 0.93 },
+                  lineHeight: isAr ? { xs: 1.18, md: 1.12 } : { xs: 0.98, md: 0.93 },
                   color: "#074225",
+                  textAlign: isAr ? "right" : "left",
                 }}
               >
                 {locale === "en" ? (
@@ -870,10 +891,11 @@ export default function BlogPage({ locale = "en" }) {
               <Typography
                 sx={{
                   mt: { xs: 1.6, md: 2.4 },
-                  maxWidth: 690,
-                  fontSize: { xs: 15, md: 18 },
-                  lineHeight: { xs: 1.62, md: 1.72 },
+                  maxWidth: isAr ? 760 : 690,
+                  fontSize: isAr ? { xs: 15.5, md: 18 } : { xs: 15, md: 18 },
+                  lineHeight: isAr ? { xs: 1.9, md: 1.95 } : { xs: 1.62, md: 1.72 },
                   color: "rgba(7,66,37,0.62)",
+                  textAlign: isAr ? "right" : "left",
                 }}
               >
                 {ui.subtitle}
@@ -892,7 +914,14 @@ export default function BlogPage({ locale = "en" }) {
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: { xs: 1.4, md: 2 } }}>
                 <Library size={17} color="#F26433" aria-hidden />
-                <Typography sx={{ fontSize: 12, fontWeight: 950, letterSpacing: 1.4, textTransform: "uppercase" }}>
+                <Typography
+                  sx={{
+                    fontSize: 12,
+                    fontWeight: 950,
+                    letterSpacing: isAr ? 0 : 1.4,
+                    textTransform: isAr ? "none" : "uppercase",
+                  }}
+                >
                   {ui.library}
                 </Typography>
               </Box>
@@ -912,7 +941,14 @@ export default function BlogPage({ locale = "en" }) {
                       border: "1px solid rgba(238,243,205,0.09)",
                     }}
                   >
-                    <Typography sx={{ fontSize: { xs: 10, md: 11 }, color: "rgba(238,243,205,0.46)", fontWeight: 800 }}>
+                    <Typography
+                      sx={{
+                        fontSize: { xs: 10, md: 11 },
+                        color: "rgba(238,243,205,0.46)",
+                        fontWeight: 800,
+                        lineHeight: isAr ? 1.45 : 1.25,
+                      }}
+                    >
                       {label}
                     </Typography>
                     <Typography sx={{ mt: 0.25, fontSize: { xs: 19, md: 22 }, lineHeight: 1, fontWeight: 950, color: "#F26433" }}>
@@ -958,8 +994,8 @@ export default function BlogPage({ locale = "en" }) {
                     m: 0,
                     fontSize: 11,
                     fontWeight: 950,
-                    letterSpacing: 1.5,
-                    textTransform: "uppercase",
+                    letterSpacing: isAr ? 0 : 1.5,
+                    textTransform: isAr ? "none" : "uppercase",
                     color: "#F26433",
                   }}
                 >
@@ -970,17 +1006,26 @@ export default function BlogPage({ locale = "en" }) {
                 component="h2"
                 sx={{
                   m: 0,
-                  fontSize: { xs: 30, md: 42 },
+                  fontSize: isAr ? { xs: 33, md: 44 } : { xs: 30, md: 42 },
                   fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 950,
-                  lineHeight: 1,
+                  lineHeight: isAr ? 1.2 : 1,
                   color: "#074225",
+                  textAlign: isAr ? "right" : "left",
                 }}
               >
                 {ui.allArticles}
               </Typography>
             </Box>
-            <Typography sx={{ maxWidth: 390, color: "rgba(7,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
+            <Typography
+              sx={{
+                maxWidth: isAr ? 460 : 390,
+                color: "rgba(7,66,37,0.58)",
+                lineHeight: isAr ? 1.85 : 1.6,
+                fontSize: isAr ? 15 : 14.5,
+                textAlign: isAr ? "right" : "left",
+              }}
+            >
               {ui.sectionNote}
             </Typography>
           </Box>
@@ -1014,15 +1059,23 @@ export default function BlogPage({ locale = "en" }) {
             >
               <Typography
                 sx={{
-                  fontSize: { xs: 24, md: 30 },
+                  fontSize: isAr ? { xs: 27, md: 32 } : { xs: 24, md: 30 },
+                  fontFamily: (theme) => theme.palette.brand.fontHeadline,
                   fontWeight: 950,
                   color: "#074225",
-                  lineHeight: 1.08,
+                  lineHeight: isAr ? 1.24 : 1.08,
                 }}
               >
                 {ui.noMatch}
               </Typography>
-              <Typography sx={{ mt: 1, color: "rgba(7,66,37,0.58)", lineHeight: 1.6 }}>
+              <Typography
+                sx={{
+                  mt: 1,
+                  color: "rgba(7,66,37,0.58)",
+                  lineHeight: isAr ? 1.85 : 1.6,
+                  fontSize: isAr ? 15 : 14.5,
+                }}
+              >
                 {ui.noMatchNote}
               </Typography>
             </Box>
@@ -1059,8 +1112,8 @@ export default function BlogPage({ locale = "en" }) {
                       m: 0,
                       fontSize: 11,
                       fontWeight: 950,
-                      letterSpacing: 1.5,
-                      textTransform: "uppercase",
+                      letterSpacing: isAr ? 0 : 1.5,
+                      textTransform: isAr ? "none" : "uppercase",
                       color: "#F26433",
                     }}
                   >
@@ -1072,17 +1125,26 @@ export default function BlogPage({ locale = "en" }) {
                   component="h2"
                   sx={{
                     m: 0,
-                    fontSize: { xs: 30, md: 42 },
+                    fontSize: isAr ? { xs: 33, md: 44 } : { xs: 30, md: 42 },
                     fontFamily: (theme) => theme.palette.brand.fontHeadline,
                     fontWeight: 950,
-                    lineHeight: 1,
+                    lineHeight: isAr ? 1.2 : 1,
                     color: "#074225",
+                    textAlign: isAr ? "right" : "left",
                   }}
                 >
                   {ui.topReads}
                 </Typography>
               </Box>
-              <Typography sx={{ maxWidth: 420, color: "rgba(7,66,37,0.58)", lineHeight: 1.6, fontSize: 14.5 }}>
+              <Typography
+                sx={{
+                  maxWidth: isAr ? 500 : 420,
+                  color: "rgba(7,66,37,0.58)",
+                  lineHeight: isAr ? 1.85 : 1.6,
+                  fontSize: isAr ? 15 : 14.5,
+                  textAlign: isAr ? "right" : "left",
+                }}
+              >
                 {ui.topReadsNote}
               </Typography>
             </Box>
