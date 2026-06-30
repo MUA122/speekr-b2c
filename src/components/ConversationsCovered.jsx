@@ -13,7 +13,8 @@ const SCENARIOS = [
     accent: '#F26433',
     rgb: '242,100,51',
     secondary: '#8EC640',
-    pattern: '/images/brand-patterns/block.png',
+    pattern: '/images/orange.png',
+    patternPlacement: 'bottomRight',
     title: 'Turn Cold Calls Into Closed Deals',
     sub: 'Handle objections, close with confidence, and navigate pricing conversations without hesitation. Practice the call before you are on the call.',
   },
@@ -21,10 +22,10 @@ const SCENARIOS = [
     num: '02',
     cat: 'Career Development',
     Icon: Briefcase,
-    accent: '#F26433',
-    rgb: '242,100,51',
-    secondary: '#E8DCEB',
-    pattern: '/images/brand-patterns/frame.png',
+    accent: '#074225',
+    rgb: '7,66,37',
+    secondary: '#8EC640',
+    pattern: '/images/green.png',
     title: 'Ace The Interview. Land The Job.',
     sub: 'Walk into every interview already knowing how to handle the hard questions. Own the negotiation before it begins.',
   },
@@ -35,7 +36,7 @@ const SCENARIOS = [
     accent: '#8EC640',
     rgb: '142,198,64',
     secondary: '#F26433',
-    pattern: '/images/brand-patterns/line-pattern.png',
+    pattern: '/images/light%20green.png',
     title: 'Be The Manager Your Team Needs',
     sub: 'Deliver feedback, align your team, and present to the board with the kind of presence that earns trust instantly.',
   },
@@ -46,7 +47,8 @@ const SCENARIOS = [
     accent: '#E8DCEB',
     rgb: '232,220,235',
     secondary: '#F26433',
-    pattern: '/images/brand-patterns/pricing-card-bg.png',
+    pattern: '/images/lavender.png',
+    patternPlacement: 'bottomRight',
     title: 'Handle Angry Customers. Build Loyal Ones.',
     sub: 'Train your team to de-escalate, empathize, and retain customers even in the most challenging service situations.',
   },
@@ -58,7 +60,21 @@ const STATS = [
   { value: '100K+', label: 'Possible Scenarios',  accent: '#8EC640', rgb: '142,198,64' },
 ]
 
-function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, sub, featured = false }) {
+function ScenarioCard({
+  num,
+  cat,
+  Icon,
+  accent,
+  rgb,
+  secondary,
+  pattern,
+  patternPlacement = 'topRight',
+  title,
+  sub,
+  featured = false,
+}) {
+  const isPatternBottomRight = patternPlacement === 'bottomRight'
+
   return (
     <Box
       sx={{
@@ -133,16 +149,17 @@ function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, 
         decoding="async"
         sx={{
           position: 'absolute',
-          top: { xs: 16, md: featured ? 24 : 18 },
+          top: isPatternBottomRight ? 'auto' : { xs: 16, md: featured ? 24 : 18 },
           right: { xs: -34, md: featured ? -18 : -42 },
+          bottom: isPatternBottomRight ? { xs: 26, md: featured ? 32 : 28 } : 'auto',
           zIndex: 1,
           width: { xs: 150, sm: 190, md: featured ? 250 : 170 },
           height: { xs: 150, sm: 190, md: featured ? 250 : 170 },
           objectFit: 'cover',
-          borderRadius: featured ? '22px' : '999px',
-          opacity: featured ? 0.06 : 0.045,
+          borderRadius: '22px',
+          opacity: featured ? 0.18 : 0.14,
           mixBlendMode: 'screen',
-          filter: 'saturate(0.85) contrast(0.9)',
+          filter: 'saturate(1.05) contrast(1.02)',
           pointerEvents: 'none',
         }}
       />
@@ -328,43 +345,6 @@ function ScenarioCard({ num, cat, Icon, accent, rgb, secondary, pattern, title, 
           </Typography>
         </Box>
 
-        {featured && (
-          <Box
-            aria-hidden
-            sx={{
-              display: { xs: 'none', md: 'grid' },
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: 1.15,
-              justifySelf: 'end',
-              width: 138,
-              p: 1.15,
-              borderRadius: '18px',
-              border: '1px solid rgba(238,243,205,0.1)',
-              background: 'rgba(238,243,205,0.045)',
-              boxShadow: 'inset 0 1px 0 rgba(238,243,205,0.08)',
-            }}
-          >
-            {[0, 1, 2, 3].map((item) => (
-              <Box
-                key={item}
-                component="img"
-                src={pattern}
-                alt="Speekr conversation thumbnail pattern"
-                title="Speekr decorative conversation thumbnail pattern"
-                loading="lazy"
-                decoding="async"
-                sx={{
-                  width: '100%',
-                  aspectRatio: '1 / 1',
-                  objectFit: 'cover',
-                  borderRadius: '9px',
-                  opacity: item === 0 ? 0.48 : 0.28,
-                  filter: item === 0 ? 'saturate(0.85)' : 'saturate(0.65)',
-                }}
-              />
-            ))}
-          </Box>
-        )}
       </Box>
 
       <Box
