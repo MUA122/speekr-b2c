@@ -417,7 +417,7 @@ export default function ConversationsCovered({ locale = 'en' }) {
           borderRadius: { xs: '24px', md: '32px' },
           overflow: 'hidden',
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
-          pt: { xs: 6, md: 8 },
+          pt: { xs: 9, md: 12 },
           pb: { xs: 9, md: 13 },
           '&::before': {
             content: '""',
@@ -572,8 +572,10 @@ export default function ConversationsCovered({ locale = 'en' }) {
                 color: '#074225',
               }}
             >
-              {copy.title}{' '}
-              <Box component="span" sx={{ color: '#F26433' }}>
+              <Box component="span" sx={{ display: 'block' }}>
+                {copy.title}
+              </Box>
+              <Box component="span" sx={{ display: 'block', color: '#F26433' }}>
                 {copy.accent}
               </Box>
             </Typography>

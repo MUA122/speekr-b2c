@@ -5,7 +5,7 @@ import Hero from "./components/Hero";
 import ScenariosShowcase from "./components/ScenariosShowcase";
 import ProgramsCarousel from "./components/ProgramsCarousel";
 import VideoShowcase from "./components/VideoShowcase";
-// import ConversationsCovered from "./components/ConversationsCovered";
+import ConversationsCovered from "./components/ConversationsCovered";
 // import TestimonialsCarousel from "./components/TestimonialsCarousel";
 import PricingSection from "./components/PricingSection";
 import TeamsPricingSection from "./components/TeamsPricingSection";
@@ -118,6 +118,73 @@ function GreenSectionDivider() {
             height: "1px",
             flex: 1,
             maxWidth: 550,
+            bgcolor: "rgba(238,243,205,0.34)",
+          }}
+        />
+      </Box>
+    </Box>
+  );
+}
+
+function CompactGreenSectionDivider() {
+  return (
+    <Box
+      aria-hidden
+      sx={{
+        position: "relative",
+        bgcolor: "#074225",
+        px: { xs: 2.5, md: 7 },
+        py: { xs: 3.5, md: 4.75 },
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          position: "relative",
+          maxWidth: 1350,
+          mx: "auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: { xs: 2.2, md: 4 },
+        }}
+      >
+        <Box
+          sx={{
+            height: "1px",
+            flex: 1,
+            bgcolor: "rgba(238,243,205,0.34)",
+          }}
+        />
+        <Box
+          sx={{
+            width: { xs: 62, md: 80 },
+            height: { xs: 62, md: 80 },
+            borderRadius: "50%",
+            border: "1px solid rgba(238,243,205,0.2)",
+            bgcolor: "rgba(238,243,205,0.08)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow:
+              "0 20px 58px rgba(0,0,0,0.18), inset 0 0 0 14px rgba(238,243,205,0.06)",
+          }}
+        >
+          <Box
+            sx={{
+              width: { xs: 16, md: 20 },
+              height: { xs: 16, md: 20 },
+              borderRadius: "5px",
+              bgcolor: "#EEF3CD",
+              transform: "rotate(45deg)",
+              boxShadow: "0 0 0 12px rgba(238,243,205,0.08)",
+            }}
+          />
+        </Box>
+        <Box
+          sx={{
+            height: "1px",
+            flex: 1,
             bgcolor: "rgba(238,243,205,0.34)",
           }}
         />
@@ -293,8 +360,9 @@ function App() {
           <ScenariosShowcase locale={locale} />
           <ProgramsCarousel locale={locale} />
           <VideoShowcase locale={locale} />
-          {/* <ConversationsCovered locale={locale} /> */}
+          <ConversationsCovered locale={locale} />
           {/* <TestimonialsCarousel locale={locale} /> */}
+          <CompactGreenSectionDivider />
           <CaseStudiesCarousel locale={locale} />
 
           <PricingSection locale={locale} prices={prices} />

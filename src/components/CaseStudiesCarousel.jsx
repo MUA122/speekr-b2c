@@ -75,16 +75,6 @@ export default function CaseStudiesCarousel({ locale = 'en' }) {
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
           pt: { xs: 8, md: 12 },
           pb: { xs: 8, md: 10 },
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: '10%',
-            right: '10%',
-            height: '1px',
-            background:
-              'linear-gradient(90deg, transparent, rgba(242,100,51,0.28) 50%, transparent)',
-          },
         }}
       >
         {/* Ambient orb — orange top center */}
