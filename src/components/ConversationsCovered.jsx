@@ -366,6 +366,7 @@ function ScenarioCard({
 
 export default function ConversationsCovered({ locale = 'en' }) {
   const copy = landingCopy[locale].conversations
+  const isAr = locale === 'ar'
   const scenarios = SCENARIOS.map((item, index) => ({
     ...item,
     cat: copy.scenarios[index][0],
@@ -538,18 +539,27 @@ export default function ConversationsCovered({ locale = 'en' }) {
               component="h2"
               sx={{
                 m: 0,
-                fontSize: { xs: 34, sm: 46, md: 56, lg: 64 },
+                fontSize: isAr
+                  ? { xs: 38, sm: 50, md: 62, lg: 70 }
+                  : { xs: 34, sm: 46, md: 56, lg: 64 },
                 fontFamily: (theme) => theme.palette.brand.fontHeadline,
                 fontWeight: 900,
-                letterSpacing: { xs: -1.5, md: -2.5 },
-                lineHeight: 1.04,
+                letterSpacing: isAr ? 0 : { xs: 0, md: 0 },
+                lineHeight: isAr ? { xs: 1.18, md: 1.12 } : 1.04,
                 color: '#074225',
               }}
             >
               <Box component="span" sx={{ display: 'block' }}>
                 {copy.title}
               </Box>
-              <Box component="span" sx={{ display: 'block', color: '#F26433' }}>
+              <Box
+                component="span"
+                sx={{
+                  display: 'block',
+                  color: '#F26433',
+                  mt: isAr ? { xs: 0.8, md: 1 } : 0,
+                }}
+              >
                 {copy.accent}
               </Box>
             </Typography>

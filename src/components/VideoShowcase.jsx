@@ -8,6 +8,7 @@ import { commonCopy, landingCopy } from '../utils/i18n'
 export default function VideoShowcase({ locale = 'en' }) {
   const copy = landingCopy[locale].video
   const common = commonCopy[locale]
+  const isAr = locale === 'ar'
   const videoIframeRef = useRef(null)
   const [videoStarted, setVideoStarted] = useState(false)
   const videoSrc = `https://player.vimeo.com/video/1146534594?h=2d5851ade0&title=0&byline=0&portrait=0&badge=0&autopause=0&playsinline=1&player_id=0&app_id=58479${videoStarted ? '&autoplay=1' : ''}`
@@ -296,30 +297,39 @@ export default function VideoShowcase({ locale = 'en' }) {
           {/* Stat pills */}
           <Stack
             direction="row"
-            spacing={{ xs: 1.5, md: 2.5 }}
-            sx={{ justifyContent: 'center', flexWrap: 'wrap', gap: { xs: 1.5, md: 0 }, mb: { xs: 5, md: 7 } }}
+            spacing={{ xs: 0, md: isAr ? 0 : 2.5 }}
+            sx={{
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              gap: isAr ? { xs: 1.2, md: 2.4 } : { xs: 1.5, md: 0 },
+              mb: { xs: 5, md: 7 },
+            }}
           >
             {copy.stats.map(([value, label]) => (
               <Box
                 key={label}
                 sx={{
-                  px: { xs: 2.5, md: 3.5 },
+                  direction: isAr ? 'rtl' : 'ltr',
+                  px: isAr ? { xs: 2.8, md: 4 } : { xs: 2.5, md: 3.5 },
                   py: { xs: 1.2, md: 1.5 },
                   borderRadius: '100px',
                   border: '1px solid rgba(238,243,205,0.14)',
                   bgcolor: '#EEF3CD',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 1.2,
+                  justifyContent: 'center',
+                  gap: isAr ? { xs: 1.45, md: 1.8 } : 1.2,
+                  minWidth: isAr ? { xs: 200, sm: 214, md: 226 } : 'auto',
                 }}
               >
                 <Typography
                   sx={{
                     fontSize: { xs: 17, md: 20 },
                     fontWeight: 900,
-                    letterSpacing: -0.5,
+                    letterSpacing: isAr ? 0 : -0.5,
                     color: '#F26433',
                     lineHeight: 1,
+                    order: isAr ? 1 : 0,
                   }}
                 >
                   {value}
@@ -330,6 +340,8 @@ export default function VideoShowcase({ locale = 'en' }) {
                     fontWeight: 500,
                     color: 'rgba(7,66,37,0.5)',
                     lineHeight: 1,
+                    whiteSpace: 'nowrap',
+                    order: isAr ? 2 : 0,
                   }}
                 >
                   {label}

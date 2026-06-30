@@ -375,6 +375,7 @@ const UI = {
 export default function SplitCtaSection({ locale = "en", onDemoClick }) {
   const ui = UI[locale];
   const common = commonCopy[locale];
+  const isRtl = locale === "ar";
   return (
     <Box
       sx={{
@@ -388,9 +389,11 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
         component="section"
         id="solutions"
         aria-labelledby="solutions-title"
+        dir={isRtl ? "rtl" : "ltr"}
         sx={{
           position: "relative",
           bgcolor: "#EEF3CD",
+          direction: isRtl ? "rtl" : "ltr",
           borderRadius: { xs: "24px", md: "32px" },
           overflow: "hidden",
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -503,19 +506,37 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
               component="h2"
               sx={{
                 m: 0,
-                fontSize: { xs: 38, sm: 50, md: 58, lg: 64 },
+                fontSize: isRtl
+                  ? { xs: 42, sm: 54, md: 62, lg: 68 }
+                  : { xs: 38, sm: 50, md: 58, lg: 64 },
                 fontFamily: (theme) => theme.palette.brand.fontHeadline,
                 fontWeight: 900,
-                letterSpacing: { xs: -1.5, md: -2.5 },
-                lineHeight: 1.0,
+                letterSpacing: isRtl ? 0 : { xs: -1.5, md: -2.5 },
+                lineHeight: isRtl ? 1.15 : 1.0,
                 color: "#074225",
               }}
             >
-              <Box component="span" sx={{ color: "#F26433" }}>
+              <Box
+                component="span"
+                sx={{
+                  display: "block",
+                  color: "#F26433",
+                  lineHeight: isRtl ? 1.12 : 1,
+                  mb: isRtl ? { xs: 1.4, sm: 1.6, md: 1.8 } : 0,
+                }}
+              >
                 {ui.titleAccent}
               </Box>
-              <br />
-              {ui.title}
+              <Box
+                component="span"
+                sx={{
+                  display: "block",
+                  lineHeight: isRtl ? 1.12 : 1,
+                  mt: isRtl ? 0 : 0.15,
+                }}
+              >
+                {ui.title}
+              </Box>
             </Typography>
 
             <Typography
@@ -523,7 +544,7 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
                 mt: { xs: 2, md: 2.5 },
                 fontSize: { xs: 14.5, md: 16 },
                 fontWeight: 500,
-                lineHeight: 1.65,
+                lineHeight: isRtl ? 1.85 : 1.65,
                 color: "rgba(7,66,37,0.5)",
                 maxWidth: 520,
                 mx: "auto",

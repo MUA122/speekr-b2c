@@ -101,20 +101,21 @@ const UI = {
   },
 };
 
-function FaqItem({ q, a, isOpen, onToggle }) {
+function FaqItem({ q, a, isOpen, onToggle, isRtl }) {
   return (
     <Box
-      className="premium-card"
       component="article"
       sx={{
         borderRadius: "16px",
         border: `1px solid ${isOpen ? "rgba(242,100,51,0.28)" : "rgba(7,66,37,0.12)"}`,
         bgcolor: "#EEF3CD",
+        direction: isRtl ? "rtl" : "ltr",
         boxShadow: isOpen
           ? "0 18px 50px rgba(242,100,51,0.12), 0 0 0 1px rgba(242,100,51,0.08)"
           : "0 12px 34px rgba(7,66,37,0.06)",
         transition:
-          "border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease",
+          "border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease",
+        transform: isOpen ? "translateY(-1px)" : "translateY(0)",
         overflow: "hidden",
       }}
     >
@@ -130,11 +131,16 @@ function FaqItem({ q, a, isOpen, onToggle }) {
           alignItems: "flex-start",
           gap: { xs: 2, sm: 2, md: 3 },
           p: { xs: "22px 20px", sm: "26px 28px", md: "30px 36px" },
-          textAlign: "left",
+          textAlign: isRtl ? "right" : "left",
+          direction: isRtl ? "rtl" : "ltr",
           cursor: "pointer",
           bgcolor: "transparent",
           border: "none",
           fontFamily: "inherit",
+          transition: "background-color 0.24s ease",
+          "&:hover": {
+            bgcolor: "rgba(7,66,37,0.025)",
+          },
         }}
       >
         {/* Orange square accent — hidden on xs */}
@@ -158,11 +164,11 @@ function FaqItem({ q, a, isOpen, onToggle }) {
             flex: 1,
             fontSize: { xs: 16.5, sm: 18, md: 20 },
             fontWeight: 700,
-            letterSpacing: -0.3,
-            lineHeight: 1.3,
+            letterSpacing: isRtl ? 0 : -0.3,
+            lineHeight: isRtl ? 1.45 : 1.3,
             color: isOpen ? "#074225" : "rgba(7,66,37,0.78)",
             transition: "color 0.25s ease",
-            textAlign: "left",
+            textAlign: isRtl ? "right" : "left",
           }}
         >
           {q}
@@ -182,7 +188,7 @@ function FaqItem({ q, a, isOpen, onToggle }) {
             alignItems: "center",
             justifyContent: "center",
             transition:
-              "transform 0.35s cubic-bezier(0.4,0,0.2,1), border-color 0.3s ease, background-color 0.3s ease",
+              "transform 0.48s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease, background-color 0.3s ease",
             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
             mt: "2px",
           }}
@@ -198,9 +204,11 @@ function FaqItem({ q, a, isOpen, onToggle }) {
       {/* ── Answer ── */}
       <Box
         sx={{
-          maxHeight: isOpen ? "500px" : 0,
-          overflow: "hidden",
-          transition: "max-height 0.44s cubic-bezier(0.4,0,0.2,1)",
+          display: "grid",
+          gridTemplateRows: isOpen ? "1fr" : "0fr",
+          opacity: isOpen ? 1 : 0,
+          transition:
+            "grid-template-rows 0.52s cubic-bezier(0.22,1,0.36,1), opacity 0.32s ease",
         }}
       >
         {/*
@@ -209,21 +217,35 @@ function FaqItem({ q, a, isOpen, onToggle }) {
         */}
         <Box
           sx={{
-            pl: { xs: "20px", sm: "52px", md: "68px" },
-            pr: { xs: "20px", sm: "28px", md: "36px" },
-            pb: { xs: "22px", sm: "26px", md: "30px" },
+            minHeight: 0,
+            overflow: "hidden",
           }}
         >
-          <Typography
+          <Box
             sx={{
-              fontSize: { xs: 14, md: 15 },
-              fontWeight: 500,
-              lineHeight: 1.8,
-              color: "rgba(7,66,37,0.58)",
+              pl: isRtl
+                ? { xs: "20px", sm: "28px", md: "36px" }
+                : { xs: "20px", sm: "52px", md: "68px" },
+              pr: isRtl
+                ? { xs: "20px", sm: "52px", md: "68px" }
+                : { xs: "20px", sm: "28px", md: "36px" },
+              pb: { xs: "22px", sm: "26px", md: "30px" },
+              transform: isOpen ? "translateY(0)" : "translateY(-6px)",
+              transition: "transform 0.44s cubic-bezier(0.22,1,0.36,1)",
             }}
           >
-            {a}
-          </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: 14, md: 15 },
+                fontWeight: 500,
+                lineHeight: isRtl ? 1.95 : 1.8,
+                color: "rgba(7,66,37,0.58)",
+                textAlign: isRtl ? "right" : "left",
+              }}
+            >
+              {a}
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Box>
@@ -235,6 +257,7 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
   const toggle = (idx) => setOpen(open === idx ? null : idx);
   const ui = UI[locale];
   const common = commonCopy[locale];
+  const isRtl = locale === "ar";
 
   return (
     <Box
@@ -248,9 +271,11 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
         component="section"
         id="faq"
         aria-labelledby="faq-title"
+        dir={isRtl ? "rtl" : "ltr"}
         sx={{
           position: "relative",
           bgcolor: "#EEF3CD",
+          direction: isRtl ? "rtl" : "ltr",
           borderRadius: { xs: "24px", md: "32px" },
           overflow: "hidden",
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
@@ -394,8 +419,8 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
                 fontSize: { xs: 38, sm: 50, md: 58, lg: 64 },
                 fontFamily: (theme) => theme.palette.brand.fontHeadline,
                 fontWeight: 900,
-                letterSpacing: { xs: -1.5, md: -2.5 },
-                lineHeight: 1.0,
+                letterSpacing: isRtl ? 0 : { xs: -1.5, md: -2.5 },
+                lineHeight: isRtl ? 1.16 : 1.0,
                 color: "#074225",
               }}
             >
@@ -416,7 +441,7 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
                 mt: { xs: 2, md: 2.5 },
                 fontSize: { xs: 14.5, md: 16 },
                 fontWeight: 500,
-                lineHeight: 1.65,
+                lineHeight: isRtl ? 1.85 : 1.65,
                 color: "rgba(7,66,37,0.5)",
                 maxWidth: 460,
                 mx: "auto",
@@ -465,6 +490,7 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
                 a={faq.a}
                 isOpen={open === i}
                 onToggle={() => toggle(i)}
+                isRtl={isRtl}
               />
             ))}
           </Box>
@@ -506,13 +532,19 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
               }}
             />
 
-            <Box sx={{ position: "relative", zIndex: 1 }}>
+            <Box
+              sx={{
+                position: "relative",
+                zIndex: 1,
+                textAlign: isRtl ? "right" : "left",
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: { xs: 18, md: 22 },
                   fontWeight: 800,
-                  letterSpacing: -0.4,
-                  lineHeight: 1.2,
+                  letterSpacing: isRtl ? 0 : -0.4,
+                  lineHeight: isRtl ? 1.35 : 1.2,
                   color: "#074225",
                   mb: 0.5,
                 }}
@@ -523,7 +555,7 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
                 sx={{
                   fontSize: { xs: 13.5, md: 15 },
                   fontWeight: 500,
-                  lineHeight: 1.6,
+                  lineHeight: isRtl ? 1.85 : 1.6,
                   color: "rgba(7,66,37,0.5)",
                 }}
               >
@@ -547,7 +579,7 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
                 color: "#ffffff",
                 fontSize: { xs: 13.5, md: 14 },
                 fontWeight: 800,
-                letterSpacing: -0.2,
+                letterSpacing: isRtl ? 0 : -0.2,
                 cursor: "pointer",
                 border: "none",
                 fontFamily: "inherit",
@@ -563,7 +595,11 @@ export default function FaqSection({ locale = "en", onDemoClick }) {
               }}
             >
               {common.bookDemo}
-              <ArrowRight size={14} aria-hidden />
+              <ArrowRight
+                size={14}
+                aria-hidden
+                style={{ transform: isRtl ? "rotate(180deg)" : "none" }}
+              />
             </Box>
           </Box>
         </Box>
