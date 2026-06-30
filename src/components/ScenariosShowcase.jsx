@@ -425,6 +425,79 @@ function TabCard({ scenario, isActive, onClick, copy, isAr }) {
   );
 }
 
+function MobileScenarioVideo({ scenario, copy }) {
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        borderRadius: "24px",
+        overflow: "hidden",
+        border: "1px solid rgba(242,100,51,0.44)",
+        boxShadow:
+          "0 26px 72px rgba(0,34,19,0.34), 0 0 0 1px rgba(238,243,205,0.08)",
+        bgcolor: "rgba(0,34,19,0.5)",
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: 12,
+          left: 12,
+          zIndex: 2,
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 0.75,
+          px: 1.25,
+          py: 0.55,
+          borderRadius: "100px",
+          bgcolor: "rgba(0,34,19,0.86)",
+          border: "1px solid rgba(242,100,51,0.22)",
+        }}
+      >
+        <Box
+          sx={{
+            width: 7,
+            height: 7,
+            borderRadius: "50%",
+            bgcolor: "#F26433",
+            boxShadow: "0 0 8px rgba(242,100,51,0.9)",
+          }}
+        />
+        <Typography
+          sx={{
+            fontSize: 10,
+            fontWeight: 900,
+            letterSpacing: 0.8,
+            color: "#F26433",
+            lineHeight: 1,
+          }}
+        >
+          {copy.playing}
+        </Typography>
+      </Box>
+
+      <Box
+        component="video"
+        muted
+        autoPlay
+        loop
+        playsInline
+        preload="metadata"
+        controls
+        poster={scenario.cover}
+        sx={{
+          width: "100%",
+          aspectRatio: "16/9",
+          display: "block",
+          objectFit: "cover",
+        }}
+      >
+        <source src={scenario.video} type="video/mp4" />
+      </Box>
+    </Box>
+  );
+}
+
 function ScenariosShowcase({ locale = "en" }) {
   const [active, setActive] = useState(0);
   const videoRef = useRef(null);
@@ -774,6 +847,7 @@ function ScenariosShowcase({ locale = "en" }) {
               >
                 <ExpandedContent scenario={s} copy={copy} />
               </Box>
+              <MobileScenarioVideo scenario={s} copy={copy} />
             </Stack>
           ))}
         </Stack>
