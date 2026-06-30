@@ -379,7 +379,20 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
           {submitted ? (
             <SuccessState onClose={handleClose} ui={ui} />
           ) : (
-            <Box component="form" onSubmit={handleSubmit} noValidate>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{
+                maxHeight: { xs: 'calc(100dvh - 132px)', sm: 'none' },
+                overflowY: { xs: 'auto', sm: 'visible' },
+                overflowX: 'hidden',
+                pr: { xs: 0.5, sm: 0 },
+                pb: { xs: 0.5, sm: 0 },
+                overscrollBehavior: 'contain',
+                WebkitOverflowScrolling: 'touch',
+              }}
+            >
               <Box
                 sx={{
                   position: 'relative',
