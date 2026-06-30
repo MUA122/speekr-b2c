@@ -5,8 +5,8 @@ import Hero from "./components/Hero";
 import ScenariosShowcase from "./components/ScenariosShowcase";
 import ProgramsCarousel from "./components/ProgramsCarousel";
 import VideoShowcase from "./components/VideoShowcase";
-import ConversationsCovered from "./components/ConversationsCovered";
-import TestimonialsCarousel from "./components/TestimonialsCarousel";
+// import ConversationsCovered from "./components/ConversationsCovered";
+// import TestimonialsCarousel from "./components/TestimonialsCarousel";
 import PricingSection from "./components/PricingSection";
 import TeamsPricingSection from "./components/TeamsPricingSection";
 import CaseStudiesCarousel from "./components/CaseStudiesCarousel";
@@ -17,7 +17,12 @@ import ContactModal from "./components/ContactModal";
 import LoadingScreen from "./components/LoadingScreen";
 import { useLocalizedPrices } from "./utils/pricing";
 import { splitLocalePath } from "./utils/i18n";
-import { applySeo, organizationSchema, setJsonLd, websiteSchema } from "./utils/seo";
+import {
+  applySeo,
+  organizationSchema,
+  setJsonLd,
+  websiteSchema,
+} from "./utils/seo";
 
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
@@ -43,7 +48,11 @@ function getRoute() {
   const { locale, path } = splitLocalePath(window.location.pathname);
   if (path === "/blog") return { name: "blog", locale };
   if (path.startsWith("/blog/")) {
-    return { name: "blogPost", slug: decodeURIComponent(path.replace("/blog/", "")), locale };
+    return {
+      name: "blogPost",
+      slug: decodeURIComponent(path.replace("/blog/", "")),
+      locale,
+    };
   }
   return { name: "home", locale };
 }
@@ -136,7 +145,11 @@ function App() {
       const url = new URL(link.href, window.location.href);
       if (url.origin !== window.location.origin) return;
       if (url.hash && url.pathname === window.location.pathname) return;
-      if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+      if (
+        url.pathname === window.location.pathname &&
+        url.search === window.location.search
+      )
+        return;
 
       event.preventDefault();
       setIsBootLoading(true);
@@ -146,7 +159,8 @@ function App() {
     };
 
     document.addEventListener("click", handleInternalLink, true);
-    return () => document.removeEventListener("click", handleInternalLink, true);
+    return () =>
+      document.removeEventListener("click", handleInternalLink, true);
   }, []);
 
   useEffect(() => {
@@ -243,7 +257,9 @@ function App() {
                 gap: { xs: 2, md: 3 },
               }}
             >
-              <Box sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }} />
+              <Box
+                sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }}
+              />
               <Box
                 sx={{
                   width: 64,
@@ -268,25 +284,36 @@ function App() {
                   }}
                 />
               </Box>
-              <Box sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }} />
+              <Box
+                sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }}
+              />
             </Box>
           </Box>
           {/* <LogosMarquee /> */}
           <ScenariosShowcase locale={locale} />
           <ProgramsCarousel locale={locale} />
           <VideoShowcase locale={locale} />
-          <ConversationsCovered locale={locale} />
-          <TestimonialsCarousel locale={locale} />
-          <PricingSection locale={locale} prices={prices} />
-          <TeamsPricingSection locale={locale} prices={prices} onDemoClick={openContactModal} />
-          <GreenSectionDivider />
+          {/* <ConversationsCovered locale={locale} /> */}
+          {/* <TestimonialsCarousel locale={locale} /> */}
           <CaseStudiesCarousel locale={locale} />
+
+          <PricingSection locale={locale} prices={prices} />
+          <TeamsPricingSection
+            locale={locale}
+            prices={prices}
+            onDemoClick={openContactModal}
+          />
+          <GreenSectionDivider />
           <SplitCtaSection locale={locale} onDemoClick={openContactModal} />
           <FaqSection locale={locale} onDemoClick={openContactModal} />
         </>
       )}
       <Footer locale={locale} onContactClick={openContactModal} />
-      <ContactModal locale={locale} open={isContactOpen} onClose={closeContactModal} />
+      <ContactModal
+        locale={locale}
+        open={isContactOpen}
+        onClose={closeContactModal}
+      />
       {isBootLoading && <LoadingScreen fixed />}
     </Box>
   );

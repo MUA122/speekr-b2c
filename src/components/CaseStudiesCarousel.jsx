@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { ChevronLeft, ChevronRight, BarChart3 } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { landingCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
@@ -160,33 +160,6 @@ export default function CaseStudiesCarousel({ locale = 'en' }) {
 
           {/* ── Heading ── */}
           <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 9 } }}>
-            <Box
-              sx={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 1,
-                px: 2,
-                py: 0.75,
-                borderRadius: '100px',
-                border: '1px solid rgba(242,100,51,0.2)',
-                bgcolor: 'rgba(242,100,51,0.07)',
-                mb: 3,
-              }}
-            >
-              <BarChart3 size={12} color="#F26433" aria-hidden />
-              <Typography
-                sx={{
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: 1.8,
-                  textTransform: 'uppercase',
-                  color: '#F26433',
-                }}
-              >
-                {copy.badge}
-              </Typography>
-            </Box>
-
             <Typography
               id="cases-title"
               component="h2"

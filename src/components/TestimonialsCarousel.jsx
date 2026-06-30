@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { ChevronLeft, ChevronRight, Volume2, VolumeX, Quote, Play, X, Maximize2 } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Volume2, VolumeX, Play, X, Maximize2 } from 'lucide-react'
 import { landingCopy } from '../utils/i18n'
 
 const N = 3
@@ -394,16 +394,6 @@ export default function TestimonialsCarousel({ locale = 'en' }) {
 
             {/* Heading */}
             <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 9 } }}>
-              <Box sx={{
-                display: 'inline-flex', alignItems: 'center', gap: 1,
-                px: 2, py: 0.75, borderRadius: '100px',
-                border: '1px solid rgba(242,100,51,0.18)', bgcolor: 'rgba(242,100,51,0.06)', mb: 3,
-              }}>
-                <Quote size={12} color="#F26433" aria-hidden />
-                <Typography sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#F26433' }}>
-                  {copy.badge}
-                </Typography>
-              </Box>
               <Typography
                 id="test-title"
                 component="h2"

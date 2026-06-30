@@ -1,45 +1,45 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { Send, Sparkles, X, Check } from 'lucide-react'
-import { commonCopy } from '../utils/i18n'
+import { Send, X, Check } from 'lucide-react'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
 
 const fieldInputSx = {
   display: 'block',
   width: '100%',
-  background: 'rgba(238,243,205,0.05)',
-  border: '1px solid rgba(238,243,205,0.09)',
-  borderRadius: '12px',
-  padding: '13px 16px',
-  color: 'rgba(238,243,205,0.9)',
+  background: 'rgba(7,66,37,0.045)',
+  border: '1px solid rgba(7,66,37,0.16)',
+  borderRadius: '16px',
+  padding: '12px 15px',
+  color: '#074225',
   fontSize: '14.5px',
+  fontWeight: 700,
   fontFamily: 'inherit',
   outline: 'none',
   boxSizing: 'border-box',
-  transition: 'border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease',
-  '&::placeholder': { color: 'rgba(238,243,205,0.22)' },
+  transition: 'border-color 0.22s ease, background 0.22s ease',
+  '&::placeholder': { color: 'rgba(7,66,37,0.42)', fontWeight: 600 },
   '&:focus': {
-    background: 'rgba(242,100,51,0.04)',
-    borderColor: 'rgba(242,100,51,0.38)',
-    boxShadow: '0 0 0 3px rgba(242,100,51,0.07)',
+    background: 'rgba(242,100,51,0.055)',
+    borderColor: 'rgba(242,100,51,0.52)',
+    boxShadow: 'none',
   },
 }
 
 function Field({ label, required, multiline, rows = 4, id, ...rest }) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.85, flex: '1 1 0', minWidth: 0 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.7, flex: '1 1 0', minWidth: 0 }}>
       <Box
         component="label"
         htmlFor={id}
         sx={{
-          fontSize: 11,
-          fontWeight: 700,
-          letterSpacing: 0.9,
+          fontSize: 11.5,
+          fontWeight: 900,
+          letterSpacing: 1.2,
           textTransform: 'uppercase',
-          color: 'rgba(238,243,205,0.35)',
+          color: 'rgba(7,66,37,0.68)',
           userSelect: 'none',
         }}
       >
@@ -55,7 +55,7 @@ function Field({ label, required, multiline, rows = 4, id, ...rest }) {
         sx={{
           ...fieldInputSx,
           resize: multiline ? 'vertical' : 'none',
-          minHeight: multiline ? 100 : undefined,
+          minHeight: multiline ? 104 : undefined,
         }}
         {...rest}
       />
@@ -108,17 +108,17 @@ function SuccessState({ onClose, ui }) {
           width: 72,
           height: 72,
           borderRadius: '50%',
-          background: 'rgba(242,100,51,0.1)',
-          border: '1px solid rgba(242,100,51,0.25)',
+          background: '#F26433',
+          border: '1px solid rgba(7,66,37,0.18)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           mx: 'auto',
           mb: 3,
-          boxShadow: '0 0 40px rgba(242,100,51,0.14)',
+          boxShadow: 'none',
         }}
       >
-        <Check size={32} color="#F26433" strokeWidth={2.5} aria-hidden />
+        <Check size={32} color="#074225" strokeWidth={2.5} aria-hidden />
       </Box>
       <Typography
         component="h3"
@@ -127,7 +127,7 @@ function SuccessState({ onClose, ui }) {
           fontSize: { xs: 26, sm: 30 },
           fontWeight: 900,
           letterSpacing: -1,
-          color: 'rgba(238,243,205,0.96)',
+          color: '#074225',
           mb: 1.2,
         }}
       >
@@ -137,7 +137,7 @@ function SuccessState({ onClose, ui }) {
         sx={{
           fontSize: 15,
           lineHeight: 1.72,
-          color: 'rgba(238,243,205,0.38)',
+          color: 'rgba(7,66,37,0.68)',
           maxWidth: 340,
           mx: 'auto',
           mb: 4.5,
@@ -156,18 +156,19 @@ function SuccessState({ onClose, ui }) {
           px: 4.5,
           py: '13px',
           borderRadius: '100px',
-          background: 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)',
+          bgcolor: '#F26433',
           border: 'none',
           color: '#074225',
           fontSize: 15,
           fontWeight: 800,
           cursor: 'pointer',
           fontFamily: 'inherit',
-          boxShadow: '0 0 0 1px rgba(242,100,51,0.3), 0 12px 36px rgba(242,100,51,0.2)',
-          transition: 'transform 0.22s ease, box-shadow 0.22s ease',
+          boxShadow: 'none',
+          transition: 'transform 0.22s ease, background-color 0.22s ease',
           '&:hover': {
             transform: 'translateY(-2px)',
-            boxShadow: '0 0 0 1px rgba(242,100,51,0.5), 0 16px 48px rgba(242,100,51,0.3)',
+            bgcolor: '#F26433',
+            boxShadow: 'none',
           },
         }}
       >
@@ -184,6 +185,11 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
   const [submitted, setSubmitted] = useState(false)
   const ui = UI[locale]
 
+  const handleClose = useCallback(() => {
+    setSubmitted(false)
+    onClose?.()
+  }, [onClose])
+
   /* Body scroll lock + ESC key */
   useEffect(() => {
     if (!open) return
@@ -195,17 +201,11 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
       document.body.style.overflow = prev
       document.removeEventListener('keydown', onKey)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open])
+  }, [open, handleClose])
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((cur) => ({ ...cur, [name]: value }))
-  }
-
-  const handleClose = () => {
-    setSubmitted(false)
-    onClose?.()
   }
 
   const handleSubmit = (e) => {
@@ -264,13 +264,14 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
         sx={{
           position: 'relative',
           width: '100%',
-          maxWidth: 560,
-          maxHeight: '90dvh',
-          overflowY: 'auto',
-          borderRadius: { xs: '20px', sm: '24px' },
-          border: '1px solid rgba(238,243,205,0.08)',
-          background: '#074225',
-          boxShadow: '0 0 0 1px rgba(242,100,51,0.06), 0 60px 140px rgba(0,0,0,0.75)',
+          maxWidth: 680,
+          maxHeight: 'calc(100dvh - 32px)',
+          overflow: 'hidden',
+          overflowX: 'hidden',
+          borderRadius: { xs: '22px', sm: '30px' },
+          border: '1px solid rgba(242,100,51,0.34)',
+          background: '#EEF3CD',
+          boxShadow: '0 34px 100px rgba(0,34,19,0.38)',
           animation: { xs: 'none', md: 'panelIn 0.26s cubic-bezier(0.34,1.4,0.64,1)' },
         }}
       >
@@ -281,26 +282,25 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
             position: 'absolute',
             inset: 0,
             pointerEvents: 'none',
-            opacity: 0.022,
+            opacity: 0.035,
             backgroundImage: NOISE,
             backgroundRepeat: 'repeat',
             backgroundSize: '200px 200px',
             borderRadius: 'inherit',
           }}
         />
-        {/* Ambient lime orb */}
+        {/* Soft brand wash */}
         <Box
           aria-hidden
           sx={{
             position: 'absolute',
-            top: '-50%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '130%',
-            height: '100%',
+            top: '-36%',
+            right: '-24%',
+            width: '74%',
+            height: '74%',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(242,100,51,0.07) 0%, transparent 70%)',
-            filter: { xs: 'none', md: 'blur(50px)' },
+            background: 'radial-gradient(circle, rgba(242,100,51,0.16) 0%, rgba(242,100,51,0.06) 38%, transparent 70%)',
+            filter: { xs: 'none', md: 'blur(46px)' },
             pointerEvents: 'none',
           }}
         />
@@ -310,10 +310,11 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
           sx={{
             position: 'absolute',
             top: 0,
-            left: '10%',
-            right: '10%',
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(242,100,51,0.32) 50%, transparent)',
+            left: 32,
+            right: 32,
+            height: '2px',
+            background: '#F26433',
+            opacity: 0.7,
           }}
         />
 
@@ -322,7 +323,7 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
           sx={{
             position: 'relative',
             zIndex: 1,
-            p: { xs: '28px 22px', sm: '36px 36px' },
+            p: { xs: '22px 18px', sm: '30px', md: '30px 38px' },
           }}
         >
           {/* Header row */}
@@ -331,36 +332,21 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              mb: { xs: 3, sm: 3.5 },
+              mb: { xs: 2.4, sm: 2.8 },
             }}
           >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.4 }}>
-              <Box
-                component="img"
-                src="/images/logo.svg"
-                alt="Speekr.ai"
-                title="Speekr.ai logo"
-                loading="lazy"
-                decoding="async"
-                sx={{ width: 100, filter: 'brightness(0) invert(1)', opacity: 0.88 }}
-              />
-              <Box
-                aria-hidden
-                sx={{
-                  width: 30,
-                  height: 30,
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '50%',
-                  background: 'rgba(242,100,51,0.1)',
-                  border: '1px solid rgba(242,100,51,0.2)',
-                }}
-              >
-                <Sparkles size={14} color="#F26433" aria-hidden />
-              </Box>
-            </Box>
+            <Box
+              component="img"
+              src="/images/logo.svg"
+              alt="Speekr.ai"
+              title="Speekr.ai logo"
+              loading="lazy"
+              decoding="async"
+              sx={{
+                width: 116,
+                filter: 'brightness(0) saturate(100%) invert(17%) sepia(34%) saturate(1031%) hue-rotate(104deg) brightness(92%) contrast(97%)',
+              }}
+            />
 
             <Box
               component="button"
@@ -368,12 +354,12 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
               onClick={handleClose}
               aria-label="Close"
               sx={{
-                width: 36,
-                height: 36,
+                width: 42,
+                height: 42,
                 flexShrink: 0,
                 borderRadius: '50%',
-                border: '1px solid rgba(238,243,205,0.08)',
-                background: 'rgba(238,243,205,0.04)',
+                border: '1px solid rgba(7,66,37,0.14)',
+                background: 'rgba(7,66,37,0.04)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -381,12 +367,12 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
                 fontFamily: 'inherit',
                 transition: 'background 0.2s ease, border-color 0.2s ease',
                 '&:hover': {
-                  background: 'rgba(238,243,205,0.09)',
-                  borderColor: 'rgba(238,243,205,0.15)',
+                  background: 'rgba(7,66,37,0.08)',
+                  borderColor: 'rgba(7,66,37,0.24)',
                 },
               }}
             >
-              <X size={16} color="rgba(238,243,205,0.55)" aria-hidden />
+              <X size={17} color="#074225" aria-hidden />
             </Box>
           </Box>
 
@@ -394,37 +380,71 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
             <SuccessState onClose={handleClose} ui={ui} />
           ) : (
             <Box component="form" onSubmit={handleSubmit} noValidate>
-              {/* Title */}
-              <Typography
-                id="contact-modal-title"
-                component="h2"
+              <Box
                 sx={{
-                  m: 0,
-                  fontSize: { xs: 26, sm: 30 },
-                  fontWeight: 900,
-                  letterSpacing: { xs: -0.8, sm: -1.2 },
-                  lineHeight: 1.1,
-                  color: 'rgba(238,243,205,0.96)',
-                  mb: 0.9,
+                  position: 'relative',
+                  pl: { xs: 2, sm: 2.5 },
+                  mb: { xs: 2.4, sm: 2.8 },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 4,
+                    bottom: 4,
+                    left: 0,
+                    width: 5,
+                    borderRadius: '999px',
+                    bgcolor: '#F26433',
+                  },
                 }}
               >
-                {ui.titleA}{' '}
-                <Box component="span" sx={{ color: '#F26433' }}>{ui.titleB}</Box>
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: 14,
-                  lineHeight: 1.65,
-                  color: 'rgba(238,243,205,0.35)',
-                  mb: { xs: 3, sm: 3.5 },
-                }}
-              >
-                {ui.subtitle}
-              </Typography>
+                <Typography
+                  id="contact-modal-title"
+                  component="h2"
+                  sx={{
+                    m: 0,
+                    fontSize: { xs: 32, sm: 40 },
+                    fontWeight: 900,
+                    letterSpacing: 0,
+                    lineHeight: 1,
+                    color: '#074225',
+                    mb: 0.8,
+                    fontFamily: (theme) => theme.palette.brand.fontHeadline,
+                  }}
+                >
+                  {ui.titleA}{' '}
+                  <Box component="span" sx={{ color: '#F26433' }}>
+                    {ui.titleB}
+                  </Box>
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: { xs: 14.5, sm: 15.5 },
+                    lineHeight: 1.5,
+                    color: 'rgba(7,66,37,0.68)',
+                    fontWeight: 650,
+                    maxWidth: 520,
+                  }}
+                >
+                  {ui.subtitle}
+                </Typography>
+              </Box>
 
-              {/* Fields */}
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.2 }}>
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
+              <Box
+                sx={{
+                  borderRadius: { xs: '18px', sm: '22px' },
+                  border: '1px solid rgba(7,66,37,0.14)',
+                  bgcolor: 'rgba(7,66,37,0.035)',
+                  p: { xs: 1.5, sm: 1.8 },
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.72)',
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
+                    gap: 1.45,
+                  }}
+                >
                   <Field
                     id="cm-name"
                     label={ui.fields.name[0]}
@@ -447,8 +467,6 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
                     onChange={handleChange}
                     autoComplete="email"
                   />
-                </Box>
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                   <Field
                     id="cm-company"
                     label={ui.fields.company[0]}
@@ -469,51 +487,54 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
                     onChange={handleChange}
                     autoComplete="tel"
                   />
+                  <Box sx={{ gridColumn: '1 / -1' }}>
+                    <Field
+                      id="cm-message"
+                      label={ui.fields.message[0]}
+                      name="message"
+                      multiline
+                      placeholder={ui.fields.message[1]}
+                      value={formData.message}
+                      onChange={handleChange}
+                    />
+                  </Box>
                 </Box>
-                <Field
-                  id="cm-message"
-                  label={ui.fields.message[0]}
-                  name="message"
-                  multiline
-                  placeholder={ui.fields.message[1]}
-                  value={formData.message}
-                  onChange={handleChange}
-                />
+
               </Box>
 
-              {/* Buttons */}
               <Box
                 sx={{
-                  display: 'flex',
-                  gap: 1.5,
-                  mt: { xs: 3, sm: 3.5 },
-                  flexDirection: { xs: 'column', sm: 'row' },
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr', sm: 'minmax(0, 1fr) auto' },
+                  gap: 1.2,
+                  mt: 1.5,
+                  alignItems: 'stretch',
                 }}
               >
                 <Box
                   component="button"
                   type="submit"
                   sx={{
-                    flex: { sm: 1 },
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 1,
                     px: 3,
-                    py: '14px',
-                    borderRadius: '100px',
-                    background: 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)',
+                    py: '13px',
+                    borderRadius: '14px',
+                    bgcolor: '#F26433',
                     border: 'none',
                     color: '#074225',
-                    fontSize: 15,
-                    fontWeight: 800,
+                    fontSize: 15.5,
+                    fontWeight: 900,
                     cursor: 'pointer',
                     fontFamily: 'inherit',
-                    boxShadow: '0 0 0 1px rgba(242,100,51,0.3), 0 12px 36px rgba(242,100,51,0.2)',
-                    transition: 'transform 0.22s ease, box-shadow 0.22s ease',
+                    boxShadow: 'none',
+                    transition: 'transform 0.22s ease, background-color 0.22s ease',
                     '&:hover': {
                       transform: 'translateY(-2px)',
-                      boxShadow: '0 0 0 1px rgba(242,100,51,0.5), 0 16px 48px rgba(242,100,51,0.3)',
+                      bgcolor: '#F26433',
+                      boxShadow: 'none',
                     },
                   }}
                 >
@@ -529,20 +550,20 @@ function ContactModal({ locale = 'en', open, onClose, onSubmit }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     px: 3,
-                    py: '14px',
-                    borderRadius: '100px',
-                    border: '1px solid rgba(238,243,205,0.1)',
+                    py: '13px',
+                    borderRadius: '14px',
+                    border: '1px solid rgba(7,66,37,0.16)',
                     background: 'transparent',
-                    color: 'rgba(238,243,205,0.45)',
+                    color: 'rgba(7,66,37,0.68)',
                     fontSize: 15,
-                    fontWeight: 600,
+                    fontWeight: 800,
                     cursor: 'pointer',
                     fontFamily: 'inherit',
                     transition: 'border-color 0.2s ease, color 0.2s ease, background 0.2s ease',
                     '&:hover': {
-                      borderColor: 'rgba(238,243,205,0.18)',
-                      color: 'rgba(238,243,205,0.75)',
-                      background: 'rgba(238,243,205,0.04)',
+                      borderColor: 'rgba(7,66,37,0.28)',
+                      color: '#074225',
+                      background: 'rgba(7,66,37,0.05)',
                     },
                   }}
                 >

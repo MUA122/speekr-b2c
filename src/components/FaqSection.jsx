@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { ChevronDown, HelpCircle, ArrowRight } from 'lucide-react'
+import { ChevronDown, ArrowRight } from 'lucide-react'
 import { commonCopy } from '../utils/i18n'
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
@@ -367,33 +367,6 @@ export default function FaqSection({ locale = 'en', onDemoClick }) {
 
           {/* ── Heading ── */}
           <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 9 } }}>
-            <Box
-              sx={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 1,
-                px: 2,
-                py: 0.75,
-                mb: 3,
-                borderRadius: '100px',
-                border: '1px solid rgba(242,100,51,0.2)',
-                bgcolor: 'rgba(242,100,51,0.06)',
-              }}
-            >
-              <HelpCircle size={12} color="#F26433" aria-hidden />
-              <Typography
-                sx={{
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: 1.8,
-                  textTransform: 'uppercase',
-                  color: '#F26433',
-                }}
-              >
-                {ui.badge}
-              </Typography>
-            </Box>
-
             <Typography
               id="faq-title"
               component="h2"
@@ -554,14 +527,14 @@ export default function FaqSection({ locale = 'en', onDemoClick }) {
                 cursor: 'pointer',
                 border: 'none',
                 fontFamily: 'inherit',
-                transition: 'transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease',
-                boxShadow: '0 0 22px rgba(242,100,51,0.28)',
+                transition: 'transform 0.22s ease, background-color 0.22s ease',
+                boxShadow: 'none',
                 position: 'relative',
                 zIndex: 1,
                 '&:hover': {
                   transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 32px rgba(242,100,51,0.42)',
-                  filter: 'brightness(1.07)',
+                  bgcolor: '#F26433',
+                  boxShadow: 'none',
                 },
               }}
             >

@@ -259,11 +259,11 @@ function MobileMenu({ open, onClose, activeSection, onContactClick, locale }) {
               letterSpacing: -0.2,
               textDecoration: 'none',
               fontFamily: 'inherit',
-              boxShadow: '0 0 18px rgba(242,100,51,0.2)',
-              transition: 'filter 0.2s ease, box-shadow 0.2s ease',
+              boxShadow: 'none',
+              transition: 'background-color 0.2s ease',
               '&:hover': {
-                filter: 'brightness(1.08)',
-                boxShadow: '0 4px 20px rgba(242,100,51,0.38)',
+                bgcolor: '#F26433',
+                boxShadow: 'none',
               },
             }}
           >
@@ -547,13 +547,13 @@ export default function Header({ locale = 'en', onContactClick }) {
                 color: '#074225',
                 textDecoration: 'none',
                 fontFamily: 'inherit',
-                boxShadow: '0 0 16px rgba(242,100,51,0.15)',
+                boxShadow: 'none',
                 transition:
-                  'transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease',
+                  'transform 0.2s ease, background-color 0.2s ease',
                 '&:hover': {
-                  filter: 'brightness(1.08)',
                   transform: 'translateY(-1px)',
-                  boxShadow: '0 8px 28px rgba(242,100,51,0.38)',
+                  bgcolor: '#F26433',
+                  boxShadow: 'none',
                 },
               }}
             >

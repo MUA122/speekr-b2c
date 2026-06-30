@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { ArrowRight, Play } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { commonCopy, landingCopy } from '../utils/i18n'
 
 const STATS = [
@@ -183,37 +183,8 @@ export default function VideoShowcase({ locale = 'en' }) {
             <Box sx={{ flex: 1, height: '1px', bgcolor: 'rgba(238,243,205,0.32)' }} />
           </Box>
 
-          {/* Badge */}
-          <Stack direction="row" sx={{ justifyContent: 'center', mb: { xs: 3.5, md: 4.5 } }}>
-            <Stack
-              direction="row"
-              spacing={1}
-              sx={{
-                alignItems: 'center',
-                px: 2,
-                py: 0.75,
-                borderRadius: '100px',
-                border: '1px solid rgba(242,100,51,0.18)',
-                bgcolor: 'rgba(242,100,51,0.06)',
-              }}
-            >
-              <Play size={12} color="#F26433" fill="#F26433" aria-hidden />
-              <Typography
-                sx={{
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: 1.8,
-                  textTransform: 'uppercase',
-                  color: '#F26433',
-                }}
-              >
-                {copy.badge}
-              </Typography>
-            </Stack>
-          </Stack>
-
           {/* Heading */}
-          <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 9 } }}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 8 } }}>
             <Typography
               id="video-title"
               component="h2"
@@ -385,19 +356,18 @@ export default function VideoShowcase({ locale = 'en' }) {
                 px: 4,
                 py: '14px',
                 borderRadius: '100px',
-                background: 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)',
+                bgcolor: '#F26433',
                 color: '#074225',
                 fontSize: 15.5,
                 fontWeight: 800,
                 textDecoration: 'none',
-                boxShadow:
-                  '0 0 0 1px rgba(242,100,51,0.3), 0 16px 48px rgba(242,100,51,0.2)',
+                boxShadow: 'none',
                 transition:
-                  'transform 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s ease',
+                  'transform 0.22s cubic-bezier(0.4,0,0.2,1), background-color 0.22s ease',
                 '&:hover': {
                   transform: 'translateY(-2px)',
-                  boxShadow:
-                    '0 0 0 1px rgba(242,100,51,0.48), 0 22px 64px rgba(242,100,51,0.32)',
+                  bgcolor: '#F26433',
+                  boxShadow: 'none',
                 },
               }}
             >

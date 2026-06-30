@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { Sparkles, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { landingCopy } from "../utils/i18n";
 
 const IMG = (id) =>
@@ -291,17 +291,17 @@ function ExpandedContent({ scenario, copy }) {
             px: 2.6,
             py: 1.15,
             borderRadius: "100px",
-            background: "linear-gradient(135deg, #F26433 0%, #F6845F 100%)",
+            bgcolor: "#F26433",
             color: "#074225",
             fontSize: 13,
             fontWeight: 900,
             textDecoration: "none",
-            boxShadow: "0 12px 26px rgba(242,100,51,0.24)",
-            transition: "transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease",
+            boxShadow: "none",
+            transition: "transform 0.2s ease, background-color 0.2s ease",
             "&:hover": {
               transform: "translateY(-2px)",
-              filter: "brightness(1.03)",
-              boxShadow: "0 16px 34px rgba(242,100,51,0.34)",
+              bgcolor: "#F26433",
+              boxShadow: "none",
             },
           }}
         >
@@ -313,7 +313,7 @@ function ExpandedContent({ scenario, copy }) {
   );
 }
 
-function TabCard({ scenario, isActive, onClick, copy }) {
+function TabCard({ scenario, isActive, onClick, copy, isAr }) {
   return (
     <Box
       onClick={onClick}
@@ -323,6 +323,7 @@ function TabCard({ scenario, isActive, onClick, copy }) {
       aria-pressed={isActive}
       sx={{
         position: "relative",
+        direction: isAr ? "rtl" : "ltr",
         p: { xs: "20px", md: "24px" },
         borderRadius: "26px",
         border: "1px solid",
@@ -428,6 +429,7 @@ function ScenariosShowcase({ locale = "en" }) {
   const [active, setActive] = useState(0);
   const videoRef = useRef(null);
   const copy = landingCopy[locale].scenarios;
+  const isAr = locale === "ar";
   const scenarios = SCENARIOS.map((scenario, index) => {
     const itemCopy = copy.items[scenario.copyIndex ?? index];
     return {
@@ -531,34 +533,7 @@ function ScenariosShowcase({ locale = "en" }) {
         sx={{ position: "relative", zIndex: 1, px: { xs: 2.5, sm: 4, lg: 5 } }}
       >
         {/* Section header */}
-        <Box sx={{ mb: { xs: 7, md: 9 }, maxWidth: 680 }}>
-            <Box
-              sx={{
-                display: "inline-flex",
-              alignItems: "center",
-              gap: 1,
-              px: 1.6,
-              py: 0.8,
-              mb: 3,
-                borderRadius: "100px",
-                border: "1px solid rgba(242,100,51,0.22)",
-                bgcolor: "rgba(242,100,51,0.06)",
-                backdropFilter: { xs: "none", md: "blur(12px)" },
-              }}
-            >
-            <Sparkles size={12} color="#F26433" aria-hidden />
-            <Typography
-              sx={{
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: 0.6,
-                color: "rgba(242,100,51,0.88)",
-              }}
-            >
-              {copy.badge}
-            </Typography>
-          </Box>
-
+        <Box sx={{ mb: { xs: 6, md: 8 }, maxWidth: 680 }}>
           <Typography
             id="scenarios-title"
             component="h2"
@@ -607,6 +582,7 @@ function ScenariosShowcase({ locale = "en" }) {
             gap: { md: 0, lg: 0 },
             alignItems: "center",
             position: "relative",
+            direction: "ltr",
           }}
         >
           <Box
@@ -774,6 +750,7 @@ function ScenariosShowcase({ locale = "en" }) {
                 isActive={active === i}
                 onClick={() => setActive(i)}
                 copy={copy}
+                isAr={isAr}
               />
             ))}
           </Stack>

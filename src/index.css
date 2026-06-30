@@ -64,6 +64,31 @@ a {
   color: inherit;
 }
 
+button,
+.MuiButton-root,
+a[href="https://app.speekr.ai"],
+a[href="https://app.speekr.ai/"],
+a[href*="/auth/sign-up"] {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.MuiButton-root[href="https://app.speekr.ai"],
+.MuiButton-root[href="https://app.speekr.ai/"],
+a[href="https://app.speekr.ai"],
+a[href="https://app.speekr.ai/"],
+a[href*="/auth/sign-up"],
+button[type="submit"] {
+  background-image: none !important;
+}
+
+a[href="https://app.speekr.ai"],
+a[href="https://app.speekr.ai/"],
+a[href*="/auth/sign-up"],
+button[type="submit"] {
+  background-color: #F26433 !important;
+}
+
 img {
   max-width: 100%;
 }

@@ -472,12 +472,12 @@ export default function Footer({ locale = 'en', onContactClick }) {
                 letterSpacing: -0.2,
                 textDecoration: 'none',
                 fontFamily: 'inherit',
-                boxShadow: '0 0 24px rgba(242,100,51,0.22)',
-                transition: 'transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease',
+                boxShadow: 'none',
+                transition: 'transform 0.22s ease, background-color 0.22s ease',
                 '&:hover': {
                   transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 32px rgba(242,100,51,0.38)',
-                  filter: 'brightness(1.07)',
+                  bgcolor: '#F26433',
+                  boxShadow: 'none',
                 },
               }}
             >

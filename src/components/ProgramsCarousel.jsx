@@ -202,18 +202,17 @@ function SlideCard({ slide, cta, locale = "en" }) {
             px: 3.5,
             py: "13px",
             borderRadius: "100px",
-            background: "linear-gradient(135deg, #F26433 0%, #F6845F 100%)",
+            bgcolor: "#F26433",
             color: "#074225",
             fontSize: 15,
             fontWeight: 800,
             textDecoration: "none",
-            boxShadow:
-              "0 0 0 1px rgba(242,100,51,0.3), 0 12px 36px rgba(242,100,51,0.2)",
-            transition: "transform 0.22s ease, box-shadow 0.22s ease",
+            boxShadow: "none",
+            transition: "transform 0.22s ease, background-color 0.22s ease",
             "&:hover": {
               transform: "translateY(-2px)",
-              boxShadow:
-                "0 0 0 1px rgba(242,100,51,0.48), 0 18px 48px rgba(242,100,51,0.32)",
+              bgcolor: "#F26433",
+              boxShadow: "none",
             },
           }}
         >

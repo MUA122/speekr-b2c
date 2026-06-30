@@ -247,16 +247,17 @@ function TeamsCard({ billing, prices, copy, common }) {
           px: 3,
           py: '14px',
           borderRadius: '100px',
-          background: 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)',
+          bgcolor: '#F26433',
           color: '#074225',
           fontSize: { xs: 14.5, md: 15 },
           fontWeight: 800,
           textDecoration: 'none',
-          boxShadow: '0 0 0 1px rgba(242,100,51,0.3), 0 14px 44px rgba(242,100,51,0.2)',
-          transition: 'transform 0.22s ease, box-shadow 0.22s ease',
+          boxShadow: 'none',
+          transition: 'transform 0.22s ease, background-color 0.22s ease',
           '&:hover': {
             transform: 'translateY(-2px)',
-            boxShadow: '0 0 0 1px rgba(242,100,51,0.5), 0 20px 60px rgba(242,100,51,0.3)',
+            bgcolor: '#F26433',
+            boxShadow: 'none',
           },
         }}
       >
@@ -408,7 +409,7 @@ function EnterpriseCard({ onDemoClick, copy, common }) {
           '&:hover': {
             transform: 'translateY(-2px)',
             background: 'rgba(242,100,51,0.16)',
-            boxShadow: '0 8px 30px rgba(242,100,51,0.15)',
+            boxShadow: 'none',
           },
         }}
       >
@@ -609,7 +610,7 @@ export default function TeamsPricingSection({ locale = 'en', prices, onDemoClick
                     transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease',
                     bgcolor: billing === b ? '#F26433' : 'transparent',
                     color: billing === b ? '#074225' : 'rgba(238,243,205,0.72)',
-                    boxShadow: billing === b ? '0 2px 14px rgba(242,100,51,0.28)' : 'none',
+                    boxShadow: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: 1,

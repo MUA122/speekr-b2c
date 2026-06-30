@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { Sparkles } from "lucide-react";
 
 const LOGOS = [
   {
@@ -104,32 +103,6 @@ function LogosMarquee() {
       {/* Label */}
       <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
         <Stack sx={{ alignItems: "center", mb: { xs: 4, md: 5.5 }, gap: 1 }}>
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              alignItems: "center",
-              px: 1.8,
-              py: 0.7,
-              borderRadius: "100px",
-              border: "1px solid rgba(7,66,37,0.16)",
-              bgcolor: "rgba(242,100,51,0.08)",
-            }}
-          >
-            <Sparkles size={12} color="#074225" aria-hidden />
-            <Typography
-              sx={{
-                fontSize: 11,
-                fontWeight: 800,
-                letterSpacing: 1.8,
-                textTransform: "uppercase",
-                color: "#074225",
-              }}
-            >
-              Trusted by leading teams
-            </Typography>
-          </Stack>
-
           <Typography
             sx={{
               fontSize: { xs: 13.5, md: 14.5 },

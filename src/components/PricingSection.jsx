@@ -239,17 +239,17 @@ function PricingCard({ plan, prices, copy, common }) {
           py: '14px',
           borderRadius: '100px',
           background: highlight
-            ? 'linear-gradient(135deg, #F26433 0%, #F6845F 100%)'
+            ? '#F26433'
             : '#EEF3CD',
           border: highlight ? 'none' : '1px solid rgba(7,66,37,0.16)',
           color: highlight ? '#074225' : '#074225',
           fontSize: { xs: 14.5, md: 15 },
           fontWeight: 800,
           textDecoration: 'none',
-          boxShadow: highlight ? '0 0 0 1px rgba(242,100,51,0.3), 0 14px 44px rgba(242,100,51,0.2)' : 'none',
-          transition: 'transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease',
+          boxShadow: 'none',
+          transition: 'transform 0.22s ease, background 0.22s ease',
           '&:hover': highlight
-            ? { transform: 'translateY(-2px)', boxShadow: '0 0 0 1px rgba(242,100,51,0.5), 0 20px 60px rgba(242,100,51,0.3)' }
+            ? { transform: 'translateY(-2px)', background: '#F26433', boxShadow: 'none' }
             : { background: 'rgba(242,100,51,0.08)', transform: 'translateY(-1px)' },
         }}
       >
@@ -377,29 +377,7 @@ export default function PricingSection({ locale = 'en', prices }) {
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 960, mx: 'auto' }}>
 
           {/* ── Heading ── */}
-          <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
-            {/* Badge */}
-            <Box
-              sx={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 1,
-                px: 2,
-                py: 0.75,
-                borderRadius: '100px',
-                border: '1px solid rgba(242,100,51,0.18)',
-                bgcolor: 'rgba(242,100,51,0.06)',
-                mb: 3,
-              }}
-            >
-              <Zap size={12} color="#F26433" fill="#F26433" aria-hidden />
-              <Typography
-                sx={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: '#F26433' }}
-              >
-                {copy.badge}
-              </Typography>
-            </Box>
-
+          <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 7 } }}>
             <Typography
               id="pricing-title"
               component="h2"
@@ -462,7 +440,7 @@ export default function PricingSection({ locale = 'en', prices }) {
                     transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease',
                     bgcolor: billing === b ? '#F26433' : 'transparent',
                     color: billing === b ? '#074225' : 'rgba(7,66,37,0.6)',
-                    boxShadow: billing === b ? '0 2px 14px rgba(242,100,51,0.28)' : 'none',
+                    boxShadow: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: 1,

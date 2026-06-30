@@ -262,17 +262,15 @@ function Hero({ locale = "en", onBookDemoClick }) {
                   borderRadius: "14px",
                   fontSize: 15,
                   fontWeight: 700,
-                  background:
-                    "linear-gradient(135deg, #F26433 0%, #F6845F 100%)",
+                  background: "#F26433",
+                  backgroundImage: "none",
                   color: "#074225",
                   border: "none",
-                  boxShadow:
-                    "0 0 0 1px rgba(242, 100, 51, 0.28), 0 20px 55px rgba(242, 100, 51, 0.24)",
+                  boxShadow: "none",
                   "&:hover": {
-                    background:
-                      "linear-gradient(135deg, #F26433 0%, #F26433 100%)",
-                    boxShadow:
-                      "0 0 0 1px rgba(242, 100, 51, 0.42), 0 24px 64px rgba(242, 100, 51, 0.32)",
+                    background: "#F26433",
+                    backgroundImage: "none",
+                    boxShadow: "none",
                     transform: "translateY(-2px)",
                   },
                   transition: "all 220ms cubic-bezier(0.4, 0, 0.2, 1)",

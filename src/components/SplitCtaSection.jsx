@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Check, ArrowRight, Sparkles } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { commonCopy } from "../utils/i18n";
 
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
@@ -268,12 +268,12 @@ function CtaCard({
               textDecoration: "none",
               fontFamily: "inherit",
               transition:
-                "transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease",
-              boxShadow: `0 0 22px ${ca(0.28)}`,
+                "transform 0.22s ease, background-color 0.22s ease",
+              boxShadow: "none",
               "&:hover": {
                 transform: "translateY(-2px)",
-                boxShadow: `0 8px 32px ${ca(0.44)}`,
-                filter: "brightness(1.07)",
+                bgcolor: color,
+                boxShadow: "none",
               },
             }}
           >
@@ -497,33 +497,6 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
         >
           {/* ── Heading ── */}
           <Box sx={{ textAlign: "center", mb: { xs: 6, md: 9 } }}>
-            <Box
-              sx={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 1,
-                px: 2,
-                py: 0.75,
-                mb: 3,
-                borderRadius: "100px",
-                border: "1px solid rgba(242,100,51,0.2)",
-                bgcolor: "rgba(242,100,51,0.06)",
-              }}
-            >
-              <Sparkles size={12} color="#F26433" aria-hidden />
-              <Typography
-                sx={{
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: 1.8,
-                  textTransform: "uppercase",
-                  color: "#F26433",
-                }}
-              >
-                {ui.badge}
-              </Typography>
-            </Box>
-
             <Typography
               id="solutions-title"
               component="h2"
