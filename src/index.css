@@ -188,6 +188,18 @@ img {
   transition-duration: 180ms !important;
 }
 
+.lm-track {
+  animation-duration: 16s !important;
+  animation-iteration-count: infinite !important;
+}
+
+@media (max-width: 768px) {
+  .lm-track {
+    animation-duration: 10s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
+
 .signal-line {
   animation: signalPulse 2.8s ease-in-out infinite;
 }

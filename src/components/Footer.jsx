@@ -433,7 +433,7 @@ export default function Footer({ locale = "en", onContactClick }) {
               loading="lazy"
               decoding="async"
               sx={{
-                height: 42,
+                height: { xs: 56, sm: 64, md: 72 },
                 width: "auto",
                 objectFit: "contain",
                 objectPosition: "left center",

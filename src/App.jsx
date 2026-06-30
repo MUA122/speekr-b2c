@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import LogosMarquee from "./components/LogosMarquee";
 import ScenariosShowcase from "./components/ScenariosShowcase";
 import ProgramsCarousel from "./components/ProgramsCarousel";
 import VideoShowcase from "./components/VideoShowcase";
@@ -167,60 +168,7 @@ function App() {
       {!isBlogRoute && (
         <>
           <Hero locale={locale} onBookDemoClick={openContactModal} />
-          <Box
-            aria-hidden
-            sx={{
-              position: "relative",
-              bgcolor: "#EEF3CD",
-              py: { xs: 4, md: 5.5 },
-              overflow: "hidden",
-            }}
-          >
-            <Box
-              sx={{
-                position: "relative",
-                maxWidth: 1220,
-                mx: "auto",
-                px: { xs: 2.5, md: 5 },
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: { xs: 2, md: 3 },
-              }}
-            >
-              <Box
-                sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }}
-              />
-              <Box
-                sx={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: "50%",
-                  border: "1px solid rgba(7,66,37,0.16)",
-                  bgcolor: "rgba(7,66,37,0.06)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 18px 50px rgba(7,66,37,0.08)",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 18,
-                    height: 18,
-                    borderRadius: "5px",
-                    bgcolor: "#074225",
-                    transform: "rotate(45deg)",
-                    boxShadow: "0 0 0 10px rgba(7,66,37,0.08)",
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{ flex: 1, height: "1px", bgcolor: "rgba(7,66,37,0.34)" }}
-              />
-            </Box>
-          </Box>
-          {/* <LogosMarquee /> */}
+          <LogosMarquee />
           <ScenariosShowcase locale={locale} />
           <ProgramsCarousel locale={locale} />
           <VideoShowcase locale={locale} />
