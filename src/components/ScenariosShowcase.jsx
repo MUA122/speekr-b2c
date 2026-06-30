@@ -13,22 +13,8 @@ const VID = (id) =>
 
 const SCENARIOS = [
   {
-    id: 0,
-    category: "Sales",
-    label: "Win The Sales Call",
-    title: "Budget Objection Handling",
-    cover: IMG("f7eab9a39403473294738370b4d35535"),
-    video: VID("df1e132ba6d44f749a6944b725ece1f2"),
-    coach: {
-      name: "Sherif",
-      avatar: IMG("95f5a6bd88644b1bbc8f801c9abcb4e7"),
-      type: "Sales Call",
-      lang: "Arabic",
-    },
-    goalPct: 53,
-  },
-  {
     id: 1,
+    copyIndex: 1,
     category: "Career Development",
     label: "Land Your Next Job Interview",
     title: "Land Your Next Job Interview",
@@ -41,21 +27,6 @@ const SCENARIOS = [
       lang: "English",
     },
     goalPct: 90,
-  },
-  {
-    id: 2,
-    category: "Sales",
-    label: "Unexpected Cold Call",
-    title: "Unexpected Cold Call",
-    cover: IMG("1619f156e8e6411b9c78e1bf76d0be6c"),
-    video: VID("787b7e773c16491c8be9465d90909bbd"),
-    coach: {
-      name: "Sherif",
-      avatar: IMG("9554ef8a6ceb442380dd0dd162e3413d"),
-      type: "Pitch",
-      lang: "Arabic",
-    },
-    goalPct: 65,
   },
 ];
 
@@ -79,7 +50,7 @@ function ProgressRing({ pct, size = 52 }) {
           cy={size / 2}
           r={r}
           fill="none"
-          stroke="rgba(238,243,205,0.1)"
+          stroke="rgba(7,66,37,0.16)"
           strokeWidth={sw}
         />
         <circle
@@ -125,12 +96,12 @@ function CoachTag({ children }) {
         px: 1.4,
         height: 22,
         borderRadius: "100px",
-        border: "1px solid rgba(238,243,205,0.15)",
-        bgcolor: "rgba(238,243,205,0.04)",
+        border: "1px solid rgba(7,66,37,0.16)",
+        bgcolor: "rgba(7,66,37,0.04)",
       }}
     >
       <Typography
-        sx={{ fontSize: 11, color: "rgba(238,243,205,0.45)", lineHeight: 1 }}
+        sx={{ fontSize: 11, color: "rgba(7,66,37,0.68)", lineHeight: 1 }}
       >
         {children}
       </Typography>
@@ -140,8 +111,7 @@ function CoachTag({ children }) {
 
 function ExpandedContent({ scenario, copy }) {
   return (
-    <Stack spacing={2.5}>
-      {/* Cover thumbnail */}
+    <Stack spacing={3}>
       <Box
         component="a"
         href="https://app.speekr.ai/auth/sign-up/"
@@ -150,11 +120,13 @@ function ExpandedContent({ scenario, copy }) {
         sx={{
           display: "block",
           position: "relative",
-          borderRadius: "12px",
+          borderRadius: "18px",
           overflow: "hidden",
-          height: 140,
+          height: { xs: 150, md: 176 },
           flexShrink: 0,
           textDecoration: "none",
+          border: "1px solid rgba(7,66,37,0.1)",
+          boxShadow: "0 18px 36px rgba(7,66,37,0.16)",
           "&:hover img": { transform: "scale(1.04)" },
         }}
       >
@@ -179,7 +151,7 @@ function ExpandedContent({ scenario, copy }) {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)",
+              "linear-gradient(180deg, rgba(0,34,19,0.08) 0%, rgba(0,34,19,0.72) 100%)",
             pointerEvents: "none",
           }}
         />
@@ -189,8 +161,8 @@ function ExpandedContent({ scenario, copy }) {
             position: "absolute",
             top: 10,
             left: 10,
-            px: 1.4,
-            py: 0.45,
+            px: 1.5,
+            py: 0.65,
             borderRadius: "100px",
             bgcolor: "rgba(0,34,19,0.88)",
             border: "1px solid rgba(242,100,51,0.25)",
@@ -201,7 +173,7 @@ function ExpandedContent({ scenario, copy }) {
             sx={{
               fontSize: 10,
               fontWeight: 800,
-              letterSpacing: 0.6,
+              letterSpacing: 0.8,
               color: "#F26433",
             }}
           >
@@ -212,14 +184,14 @@ function ExpandedContent({ scenario, copy }) {
         <Typography
           sx={{
             position: "absolute",
-            bottom: 10,
-            left: 12,
-            right: 12,
-            fontSize: 12.5,
-            fontWeight: 800,
-            letterSpacing: 0.2,
+            bottom: 14,
+            left: 16,
+            right: 16,
+            fontSize: { xs: 14, md: 15 },
+            fontWeight: 900,
+            letterSpacing: 0.3,
             color: "#EEF3CD",
-            lineHeight: 1.3,
+            lineHeight: 1.18,
             textTransform: "uppercase",
             textShadow: "0 1px 6px rgba(0,0,0,0.6)",
           }}
@@ -228,13 +200,13 @@ function ExpandedContent({ scenario, copy }) {
         </Typography>
       </Box>
 
-      {/* Coach */}
-      <Stack spacing={1}>
+      <Stack spacing={1.2}>
         <Typography
           sx={{
-            fontSize: 11.5,
-            color: "rgba(238,243,205,0.35)",
-            fontWeight: 500,
+            fontSize: 12,
+            color: "rgba(7,66,37,0.62)",
+            fontWeight: 800,
+            letterSpacing: 0.2,
           }}
         >
           {copy.practiceWith}
@@ -247,7 +219,8 @@ function ExpandedContent({ scenario, copy }) {
               borderRadius: "50%",
               overflow: "hidden",
               flexShrink: 0,
-              border: "2px solid rgba(242,100,51,0.22)",
+              border: "2px solid rgba(242,100,51,0.54)",
+              boxShadow: "0 8px 22px rgba(242,100,51,0.18)",
             }}
           >
             <Box
@@ -269,8 +242,8 @@ function ExpandedContent({ scenario, copy }) {
             <Typography
               sx={{
                 fontSize: 15,
-                fontWeight: 700,
-                color: "rgba(238,243,205,0.9)",
+                fontWeight: 900,
+                color: "#074225",
                 mb: 0.7,
                 lineHeight: 1,
               }}
@@ -285,17 +258,18 @@ function ExpandedContent({ scenario, copy }) {
         </Stack>
       </Stack>
 
-      {/* Goal + CTA */}
       <Stack
-        direction="row"
-        sx={{ alignItems: "center", justifyContent: "space-between" }}
+        direction={{ xs: "column", sm: "row" }}
+        spacing={{ xs: 2, sm: 0 }}
+        sx={{ alignItems: { xs: "stretch", sm: "center" }, justifyContent: "space-between" }}
       >
         <Stack direction="row" spacing={1.2} sx={{ alignItems: "center" }}>
           <ProgressRing pct={scenario.goalPct} />
           <Typography
             sx={{
-              fontSize: 11,
-              color: "rgba(238,243,205,0.38)",
+              fontSize: 11.5,
+              fontWeight: 700,
+              color: "rgba(7,66,37,0.58)",
               lineHeight: 1.3,
             }}
           >
@@ -312,19 +286,22 @@ function ExpandedContent({ scenario, copy }) {
           sx={{
             display: "inline-flex",
             alignItems: "center",
+            justifyContent: "center",
             gap: 0.5,
-            px: 2,
-            py: 0.9,
+            px: 2.6,
+            py: 1.15,
             borderRadius: "100px",
             background: "linear-gradient(135deg, #F26433 0%, #F6845F 100%)",
             color: "#074225",
-            fontSize: 12.5,
-            fontWeight: 800,
+            fontSize: 13,
+            fontWeight: 900,
             textDecoration: "none",
-            transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            boxShadow: "0 12px 26px rgba(242,100,51,0.24)",
+            transition: "transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease",
             "&:hover": {
               transform: "translateY(-2px)",
-              boxShadow: "0 8px 24px rgba(242,100,51,0.32)",
+              filter: "brightness(1.03)",
+              boxShadow: "0 16px 34px rgba(242,100,51,0.34)",
             },
           }}
         >
@@ -346,43 +323,57 @@ function TabCard({ scenario, isActive, onClick, copy }) {
       aria-pressed={isActive}
       sx={{
         position: "relative",
-        p: "16px 20px",
-        borderRadius: "18px",
+        p: { xs: "20px", md: "24px" },
+        borderRadius: "26px",
         border: "1px solid",
         borderColor: isActive
-          ? "rgba(242,100,51,0.22)"
-          : "rgba(238,243,205,0.07)",
-        bgcolor: isActive ? "rgba(242,100,51,0.04)" : "rgba(238,243,205,0.025)",
-        backdropFilter: "blur(24px)",
+          ? "rgba(242,100,51,0.54)"
+          : "rgba(7,66,37,0.18)",
+        bgcolor: "#EEF3CD",
+        overflow: "hidden",
         cursor: "pointer",
         outline: "none",
         transition:
           "border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease",
         boxShadow: isActive
-          ? "0 0 36px rgba(242,100,51,0.07), inset 0 1px 0 rgba(238,243,205,0.06)"
-          : "inset 0 1px 0 rgba(238,243,205,0.04)",
+          ? "0 30px 90px rgba(0,34,19,0.34), 0 0 0 1px rgba(238,243,205,0.45), inset 0 1px 0 rgba(255,255,255,0.72)"
+          : "inset 0 1px 0 rgba(255,255,255,0.5)",
         "&:hover": !isActive
           ? {
-              borderColor: "rgba(238,243,205,0.13)",
-              bgcolor: "rgba(238,243,205,0.04)",
+              borderColor: "rgba(7,66,37,0.3)",
             }
           : {},
         "&:focus-visible": {
           outline: "2px solid rgba(242,100,51,0.5)",
           outlineOffset: 2,
         },
-        /* lime left accent bar */
         "&::before": {
           content: '""',
           position: "absolute",
           left: 0,
           top: "50%",
           transform: "translateY(-50%)",
-          width: 3,
-          height: isActive ? "55%" : "0%",
-          borderRadius: "0 3px 3px 0",
+          width: 5,
+          height: isActive ? "56%" : "0%",
+          borderRadius: "0 999px 999px 0",
           bgcolor: "#F26433",
           transition: "height 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+        },
+        "&::after": {
+          content: '""',
+          position: "absolute",
+          top: -80,
+          right: -80,
+          width: 190,
+          height: 190,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(242,100,51,0.18) 0%, rgba(242,100,51,0.06) 38%, transparent 70%)",
+          pointerEvents: "none",
+        },
+        "& > *": {
+          position: "relative",
+          zIndex: 1,
         },
       }}
     >
@@ -397,7 +388,7 @@ function TabCard({ scenario, isActive, onClick, copy }) {
               borderRadius: "50%",
               overflow: "hidden",
               flexShrink: 0,
-              bgcolor: "rgba(238,243,205,0.06)",
+              bgcolor: "rgba(7,66,37,0.08)",
             }}
           >
             <Box
@@ -419,14 +410,14 @@ function TabCard({ scenario, isActive, onClick, copy }) {
             sx={{
               fontSize: 13.5,
               fontWeight: 600,
-              color: "rgba(238,243,205,0.6)",
+              color: "#074225",
               flex: 1,
               lineHeight: 1.35,
             }}
           >
             {scenario.label}
           </Typography>
-          <ChevronRight size={15} color="rgba(238,243,205,0.25)" aria-hidden />
+          <ChevronRight size={15} color="rgba(7,66,37,0.45)" aria-hidden />
         </Stack>
       )}
     </Box>
@@ -437,11 +428,14 @@ function ScenariosShowcase({ locale = "en" }) {
   const [active, setActive] = useState(0);
   const videoRef = useRef(null);
   const copy = landingCopy[locale].scenarios;
-  const scenarios = SCENARIOS.map((scenario, index) => ({
-    ...scenario,
-    ...copy.items[index],
-    coach: { ...scenario.coach, ...copy.items[index].coach },
-  }));
+  const scenarios = SCENARIOS.map((scenario, index) => {
+    const itemCopy = copy.items[scenario.copyIndex ?? index];
+    return {
+      ...scenario,
+      ...itemCopy,
+      coach: { ...scenario.coach, ...itemCopy.coach },
+    };
+  });
 
   useEffect(() => {
     const v = videoRef.current;
@@ -609,20 +603,29 @@ function ScenariosShowcase({ locale = "en" }) {
         <Box
           sx={{
             display: { xs: "none", md: "grid" },
-            gridTemplateColumns: { md: "1fr 350px", lg: "1fr 380px" },
-            gap: { md: 3, lg: 4 },
-            alignItems: "start",
+            gridTemplateColumns: { md: "minmax(0, 1fr) 340px", lg: "minmax(0, 1fr) 430px" },
+            gap: { md: 0, lg: 0 },
+            alignItems: "center",
+            position: "relative",
           }}
         >
-          {/* Video panel */}
           <Box
             sx={{
               position: "relative",
-              borderRadius: "24px",
+              borderRadius: { md: "26px", lg: "30px" },
               overflow: "hidden",
-              border: "1px solid rgba(238,243,205,0.14)",
+              border: "1px solid rgba(242,100,51,0.4)",
               boxShadow:
-                "0 40px 100px rgba(0,0,0,0.48), 0 0 0 1px rgba(242,100,51,0.08)",
+                "0 46px 120px rgba(0,0,0,0.52), 0 0 0 1px rgba(238,243,205,0.1)",
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(90deg, transparent 0%, transparent 66%, rgba(0,34,19,0.18) 100%)",
+                pointerEvents: "none",
+                zIndex: 1,
+              },
             }}
           >
             {/* "PLAYING" badge */}
@@ -732,8 +735,38 @@ function ScenariosShowcase({ locale = "en" }) {
             </Box>
           </Box>
 
-          {/* Tab list */}
-          <Stack spacing={1.5}>
+          <Stack
+            spacing={1.5}
+            sx={{
+              position: "relative",
+              zIndex: 3,
+              ml: { md: -5, lg: -7 },
+              maxWidth: { md: 360, lg: 430 },
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: "50%",
+                left: { md: -34, lg: -44 },
+                width: { md: 34, lg: 44 },
+                height: 2,
+                bgcolor: "#F26433",
+                boxShadow: "0 0 22px rgba(242,100,51,0.65)",
+                transform: "translateY(-50%)",
+              },
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                top: "50%",
+                left: { md: -42, lg: -52 },
+                width: 12,
+                height: 12,
+                borderRadius: "50%",
+                bgcolor: "#F26433",
+                boxShadow: "0 0 0 8px rgba(242,100,51,0.13)",
+                transform: "translateY(-50%)",
+              },
+            }}
+          >
             {scenarios.map((s, i) => (
               <TabCard
                 key={s.id}
@@ -754,9 +787,11 @@ function ScenariosShowcase({ locale = "en" }) {
               <Box
                 sx={{
                   p: "20px",
-                  borderRadius: "18px",
-                  border: "1px solid rgba(238,243,205,0.09)",
-                  bgcolor: "rgba(238,243,205,0.03)",
+                  borderRadius: "24px",
+                  border: "1px solid rgba(242,100,51,0.5)",
+                  bgcolor: "#EEF3CD",
+                  boxShadow:
+                    "0 24px 64px rgba(0,34,19,0.28), inset 0 1px 0 rgba(255,255,255,0.68)",
                   backdropFilter: "none",
                 }}
               >

@@ -46,16 +46,16 @@ export const commonCopy = {
 export const navCopy = {
   en: [
     { label: "Home", href: "/" },
-    { label: "Blog", href: "/blog" },
     { label: "Product", href: "#product-communication", sectionId: "product-communication" },
     { label: "Pricing", href: "#pricing", sectionId: "pricing" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", isContact: true },
   ],
   ar: [
     { label: "الرئيسية", href: "/" },
-    { label: "المدونة", href: "/blog" },
     { label: "المنتج", href: "#product-communication", sectionId: "product-communication" },
     { label: "الأسعار", href: "#pricing", sectionId: "pricing" },
+    { label: "المدونة", href: "/blog" },
     { label: "تواصل معنا", isContact: true },
   ],
 };

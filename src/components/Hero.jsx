@@ -3,15 +3,8 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { ArrowRight, CalendarDays, Star } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import { commonCopy, landingCopy } from "../utils/i18n";
-
-const AVATARS = [
-  { bg: "#8EC640", initials: "MK" },
-  { bg: "#F26433", initials: "SR" },
-  { bg: "#EEF3CD", initials: "AL" },
-  { bg: "#C84D27", initials: "JP" },
-];
 
 function ProductPreview() {
   return (
@@ -249,7 +242,7 @@ function Hero({ locale = "en", onBookDemoClick }) {
             <Stack
               direction={{ xs: "column", sm: "row" }}
               sx={{
-                mt: { xs: 4, md: 5 },
+                mt: { xs: 3.5, md: 4.5 },
                 alignItems: { xs: "stretch", sm: "center" },
                 justifyContent: "flex-start",
                 gap: isAr ? { xs: 1.6, sm: 2.4 } : 1.5,
@@ -313,76 +306,6 @@ function Hero({ locale = "en", onBookDemoClick }) {
               >
                 {common.bookDemo}
               </Button>
-            </Stack>
-
-            {/* Social proof */}
-            <Stack
-              direction={isAr ? "row-reverse" : "row"}
-              spacing={2}
-              sx={{
-                mt: 4.5,
-                alignItems: "center",
-                justifyContent: isAr ? "flex-start" : "flex-start",
-                width: "fit-content",
-                maxWidth: "100%",
-              }}
-            >
-              {/* Avatar stack */}
-              <Stack direction={isAr ? "row-reverse" : "row"} sx={{ position: "relative" }}>
-                {AVATARS.map((a, i) => (
-                  <Box
-                    key={i}
-                    aria-hidden
-                    sx={{
-                      width: 34,
-                      height: 34,
-                      borderRadius: "50%",
-                      bgcolor: a.bg,
-                      border: "2px solid #EEF3CD",
-                      ml: !isAr && i > 0 ? -1.3 : 0,
-                      mr: isAr && i > 0 ? -1.3 : 0,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 10.5,
-                      fontWeight: 800,
-                      color: "#EEF3CD",
-                      zIndex: AVATARS.length - i,
-                      flexShrink: 0,
-                    }}
-                  >
-                    {a.initials}
-                  </Box>
-                ))}
-              </Stack>
-              <Box sx={{ textAlign: isAr ? "right" : "left" }}>
-                <Stack
-                  direction={isAr ? "row-reverse" : "row"}
-                  spacing={0.3}
-                  sx={{ mb: 0.4, justifyContent: isAr ? "flex-end" : "flex-start" }}
-                >
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={12}
-                      fill="#F26433"
-                      color="#F26433"
-                      aria-hidden
-                    />
-                  ))}
-                </Stack>
-                <Typography
-                  sx={{ fontSize: 12.5, color: "rgba(7, 66, 37, 0.55)" }}
-                >
-                  {copy.trusted}{" "}
-                  <Box
-                    component="span"
-                    sx={{ color: "#074225", fontWeight: 700 }}
-                  >
-                    {copy.trustedCount}
-                  </Box>
-                </Typography>
-              </Box>
             </Stack>
           </Box>
 
