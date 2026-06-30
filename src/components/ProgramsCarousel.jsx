@@ -145,10 +145,10 @@ function SlideCard({ slide, locale = "en" }) {
         {/* Step indicator */}
         <Stack
           direction={isAr ? "row-reverse" : "row"}
-          spacing={1.5}
           sx={{
             alignItems: "center",
-            justifyContent: isAr ? "flex-start" : "flex-start",
+            justifyContent: "flex-start",
+            gap: isAr ? { xs: 1.5, md: 1.75 } : 1.5,
             mb: { xs: 4, md: "52px" },
           }}
         >
