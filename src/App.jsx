@@ -9,7 +9,6 @@ import VideoShowcase from "./components/VideoShowcase";
 import ConversationsCovered from "./components/ConversationsCovered";
 // import TestimonialsCarousel from "./components/TestimonialsCarousel";
 import PricingSection from "./components/PricingSection";
-import TeamsPricingSection from "./components/TeamsPricingSection";
 import CaseStudiesCarousel from "./components/CaseStudiesCarousel";
 import SplitCtaSection from "./components/SplitCtaSection";
 import FaqSection from "./components/FaqSection";
@@ -177,11 +176,73 @@ function App() {
           <CaseStudiesCarousel locale={locale} />
 
           <PricingSection locale={locale} prices={prices} />
-          <TeamsPricingSection
-            locale={locale}
-            prices={prices}
-            onDemoClick={openContactModal}
-          />
+          <Box
+            aria-hidden
+            sx={{
+              bgcolor: "#EEF3CD",
+              px: { xs: "12px", sm: "18px", md: "24px" },
+              pt: { xs: 5, md: 7 },
+              pb: { xs: 1.5, md: 2 },
+            }}
+          >
+            <Box
+              sx={{
+                maxWidth: 1330,
+                mx: "auto",
+                display: "grid",
+                gridTemplateColumns: "minmax(0, 1fr) auto minmax(0, 1fr)",
+                alignItems: "center",
+                gap: { xs: 2, md: 4 },
+              }}
+            >
+              <Box
+                sx={{
+                  height: "1px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(7,66,37,0.28))",
+                }}
+              />
+              <Box
+                sx={{
+                  width: { xs: 58, md: 84 },
+                  height: { xs: 58, md: 84 },
+                  borderRadius: "50%",
+                  border: "1px solid rgba(7,66,37,0.18)",
+                  display: "grid",
+                  placeItems: "center",
+                  bgcolor: "rgba(7,66,37,0.035)",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: { xs: 38, md: 54 },
+                    height: { xs: 38, md: 54 },
+                    borderRadius: "50%",
+                    bgcolor: "rgba(7,66,37,0.08)",
+                    display: "grid",
+                    placeItems: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: { xs: 17, md: 23 },
+                      height: { xs: 17, md: 23 },
+                      borderRadius: "6px",
+                      bgcolor: "#074225",
+                      transform: "rotate(45deg)",
+                    }}
+                  />
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  height: "1px",
+                  background:
+                    "linear-gradient(90deg, rgba(7,66,37,0.28), transparent)",
+                }}
+              />
+            </Box>
+          </Box>
           <SplitCtaSection locale={locale} onDemoClick={openContactModal} />
           <FaqSection locale={locale} onDemoClick={openContactModal} />
         </>

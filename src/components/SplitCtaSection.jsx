@@ -397,18 +397,8 @@ export default function SplitCtaSection({ locale = "en", onDemoClick }) {
           borderRadius: { xs: "24px", md: "32px" },
           overflow: "hidden",
           px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
-          pt: { xs: 6, md: 8 },
+          pt: { xs: 3, md: 4 },
           pb: { xs: 8, md: 10 },
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: "10%",
-            right: "10%",
-            height: "1px",
-            background:
-              "linear-gradient(90deg, transparent, rgba(242,100,51,0.3) 50%, transparent)",
-          },
         }}
       >
         {/* Ambient orb — lime, center */}
